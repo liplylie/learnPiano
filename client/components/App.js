@@ -46,6 +46,27 @@ class App extends Component {
 
   componentWillUnmount(){
     this.removeAuthListener()
+      authenticated: false
+    }
+    this.authWithEmailPassword = this.authWithEmailPassword.bind(this)
+  }
+
+  authWithEmailPassword() {
+    const email = document.getElementById('emailInput').value
+    const pw = document.getElementById('passwordInput').value
+    const authDomain = firebase.auth()
+
+    auth.signInWithEmailAndPassword(email, pw)
+      .then(result => {
+        console.log('logged in')
+
+          this.setState({
+            authenticated: true,
+          })
+        })
+      .catch(err => console.log('error with login', err))
+    document.getElementById('emailInput').value = ''
+    document.getElementById('passwordInput').value = ''
   }
 
   render() {

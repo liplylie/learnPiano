@@ -1,9 +1,7 @@
 package-lock.json
 
-<<<<<<< HEAD
 node_modules
 
 secret.json
-=======
 node_modules
->>>>>>> basic set up with navBar and 404 route NEED TO ADD FIREB AUTH
+secret.json
