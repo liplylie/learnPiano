@@ -17,7 +17,7 @@ class App extends Component {
           <NavBar />
           <div style={{display: 'flex'}}>
             <Switch>
-                <Route exact path='/' component={() => ( <DefaultHome />)}/>
+              <Route exact path='/' component={() => ( <DefaultHome />)}/>
               <Route render={() => {
                 return (
                   <div className='fourofour-section'>
