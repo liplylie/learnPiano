@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+import LogIn from './Login'
+
 class Navbar extends Component {
     constructor(props){
         super(props)
@@ -23,25 +25,11 @@ class Navbar extends Component {
                     <ul className="nav navbar-nav flex-row justify-content-between ml-auto">
                         <li className="nav-item order-2 order-md-1"><a href="#" className="nav-link" title="settings"><i className="fa fa-cog fa-fw fa-lg"></i></a></li>
                         <li className="dropdown order-1">
-                            <button type="button" id="dropdownMenu1" data-toggle="dropdown" className="btn btn-outline-secondary dropdown-toggle">Login <span className="caret"></span></button>
-                            <ul className="dropdown-menu dropdown-menu-right mt-1">
-                              <li className="p-3">
-                                    <form className="form" role="form">
-                                        <div className="form-group">
-                                            <input id="emailInput" placeholder="Email" className="form-control form-control-sm" type="text" required=""/>
-                                        </div>
-                                        <div className="form-group">
-                                            <input id="passwordInput" placeholder="Password" className="form-control form-control-sm" type="text" required=""/>
-                                        </div>
-                                        <div className="form-group">
-                                            <button type="submit" className="btn btn-primary btn-block">Login</button>
-                                        </div>
-                                        <div className="form-group text-xs-center">
-                                            <small><a href="#">Forgot password?</a></small>
-                                        </div>
-                                    </form>
-                                </li>
-                            </ul>
+                            {this.props.authenticated
+                                ?  <button type="button" id="signOut" className="btn btn-outline-secondary">Log Out<span className="caret"></span></button>
+                                :
+                                <LogIn/>
+                            }
                         </li>
                     </ul>
                 </div>
