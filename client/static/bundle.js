@@ -22870,10 +22870,37 @@ var App = function (_Component) {
   function App(props) {
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = {
+      authenticated: false
+    };
+    _this.authWithEmailPassword = _this.authWithEmailPassword.bind(_this);
+    return _this;
   }
 
   _createClass(App, [{
+    key: 'authWithEmailPassword',
+    value: function authWithEmailPassword() {
+      var _this2 = this;
+
+      var email = document.getElementById('emailInput').value;
+      var pw = document.getElementById('passwordInput').value;
+      var authDomain = firebase.auth();
+
+      auth.signInWithEmailAndPassword(email, pw).then(function (result) {
+        console.log('logged in');
+
+        _this2.setState({
+          authenticated: true
+        });
+      }).catch(function (err) {
+        return console.log('error with login', err);
+      });
+      document.getElementById('emailInput').value = '';
+      document.getElementById('passwordInput').value = '';
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -22882,7 +22909,7 @@ var App = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'main' },
-          _react2.default.createElement(_NavBar2.default, null),
+          _react2.default.createElement(_NavBar2.default, { authenticated: this.state.authenticated, login: this.authWithEmailPassword }),
           _react2.default.createElement(
             'div',
             { style: { display: 'flex' } },
@@ -25898,6 +25925,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(40);
 
+var _Login = __webpack_require__(121);
+
+var _Login2 = _interopRequireDefault(_Login);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25992,56 +26023,12 @@ var Navbar = function (_Component) {
                             _react2.default.createElement(
                                 'li',
                                 { className: 'dropdown order-1' },
-                                _react2.default.createElement(
+                                this.props.authenticated ? _react2.default.createElement(
                                     'button',
-                                    { type: 'button', id: 'dropdownMenu1', 'data-toggle': 'dropdown', className: 'btn btn-outline-secondary dropdown-toggle' },
-                                    'Login ',
+                                    { type: 'button', id: 'signOut', className: 'btn btn-outline-secondary' },
+                                    'Log Out',
                                     _react2.default.createElement('span', { className: 'caret' })
-                                ),
-                                _react2.default.createElement(
-                                    'ul',
-                                    { className: 'dropdown-menu dropdown-menu-right mt-1' },
-                                    _react2.default.createElement(
-                                        'li',
-                                        { className: 'p-3' },
-                                        _react2.default.createElement(
-                                            'form',
-                                            { className: 'form', role: 'form' },
-                                            _react2.default.createElement(
-                                                'div',
-                                                { className: 'form-group' },
-                                                _react2.default.createElement('input', { id: 'emailInput', placeholder: 'Email', className: 'form-control form-control-sm', type: 'text', required: '' })
-                                            ),
-                                            _react2.default.createElement(
-                                                'div',
-                                                { className: 'form-group' },
-                                                _react2.default.createElement('input', { id: 'passwordInput', placeholder: 'Password', className: 'form-control form-control-sm', type: 'text', required: '' })
-                                            ),
-                                            _react2.default.createElement(
-                                                'div',
-                                                { className: 'form-group' },
-                                                _react2.default.createElement(
-                                                    'button',
-                                                    { type: 'submit', className: 'btn btn-primary btn-block' },
-                                                    'Login'
-                                                )
-                                            ),
-                                            _react2.default.createElement(
-                                                'div',
-                                                { className: 'form-group text-xs-center' },
-                                                _react2.default.createElement(
-                                                    'small',
-                                                    null,
-                                                    _react2.default.createElement(
-                                                        'a',
-                                                        { href: '#' },
-                                                        'Forgot password?'
-                                                    )
-                                                )
-                                            )
-                                        )
-                                    )
-                                )
+                                ) : _react2.default.createElement(_Login2.default, null)
                             )
                         )
                     )
@@ -26104,6 +26091,106 @@ var DefaultHome = function (_Component) {
 }(_react.Component);
 
 exports.default = DefaultHome;
+
+/***/ }),
+/* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var LogIn = function (_Component) {
+	_inherits(LogIn, _Component);
+
+	function LogIn() {
+		_classCallCheck(this, LogIn);
+
+		return _possibleConstructorReturn(this, (LogIn.__proto__ || Object.getPrototypeOf(LogIn)).call(this));
+	}
+
+	_createClass(LogIn, [{
+		key: "render",
+		value: function render() {
+			return _react2.default.createElement(
+				"div",
+				null,
+				_react2.default.createElement(
+					"button",
+					{ type: "button", id: "dropdownMenu1", "data-toggle": "dropdown", className: "btn btn-outline-secondary dropdown-toggle" },
+					"Login ",
+					_react2.default.createElement("span", { className: "caret" })
+				),
+				_react2.default.createElement(
+					"ul",
+					{ style: { padding: "2em 4em 0px 4em" }, className: "dropdown-menu dropdown-menu-right mt-1" },
+					_react2.default.createElement(
+						"li",
+						{ className: "p-3" },
+						_react2.default.createElement(
+							"form",
+							{ className: "form", role: "form" },
+							_react2.default.createElement(
+								"div",
+								{ className: "form-group" },
+								_react2.default.createElement("input", { id: "emailInput", placeholder: "Email", className: "input-large", type: "text", required: "" })
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "form-group" },
+								_react2.default.createElement("input", { id: "passwordInput", placeholder: "Password", className: "input-large", type: "text", required: "" })
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "form-group" },
+								_react2.default.createElement(
+									"button",
+									{ type: "submit", className: "btn btn-primary btn-block" },
+									"Login"
+								)
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "form-group text-xs-center" },
+								_react2.default.createElement(
+									"small",
+									null,
+									_react2.default.createElement(
+										"a",
+										{ href: "#" },
+										"Forgot password?"
+									)
+								)
+							),
+							_react2.default.createElement("div", { className: "fb-login-button" })
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return LogIn;
+}(_react.Component);
+
+exports.default = LogIn;
 
 /***/ })
 /******/ ]);

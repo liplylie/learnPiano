@@ -6,7 +6,7 @@ import App from './components/App.js'
 
 class LearnPiano extends Component {
   constructor(props) {
-    super(props); 
+    super(props)
   }
 
   render() {
