@@ -7,7 +7,7 @@ class DefaultHome extends Component {
 
 	render() {
 		return (
-			<div className="text-center" style={{minHeight: '100vh', maxHeight: '100vh', flex: 10, paddingTop: '4em', backgroundColor: 'lightgray',  overflow: 'scroll'}}>
+			<div className="text-center" style={{minHeight: '100vh', maxHeight: '100vh', flex: 1, paddingTop: '4em', backgroundColor: 'lightgray',  overflow: 'scroll'}}>
 				Home
 			</div>
 		)

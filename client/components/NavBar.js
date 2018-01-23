@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 class Navbar extends Component {
     constructor(props){
@@ -8,7 +9,7 @@ class Navbar extends Component {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
             <div className="container">
-                <a className="navbar-brand" href="#">Home</a>
+                <Link to="/" className="navbar-brand">Home</Link>
                 <button className="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                     &#9776;
                 </button>
