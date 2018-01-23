@@ -12,7 +12,8 @@ import DefaultHome from './DefaultHome'
 import Footer from './Footer'
 import Profile from'./Profile'
 import LessonOne from './LessonOne'
-
+import NavBar from './NavBar'
+import DefaultHome from './DefaultHome'
 
 class App extends Component {
   constructor(props) {
@@ -46,7 +47,6 @@ class App extends Component {
   componentWillUnmount(){
     this.removeAuthListener()
   }
-  
 
   render() {
     return (
@@ -67,8 +67,8 @@ class App extends Component {
                       </div>
                     </div>
                   </div>
-                  )
-              }} />
+                  )}}
+              />
             </Switch>
             <Footer />
           </div>
@@ -77,7 +77,7 @@ class App extends Component {
     )
   }
 }
-
+}
 const appMapStateToProps = (store) => {
   return {
     online: store.Auth.online
