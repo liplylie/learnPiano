@@ -42,12 +42,11 @@ class LogIn extends Component {
       .catch(err => console.log('error with login', err))
     document.getElementById('emailInput').value = ''
     document.getElementById('passwordInput').value = ''
-  }
+	}
 
 	render(){
 		return(
 			<div>
-				<Toaster ref={(element => {this.toaster = element})}/>
 				<Toaster ref={(element => {this.toaster = element})}/>
 				<button type="button" id="dropdownMenu1" data-toggle="dropdown" className="btn btn-outline-secondary dropdown-toggle">Login <span className="caret"></span></button>
 				<ul style={{padding:"2em 4em 0px 4em"}} className="dropdown-menu dropdown-menu-right mt-1">
