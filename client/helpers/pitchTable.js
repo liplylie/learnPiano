@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 let pitchTable = {
-=======
-export default const pitchTable = {
->>>>>>> basic set up with navBar and 404 route NEED TO ADD FIREB AUTH
+
 	"432": [
 		{
 			"note":"C0",
