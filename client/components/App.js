@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as AuthActions from '../actions/authActions.js'
 
-
 import NavBar from './NavBar'
 import DefaultHome from './DefaultHome'
 import Footer from './Footer'
@@ -14,6 +13,7 @@ import Profile from'./Profile'
 import LessonOne from './LessonOne'
 import NavBar from './NavBar'
 import DefaultHome from './DefaultHome'
+
 
 class App extends Component {
   constructor(props) {
@@ -48,26 +48,25 @@ class App extends Component {
     this.removeAuthListener()
       authenticated: false
     }
-    this.authWithEmailPassword = this.authWithEmailPassword.bind(this)
+   
   }
 
-  authWithEmailPassword() {
-    const email = document.getElementById('emailInput').value
-    const pw = document.getElementById('passwordInput').value
-    const authDomain = firebase.auth()
-
-    auth.signInWithEmailAndPassword(email, pw)
-      .then(result => {
-        console.log('logged in')
-
-          this.setState({
-            authenticated: true,
-          })
-        })
-      .catch(err => console.log('error with login', err))
-    document.getElementById('emailInput').value = ''
-    document.getElementById('passwordInput').value = ''
+  componentWillMount(){
+    this.removeAuthListener = app.auth().onAuthStateChanged(user=>{
+      if (user){
+        console.log(user, 'true')
+        this.setState({authenticated: true})
+      } else {
+        console.log('fail')
+        this.setState({authenticated: false})
+      }
+    })
   }
+
+  componentWillUnmount(){
+    this.removeAuthListener()
+  }
+  
 
   render() {
     return (

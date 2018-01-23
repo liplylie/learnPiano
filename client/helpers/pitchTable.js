@@ -3472,10 +3472,6 @@ let pitchTable = {
 			"frequency":8009.89
 		}
 	]
-<<<<<<< HEAD
 }
 
 export default pitchTable
-=======
-}
->>>>>>> basic set up with navBar and 404 route NEED TO ADD FIREB AUTH

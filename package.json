@@ -13,9 +13,13 @@
   "license": "ISC",
   "dependencies": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "@blueprintjs/core": "^2.0.0-beta.3",
 =======
 >>>>>>> basic set up with navBar and 404 route NEED TO ADD FIREB AUTH
+=======
+    "@blueprintjs/core": "^2.0.0-beta.3",
+>>>>>>> login in FB works NEED TO STYLE FB BUTTON
     "axios": "^0.17.1",
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",

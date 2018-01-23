@@ -45,6 +45,7 @@ body {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 
 .bg-black {
@@ -62,6 +63,13 @@ body {
   font-weight: bold;
   font-size: 22px;
 }
+=======
+}
+
+body { padding: 2em; }
+
+
+>>>>>>> login in FB works NEED TO STYLE FB BUTTON
 /* Shared */
 /*.btn-facebook {
     background: #3B5998;
@@ -77,6 +85,7 @@ body {
 .btn-facebook:active, .btn-facebook:hover {
   background: #263961;
   color: #fff;
+<<<<<<< HEAD
 }*/
 
 .mm-popup {
@@ -291,3 +300,6 @@ body {
 =======
 }
 >>>>>>> basic set up with navBar and 404 route NEED TO ADD FIREB AUTH
+=======
+}*/
+>>>>>>> login in FB works NEED TO STYLE FB BUTTON
