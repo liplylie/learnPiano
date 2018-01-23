@@ -31,6 +31,25 @@ class Navbar extends Component {
                                 :
                                 <LogIn/>
                             }
+                            <button type="button" id="dropdownMenu1" data-toggle="dropdown" className="btn btn-outline-secondary dropdown-toggle">Login <span className="caret"></span></button>
+                            <ul className="dropdown-menu dropdown-menu-right mt-1">
+                              <li className="p-3">
+                                    <form className="form" role="form">
+                                        <div className="form-group">
+                                            <input id="emailInput" placeholder="Email" className="form-control form-control-sm" type="text" required=""/>
+                                        </div>
+                                        <div className="form-group">
+                                            <input id="passwordInput" placeholder="Password" className="form-control form-control-sm" type="text" required=""/>
+                                        </div>
+                                        <div className="form-group">
+                                            <button type="submit" className="btn btn-primary btn-block">Login</button>
+                                        </div>
+                                        <div className="form-group text-xs-center">
+                                            <small><a href="#">Forgot password?</a></small>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>

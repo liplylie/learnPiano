@@ -15,7 +15,6 @@ const findPitch = () => {
         sourceAudioNode,
         analyserAudioNode;
 
-
     var isAudioContextSupported = function () {
         // This feature is still prefixed in Safari
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -64,7 +63,7 @@ const findPitch = () => {
     };
 
     var updatePitch = function (pitch) {
-        //$('#pitch').text(pitch + ' Hz');
+
     };
 
     var updateNote = function (note) {
@@ -317,10 +316,6 @@ const findPitch = () => {
 
     init()
     toggleMicrophone()
-    if (noteReturn){
-        arr.push(noteReturn)
-    }
-    console.log(arr, 'arr')
 }
 
 export default findPitch

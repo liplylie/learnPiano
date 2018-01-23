@@ -13,6 +13,9 @@ import Profile from'./Profile'
 import LessonOne from './LessonOne'
 
 
+import NavBar from './NavBar'
+import DefaultHome from './DefaultHome'
+
 class App extends Component {
   constructor(props) {
     super(props)
