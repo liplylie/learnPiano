@@ -1,5 +1,6 @@
 import firebase from 'firebase'
-import secret from '../../secret.json'
+import Rebase from 're-base'
+import secret from '../secret.json'
 
 // Initialize Firebase
 const config = {
@@ -15,8 +16,9 @@ const config = {
   
 }; 
 
-firebase.initializeApp(config);
 
-export const auth = firebase.auth()
-export const facebookProvider = new firebase.auth.FacebookAuthProvider()
-export default firebase
+
+const app = firebase.initializeApp(config);
+const base = Rebase.createClass(app.database())
+const facebookProvider = new firebase.auth.FacebookAuthProvider()
+export { app, base, facebookProvider}

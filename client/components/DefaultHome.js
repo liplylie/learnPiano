@@ -3,6 +3,9 @@ import React, { Component } from 'react'
 class DefaultHome extends Component {
 	constructor(props){
 		super(props)
+		this.state = {
+			redirect: false
+		}
 	}
 
 	render() {
