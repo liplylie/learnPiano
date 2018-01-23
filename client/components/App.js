@@ -12,10 +12,6 @@ import Footer from './Footer'
 import Profile from'./Profile'
 import LessonOne from './LessonOne'
 
-
-import NavBar from './NavBar'
-import DefaultHome from './DefaultHome'
-
 class App extends Component {
   constructor(props) {
     super(props)
@@ -48,25 +44,6 @@ class App extends Component {
   componentWillUnmount(){
     this.removeAuthListener()
   }
-
-  authWithEmailPassword() {
-    const email = document.getElementById('emailInput').value
-    const pw = document.getElementById('passwordInput').value
-    const authDomain = firebase.auth()
-
-    auth.signInWithEmailAndPassword(email, pw)
-      .then(result => {
-        console.log('logged in')
-
-          this.setState({
-            authenticated: true,
-          })
-        })
-      .catch(err => console.log('error with login', err))
-    document.getElementById('emailInput').value = ''
-    document.getElementById('passwordInput').value = ''
-  }
-  
 
   render() {
     return (
