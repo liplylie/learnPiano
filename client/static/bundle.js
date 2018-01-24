@@ -22513,6 +22513,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// import 'font-awesome/css/font-awesome.min.css'
+
 var LearnPiano = function (_Component) {
   _inherits(LearnPiano, _Component);
 
@@ -58830,7 +58832,7 @@ var LogIn = function (_Component) {
 								{ className: 'form-group' },
 								_react2.default.createElement(
 									'button',
-									{ type: 'submit', className: 'btn btn-primary btn-block' },
+									{ type: 'submit', className: 'btn btn-primary btn-block', style: { cursor: "pointer" } },
 									'Login'
 								)
 							),
@@ -58852,7 +58854,8 @@ var LogIn = function (_Component) {
 								{ className: 'container' },
 								_react2.default.createElement(
 									'a',
-									{ className: 'btn btn-lg btn-social btn-facebook', onClick: function onClick() {
+									{ className: 'btn btn-lg btn-social btn-facebook', style: { background: "#3B5998",
+											color: "white", cursor: "pointer" }, onClick: function onClick() {
 											_this4.authWithFacebook();
 										} },
 									_react2.default.createElement('i', { className: 'fa fa-facebook fa-fw' }),

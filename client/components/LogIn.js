@@ -60,13 +60,15 @@ class LogIn extends Component {
 	                      <input id="passwordInput" placeholder="Password" className="input-large" type="text" required=""/>
 	                  </div>
 	                  <div className="form-group">
-	                      <button type="submit" className="btn btn-primary btn-block" >Login</button>
+	                      <button type="submit" className="btn btn-primary btn-block" style={{cursor:"pointer"}}>Login</button>
 	                  </div>
 	                  <div className="form-group text-xs-center">
 	                      <small><a href="#">Forgot password?</a></small>
 	                  </div>
+
 	                  <div className="container">
-									    <a className="btn btn-lg btn-social btn-facebook" onClick={()=>{this.authWithFacebook()}}>
+									    <a className="btn btn-lg btn-social btn-facebook" style={{background: "#3B5998",
+    color: "white", cursor: "pointer"}} onClick={()=>{this.authWithFacebook()}}>
 									    <i className="fa fa-facebook fa-fw"></i> Sign in with Facebook
 									    </a>
 									</div>
