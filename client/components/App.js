@@ -41,12 +41,15 @@ class App extends Component {
           <NavBar authenticated = {this.state.authenticated}/>
           <div style={{display: 'flex'}}>
             <Switch>
-              <Route exact path='/' component={() => ( <DefaultHome />)}/>
+              <Route exact path='/' component={() => ( <DefaultHome authenticated={this.state.authenticated} />)}/>
               <Route render={() => {
                 return (
-                  <div className='fourofour-section'>
-                    <p className='fourofour-status'>404</p>
-                    <p className='fourofour-description'>PAGE NOT FOUND!</p>
+                  <div className="row" style={{backgroundColor: 'lightpink', height: '100vh', width: '100vw', flex:1}}>
+                    <div className="col align-self-center">
+                      <div style={{textAlign: 'center'}}>
+                        <h1>Error 404 Page Not Found</h1>
+                      </div>
+                    </div>
                   </div>
                   )
               }} />
