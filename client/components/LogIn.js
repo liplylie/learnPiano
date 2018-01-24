@@ -65,6 +65,7 @@ class LogIn extends Component {
 	                  <div className="form-group text-xs-center">
 	                      <small><a href="#">Forgot password?</a></small>
 	                  </div>
+
 	                  <div className="container">
 									    <a className="btn btn-lg btn-social btn-facebook" style={{background: "#3B5998",
     color: "white", cursor: "pointer"}} onClick={()=>{this.authWithFacebook()}}>

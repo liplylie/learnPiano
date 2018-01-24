@@ -12,14 +12,7 @@
   "author": "Jordan Daniels",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
-<<<<<<< HEAD
     "@blueprintjs/core": "^2.0.0-beta.3",
-=======
->>>>>>> basic set up with navBar and 404 route NEED TO ADD FIREB AUTH
-=======
-    "@blueprintjs/core": "^2.0.0-beta.3",
->>>>>>> login in FB works NEED TO STYLE FB BUTTON
     "axios": "^0.17.1",
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
@@ -28,7 +21,6 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.9",
     "express": "^4.16.2",
-<<<<<<< HEAD
     "file-loader": "^1.1.6",
     "firebase": "^4.9.0",
     "nodemon": "^1.14.11",
@@ -45,18 +37,6 @@
     "redux-thunk": "^2.2.0",
     "save": "^2.3.2",
     "style-loader": "^0.19.1",
-=======
-    "firebase": "^4.9.0",
-    "nodemon": "^1.14.11",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-redux": "^5.0.6",
-    "react-router-dom": "^4.2.2",
-    "redux": "^3.7.2",
-    "redux-logger": "^3.0.6",
-    "redux-promise-middleware": "^5.0.0",
-    "save": "^2.3.2",
->>>>>>> basic set up with navBar and 404 route NEED TO ADD FIREB AUTH
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"
   }
