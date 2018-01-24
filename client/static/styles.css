@@ -40,8 +40,6 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 .bg-black {
   background-color: black
@@ -58,17 +56,9 @@ body {
   font-weight: bold;
   font-size: 22px;
 }
-=======
-}
 
 .bg-black {
   background-color: black
-}
-
-#bg-logo {
-  color: #cdb287;
-  font-weight: bold;
-  font-size: 28px;
 }
 
 .bg-logo {
@@ -76,13 +66,6 @@ body {
   font-weight: bold;
   font-size: 22px;
 }
-=======
-}
-
-body { padding: 2em; }
-
-
->>>>>>> login in FB works NEED TO STYLE FB BUTTON
 /* Shared */
 /*.btn-facebook {
     background: #3B5998;
@@ -313,6 +296,3 @@ body { padding: 2em; }
         margin-top: 10px;
     }
 }
-=======
-}*/
->>>>>>> login in FB works NEED TO STYLE FB BUTTON
