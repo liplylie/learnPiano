@@ -21,6 +21,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.9",
     "express": "^4.16.2",
+    "file-loader": "^1.1.6",
     "firebase": "^4.9.0",
     "nodemon": "^1.14.11",
     "re-base": "^3.2.2",

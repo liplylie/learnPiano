@@ -35,10 +35,6 @@ class LogIn extends Component {
     app.auth().signInWithEmailAndPassword(email, pw)
       .then(result => {
         console.log('logged in')
-
-          this.setState({
-            authenticated: true,
-          })
         })
       .catch(err => console.log('error with login', err))
     document.getElementById('emailInput').value = ''
