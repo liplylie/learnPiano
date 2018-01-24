@@ -26,7 +26,6 @@ body {
   background-position: left, center, right;
   padding-bottom: 15%;
 }
-
 .loader {
     display: block;
     margin: auto;
@@ -60,10 +59,21 @@ body {
 =======
 }
 
-body { padding: 2em; }
+.bg-black {
+  background-color: black
+}
 
+#bg-logo {
+  color: #cdb287;
+  font-weight: bold;
+  font-size: 28px;
+}
 
->>>>>>> login in FB works NEED TO STYLE FB BUTTON
+.bg-logo {
+  color: #cdb287;f
+  font-weight: bold;
+  font-size: 22px;
+}
 /* Shared */
 /*.btn-facebook {
     background: #3B5998;

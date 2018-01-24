@@ -13,6 +13,7 @@ import Profile from'./Profile'
 import LessonOne from './LessonOne'
 import NavBar from './NavBar'
 import DefaultHome from './DefaultHome'
+import Footer from './Footer'
 
 
 class App extends Component {

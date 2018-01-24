@@ -10,7 +10,7 @@ class DefaultHome extends Component {
 	}
 
 	render() {
-		if (this.props.authenticated) {
+		if (!this.props.authenticated) {
 			return <Redirect to='/Profile'/>
 		}
 
