@@ -9,8 +9,8 @@ class Navbar extends Component {
     }
     render(){
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
-            <div className="container">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation" >
+            <div className="container" style={{maxWidth:"100vw"}}>
                 <Link to="/" className="navbar-brand">Home</Link>
                 <button className="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                     &#9776;

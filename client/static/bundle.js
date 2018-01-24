@@ -41925,6 +41925,10 @@ var _DefaultHome = __webpack_require__(385);
 
 var _DefaultHome2 = _interopRequireDefault(_DefaultHome);
 
+var _Footer = __webpack_require__(387);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41978,11 +41982,11 @@ var App = function (_Component) {
         null,
         _react2.default.createElement(
           'div',
-          { className: 'main' },
+          { className: 'main', style: { display: 'flex' } },
           _react2.default.createElement(_NavBar2.default, { authenticated: this.state.authenticated }),
           _react2.default.createElement(
             'div',
-            { style: { display: 'flex' } },
+            { style: { flexDirection: "row", flex: 1 } },
             _react2.default.createElement(
               _reactRouterDom.Switch,
               null,
@@ -41992,7 +41996,7 @@ var App = function (_Component) {
               _react2.default.createElement(_reactRouterDom.Route, { render: function render() {
                   return _react2.default.createElement(
                     'div',
-                    { className: 'row', style: { backgroundColor: 'lightpink', height: '100vh', width: '100vw', flex: 1 } },
+                    { className: 'row', style: { backgroundColor: 'lightpink', height: '100vh', minWidth: '100vw', flex: 1 } },
                     _react2.default.createElement(
                       'div',
                       { className: 'col align-self-center' },
@@ -42008,7 +42012,8 @@ var App = function (_Component) {
                     )
                   );
                 } })
-            )
+            ),
+            _react2.default.createElement(_Footer2.default, null)
           )
         )
       );
@@ -58632,7 +58637,7 @@ var Navbar = function (_Component) {
                 { className: 'navbar navbar-expand-lg navbar-dark bg-dark fixed-top', role: 'navigation' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'container' },
+                    { className: 'container', style: { maxWidth: "100vw" } },
                     _react2.default.createElement(
                         _reactRouterDom.Link,
                         { to: '/', className: 'navbar-brand' },
@@ -67386,7 +67391,7 @@ var DefaultHome = function (_Component) {
   _createClass(DefaultHome, [{
     key: 'render',
     value: function render() {
-      if (this.props.authenticated) {
+      if (!this.props.authenticated) {
         return _react2.default.createElement(_reactRouterDom.Redirect, { to: '/Profile' });
       }
 
@@ -67506,6 +67511,210 @@ exports.default = DefaultHome;
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "58ffbc5572320d41ea3b27bfd3fbf254.jpg";
+
+/***/ }),
+/* 387 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(63);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Footer = function (_Component) {
+  _inherits(Footer, _Component);
+
+  function Footer() {
+    _classCallCheck(this, Footer);
+
+    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+  }
+
+  _createClass(Footer, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'footer', style: { backgroundColor: " #383838" } },
+        _react2.default.createElement(
+          'div',
+          { className: 'row footer-section' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col-md-2' },
+            _react2.default.createElement(
+              'span',
+              { style: { color: "#cdb287",
+                  fontWeight: "bold",
+                  fontSize: "28px" } },
+              'Learn Piano'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'col-md-2' },
+            _react2.default.createElement(
+              'span',
+              { className: 'footer-title' },
+              'BROWSER'
+            ),
+            _react2.default.createElement(
+              'ul',
+              { className: 'footer-list' },
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  _reactRouterDom.NavLink,
+                  { exact: true, activeClassName: 'active', to: '/men' },
+                  'Men'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  _reactRouterDom.NavLink,
+                  { exact: true, activeClassName: 'active', to: '/women' },
+                  'Women'
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'col-md-2' },
+            _react2.default.createElement(
+              'span',
+              { className: 'footer-title' },
+              'ABOUT Learn Piano'
+            ),
+            _react2.default.createElement(
+              'ul',
+              { className: 'footer-list' },
+              _react2.default.createElement(
+                'li',
+                null,
+                'About Learn Piano'
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                'Careers'
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                'Legal'
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                'Privacy & Cookies'
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                'Corporate Information'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'col-md-2' },
+            _react2.default.createElement(
+              'span',
+              { className: 'footer-title' },
+              'INFORMATION'
+            ),
+            _react2.default.createElement(
+              'ul',
+              { className: 'footer-list' },
+              _react2.default.createElement(
+                'li',
+                null,
+                'Contact Us'
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                'FAQs'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'col-md-4' },
+            _react2.default.createElement(
+              'span',
+              { className: 'footer-title' },
+              'SIGN UP FOR Learn Piano UPDATES'
+            ),
+            _react2.default.createElement('input', { className: 'form-control footer-input-sm', type: 'text', placeholder: 'Email Address' }),
+            _react2.default.createElement(
+              'span',
+              { className: 'footer-title' },
+              'FOLLOW US'
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement('i', { className: 'fa fa-facebook social', 'aria-hidden': 'true' }),
+              _react2.default.createElement('i', { className: 'fa fa-instagram social', 'aria-hidden': 'true' }),
+              _react2.default.createElement('i', { className: 'fa fa-twitter social', 'aria-hidden': 'true' }),
+              _react2.default.createElement('i', { className: 'fa fa-youtube social', 'aria-hidden': 'true' })
+            )
+          )
+        ),
+        _react2.default.createElement('hr', { className: 'col-md-12' }),
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col-md-6 footer-rights' },
+            _react2.default.createElement(
+              'span',
+              null,
+              '\xA9 2018 Learn Piano. All Right Reserved.'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'col-md-6 footer-address' },
+            _react2.default.createElement(
+              'span',
+              null,
+              'Los Angeles, CA 90045'
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return Footer;
+}(_react.Component);
+
+exports.default = Footer;
 
 /***/ })
 /******/ ]);

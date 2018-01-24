@@ -6,6 +6,7 @@ import { app } from '../firebase'
 
 import NavBar from './NavBar'
 import DefaultHome from './DefaultHome'
+import Footer from './Footer'
 
 
 class App extends Component {
@@ -37,14 +38,14 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="main">  
+        <div className="main" style={{display: 'flex'}}>  
           <NavBar authenticated = {this.state.authenticated}/>
-          <div style={{display: 'flex'}}>
+          <div style={{flexDirection: "row", flex:1}}>
             <Switch>
               <Route exact path='/' component={() => ( <DefaultHome authenticated={this.state.authenticated} />)}/>
               <Route render={() => {
                 return (
-                  <div className="row" style={{backgroundColor: 'lightpink', height: '100vh', width: '100vw', flex:1}}>
+                  <div className="row" style={{backgroundColor: 'lightpink', height: '100vh', minWidth: '100vw', flex:1}}>
                     <div className="col align-self-center">
                       <div style={{textAlign: 'center'}}>
                         <h1>Error 404 Page Not Found</h1>
@@ -54,6 +55,7 @@ class App extends Component {
                   )
               }} />
             </Switch>
+            <Footer />
           </div>
         </div>
       </BrowserRouter>
