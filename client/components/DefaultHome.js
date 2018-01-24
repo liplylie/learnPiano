@@ -29,7 +29,7 @@ class DefaultHome extends Component {
             <div className="carousel-caption d-none d-md-block">
             </div>
             <h2 style={{position:"absolute", top: "5em", 
-							width: "100%", textAlign: "center" }}> <span style={{color: "white",
+							width: "100%", textAlign: "center" }}> <span style={{color: "lightgray",
 							font: "bold 35px/45px Helvetica, Sans-Serif",
 							textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
 							letterSpacing: "-1px",  
@@ -70,7 +70,7 @@ class DefaultHome extends Component {
 	 				Write about website here
 			</div>
       </div>
+		)
 	}
 }
 export default DefaultHome
-

@@ -1,11 +1,9 @@
 html,
 body {
   height: 100%
-<<<<<<< HEAD
   max-width: 100%;
   overflow-x: hidden;
   background-color: lightgray;
-=======
 }
 
 .fourofour-status {
@@ -27,7 +25,6 @@ body {
   flex: 10;
   background-position: left, center, right;
   padding-bottom: 15%;
->>>>>>> basic set up with navBar and 404 route NEED TO ADD FIREB AUTH
 }
 
 .loader {
@@ -44,9 +41,6 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-<<<<<<< HEAD
-<<<<<<< HEAD
-}
 
 .bg-black {
   background-color: black
@@ -297,9 +291,4 @@ body { padding: 2em; }
         margin-top: 10px;
     }
 }
-=======
-}
->>>>>>> basic set up with navBar and 404 route NEED TO ADD FIREB AUTH
-=======
-}*/
->>>>>>> login in FB works NEED TO STYLE FB BUTTON
+
