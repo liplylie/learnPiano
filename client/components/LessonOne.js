@@ -388,8 +388,7 @@ class LessonOne extends Component {
    
   }
 
-  componentWillMount(){
-
+  componentDidMount(){
   }
 
   componentWillUnmount(){
