@@ -8,6 +8,7 @@ const initialState = {
 }
 
 const authReducer = (state=initialState, action) => {
+  console.log(action, 'action')
   switch(action.type) {
     case 'USER_LOGIN_INFO': {
       return Object.assign({}, state, {
