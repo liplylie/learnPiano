@@ -30,7 +30,7 @@ class Profile extends Component{
 					</div>
 					<div className="row">
 						<div className="col-md-4"> 
-							<img src={this.props.profile.picture} style={{height: "10em", width:"10em"}}/>
+							<img className="span3 wow flipInX center"src={this.props.profile.picture} style={{height: "10em", width:"10em", visibility: "visible", animationName: "flipInX"}}/>
 						</div>
 						<div className="col-md-4"></div>
 						<div className="col-md-4"> <Link to="/lessonOne">lesson one</Link></div>
