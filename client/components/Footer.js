@@ -7,9 +7,15 @@ class Footer extends Component {
       <div className='footer' style={{backgroundColor:" #383838", color: "lightgray"}}>
         <div className='row footer-section'>
           <div className='col-md-2'>
+<<<<<<< HEAD
             <span style={{
               fontWeight: "bold",
               fontSize: "28px", paddingLeft: "1em"}}>Learn Piano</span>
+=======
+            <span style={{color: "#cdb287",
+              fontWeight: "bold",
+              fontSize: "28px"}}>Learn Piano</span>
+>>>>>>> utilized Redux for smooth Log In Log Out functions WORK ON PROFILE PAGE
           </div>
           <div className='col-md-2'>
             <span className='footer-title'>BROWSER</span>
