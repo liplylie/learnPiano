@@ -678,6 +678,7 @@ class LessonOne extends Component {
     if (!this.props.profile.online){
       return <Redirect to="/"/>
     }
+    
     return (
       <div style={{height:"100vh", width:"100vw", textAlign: "center"}}>
         <div style={{width:"70vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1}}>
@@ -704,6 +705,7 @@ class LessonOne extends Component {
     )
   }
 }
+
 const LessonOneMapStateToProps = (store) => {
   return {
     profile: store.Auth
