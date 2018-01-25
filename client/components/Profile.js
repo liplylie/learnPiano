@@ -25,23 +25,23 @@ class Profile extends Component{
 		}
 		return (
 			<div style={{height:"100vh", width:"100vw", textAlign: "center"}}>
-			<div style={{width:"70vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1}}>
-				<div className="row" style={{height: "8em"}}>
-				</div>
-				<div className="row">
-					<div className="col-md-4"> 
-						<img src={this.props.profile.picture} style={{height: "10em", width:"10em"}}/>
+				<div style={{width:"70vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1}}>
+					<div className="row" style={{height: "8em"}}>
 					</div>
-					<div className="col-md-4"></div>
-					<div className="col-md-4"> <Link to="/lesson1">lesson one</Link></div>
-				</div>
-				<div className="row">
-					<div className="col-md-4">
-					{this.props.profile.name}
+					<div className="row">
+						<div className="col-md-4"> 
+							<img src={this.props.profile.picture} style={{height: "10em", width:"10em"}}/>
+						</div>
+						<div className="col-md-4"></div>
+						<div className="col-md-4"> <Link to="/lessonOne">lesson one</Link></div>
+					</div>
+					<div className="row">
+						<div className="col-md-4">
+						{this.props.profile.name}
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 		)
 	}
 }
