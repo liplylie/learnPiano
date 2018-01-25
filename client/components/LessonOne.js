@@ -299,6 +299,7 @@ class LessonOne extends Component {
     this.toggleMicrophone()    
   }
 
+<<<<<<< HEAD
   lessonOneButtonOne(){
     document.getElementById("lessonOneMessageOne").style.display = "none"
     document.getElementById("lessonOneButtonOne").style.display = "none"
@@ -313,6 +314,9 @@ class LessonOne extends Component {
     this.popUpCount = 1
     this.findPitch = this.findPitch.bind(this)
     this.noteArray = []
+=======
+  componentDidMount(){
+>>>>>>> wow js animations are working CONTINUE WITH LESSON ONE
   }
 
   componentWillUpdate(){
@@ -678,7 +682,7 @@ class LessonOne extends Component {
     if (!this.props.profile.online){
       return <Redirect to="/"/>
     }
-    
+
     return (
       <div style={{height:"100vh", width:"100vw", textAlign: "center"}}>
         <div style={{width:"70vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1}}>
