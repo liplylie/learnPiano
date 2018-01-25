@@ -5,6 +5,7 @@ import { app } from '../firebase'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as AuthActions from '../actions/authActions.js'
+import Popup from 'react-popup';
 
 
 
@@ -14,17 +15,58 @@ class LessonOne extends Component {
     this.state = {
       loading: true
     }
-   
+    this.popUpCount = 1
   }
 
   componentDidMount(){
+
   }
 
   componentWillUnmount(){
   }
+
+  handleClick(){
+    if (this.popUpCount === 1){
+
+      this.popUpCount+=1
+    let mySpecialPopup = Popup.create({
+    title: 'Lesson 1',
+    content: <a style={{fontSize:"20px"}}>Welcome to your first lesson! Today we will learn how to play 5 notes!</a>,
+    buttons: {
+        left:[{
+            text: 'Cancel',
+            className: 'danger',
+            action:  () => {
+                /** Close this popup. Close will always close the current visible one, if one is visible */
+                console.log(mySpecialPopup, 'popup')
+                Popup.clearQueue()
+                Popup.close()
+
+            }
+        }],
+        right: [{
+            text: 'Ok',
+            className: 'danger',
+            action:  () => {
+
+                /** Close this popup. Close will always close the current visible one, if one is visible */
+                Popup.clearQueue()
+                Popup.close()
+                
+            }
+        }]
+    }
+
+});
+
+      Popup.queue(mySpecialPopup);
+  }
+}
   
 
   render() {
+    
+
     console.log(this.props, 'lessonOne')
 
     if (!this.props.profile.online){
@@ -39,7 +81,7 @@ class LessonOne extends Component {
             <div className="col-md-4"> 
               <div className="wow slideInRight" data-wow-offset="10"> Lesson One</div>
             </div>
-            <div className="col-md-4"></div>
+            <div className="col-md-4" onClick={()=> {this.handleClick()}}> <Popup closeBtn={true}/></div>
           </div>
           <div className="row">
             <div className="col-md-4">
@@ -52,6 +94,7 @@ class LessonOne extends Component {
     )
   }
 }
+
 
 const LessonOneMapStateToProps = (store) => {
   return {
