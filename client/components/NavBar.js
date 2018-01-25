@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import LogIn from './Login'
+import LogOut from './LogOut'
 
 class Navbar extends Component {
     constructor(props){
@@ -26,7 +27,7 @@ class Navbar extends Component {
                         <li className="nav-item order-2 order-md-1"><a href="#" className="nav-link" title="settings"><i className="fa fa-cog fa-fw fa-lg"></i></a></li>
                         <li className="dropdown order-1">
                             {this.props.authenticated
-                                ?  <button type="button" id="signOut" className="btn btn-outline-secondary">Log Out<span className="caret"></span></button>
+                                ?  <LogOut authenticated={this.props.authenticated}/>
                                 :
                                 <LogIn/>
                             }

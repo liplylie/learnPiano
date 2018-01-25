@@ -8,20 +8,20 @@ class Footer extends Component {
         <div className='row footer-section'>
           <div className='col-md-2'>
             <span style={{color: "#cdb287",
-  fontWeight: "bold",
-  fontSize: "28px"}}>Learn Piano</span>
+              fontWeight: "bold",
+              fontSize: "28px"}}>Learn Piano</span>
           </div>
           <div className='col-md-2'>
             <span className='footer-title'>BROWSER</span>
             <ul className="footer-list">
               <li>
-              <NavLink exact activeClassName="active" to='/men' >
-                Men
+              <NavLink exact activeClassName="active" to='/' >
+                Piano
               </NavLink>
               </li>
               <li>
-              <NavLink exact activeClassName="active" to='/women' >
-                Women
+              <NavLink exact activeClassName="active" to='/' >
+                Music
               </NavLink>
               </li>
             </ul>
