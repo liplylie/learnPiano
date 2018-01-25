@@ -14,8 +14,8 @@ class Footer extends Component {
         <div className='row footer-section'>
           <div className='col-md-2'>
             <span style={{color: "#cdb287",
-  fontWeight: "bold",
-  fontSize: "28px"}}>Learn Piano</span>
+              fontWeight: "bold",
+              fontSize: "28px"}}>Learn Piano</span>
           </div>
           <div className='col-md-2'>
             <span className='footer-title'>BROWSER</span>

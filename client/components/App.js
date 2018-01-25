@@ -14,6 +14,7 @@ import LessonOne from './LessonOne'
 import NavBar from './NavBar'
 import DefaultHome from './DefaultHome'
 import Footer from './Footer'
+import Profile from'./Profile'
 
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
     super(props)
     this.state = {
       loading: true
+<<<<<<< HEAD
     }
    
   }
@@ -48,6 +50,8 @@ class App extends Component {
   componentWillUnmount(){
     this.removeAuthListener()
       authenticated: false
+=======
+>>>>>>> utilized Redux for smooth Log In Log Out functions WORK ON PROFILE PAGE
     }
    
   }
@@ -56,7 +60,15 @@ class App extends Component {
     this.removeAuthListener = app.auth().onAuthStateChanged(user=>{
       if (user){
         console.log(user, 'true')
-        this.setState({authenticated: true})
+        let userInfo = {
+          name : user.displayName,
+          email : user.email,
+          userId : user.uid,
+          picture : user.photoURL
+        }
+        this.props.actions.userLoginInfo(userInfo)
+        console.log(this.props.online,' status')
+        this.setState({loading:false})
       } else {
         console.log('fail')
         this.setState({authenticated: false})
@@ -79,7 +91,6 @@ class App extends Component {
               <Route exact path='/' component={() => ( <DefaultHome authenticated={this.props.online} />)}/>
               <Route exact path='/Profile' component={() => ( <Profile authenticated={this.props.online} loading={this.state.loading}/>)}/>
               <Route exact path='/LessonOne' component={() => ( <LessonOne />)}/>
-              <Route exact path='/' component={() => ( <DefaultHome />)}/>
               <Route render={() => {
                 return (
                   <div className="row" style={{backgroundColor: 'lightpink', height: '100vh', minWidth: '100vw', flex:1}}>
@@ -112,4 +123,20 @@ const appDispatch = (dispatch) => {
   }
 }
 
+<<<<<<< HEAD
 export default connect(appMapStateToProps, appDispatch)(App)
+=======
+const appMapStateToProps = (store) => {
+  return {
+    online: store.Auth.online
+  }
+}
+
+const appDispatch = (dispatch) => {
+  return {
+    actions: bindActionCreators(AuthActions, dispatch),
+  }
+}
+
+export default connect(appMapStateToProps, appDispatch)(App)
+>>>>>>> utilized Redux for smooth Log In Log Out functions WORK ON PROFILE PAGE

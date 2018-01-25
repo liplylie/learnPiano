@@ -28,7 +28,6 @@ class Navbar extends Component {
                         <li className="dropdown order-1">
                             {this.props.authenticated
                                 ?  <LogOut authenticated={this.props.authenticated}/>
-                                ?  <button type="button" id="signOut" className="btn btn-outline-secondary">Log Out<span className="caret"></span></button>
                                 :
                                 <LogIn/>
                             }
