@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as AuthActions from '../actions/authActions.js'
@@ -11,7 +11,7 @@ class Profile extends Component{
 
 	render(){
 		console.log(this.props, 'profile props')
-		if (this.props.loading ){
+		if (this.props.loading && this.props.online){
 			return (
 				<div style={{height:"100vh", padding: "10em"}}>
 	        <div className="loader">
@@ -20,12 +20,27 @@ class Profile extends Component{
       );
 		}
 
-		if (!this.props.online) {
+		if (!this.props.profile.online) {
 			return <Redirect to='/'/>
 		}
 		return (
-			<div style={{height:"100vh", width:"100vw", textAlign: "center",  paddingTop: '4em'}}>
-				Profile
+			<div style={{height:"100vh", width:"100vw", textAlign: "center"}}>
+			<div style={{width:"70vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1}}>
+				<div className="row" style={{height: "8em"}}>
+				</div>
+				<div className="row">
+					<div className="col-md-4"> 
+						<img src={this.props.profile.picture} style={{height: "10em", width:"10em"}}/>
+					</div>
+					<div className="col-md-4"></div>
+					<div className="col-md-4"> <Link to="/lesson1">lesson one</Link></div>
+				</div>
+				<div className="row">
+					<div className="col-md-4">
+					{this.props.profile.name}
+					</div>
+				</div>
+			</div>
 		</div>
 		)
 	}
@@ -33,7 +48,7 @@ class Profile extends Component{
 
 const ProfileMapStateToProps = (store)=>{
 	return{
-		online:store.Auth.online
+		profile:store.Auth
 	}
 }
 
