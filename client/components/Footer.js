@@ -4,12 +4,12 @@ import { NavLink} from 'react-router-dom';
 class Footer extends Component {
   render() {
     return (
-      <div className='footer' style={{backgroundColor:" #383838"}}>
+      <div className='footer' style={{backgroundColor:" #383838", color: "lightgray"}}>
         <div className='row footer-section'>
           <div className='col-md-2'>
-            <span style={{color: "#cdb287",
+            <span style={{
               fontWeight: "bold",
-              fontSize: "28px"}}>Learn Piano</span>
+              fontSize: "28px", paddingLeft: "1em"}}>Learn Piano</span>
           </div>
           <div className='col-md-2'>
             <span className='footer-title'>BROWSER</span>

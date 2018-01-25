@@ -42030,6 +42030,10 @@ var _Profile = __webpack_require__(391);
 
 var _Profile2 = _interopRequireDefault(_Profile);
 
+var _LessonOne = __webpack_require__(392);
+
+var _LessonOne2 = _interopRequireDefault(_LessonOne);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -42106,6 +42110,9 @@ var App = function (_Component) {
                 } }),
               _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/Profile', component: function component() {
                   return _react2.default.createElement(_Profile2.default, { authenticated: _this3.props.online, loading: _this3.state.loading });
+                } }),
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/LessonOne', component: function component() {
+                  return _react2.default.createElement(_LessonOne2.default, null);
                 } }),
               _react2.default.createElement(_reactRouterDom.Route, { render: function render() {
                   return _react2.default.createElement(
@@ -67646,7 +67653,7 @@ var DefaultHome = function (_Component) {
                 ' ',
                 _react2.default.createElement(
                   'span',
-                  { style: { color: "lightgray",
+                  { style: { color: "white",
                       font: "bold 35px/45px Helvetica, Sans-Serif",
                       textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
                       letterSpacing: "-1px",
@@ -67775,7 +67782,7 @@ var Footer = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { className: 'footer', style: { backgroundColor: " #383838" } },
+        { className: 'footer', style: { backgroundColor: " #383838", color: "lightgray" } },
         _react2.default.createElement(
           'div',
           { className: 'row footer-section' },
@@ -67784,9 +67791,9 @@ var Footer = function (_Component) {
             { className: 'col-md-2' },
             _react2.default.createElement(
               'span',
-              { style: { color: "#cdb287",
+              { style: {
                   fontWeight: "bold",
-                  fontSize: "28px" } },
+                  fontSize: "28px", paddingLeft: "1em" } },
               'Learn Piano'
             )
           ),
@@ -68021,7 +68028,7 @@ var Profile = function (_Component) {
 							' ',
 							_react2.default.createElement(
 								_reactRouterDom.Link,
-								{ to: '/lesson1' },
+								{ to: '/lessonOne' },
 								'lesson one'
 							)
 						)
@@ -68056,6 +68063,114 @@ var ProfileDispatch = function ProfileDispatch(dispatch) {
 };
 
 exports.default = (0, _reactRedux.connect)(ProfileMapStateToProps, ProfileDispatch)(Profile);
+
+/***/ }),
+/* 392 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(30);
+
+var _firebase = __webpack_require__(71);
+
+var _reactRedux = __webpack_require__(46);
+
+var _redux = __webpack_require__(29);
+
+var _authActions = __webpack_require__(83);
+
+var AuthActions = _interopRequireWildcard(_authActions);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var LessonOne = function (_Component) {
+  _inherits(LessonOne, _Component);
+
+  function LessonOne(props) {
+    _classCallCheck(this, LessonOne);
+
+    var _this = _possibleConstructorReturn(this, (LessonOne.__proto__ || Object.getPrototypeOf(LessonOne)).call(this, props));
+
+    _this.state = {
+      loading: true
+    };
+
+    return _this;
+  }
+
+  _createClass(LessonOne, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {}
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {}
+  }, {
+    key: 'render',
+    value: function render() {
+      console.log(this.props, 'lessonOne');
+      return _react2.default.createElement(
+        'div',
+        { style: { height: "100vh", width: "100vw", textAlign: "center" } },
+        _react2.default.createElement(
+          'div',
+          { style: { width: "70vw", height: "100vh", margin: "auto", backgroundColor: "white", flex: 1 } },
+          _react2.default.createElement('div', { className: 'row', style: { height: "8em" } }),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-4' },
+              'Lesson One'
+            ),
+            _react2.default.createElement('div', { className: 'col-md-4' })
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement('div', { className: 'col-md-4' })
+          )
+        )
+      );
+    }
+  }]);
+
+  return LessonOne;
+}(_react.Component);
+
+var LessonOneMapStateToProps = function LessonOneMapStateToProps(store) {
+  return {
+    profile: store.Auth
+  };
+};
+
+var LessonOneDispatch = function LessonOneDispatch(dispatch) {
+  return {
+    actions: (0, _redux.bindActionCreators)(AuthActions, dispatch)
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(LessonOneMapStateToProps, LessonOneDispatch)(LessonOne);
 
 /***/ })
 /******/ ]);
