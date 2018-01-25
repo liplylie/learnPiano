@@ -34,6 +34,7 @@ class LessonOne extends Component {
     }
   }
   componentDidMount(){
+
   }
   componentWillUnmount(){
   }
@@ -299,7 +300,6 @@ class LessonOne extends Component {
     this.toggleMicrophone()    
   }
 
-<<<<<<< HEAD
   lessonOneButtonOne(){
     document.getElementById("lessonOneMessageOne").style.display = "none"
     document.getElementById("lessonOneButtonOne").style.display = "none"
@@ -314,9 +314,6 @@ class LessonOne extends Component {
     this.popUpCount = 1
     this.findPitch = this.findPitch.bind(this)
     this.noteArray = []
-=======
-  componentDidMount(){
->>>>>>> wow js animations are working CONTINUE WITH LESSON ONE
   }
 
   componentWillUpdate(){
@@ -671,8 +668,7 @@ class LessonOne extends Component {
 
   lessonOneButtonTwo(){
 
-  }
-  
+  }  
 
   render() {
     
@@ -709,6 +705,7 @@ class LessonOne extends Component {
     )
   }
 }
+
 
 const LessonOneMapStateToProps = (store) => {
   return {
