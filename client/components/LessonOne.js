@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Router, Route } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { app } from '../firebase'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -382,6 +383,16 @@ class LessonOne extends Component {
 
   lessonOneButtonTwo(){
 
+      loading: true
+    }
+   
+  }
+
+  componentWillMount(){
+
+  }
+
+  componentWillUnmount(){
   }
   
 
@@ -419,8 +430,6 @@ class LessonOne extends Component {
     )
   }
 }
-
-
 const LessonOneMapStateToProps = (store) => {
   return {
     profile: store.Auth
