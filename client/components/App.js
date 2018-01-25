@@ -57,7 +57,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component={() => ( <DefaultHome authenticated={this.props.online} />)}/>
               <Route exact path='/Profile' component={() => ( <Profile authenticated={this.props.online} loading={this.state.loading}/>)}/>
-              <Route exact path='/LessonOne' component={() => ( <LessonOne/>)}/>
+              <Route exact path='/LessonOne' component={() => ( <LessonOne />)}/>
               <Route render={() => {
                 return (
                   <div className="row" style={{backgroundColor: 'lightpink', height: '100vh', minWidth: '100vw', flex:1}}>
