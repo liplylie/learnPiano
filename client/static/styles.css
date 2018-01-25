@@ -90,6 +90,9 @@ body {
   background: #263961;
   color: #fff;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> pop up js works for interactive pop ups CONTINUE WITH LESSON ONE
 }*/
 
 .mm-popup {
@@ -182,7 +185,6 @@ body {
     .mm-popup__btn--hidden {
         visibility: hidden;
     }
-
     .mm-popup__box {
         width: 350px;
         position: fixed;
@@ -301,4 +303,3 @@ body {
         margin-top: 10px;
     }
 }
-

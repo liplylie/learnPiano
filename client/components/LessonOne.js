@@ -10,7 +10,6 @@ import Popup from 'react-popup'
 import pitchTable from "../helpers/pitchTable"
 
 
-
 class LessonOne extends Component {
   constructor(props) {
     super(props)
@@ -385,14 +384,53 @@ class LessonOne extends Component {
 
       loading: true
     }
-   
+    this.popUpCount = 1
   }
 
   componentDidMount(){
+
   }
 
   componentWillUnmount(){
   }
+
+  handleClick(){
+    if (this.popUpCount === 1){
+
+      this.popUpCount+=1
+    let mySpecialPopup = Popup.create({
+    title: 'Lesson 1',
+    content: <a style={{fontSize:"20px"}}>Welcome to your first lesson! Today we will learn how to play 5 notes!</a>,
+    buttons: {
+        left:[{
+            text: 'Cancel',
+            className: 'danger',
+            action:  () => {
+                /** Close this popup. Close will always close the current visible one, if one is visible */
+                console.log(mySpecialPopup, 'popup')
+                Popup.clearQueue()
+                Popup.close()
+
+            }
+        }],
+        right: [{
+            text: 'Ok',
+            className: 'danger',
+            action:  () => {
+
+                /** Close this popup. Close will always close the current visible one, if one is visible */
+                Popup.clearQueue()
+                Popup.close()
+                
+            }
+        }]
+    }
+
+});
+
+      Popup.queue(mySpecialPopup);
+  }
+}
   
 
   render() {
