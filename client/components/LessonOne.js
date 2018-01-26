@@ -585,74 +585,7 @@ class LessonOne extends Component {
     };
 
     init()
-    this.toggleMicrophone()
-
-  }
-
-  handleClick(){
-
-    const pops = () =>{
-      let cardOne = Popup.create({
-      title: 'Lesson 1 - 1',
-      content: <a style={{fontSize:"20px"}}>Welcome to your first lesson! Today we will learn how to play 5 notes!</a>,
-      buttons: {
-          right: [{
-            text: 'Next',
-            className: 'danger',
-            action:  () => {
-              this.findPitch("C4")
-                Popup.close()  
-            }
-          }]
-        }
-      });
-
-      let cardTwo = Popup.create({
-      title: 'Lesson 1 - 2',
-      content: <a style={{fontSize:"20px"}}>The first note we'll learn is middle C. Play Middle C and Click "Next" when you find middle C <img style={{height:"8em", width: "10em"}}src={require("../static/200w_d.gif")}/></a>,
-      buttons: {
-          right: [{
-            text: 'Next',
-            className: 'hidden',
-            action: () => {
-              if (this.state.middleC){
-                 Popup.close()
-              } 
-            }    
-          }]
-        }
-      });
-      let cardThree = Popup.create({
-      title: 'Lesson 1 - 3',
-      content: <a style={{fontSize:"20px"}}>Good! Play the C!</a>,
-      buttons: {
-          left:[{
-              text: 'Close',
-              className: 'danger',
-              action:  () => {
-                  Popup.clearQueue()
-                  Popup.close()
-              }
-          }],
-          right: [{
-              text: 'Next',
-              className: 'danger',
-              action:  () => {
-                  Popup.clearQueue()
-                  Popup.close()  
-              }
-          }]
-        }
-      });
-      Popup.queue(cardOne, cardTwo, cardThree)
-    }
-
-    if (this.popUpCount === 1){
-      pops()
-      this.popUpCount+=1
-    }
-
-    
+    this.toggleMicrophone()    
   }
 
   lessonOneButtonOne(){
@@ -663,7 +596,6 @@ class LessonOne extends Component {
       checkNote : "C4"
     })
     this.findPitch("C4")
-
   }
 
   lessonOneButtonTwo(){
