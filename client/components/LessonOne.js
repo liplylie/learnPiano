@@ -14,14 +14,9 @@ class LessonOne extends Component {
   constructor(props) {
     super(props)
     this.state = {
-<<<<<<< HEAD
       correctNote: null,
       wrongNote: null,
       checkNote: null,
-=======
-      loading: true,
-      hideStart: "visible"
->>>>>>> ready to put web audio api into lesson one
     }
     this.popUpCount = 1
     this.findPitch = this.findPitch.bind(this)
