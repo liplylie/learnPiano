@@ -68117,6 +68117,10 @@ var _pitchTable = __webpack_require__(403);
 
 var _pitchTable2 = _interopRequireDefault(_pitchTable);
 
+var _pitchTablePictures = __webpack_require__(405);
+
+var _pitchTablePictures2 = _interopRequireDefault(_pitchTablePictures);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -68152,13 +68156,25 @@ var LessonOne = function (_Component) {
         key: 'componentDidUpdate',
         value: function componentDidUpdate() {
             if (this.state.correctNote === this.state.checkNote && this.popUpCount === 1) {
-                _reactPopup2.default.alert('good');
+                _reactPopup2.default.alert(_react2.default.createElement(
+                    'div',
+                    { style: { fontFamily: "helvetica", fontSize: "2.5em" } },
+                    _react2.default.createElement('img', { style: { height: "8em", width: "5em" }, src: _pitchTablePictures2.default[this.state.checkNote] }),
+                    ' Correct! You played A ',
+                    this.state.checkNote[0],
+                    ' '
+                ));
                 document.getElementById("lessonOneButtonTwo").style.display = "block";
                 this.popUpCount += 1;
                 this.turnOffMicrophone();
             } else if (this.state.wrongNote && this.popUpCount === 1) {
-                console.log(this.state.wrongNote, 'cwu');
-                setTimeout(_reactPopup2.default.alert(this.state.wrongNote), 200);
+                _reactPopup2.default.alert(_react2.default.createElement(
+                    'div',
+                    { style: { fontFamily: "helvetica", fontSize: "2.5em" } },
+                    _react2.default.createElement('img', { style: { height: "8em", width: "5em" }, src: _pitchTablePictures2.default[this.state.wrongNote] }),
+                    ' Incorrect! You played a ',
+                    this.state.wrongNote[0]
+                ));
             }
         }
     }, {
@@ -68409,85 +68425,6 @@ var LessonOne = function (_Component) {
             this.toggleMicrophone();
         }
     }, {
-        key: 'handleClick',
-        value: function handleClick() {
-            var _this2 = this;
-
-            var pops = function pops() {
-                var cardOne = _reactPopup2.default.create({
-                    title: 'Lesson 1 - 1',
-                    content: _react2.default.createElement(
-                        'a',
-                        { style: { fontSize: "20px" } },
-                        'Welcome to your first lesson! Today we will learn how to play 5 notes!'
-                    ),
-                    buttons: {
-                        right: [{
-                            text: 'Next',
-                            className: 'danger',
-                            action: function action() {
-                                _this2.findPitch("C4");
-                                _reactPopup2.default.close();
-                            }
-                        }]
-                    }
-                });
-
-                var cardTwo = _reactPopup2.default.create({
-                    title: 'Lesson 1 - 2',
-                    content: _react2.default.createElement(
-                        'a',
-                        { style: { fontSize: "20px" } },
-                        'The first note we\'ll learn is middle C. Play Middle C and Click "Next" when you find middle C ',
-                        _react2.default.createElement('img', { style: { height: "8em", width: "10em" }, src: __webpack_require__(404) })
-                    ),
-                    buttons: {
-                        right: [{
-                            text: 'Next',
-                            className: 'hidden',
-                            action: function action() {
-                                if (_this2.state.middleC) {
-                                    _reactPopup2.default.close();
-                                }
-                            }
-                        }]
-                    }
-                });
-                var cardThree = _reactPopup2.default.create({
-                    title: 'Lesson 1 - 3',
-                    content: _react2.default.createElement(
-                        'a',
-                        { style: { fontSize: "20px" } },
-                        'Good! Play the C!'
-                    ),
-                    buttons: {
-                        left: [{
-                            text: 'Close',
-                            className: 'danger',
-                            action: function action() {
-                                _reactPopup2.default.clearQueue();
-                                _reactPopup2.default.close();
-                            }
-                        }],
-                        right: [{
-                            text: 'Next',
-                            className: 'danger',
-                            action: function action() {
-                                _reactPopup2.default.clearQueue();
-                                _reactPopup2.default.close();
-                            }
-                        }]
-                    }
-                });
-                _reactPopup2.default.queue(cardOne, cardTwo, cardThree);
-            };
-
-            if (this.popUpCount === 1) {
-                pops();
-                this.popUpCount += 1;
-            }
-        }
-    }, {
         key: 'lessonOneButtonOne',
         value: function lessonOneButtonOne() {
             document.getElementById("lessonOneMessageOne").style.display = "none";
@@ -68504,7 +68441,7 @@ var LessonOne = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this2 = this;
 
             console.log(this.props, 'lessonOne');
 
@@ -68554,7 +68491,7 @@ var LessonOne = function (_Component) {
                             _react2.default.createElement(
                                 'button',
                                 { id: 'lessonOneButtonOne', onClick: function onClick() {
-                                        return _this3.lessonOneButtonOne();
+                                        return _this2.lessonOneButtonOne();
                                     } },
                                 ' next '
                             ),
@@ -68568,7 +68505,7 @@ var LessonOne = function (_Component) {
                             _react2.default.createElement(
                                 'button',
                                 { style: { display: "none", margin: "auto", marginTop: "1em" }, id: 'lessonOneButtonTwo', onClick: function onClick() {
-                                        return _this3.lessonOneButtonTwo();
+                                        return _this2.lessonOneButtonTwo();
                                     } },
                                 ' next '
                             ),
@@ -72920,6 +72857,81 @@ exports.default = pitchTable;
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "3312ba65b92f36ccb31cb71ffabdfe25.gif";
+
+/***/ }),
+/* 405 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _C = __webpack_require__(406);
+
+var _C2 = _interopRequireDefault(_C);
+
+var _D = __webpack_require__(407);
+
+var _D2 = _interopRequireDefault(_D);
+
+var _E = __webpack_require__(409);
+
+var _E2 = _interopRequireDefault(_E);
+
+var _F = __webpack_require__(411);
+
+var _F2 = _interopRequireDefault(_F);
+
+var _G = __webpack_require__(410);
+
+var _G2 = _interopRequireDefault(_G);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var pitchTablePictures = {
+	C4: _C2.default,
+	D4: _D2.default,
+	E4: _E2.default,
+	F4: _F2.default,
+	G4: _G2.default
+
+};
+
+exports.default = pitchTablePictures;
+
+/***/ }),
+/* 406 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "ca318661937a272d835846407bbb3c11.gif";
+
+/***/ }),
+/* 407 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "8ec3cd1bbd788619b8fc9717d0450fe2.jpeg";
+
+/***/ }),
+/* 408 */,
+/* 409 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "220453cee27c9df8b435e6e5e0a2387f.png";
+
+/***/ }),
+/* 410 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "d5c53283ca47b2061b8cbe64deb6b228.png";
+
+/***/ }),
+/* 411 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "8136b25a5691b39f0f1ecb4e46fc5e59.jpg";
 
 /***/ })
 /******/ ]);

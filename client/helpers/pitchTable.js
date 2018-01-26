@@ -1,4 +1,4 @@
-let pitchTable = {
+const pitchTable = {
 	"432": [
 		{
 			"note":"C0",
