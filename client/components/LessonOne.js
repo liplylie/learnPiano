@@ -13,7 +13,8 @@ class LessonOne extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      loading: true
+      loading: true,
+      hideStart: "visible"
     }
     this.popUpCount = 1
   }
@@ -26,41 +27,75 @@ class LessonOne extends Component {
   }
 
   handleClick(){
-    if (this.popUpCount === 1){
 
-      this.popUpCount+=1
-    let mySpecialPopup = Popup.create({
-    title: 'Lesson 1',
-    content: <a style={{fontSize:"20px"}}>Welcome to your first lesson! Today we will learn how to play 5 notes!</a>,
-    buttons: {
-        left:[{
-            text: 'Cancel',
-            className: 'danger',
-            action:  () => {
-                /** Close this popup. Close will always close the current visible one, if one is visible */
-                console.log(mySpecialPopup, 'popup')
-                Popup.clearQueue()
-                Popup.close()
-
-            }
-        }],
-        right: [{
-            text: 'Ok',
-            className: 'danger',
-            action:  () => {
-
-                /** Close this popup. Close will always close the current visible one, if one is visible */
-                Popup.clearQueue()
-                Popup.close()
-                
-            }
-        }]
+    let deleteStart = function (){
+        document.getElementById("startButton").style.visibility = "hidden"
     }
 
-});
+    const pops = () =>{
+      let poop = "shit"
+      let cardOne = Popup.create({
+      title: 'Lesson 1 - 1',
+      content: <a style={{fontSize:"20px"}}>Welcome to your first lesson! Today we will learn how to play 5 notes!</a>,
+      buttons: {
+          right: [{
+              text: 'Next',
+              className: 'danger',
+              action:  () => {
+                  Popup.close()  
+              }
+          }]
+        }
+      });
 
-      Popup.queue(mySpecialPopup);
-  }
+      let cardTwo = Popup.create({
+      title: 'Lesson 1 - 2',
+      content: <a style={{fontSize:"20px"}}>The first note we'll learn is C. Click Next When you find middle C <img style={{height:"8em", width: "10em"}}src={require("../static/200w_d.gif")}/></a>,
+      buttons: {
+          right: [{
+              text: 'Next',
+              className: 'danger',
+              action:  () => {
+                  poop = "good"
+                  console.log('put listener here', poop)
+                  Popup.close()  
+              }
+          }]
+        }
+      });
+      let cardThree = Popup.create({
+      title: 'Lesson 1 - 3',
+      content: <a style={{fontSize:"20px"}}>Play the C!</a>,
+      buttons: {
+          left:[{
+              text: 'Close',
+              className: 'danger',
+              action:  () => {
+                  Popup.clearQueue()
+                  Popup.close()
+              }
+          }],
+          right: [{
+              text: 'Next',
+              className: 'danger',
+              action:  () => {
+                  Popup.clearQueue()
+                  Popup.close()  
+              }
+          }]
+        }
+      });
+      Popup.queue(cardOne, cardTwo)
+  
+    }
+
+    if (this.popUpCount === 1){
+      pops()
+      this.popUpCount+=1
+    }
+
+
+
 }
   
 
@@ -78,14 +113,14 @@ class LessonOne extends Component {
           <div className="row" style={{height: "8em"}}>
           </div>
           <div className="row">
-            <div className="col-md-4"> 
+            <div className="col-md-12"> 
               <div className="wow slideInRight" data-wow-offset="10"> Lesson One</div>
             </div>
-            <div className="col-md-4" onClick={()=> {this.handleClick()}}> <Popup closeBtn={true}/></div>
+            <div className="col-md-4"> </div>
           </div>
           <div className="row">
             <div className="col-md-4">
-            <img style={{height:"200px"}} className="wow slideInRight" data-wow-offset="10" src="https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Spongebob-squarepants.svg/666px-Spongebob-squarepants.svg.png"/>
+            <div style={{}} id="startButton" className="wow slideInRight" data-wow-offset="10" onClick={()=> {this.handleClick()}}> <Popup closeBtn={true}/> start </div>
             </div>
           </div>
         </div>
