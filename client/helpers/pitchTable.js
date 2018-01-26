@@ -1,5 +1,4 @@
 let pitchTable = {
-
 	"432": [
 		{
 			"note":"C0",
