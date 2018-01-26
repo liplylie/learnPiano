@@ -390,7 +390,6 @@ class LessonOne extends Component {
     }
   }
   componentDidMount(){
-  document.getElementById("startButton").click()
   }
   componentWillUnmount(){
   }
@@ -439,11 +438,27 @@ class LessonOne extends Component {
     };
 
     var updateNote = function (note) {
-      if (note === matchNote){
-        that.setState({
-          middleC:true
-        })
+      if (note !== "--" && note.indexOf("7") === -1 && note.indexOf("8") === -1 ){
+        that.noteArray.push(note)
+        if (that.noteArray.length > 2){
+          if (that.noteArray.includes(matchNote)){
+            // that.turnOffMicrophone()
+            that.setState({
+              correctNote:"C4"
+          }) 
+        } else {
+          console.log(that.noteArray, 'note noteArray')
+          
+          that.setState({
+            wrongNote: that.noteArray[2]
+          })
+          that.turnOffMicrophone()
+          that.noteArray = []
+          setTimeout(that.toggleMicrophone, 1000)
+        }
       }
+        }
+        
     };
 
     var updateCents = function (cents) {
@@ -542,7 +557,7 @@ class LessonOne extends Component {
         isRefSoundPlaying = false;
     };
 
-    var turnOffMicrophone = function () {
+    this.turnOffMicrophone = function() {
         if (sourceAudioNode && sourceAudioNode.mediaStream && sourceAudioNode.mediaStream.stop) {
             sourceAudioNode.mediaStream.stop();
         }
@@ -555,7 +570,7 @@ class LessonOne extends Component {
         isMicrophoneInUse = false;
     };
 
-    var toggleMicrophone = function () {
+    this.toggleMicrophone = function () {
         if (isRefSoundPlaying) {
             turnOffReferenceSound();
         }
@@ -580,13 +595,13 @@ class LessonOne extends Component {
             }
         }
         else {
-            turnOffMicrophone();
+            this.turnOffMicrophone();
         }
     };
 
     var toggleReferenceSound = function () {
         if (isMicrophoneInUse) {
-            toggleMicrophone();
+            this.toggleMicrophone();
         }
         if (!isRefSoundPlaying) {
             notesArray = freqTable[baseFreq];
@@ -637,7 +652,7 @@ class LessonOne extends Component {
     };
 
     init()
-    toggleMicrophone()
+    this.toggleMicrophone()
 
   }
 
@@ -707,9 +722,20 @@ class LessonOne extends Component {
     
   }
 
-  afterHandleClick(){
+  lessonOneButtonOne(){
+    document.getElementById("lessonOneMessageOne").style.display = "none"
+    document.getElementById("lessonOneButtonOne").style.display = "none"
+    document.getElementById("lessonOneMessageTwo").style.display = "block"
+    this.setState({
+      checkNote : "C4"
+    })
+    this.findPitch("C4")
 
-    }
+  }
+
+  lessonOneButtonTwo(){
+
+  }
   
 
   render() {
