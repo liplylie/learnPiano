@@ -1,4 +1,4 @@
-export default const pitchTable = {
+let pitchTable = {
 	"432": [
 		{
 			"note":"C0",
@@ -3472,3 +3472,5 @@ export default const pitchTable = {
 		}
 	]
 }
+
+export default pitchTable
