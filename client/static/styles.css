@@ -141,6 +141,10 @@ body {
         color: #fff;
     }
 
+    .mm-popup__btn--hidden {
+        visibility: hidden;
+    }
+
     .mm-popup__box {
         width: 350px;
         position: fixed;

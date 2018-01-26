@@ -68113,7 +68113,7 @@ var _reactPopup = __webpack_require__(394);
 
 var _reactPopup2 = _interopRequireDefault(_reactPopup);
 
-var _pitchTable = __webpack_require__(404);
+var _pitchTable = __webpack_require__(403);
 
 var _pitchTable2 = _interopRequireDefault(_pitchTable);
 
@@ -68137,23 +68137,34 @@ var LessonOne = function (_Component) {
 
         _this.state = {
             loading: true,
-            hideStart: "visible"
+            hideStart: "visible",
+            middleC: false
         };
         _this.popUpCount = 1;
         _this.findPitch = _this.findPitch.bind(_this);
-        _this.arr = [];
+        _this.noteArray = [];
         return _this;
     }
 
     _createClass(LessonOne, [{
+        key: 'componentWillUpdate',
+        value: function componentWillUpdate() {
+            if (this.state.middleC) {
+                console.log('coorect');
+                alert('good');
+            }
+        }
+    }, {
         key: 'componentDidMount',
-        value: function componentDidMount() {}
+        value: function componentDidMount() {
+            document.getElementById("startButton").click();
+        }
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {}
     }, {
         key: 'findPitch',
-        value: function findPitch() {
+        value: function findPitch(matchNote) {
             var that = this;
             var baseFreq = 440;
             var currentNoteIndex = 57; // A4
@@ -68182,14 +68193,13 @@ var LessonOne = function (_Component) {
                 }
             };
 
-            var updatePitch = function updatePitch(pitch) {
-                //$('#pitch').text(pitch + ' Hz');
-            };
+            var updatePitch = function updatePitch(pitch) {};
 
             var updateNote = function updateNote(note) {
-                if (note !== "--" && note !== "F8") {
-                    that.arr.push(note);
-                    console.log(that.arr, 'arrrr');
+                if (note === matchNote) {
+                    that.setState({
+                        middleC: true
+                    });
                 }
             };
 
@@ -68200,7 +68210,6 @@ var LessonOne = function (_Component) {
                 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia || navigator.getUserMedia) {
                     return true;
                 }
-
                 return false;
             };
 
@@ -68210,36 +68219,27 @@ var LessonOne = function (_Component) {
                 var bestR = 0;
                 for (var k = 8; k <= 1000; k++) {
                     var sum = 0;
-
                     for (var i = 0; i < n; i++) {
                         sum += (buffer[i] - 128) / 128 * ((buffer[i + k] - 128) / 128);
                     }
-
                     var r = sum / (n + k);
-
                     if (r > bestR) {
                         bestR = r;
                         bestK = k;
                     }
-
                     if (r > 0.9) {
-                        // Let's assume that this is good enough and stop right here
                         break;
                     }
                 }
-
                 if (bestR > 0.0025) {
-                    // The period (in frames) of the fundamental frequency is 'bestK'. Getting the frequency from there is trivial.
                     var fundamentalFreq = sampleRate / bestK;
                     return fundamentalFreq;
                 } else {
-                    // We haven't found a good correlation
                     return -1;
                 }
             };
 
             var findClosestNote = function findClosestNote(freq, notes) {
-                // Use binary search to find the closest note
                 var low = -1;
                 var high = notes.length;
                 while (high - low > 1) {
@@ -68250,21 +68250,15 @@ var LessonOne = function (_Component) {
                         high = pivot;
                     }
                 }
-
                 if (Math.abs(notes[high].frequency - freq) <= Math.abs(notes[low].frequency - freq)) {
-                    // notes[high] is closer to the frequency we found
                     return notes[high];
                 }
-
                 return notes[low];
             };
 
             var findCentsOffPitch = function findCentsOffPitch(freq, refFreq) {
-                // We need to find how far freq is from baseFreq in cents
                 var log2 = 0.6931471805599453; // Math.log(2)
                 var multiplicativeFactor = freq / refFreq;
-
-                // We use Math.floor to get the integer part and ignore decimals
                 var cents = Math.floor(1200 * (Math.log(multiplicativeFactor) / log2));
                 return cents;
             };
@@ -68272,9 +68266,7 @@ var LessonOne = function (_Component) {
             var detectPitch = function detectPitch() {
                 var buffer = new Uint8Array(analyserAudioNode.fftSize);
                 analyserAudioNode.getByteTimeDomainData(buffer);
-
                 var fundalmentalFreq = findFundamentalFreq(buffer, audioContext.sampleRate);
-
                 if (fundalmentalFreq !== -1) {
                     var note = findClosestNote(fundalmentalFreq, notesArray);
                     var cents = findCentsOffPitch(fundalmentalFreq, note.frequency);
@@ -68284,19 +68276,15 @@ var LessonOne = function (_Component) {
                     updateNote('--');
                     updateCents(-50);
                 }
-
                 frameId = window.requestAnimationFrame(detectPitch);
             };
 
             var streamReceived = function streamReceived(stream) {
                 micStream = stream;
-
                 analyserAudioNode = audioContext.createAnalyser();
                 analyserAudioNode.fftSize = 2048;
-
                 sourceAudioNode = audioContext.createMediaStreamSource(micStream);
                 sourceAudioNode.connect(analyserAudioNode);
-
                 detectPitch();
             };
 
@@ -68305,7 +68293,6 @@ var LessonOne = function (_Component) {
                 sourceAudioNode = null;
                 updatePitch('--');
                 updateNote('--');
-                $('#referenceOptions').toggle(false);
                 isRefSoundPlaying = false;
             };
 
@@ -68317,7 +68304,6 @@ var LessonOne = function (_Component) {
                 updatePitch('--');
                 updateNote('--');
                 updateCents(-50);
-                $('#microphoneOptions').toggle(false);
                 analyserAudioNode = null;
                 window.cancelAnimationFrame(frameId);
                 isMicrophoneInUse = false;
@@ -68329,17 +68315,13 @@ var LessonOne = function (_Component) {
                 }
 
                 if (!isMicrophoneInUse) {
-                    //$('#microphoneOptions').toggle(true);
-
                     if (isGetUserMediaSupported()) {
                         notesArray = freqTable[baseFreq.toString()];
-
                         var getUserMedia = navigator.mediaDevices && navigator.mediaDevices.getUserMedia ? navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices) : function (constraints) {
                             return new Promise(function (resolve, reject) {
                                 navigator.getUserMedia(constraints, resolve, reject);
                             });
                         };
-
                         getUserMedia({ audio: true }).then(streamReceived).catch(reportError);
                         updatePitch(baseFreq);
                         isMicrophoneInUse = true;
@@ -68355,9 +68337,7 @@ var LessonOne = function (_Component) {
                 if (isMicrophoneInUse) {
                     toggleMicrophone();
                 }
-
                 if (!isRefSoundPlaying) {
-                    $('#referenceOptions').toggle(true);
                     notesArray = freqTable[baseFreq];
                     sourceAudioNode = audioContext.createOscillator();
                     sourceAudioNode.frequency.value = notesArray[currentNoteIndex].frequency;
@@ -68379,8 +68359,6 @@ var LessonOne = function (_Component) {
                     updatePitch(baseFreq);
 
                     if (isRefSoundPlaying) {
-                        // Only change the frequency if we are playing a reference sound, since
-                        // sourceAudioNode will be an instance of OscillatorNode
                         var newNoteFreq = notesArray[currentNoteIndex].frequency;
                         sourceAudioNode.frequency.value = newNoteFreq;
                     }
@@ -68394,7 +68372,6 @@ var LessonOne = function (_Component) {
                         currentNoteIndex = newNoteIndex;
                         var newNoteFreq = notesArray[currentNoteIndex].frequency;
                         sourceAudioNode.frequency.value = newNoteFreq;
-                        // In this case we haven't changed the base frequency, so we just need to update the note on screen
                         updateNote(notesArray[currentNoteIndex].note);
                     }
                 }
@@ -68416,12 +68393,7 @@ var LessonOne = function (_Component) {
         value: function handleClick() {
             var _this2 = this;
 
-            var deleteStart = function deleteStart() {
-                document.getElementById("startButton").style.visibility = "hidden";
-            };
-
             var pops = function pops() {
-                var poop = "shit";
                 var cardOne = _reactPopup2.default.create({
                     title: 'Lesson 1 - 1',
                     content: _react2.default.createElement(
@@ -68434,6 +68406,7 @@ var LessonOne = function (_Component) {
                             text: 'Next',
                             className: 'danger',
                             action: function action() {
+                                _this2.findPitch("C4");
                                 _reactPopup2.default.close();
                             }
                         }]
@@ -68445,17 +68418,17 @@ var LessonOne = function (_Component) {
                     content: _react2.default.createElement(
                         'a',
                         { style: { fontSize: "20px" } },
-                        'The first note we\'ll learn is C. Click Next When you find middle C ',
-                        _react2.default.createElement('img', { style: { height: "8em", width: "10em" }, src: __webpack_require__(405) })
+                        'The first note we\'ll learn is middle C. Play Middle C and Click "Next" when you find middle C ',
+                        _react2.default.createElement('img', { style: { height: "8em", width: "10em" }, src: __webpack_require__(404) })
                     ),
                     buttons: {
                         right: [{
                             text: 'Next',
-                            className: 'danger',
+                            className: 'hidden',
                             action: function action() {
-                                //Popup.close() 
-                                _this2.findPitch();
-                                console.log(_this2.arr, 'arr answer');
+                                if (_this2.state.middleC) {
+                                    _reactPopup2.default.close();
+                                }
                             }
                         }]
                     }
@@ -68465,7 +68438,7 @@ var LessonOne = function (_Component) {
                     content: _react2.default.createElement(
                         'a',
                         { style: { fontSize: "20px" } },
-                        'Play the C!'
+                        'Good! Play the C!'
                     ),
                     buttons: {
                         left: [{
@@ -68486,7 +68459,7 @@ var LessonOne = function (_Component) {
                         }]
                     }
                 });
-                _reactPopup2.default.queue(cardOne, cardTwo);
+                _reactPopup2.default.queue(cardOne, cardTwo, cardThree);
             };
 
             if (this.popUpCount === 1) {
@@ -68494,6 +68467,9 @@ var LessonOne = function (_Component) {
                 this.popUpCount += 1;
             }
         }
+    }, {
+        key: 'afterHandleClick',
+        value: function afterHandleClick() {}
     }, {
         key: 'render',
         value: function render() {
@@ -68519,8 +68495,12 @@ var LessonOne = function (_Component) {
                             { className: 'col-md-12' },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'wow slideInRight', 'data-wow-offset': '10' },
-                                ' Lesson One'
+                                null,
+                                _react2.default.createElement(
+                                    'span',
+                                    { style: { fontFamily: "helvetica", fontSize: "5em" } },
+                                    ' Lesson One'
+                                )
                             )
                         ),
                         _react2.default.createElement(
@@ -68537,12 +68517,20 @@ var LessonOne = function (_Component) {
                             { className: 'col-md-4' },
                             _react2.default.createElement(
                                 'div',
-                                { style: {}, id: 'startButton', className: 'wow slideInRight', 'data-wow-offset': '10', onClick: function onClick() {
+                                { id: 'startButton', onClick: function onClick() {
                                         _this3.handleClick();
                                     } },
                                 ' ',
-                                _react2.default.createElement(_reactPopup2.default, { closeBtn: true }),
-                                ' start '
+                                _react2.default.createElement(_reactPopup2.default, { closeBtn: false }),
+                                ' '
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { id: 'continueLesson', onClick: function onClick() {
+                                        _this3.afterHandleClick();
+                                    } },
+                                ' ',
+                                ' '
                             )
                         )
                     )
@@ -70272,8 +70260,7 @@ Component.defaultProps = defaultProps;
 exports.default = Component;
 
 /***/ }),
-/* 403 */,
-/* 404 */
+/* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72888,7 +72875,7 @@ var pitchTable = {
 exports.default = pitchTable;
 
 /***/ }),
-/* 405 */
+/* 404 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "3312ba65b92f36ccb31cb71ffabdfe25.gif";
