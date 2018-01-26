@@ -68138,7 +68138,9 @@ var LessonOne = function (_Component) {
         _this.state = {
             loading: true,
             hideStart: "visible",
-            middleC: false
+            correctNote: null,
+            wrongNote: null,
+            checkNote: null
         };
         _this.popUpCount = 1;
         _this.findPitch = _this.findPitch.bind(_this);
@@ -68147,18 +68149,21 @@ var LessonOne = function (_Component) {
     }
 
     _createClass(LessonOne, [{
-        key: 'componentWillUpdate',
-        value: function componentWillUpdate() {
-            if (this.state.middleC) {
-                console.log('coorect');
-                alert('good');
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            if (this.state.correctNote === this.state.checkNote && this.popUpCount === 1) {
+                _reactPopup2.default.alert('good');
+                document.getElementById("lessonOneButtonTwo").style.display = "block";
+                this.popUpCount += 1;
+                this.turnOffMicrophone();
+            } else if (this.state.wrongNote && this.popUpCount === 1) {
+                console.log(this.state.wrongNote, 'cwu');
+                setTimeout(_reactPopup2.default.alert(this.state.wrongNote), 200);
             }
         }
     }, {
         key: 'componentDidMount',
-        value: function componentDidMount() {
-            document.getElementById("startButton").click();
-        }
+        value: function componentDidMount() {}
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {}
@@ -68196,10 +68201,25 @@ var LessonOne = function (_Component) {
             var updatePitch = function updatePitch(pitch) {};
 
             var updateNote = function updateNote(note) {
-                if (note === matchNote) {
-                    that.setState({
-                        middleC: true
-                    });
+                if (note !== "--" && note.indexOf("7") === -1 && note.indexOf("8") === -1) {
+                    that.noteArray.push(note);
+                    if (that.noteArray.length > 2) {
+                        if (that.noteArray.includes(matchNote)) {
+                            // that.turnOffMicrophone()
+                            that.setState({
+                                correctNote: "C4"
+                            });
+                        } else {
+                            console.log(that.noteArray, 'note noteArray');
+
+                            that.setState({
+                                wrongNote: that.noteArray[2]
+                            });
+                            that.turnOffMicrophone();
+                            that.noteArray = [];
+                            setTimeout(that.toggleMicrophone, 1000);
+                        }
+                    }
                 }
             };
 
@@ -68296,7 +68316,7 @@ var LessonOne = function (_Component) {
                 isRefSoundPlaying = false;
             };
 
-            var turnOffMicrophone = function turnOffMicrophone() {
+            this.turnOffMicrophone = function () {
                 if (sourceAudioNode && sourceAudioNode.mediaStream && sourceAudioNode.mediaStream.stop) {
                     sourceAudioNode.mediaStream.stop();
                 }
@@ -68309,7 +68329,7 @@ var LessonOne = function (_Component) {
                 isMicrophoneInUse = false;
             };
 
-            var toggleMicrophone = function toggleMicrophone() {
+            this.toggleMicrophone = function () {
                 if (isRefSoundPlaying) {
                     turnOffReferenceSound();
                 }
@@ -68329,13 +68349,13 @@ var LessonOne = function (_Component) {
                         reportError('It looks like this browser does not support getUserMedia. ' + 'Check <a href="http://caniuse.com/#feat=stream">http://caniuse.com/#feat=stream</a> for more info.');
                     }
                 } else {
-                    turnOffMicrophone();
+                    this.turnOffMicrophone();
                 }
             };
 
             var toggleReferenceSound = function toggleReferenceSound() {
                 if (isMicrophoneInUse) {
-                    toggleMicrophone();
+                    this.toggleMicrophone();
                 }
                 if (!isRefSoundPlaying) {
                     notesArray = freqTable[baseFreq];
@@ -68386,7 +68406,7 @@ var LessonOne = function (_Component) {
             };
 
             init();
-            toggleMicrophone();
+            this.toggleMicrophone();
         }
     }, {
         key: 'handleClick',
@@ -68468,8 +68488,19 @@ var LessonOne = function (_Component) {
             }
         }
     }, {
-        key: 'afterHandleClick',
-        value: function afterHandleClick() {}
+        key: 'lessonOneButtonOne',
+        value: function lessonOneButtonOne() {
+            document.getElementById("lessonOneMessageOne").style.display = "none";
+            document.getElementById("lessonOneButtonOne").style.display = "none";
+            document.getElementById("lessonOneMessageTwo").style.display = "block";
+            this.setState({
+                checkNote: "C4"
+            });
+            this.findPitch("C4");
+        }
+    }, {
+        key: 'lessonOneButtonTwo',
+        value: function lessonOneButtonTwo() {}
     }, {
         key: 'render',
         value: function render() {
@@ -68514,24 +68545,34 @@ var LessonOne = function (_Component) {
                         { className: 'row' },
                         _react2.default.createElement(
                             'div',
-                            { className: 'col-md-4' },
+                            { className: 'col-md-12' },
                             _react2.default.createElement(
                                 'div',
-                                { id: 'startButton', onClick: function onClick() {
-                                        _this3.handleClick();
+                                { style: { fontFamily: "helvetica", fontSize: "1.5em" }, id: 'lessonOneMessageOne' },
+                                ' Welcome to your first lesson! Today we will learn how to play 5 notes!'
+                            ),
+                            _react2.default.createElement(
+                                'button',
+                                { id: 'lessonOneButtonOne', onClick: function onClick() {
+                                        return _this3.lessonOneButtonOne();
                                     } },
-                                ' ',
-                                _react2.default.createElement(_reactPopup2.default, { closeBtn: false }),
-                                ' '
+                                ' next '
                             ),
                             _react2.default.createElement(
                                 'div',
-                                { id: 'continueLesson', onClick: function onClick() {
-                                        _this3.afterHandleClick();
+                                { style: { fontFamily: "helvetica", fontSize: "1.5em", display: "none" }, id: 'lessonOneMessageTwo' },
+                                ' The first note we\'ll learn is middle C. Play Middle C and Click "Next" when you find middle C ',
+                                _react2.default.createElement('img', { style: { height: "12em", width: "15em" }, src: __webpack_require__(404) }),
+                                _react2.default.createElement('br', null)
+                            ),
+                            _react2.default.createElement(
+                                'button',
+                                { style: { display: "none", margin: "auto", marginTop: "1em" }, id: 'lessonOneButtonTwo', onClick: function onClick() {
+                                        return _this3.lessonOneButtonTwo();
                                     } },
-                                ' ',
-                                ' '
-                            )
+                                ' next '
+                            ),
+                            _react2.default.createElement(_reactPopup2.default, null)
                         )
                     )
                 )
