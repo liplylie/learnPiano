@@ -34,7 +34,7 @@ class LessonOne extends Component {
     }
   }
   componentDidMount(){
-
+  document.getElementById("startButton").click()
   }
   componentWillUnmount(){
   }
