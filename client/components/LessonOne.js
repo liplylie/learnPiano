@@ -16,21 +16,27 @@ class LessonOne extends Component {
     this.state = {
       loading: true,
       hideStart: "visible",
-      middleC: false
+      correctNote: null,
+      wrongNote: null,
+      checkNote: null,
     }
     this.popUpCount = 1
     this.findPitch = this.findPitch.bind(this)
     this.noteArray = []
   }
 
-  componentWillUpdate(){
-    if (this.state.middleC){
-        console.log('coorect')
-        alert('good')
+  componentDidUpdate(){
+    if (this.state.correctNote === this.state.checkNote && this.popUpCount === 1){
+        Popup.alert('good')
+        document.getElementById("lessonOneButtonTwo").style.display = "block"
+        this.popUpCount+=1
+        this.turnOffMicrophone()
+    } else if (this.state.wrongNote && this.popUpCount === 1){
+      console.log(this.state.wrongNote, 'cwu')
+        setTimeout(Popup.alert(this.state.wrongNote),200)
     }
   }
   componentDidMount(){
-  document.getElementById("startButton").click()
   }
   componentWillUnmount(){
   }
@@ -79,11 +85,27 @@ class LessonOne extends Component {
     };
 
     var updateNote = function (note) {
-      if (note === matchNote){
-        that.setState({
-          middleC:true
-        })
+      if (note !== "--" && note.indexOf("7") === -1 && note.indexOf("8") === -1 ){
+        that.noteArray.push(note)
+        if (that.noteArray.length > 2){
+          if (that.noteArray.includes(matchNote)){
+            // that.turnOffMicrophone()
+            that.setState({
+              correctNote:"C4"
+          }) 
+        } else {
+          console.log(that.noteArray, 'note noteArray')
+          
+          that.setState({
+            wrongNote: that.noteArray[2]
+          })
+          that.turnOffMicrophone()
+          that.noteArray = []
+          setTimeout(that.toggleMicrophone, 1000)
+        }
       }
+        }
+        
     };
 
     var updateCents = function (cents) {
@@ -182,7 +204,7 @@ class LessonOne extends Component {
         isRefSoundPlaying = false;
     };
 
-    var turnOffMicrophone = function () {
+    this.turnOffMicrophone = function() {
         if (sourceAudioNode && sourceAudioNode.mediaStream && sourceAudioNode.mediaStream.stop) {
             sourceAudioNode.mediaStream.stop();
         }
@@ -195,7 +217,7 @@ class LessonOne extends Component {
         isMicrophoneInUse = false;
     };
 
-    var toggleMicrophone = function () {
+    this.toggleMicrophone = function () {
         if (isRefSoundPlaying) {
             turnOffReferenceSound();
         }
@@ -220,13 +242,13 @@ class LessonOne extends Component {
             }
         }
         else {
-            turnOffMicrophone();
+            this.turnOffMicrophone();
         }
     };
 
     var toggleReferenceSound = function () {
         if (isMicrophoneInUse) {
-            toggleMicrophone();
+            this.toggleMicrophone();
         }
         if (!isRefSoundPlaying) {
             notesArray = freqTable[baseFreq];
@@ -277,7 +299,7 @@ class LessonOne extends Component {
     };
 
     init()
-    toggleMicrophone()
+    this.toggleMicrophone()
 
   }
 
@@ -347,9 +369,20 @@ class LessonOne extends Component {
     
   }
 
-  afterHandleClick(){
+  lessonOneButtonOne(){
+    document.getElementById("lessonOneMessageOne").style.display = "none"
+    document.getElementById("lessonOneButtonOne").style.display = "none"
+    document.getElementById("lessonOneMessageTwo").style.display = "block"
+    this.setState({
+      checkNote : "C4"
+    })
+    this.findPitch("C4")
 
-    }
+  }
+
+  lessonOneButtonTwo(){
+
+  }
   
 
   render() {
@@ -372,9 +405,12 @@ class LessonOne extends Component {
             <div className="col-md-4"> </div>
           </div>
           <div className="row">
-            <div className="col-md-4">
-            <div id="startButton"onClick={()=> {this.handleClick()}}> <Popup closeBtn={false}/> </div>
-            <div id="continueLesson" onClick={()=> {this.afterHandleClick()}}> {} </div>
+            <div className="col-md-12">
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em"}} id="lessonOneMessageOne"> Welcome to your first lesson! Today we will learn how to play 5 notes!</div>
+              <button id="lessonOneButtonOne" onClick={()=>this.lessonOneButtonOne()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageTwo"> The first note we'll learn is middle C. Play Middle C and Click "Next" when you find middle C <img style={{height:"12em", width: "15em"}}src={require("../static/200w_d.gif")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}}id="lessonOneButtonTwo" onClick={()=>this.lessonOneButtonTwo()}> next </button>
+              <Popup/>
             </div>
           </div>
         </div>
