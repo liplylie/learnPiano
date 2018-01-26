@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux'
 import * as AuthActions from '../actions/authActions.js'
 import Popup from 'react-popup'
 import pitchTable from "../helpers/pitchTable"
+import pitchTablePictures from "../helpers/pitchTablePictures"
 
 class LessonOne extends Component {
   constructor(props) {
@@ -24,13 +25,12 @@ class LessonOne extends Component {
 
   componentDidUpdate(){
     if (this.state.correctNote === this.state.checkNote && this.popUpCount === 1){
-        Popup.alert('good')
+        Popup.alert(<div style={{fontFamily:"helvetica", fontSize:"2.5em"}}><img style={{height: "8em", width: "5em"}} src={pitchTablePictures[this.state.checkNote]}/> Correct! You played A {this.state.checkNote[0]} </div>)
         document.getElementById("lessonOneButtonTwo").style.display = "block"
         this.popUpCount+=1
         this.turnOffMicrophone()
     } else if (this.state.wrongNote && this.popUpCount === 1){
-      console.log(this.state.wrongNote, 'cwu')
-        setTimeout(Popup.alert(this.state.wrongNote),200)
+      Popup.alert(<div style={{fontFamily:"helvetica", fontSize:"2.5em"}}><img style={{height: "8em", width: "5em"}} src={pitchTablePictures[this.state.wrongNote]} /> Incorrect! You played a {this.state.wrongNote[0]}</div>)
     }
   }
   componentDidMount(){
@@ -296,74 +296,7 @@ class LessonOne extends Component {
     };
 
     init()
-    this.toggleMicrophone()
-
-  }
-
-  handleClick(){
-
-    const pops = () =>{
-      let cardOne = Popup.create({
-      title: 'Lesson 1 - 1',
-      content: <a style={{fontSize:"20px"}}>Welcome to your first lesson! Today we will learn how to play 5 notes!</a>,
-      buttons: {
-          right: [{
-            text: 'Next',
-            className: 'danger',
-            action:  () => {
-              this.findPitch("C4")
-                Popup.close()  
-            }
-          }]
-        }
-      });
-
-      let cardTwo = Popup.create({
-      title: 'Lesson 1 - 2',
-      content: <a style={{fontSize:"20px"}}>The first note we'll learn is middle C. Play Middle C and Click "Next" when you find middle C <img style={{height:"8em", width: "10em"}}src={require("../static/200w_d.gif")}/></a>,
-      buttons: {
-          right: [{
-            text: 'Next',
-            className: 'hidden',
-            action: () => {
-              if (this.state.middleC){
-                 Popup.close()
-              } 
-            }    
-          }]
-        }
-      });
-      let cardThree = Popup.create({
-      title: 'Lesson 1 - 3',
-      content: <a style={{fontSize:"20px"}}>Good! Play the C!</a>,
-      buttons: {
-          left:[{
-              text: 'Close',
-              className: 'danger',
-              action:  () => {
-                  Popup.clearQueue()
-                  Popup.close()
-              }
-          }],
-          right: [{
-              text: 'Next',
-              className: 'danger',
-              action:  () => {
-                  Popup.clearQueue()
-                  Popup.close()  
-              }
-          }]
-        }
-      });
-      Popup.queue(cardOne, cardTwo, cardThree)
-    }
-
-    if (this.popUpCount === 1){
-      pops()
-      this.popUpCount+=1
-    }
-
-    
+    this.toggleMicrophone()    
   }
 
   lessonOneButtonOne(){
@@ -374,7 +307,6 @@ class LessonOne extends Component {
       checkNote : "C4"
     })
     this.findPitch("C4")
-
   }
 
   lessonOneButtonTwo(){
