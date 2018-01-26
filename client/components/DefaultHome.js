@@ -70,10 +70,7 @@ class DefaultHome extends Component {
 	 				Write about website here
 			</div>
       </div>
-			
 		)
 	}
 }
-
 export default DefaultHome
-

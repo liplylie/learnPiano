@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as AuthActions from '../actions/authActions.js'
 
-
 import NavBar from './NavBar'
 import DefaultHome from './DefaultHome'
 import Footer from './Footer'

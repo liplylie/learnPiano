@@ -6,6 +6,29 @@ body {
   background-color: lightgray;
 }
 
+<<<<<<< HEAD
+=======
+.fourofour-status {
+  text-align: center;
+  font-size: 160px;
+  font-weight: bold;
+  padding-top: 10%;
+  text-shadow: 2px 2px 8px white;
+}
+
+.fourofour-description {
+  text-align: center;
+  font-size: 60px;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px white;
+}
+
+.fourofour-section {
+  flex: 10;
+  background-position: left, center, right;
+  padding-bottom: 15%;
+}
+>>>>>>> master
 .loader {
     display: block;
     margin: auto;
@@ -20,6 +43,26 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+<<<<<<< HEAD
+=======
+
+.bg-black {
+  background-color: black
+}
+
+#bg-logo {
+  color: #cdb287;
+  font-weight: bold;
+  font-size: 28px;
+}
+
+.bg-logo {
+  color: #cdb287;f
+  font-weight: bold;
+  font-size: 22px;
+}
+=======
+>>>>>>> master
 }
 
 .bg-black {
@@ -52,6 +95,13 @@ body {
 .btn-facebook:active, .btn-facebook:hover {
   background: #263961;
   color: #fff;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> pop up js works for interactive pop ups CONTINUE WITH LESSON ONE
+>>>>>>> master
 }*/
 
 .mm-popup {
@@ -144,7 +194,6 @@ body {
     .mm-popup__btn--hidden {
         visibility: hidden;
     }
-
     .mm-popup__box {
         width: 350px;
         position: fixed;

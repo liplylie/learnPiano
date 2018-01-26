@@ -1,5 +1,4 @@
 package-lock.json
-
+client/static/bundle.js
 node_modules
-
 secret.json
