@@ -39,11 +39,6 @@ class LessonOne extends Component {
       Popup.alert(<div style={{fontFamily:"helvetica", fontSize:"2.5em"}}><img style={{height: "8em", width: "5em"}} src={pitchTablePictures[this.state.wrongNote]} /> Incorrect! You played a {this.state.wrongNote[0]}</div>)
     }
   }
-  componentDidMount(){
-  document.getElementById("startButton").click()
-  }
-  componentWillUnmount(){
-  }
 
   // componentWillUnmount(){
   //   this.turnOffMicrophone()
@@ -322,10 +317,24 @@ class LessonOne extends Component {
     
   }
 
-   lessonOneButtonTwo(){
+  lessonOneButtonTwo(){
+    document.getElementById("lessonOneMessageTwo").style.display = "none"
+    document.getElementById("lessonOneButtonTwo").style.display = "none"
+    document.getElementById("lessonOneMessageThree").style.display = "block"
+    this.setState({
+      checkNote : "C4",
+      buttonToShow: "Three"
+    })
+    this.findPitch("C4")
 
-  }  
+  }
 
+  lessonOneButtonThree(){
+    document.getElementById("lessonOneMessageThree").style.display = "none"
+    document.getElementById("lessonOneButtonThree").style.display = "none"
+    document.getElementById("lessonOneMessageFour").style.display = "block"
+    document.getElementById("lessonOneButtonFour").style.display = "block"
+  }
   lessonOneButtonFour(){
     document.getElementById("lessonOneMessageFour").style.display = "none"
     document.getElementById("lessonOneButtonFour").style.display = "none"
@@ -334,11 +343,13 @@ class LessonOne extends Component {
       checkNote : "D4",
       buttonToShow: "Five"
     })
-    this.findPitch("C4")
+    this.findPitch("D4")
   }
-
- 
-
+  lessonOneButtonFive(){
+    document.getElementById("lessonOneMessageFive").style.display = "none"
+    document.getElementById("lessonOneButtonFive").style.display = "none"
+  }
+  
   render() {
     
 
@@ -347,7 +358,6 @@ class LessonOne extends Component {
     if (!this.props.profile.online){
       return <Redirect to="/"/>
     }
-
     return (
       <div style={{height:"100vh", width:"100vw", textAlign: "center"}}>
         <div style={{width:"70vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1}}>
@@ -381,8 +391,6 @@ class LessonOne extends Component {
     )
   }
 }
-
-
 const LessonOneMapStateToProps = (store) => {
   return {
     profile: store.Auth

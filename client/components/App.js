@@ -12,6 +12,7 @@ import Footer from './Footer'
 import Profile from'./Profile'
 import LessonOne from './LessonOne'
 
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -44,6 +45,7 @@ class App extends Component {
   componentWillUnmount(){
     this.removeAuthListener()
   }
+  
 
   render() {
     return (
