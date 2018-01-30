@@ -14,7 +14,7 @@ const authReducer = (state=initialState, action) => {
       return Object.assign({}, state, {
         online: true,
         name: action.payload.name,
-        userId: action.payload.ID,
+        userId: action.payload.userId,
         picture: action.payload.picture,
         email: action.payload.email
       })

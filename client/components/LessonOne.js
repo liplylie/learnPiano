@@ -411,13 +411,19 @@ class LessonOne extends Component {
 
   lessonOneButtonTwelve(){
     // set data to firebase that lesson one is completed for the user
+    //let userLessonStatus = firebaseDB.ref("/users/" + user.uid + "/lessonsCompleted")
+    // userLessonStatus.update({lesson1:true})
     console.log("finished")
   }
 
   render() {
 
-    if (!this.props.profile.online){
+    if (!this.props.Auth.online){
       return <Redirect to="/"/>
+    }
+
+    if (!this.props.LessonsCompleted.lesson1){
+        return <Redirect to="/"/>
     }
 
     return (
@@ -467,8 +473,10 @@ class LessonOne extends Component {
   }
 }
 const LessonOneMapStateToProps = (store) => {
+    console.log(store, 'lesson one store')
   return {
-    profile: store.Auth
+    Auth: store.Auth,
+    LessonsCompleted: store.LessonsCompleted
   }
 }
 

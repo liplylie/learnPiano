@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Router, Route } from 'react-router-dom'
 import { Switch } from 'react-router-dom'
-import { app } from '../firebase'
+import { app, firebaseDB } from '../firebase'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as AuthActions from '../actions/authActions.js'
+import * as AuthActions from '../actions/authActions'
+import * as LessonsCompletedActions from '../actions/lessonsCompletedActions'
 
 import NavBar from './NavBar'
 import DefaultHome from './DefaultHome'
@@ -19,21 +20,32 @@ class App extends Component {
     this.state = {
       loading: true
     }
-   
   }
 
   componentWillMount(){
     this.removeAuthListener = app.auth().onAuthStateChanged(user=>{
       if (user){
-        console.log(user, 'true')
+        let userData = firebaseDB.ref("/users").child(user.uid)
+        let lessons = {lesson1:false, lesson2: false} 
+        userLessonStatus.on("value", (snapshot) => {
+          if (!snapshot.val()){
+            userLessonStatus.update(lessons)
+          } else {
+            this.props.LessonsCompletedActions.lessonsCompleted(snapshot.val())
+            console.log(snapshot.val(), 'data from fireb')
+
+          }
+          
+        }, (errorObject) => {
+          console.log("The read failed: " + errorObject.code);
+        });
         let userInfo = {
           name : user.displayName,
           email : user.email,
           userId : user.uid,
           picture : user.photoURL
         }
-        this.props.actions.userLoginInfo(userInfo)
-        console.log(this.props.online,' status')
+        this.props.AuthActions.userLoginInfo(userInfo)
         this.setState({loading:false})
       } else {
         console.log('fail')
@@ -85,7 +97,9 @@ const appMapStateToProps = (store) => {
 
 const appDispatch = (dispatch) => {
   return {
-    actions: bindActionCreators(AuthActions, dispatch),
+    AuthActions: bindActionCreators(AuthActions, dispatch),
+    LessonsCompletedActions: bindActionCreators(LessonsCompletedActions, dispatch)
+
   }
 }
 
