@@ -23,15 +23,21 @@ class App extends Component {
   }
 
   componentWillMount(){
+    let that = this
     this.removeAuthListener = app.auth().onAuthStateChanged(user=>{
       if (user){
         let userData = firebaseDB.ref("/users").child(user.uid)
-        let lessons = {lesson1:false, lesson2: false} 
-        userLessonStatus.on("value", (snapshot) => {
+        let userLessonStatus = firebaseDB.ref("/users/" + user.uid + "/lessonsCompleted")
+        let lessons = {
+          lesson1: {completed: false, time: null},
+          lesson2: {completed: false, time: null}
+        } 
+        userLessonStatus.once("value")
+        .then(snapshot => {
           if (!snapshot.val()){
             userLessonStatus.update(lessons)
           } else {
-            this.props.LessonsCompletedActions.lessonsCompleted(snapshot.val())
+            that.props.LessonsCompletedActions.lessonsCompleted(snapshot.val())
             console.log(snapshot.val(), 'data from fireb')
 
           }

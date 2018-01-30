@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { BrowserRouter, Router, Route } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { app } from '../firebase'
+import { app, firebaseDB } from '../firebase'
+import firebase from "firebase"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as AuthActions from '../actions/authActions.js'
+import * as LessonsCompleted from '../actions/lessonsCompletedActions'
 import Popup from 'react-popup'
 import pitchTable from "../helpers/pitchTable"
 import pitchTablePictures from "../helpers/pitchTablePictures"
@@ -17,7 +19,8 @@ class LessonOne extends Component {
       correctNote: null,
       wrongNote: null,
       checkNote: null,
-      buttonToShow: null
+      buttonToShow: null,
+      lessonCompleted: false
     }
     this.popUpCount = 1
     this.correctAnswers = 1
@@ -30,13 +33,13 @@ class LessonOne extends Component {
   }
 
   componentDidUpdate(){
-    if (this.state.correctNote === this.state.checkNote && this.popUpCount === this.correctAnswers){
+    if (this.state.correctNote === this.state.checkNote && this.popUpCount === this.correctAnswers && !this.state.lessonCompleted){
         Popup.alert(<div style={{fontFamily:"helvetica", fontSize:"2.5em"}}><img style={{height: "8em", width: "5em"}} src={pitchTablePictures[this.state.checkNote]}/> Correct! You played a {this.state.checkNote[0]} </div>)
         document.getElementById(`lessonOneButton${this.state.buttonToShow}`).style.display = "block"
         this.popUpCount+=1
         this.correctAnswers+=1
         this.turnOffMicrophone()
-    } else if (this.state.wrongNote && this.noteArray.length && this.popUpCount === this.correctAnswers){
+    } else if (this.state.wrongNote && this.noteArray.length && this.popUpCount === this.correctAnswers && !this.state.lessonCompleted){
       Popup.alert(<div style={{fontFamily:"helvetica", fontSize:"2.5em"}}><img style={{height: "8em", width: "5em"}} src={pitchTablePictures[this.state.wrongNote]} /> Incorrect! You played a {this.state.wrongNote[0]}</div>)
     }
   }
@@ -411,19 +414,25 @@ class LessonOne extends Component {
 
   lessonOneButtonTwelve(){
     // set data to firebase that lesson one is completed for the user
-    //let userLessonStatus = firebaseDB.ref("/users/" + user.uid + "/lessonsCompleted")
-    // userLessonStatus.update({lesson1:true})
-    console.log("finished")
+    let that = this
+    let userLessonStatus = firebaseDB.ref("/users/" + this.props.Auth.userId + "/lessonsCompleted")
+    
+    // 
+    userLessonStatus.once("value")
+        .then(snapshot => {
+            userLessonStatus.update( {lesson1: {completed: true, time: firebase.database.ServerValue.TIMESTAMP} })
+            that.props.LessonsCompleted.lessonsCompleted(snapshot.val())
+            console.log( snapshot.val(), 'lesson one completed' )
+            that.setState({
+                lessonCompleted: true
+            })
+    })
   }
 
   render() {
 
-    if (!this.props.Auth.online){
+    if (!this.props.Auth.online || this.state.lessonCompleted){
       return <Redirect to="/"/>
-    }
-
-    if (!this.props.LessonsCompleted.lesson1){
-        return <Redirect to="/"/>
     }
 
     return (
@@ -473,7 +482,6 @@ class LessonOne extends Component {
   }
 }
 const LessonOneMapStateToProps = (store) => {
-    console.log(store, 'lesson one store')
   return {
     Auth: store.Auth,
     LessonsCompleted: store.LessonsCompleted
@@ -482,7 +490,8 @@ const LessonOneMapStateToProps = (store) => {
 
 const LessonOneDispatch = (dispatch) => {
   return {
-    actions: bindActionCreators(AuthActions, dispatch),
+    AuthActions: bindActionCreators(AuthActions, dispatch),
+    LessonsCompleted: bindActionCreators(LessonsCompleted, dispatch)
   }
 }
 
