@@ -9,8 +9,22 @@ class Profile extends Component{
 		super(props)
 	}
 
+	formatAMPM(date) {
+	  var hours = date[0];
+	  var minutes = date[1];
+	  var ampm = hours >= 12 ? 'pm' : 'am';
+	  hours = hours % 12;
+	  hours = hours ? hours : 12; // the hour '0' should be '12'
+	  minutes = minutes < 10 ? '0'+minutes : minutes;
+	  var strTime = hours + ':' + minutes + ' ' + ampm;
+	  return strTime;
+	}
+
 	render(){
 		console.log(this.props, 'profile props')
+
+		let lessonData = Object.entries(this.props.LessonsCompleted)
+		console.log(lessonData, 'lessonData')
 		if (this.props.loading && this.props.online){
 			return (
 				<div style={{height:"100vh", padding: "10em"}}>
@@ -20,7 +34,7 @@ class Profile extends Component{
       );
 		}
 
-		if (!this.props.profile.online) {
+		if (!this.props.Auth.online) {
 			return <Redirect to='/'/>
 		}
 		return (
@@ -30,14 +44,38 @@ class Profile extends Component{
 					</div>
 					<div className="row">
 						<div className="col-md-4"> 
-							<img className="span3 wow flipInX center"src={this.props.profile.picture} style={{height: "10em", width:"10em", visibility: "visible", animationName: "flipInX"}}/>
+							<img className="span3 wow flipInX center"src={this.props.Auth.picture} style={{height: "10em", width:"10em", visibility: "visible", animationName: "flipInX"}}/>
 						</div>
 						<div className="col-md-4"></div>
 						<div className="col-md-4"> <Link to="/lessonOne">lesson one</Link></div>
+						<div className="col-md-4"> <Link to="/lessonTwo">lesson two</Link></div>
 					</div>
 					<div className="row">
 						<div className="col-md-4">
-						{this.props.profile.name}
+						{this.props.Auth.name}
+						</div>
+					</div>
+					<div className="row">
+						<div className="col-md-1"></div>
+						<div className="col-md-6 ">
+						<table>
+							<tbody>
+								<tr>
+									<th>Lessons</th>
+									<th>Completed</th>
+									<th>Date Finished</th>
+								</tr>
+								{lessonData.map((data, i) =>{
+									return (
+										<tr key={i} > 
+										<th>lesson {i + 1}</th>
+										<th>{data[1].completed ? `completed` : `not completed`} </th>
+										<th>{data[1].time ? new Date(data[1].time).toString().split(" ")[0] + " " + new Date(data[1].time).toString().split(" ")[1] + " " + new Date(data[1].time).toString().split(" ")[2] + ", " +  new Date(data[1].time).toString().split(" ")[3] + " at " + this.formatAMPM(new Date(data[1].time).toString().split(" ")[4]): "n/a"} </th>
+										</tr>
+									)
+								})}
+							</tbody>
+						</table>
 						</div>
 					</div>
 				</div>
@@ -48,7 +86,8 @@ class Profile extends Component{
 
 const ProfileMapStateToProps = (store)=>{
 	return{
-		profile:store.Auth
+		Auth: store.Auth,
+		LessonsCompleted: store.LessonsCompleted
 	}
 }
 
