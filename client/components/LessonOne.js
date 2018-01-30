@@ -376,8 +376,25 @@ class LessonOne extends Component {
   lessonOneButtonEight(){
     document.getElementById("lessonOneMessageEight").style.display = "none"
     document.getElementById("lessonOneButtonEight").style.display = "none"
+    document.getElementById("lessonOneMessageNine").style.display = "block"
+    this.setState({
+      checkNote : "F4",
+      buttonToShow: "Nine"
+    })
+    this.findPitch("F4")
   }
   
+  lessonOneButtonNine(){
+    document.getElementById("lessonOneMessageNine").style.display = "none"
+    document.getElementById("lessonOneButtonNine").style.display = "none"
+    document.getElementById("lessonOneMessageTen").style.display = "block"
+    document.getElementById("lessonOneButtonTen").style.display = "block"
+  }
+
+  lessonOneButtonTen(){
+    
+  }
+
   render() {
 
     if (!this.props.profile.online){
@@ -413,6 +430,10 @@ class LessonOne extends Component {
               <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonSeven" className="btn btn-primary" onClick={()=>this.lessonOneButtonSeven()}> next </button>
               <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageEight"> Super! The next note to the right is F! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findF4.jpg")}/><br/></div>
               <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonEight" className="btn btn-primary" onClick={()=>this.lessonOneButtonEight()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageNine"> Please play F! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findF4.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonNine" className="btn btn-primary" onClick={()=>this.lessonOneButtonNine()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageTen"> Great! The last note for this lesson is G. Please find G. <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findF4.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonTen" className="btn btn-primary" onClick={()=>this.lessonOneButtonTen()}> next </button>
               <Popup/>
             </div>
           </div>
