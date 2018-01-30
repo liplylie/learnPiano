@@ -392,7 +392,26 @@ class LessonOne extends Component {
   }
 
   lessonOneButtonTen(){
-    
+    document.getElementById("lessonOneMessageTen").style.display = "none"
+    document.getElementById("lessonOneButtonTen").style.display = "none"
+    document.getElementById("lessonOneMessageEleven").style.display = "block"
+    this.setState({
+      checkNote : "G4",
+      buttonToShow: "Eleven"
+    })
+    this.findPitch("G4")
+  }
+
+  lessonOneButtonEleven(){
+    document.getElementById("lessonOneMessageEleven").style.display = "none"
+    document.getElementById("lessonOneButtonEleven").style.display = "none"
+    document.getElementById("lessonOneMessageTwelve").style.display = "block"
+    document.getElementById("lessonOneButtonTwelve").style.display = "block"
+  }
+
+  lessonOneButtonTwelve(){
+    // set data to firebase that lesson one is completed for the user
+    console.log("finished")
   }
 
   render() {
@@ -432,8 +451,12 @@ class LessonOne extends Component {
               <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonEight" className="btn btn-primary" onClick={()=>this.lessonOneButtonEight()}> next </button>
               <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageNine"> Please play F! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findF4.jpg")}/><br/></div>
               <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonNine" className="btn btn-primary" onClick={()=>this.lessonOneButtonNine()}> next </button>
-              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageTen"> Great! The last note for this lesson is G. Please find G. <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findF4.jpg")}/><br/></div>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageTen"> Great! The last note for this lesson is G. Please find G. <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findG4.jpg")}/><br/></div>
               <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonTen" className="btn btn-primary" onClick={()=>this.lessonOneButtonTen()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageEleven"> Play G! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findG4.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonEleven" className="btn btn-primary" onClick={()=>this.lessonOneButtonEleven()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageTwelve"> Congrats! You have learned how to play your first five notes on the piano. Please continue to lesson two! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/goodJob.gif")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonTwelve" className="btn btn-primary" onClick={()=>this.lessonOneButtonTwelve()}> Finish </button>
               <Popup/>
             </div>
           </div>
