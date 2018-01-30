@@ -270,9 +270,17 @@ body {
 }
 
 table, th, td {
-    border: 1px solid black;
     border-collapse: collapse;
+    border: solid white 1px;
 }
 th, td {
-    padding: 15px;
+    padding: 1em;
+}
+
+table .Complete {
+    background-color: lightgreen;
+}
+
+table .NotComplete {
+    background-color: pink;
 }
