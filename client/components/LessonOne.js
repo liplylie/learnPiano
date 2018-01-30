@@ -25,6 +25,7 @@ class LessonOne extends Component {
     this.findPitch = this.findPitch.bind(this)
     this.lessonOneButtonTwo = this.lessonOneButtonTwo.bind(this)
     this.lessonOneButtonFour = this.lessonOneButtonFour.bind(this)
+    this.lessonOneButtonSeven = this.lessonOneButtonSeven.bind(this)
     
   }
 
@@ -335,6 +336,7 @@ class LessonOne extends Component {
     document.getElementById("lessonOneMessageFour").style.display = "block"
     document.getElementById("lessonOneButtonFour").style.display = "block"
   }
+
   lessonOneButtonFour(){
     document.getElementById("lessonOneMessageFour").style.display = "none"
     document.getElementById("lessonOneButtonFour").style.display = "none"
@@ -345,19 +347,43 @@ class LessonOne extends Component {
     })
     this.findPitch("D4")
   }
+
   lessonOneButtonFive(){
     document.getElementById("lessonOneMessageFive").style.display = "none"
     document.getElementById("lessonOneButtonFive").style.display = "none"
+    document.getElementById("lessonOneMessageSix").style.display = "block"
+    document.getElementById("lessonOneButtonSix").style.display = "block"
+  }
+
+  lessonOneButtonSix(){
+    document.getElementById("lessonOneMessageSix").style.display = "none"
+    document.getElementById("lessonOneButtonSix").style.display = "none"
+    document.getElementById("lessonOneMessageSeven").style.display = "block"
+    this.setState({
+      checkNote : "E4",
+      buttonToShow: "Seven"
+    })
+    this.findPitch("E4")
+  }
+
+  lessonOneButtonSeven(){
+    document.getElementById("lessonOneMessageSeven").style.display = "none"
+    document.getElementById("lessonOneButtonSeven").style.display = "none"
+    document.getElementById("lessonOneMessageEight").style.display = "block"
+    document.getElementById("lessonOneButtonEight").style.display = "block"
+  }
+
+  lessonOneButtonEight(){
+    document.getElementById("lessonOneMessageEight").style.display = "none"
+    document.getElementById("lessonOneButtonEight").style.display = "none"
   }
   
   render() {
-    
-
-    console.log(this.props, 'lessonOne')
 
     if (!this.props.profile.online){
       return <Redirect to="/"/>
     }
+
     return (
       <div style={{height:"100vh", width:"100vw", textAlign: "center"}}>
         <div style={{width:"70vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1}}>
@@ -374,14 +400,19 @@ class LessonOne extends Component {
               <div style={{fontFamily: "helvetica", fontSize: "1.5em"}} id="lessonOneMessageOne"> Welcome to your first lesson! Today we will learn how to play 5 notes!</div>
               <button id="lessonOneButtonOne" className="btn btn-primary"onClick={()=>this.lessonOneButtonOne()}> next </button>
               <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageTwo"> The first note we'll learn is middle C. Look at the image to determine where middle C is located on your piano. <br/> <img style={{height:"50vh", width: "60vw"}}src={require("../static/findMiddleC.jpg")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}}id="lessonOneButtonTwo" className="btn btn-primary" onClick={()=>this.lessonOneButtonTwo()}> next </button>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonTwo" className="btn btn-primary" onClick={()=>this.lessonOneButtonTwo()}> next </button>
               <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageThree"> When you find it, play Middle C <br/><img style={{height:"12em", width: "15em"}}src={require("../static/200w_d.gif")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}}id="lessonOneButtonThree" className="btn btn-primary" onClick={()=>this.lessonOneButtonThree()}> next </button>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonThree" className="btn btn-primary" onClick={()=>this.lessonOneButtonThree()}> next </button>
               <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageFour"> Excellent! Let's move on to the next note! The white key to the right of C is D.  <br/> <img style={{height:"50vh", width: "60vw"}}src={require("../static/MiddleD.jpg")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}}id="lessonOneButtonFour" className="btn btn-primary" onClick={()=>this.lessonOneButtonFour()}> next </button>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonFour" className="btn btn-primary" onClick={()=>this.lessonOneButtonFour()}> next </button>
               <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageFive"> Please play D! <br/> <img style={{height:"60vh", width: "60vw"}}src={require("../static/MiddleD.jpg")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}}id="lessonOneButtonFive" className="btn btn-primary" onClick={()=>this.lessonOneButtonFive()}> next </button>
-
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonFive" className="btn btn-primary" onClick={()=>this.lessonOneButtonFive()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageSix"> Good Work! After D, the next white key to the right is an E <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findE4.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonSix" className="btn btn-primary" onClick={()=>this.lessonOneButtonSix()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageSeven"> Please play E!<br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findE4.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonSeven" className="btn btn-primary" onClick={()=>this.lessonOneButtonSeven()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageEight"> Super! The next note to the right is F! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findF4.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonEight" className="btn btn-primary" onClick={()=>this.lessonOneButtonEight()}> next </button>
               <Popup/>
             </div>
           </div>
