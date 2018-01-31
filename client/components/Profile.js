@@ -38,21 +38,25 @@ class Profile extends Component{
 			return <Redirect to='/'/>
 		}
 		return (
-			<div style={{height:"100vh", width:"100vw", textAlign: "center"}}>
-				<div style={{width:"70vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1}}>
+			<div style={{height:"100vh", width:"100vw", textAlign: "center", overflowY: "scroll"}}>
+				<div style={{width:"70vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1, overflowX: "scroll"}}>
 					<div className="row" style={{height: "8em"}}>
 					</div>
 					<div className="row">
 						<div className="col-md-1"></div>
 						<div className="col-md-3"> 
-							<img className="span3 wow flipInX center" src={this.props.Auth.picture} style={{height: "10em", width:"10em", visibility: "visible", animationName: "flipInX"}}/>
+							<img className="span3 wow flipInX center" src={this.props.Auth.picture} style={{height: "10em", width:"10em", borderRadius: "5px", visibility: "visible", animationName: "flipInX"}}/>
 						</div>
 						<div className="col-md-4"></div>
-						<div className="col-md-4 text-center"> <Link to="/lessonOne">lesson one</Link><br/><Link to="/lessonTwo">lesson two</Link></div>
+						<div className="col-md-4 text-center"> 
+							<Link to="/lessonOne" style={{fontFamily: "helvetica", fontSize: "2em"}}>Lesson One</Link>
+							<br/>
+							<Link to="/lessonTwo" style={{fontFamily: "helvetica", fontSize: "2em"}}>Lesson Two</Link>
+						</div>
 					</div>
 					<div className="row" style={{paddingTop: "1em", paddingBottom:"1em"}}>
 						<div className="col-md-5 text-center">
-						{this.props.Auth.name}
+						<span style={{fontFamily: "helvetica", fontSize: "3em"}}>{this.props.Auth.name}</span>
 						</div>
 					</div>
 					<div className="row">
@@ -61,7 +65,7 @@ class Profile extends Component{
 								<tbody>
 									<tr style={{backgroundColor: "lightgrey"}}>
 										<th>Lessons</th>
-										<th>Completed</th>
+										<th>Status</th>
 										<th>Date Finished</th>
 									</tr>
 									{lessonData.map((data, i) =>{
