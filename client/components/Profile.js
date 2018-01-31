@@ -9,7 +9,13 @@ class Profile extends Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			lessonsCompleted: {}
+			lessonsCompleted: {
+				lesson1: false,
+				lesson2: false,
+				lesson3: false,
+				lesson4: false,
+				lesson5: false
+			}
 		}
 	}
 
@@ -18,7 +24,9 @@ class Profile extends Component{
 		let userLessonStatus = firebaseDB.ref("/users/" + this.props.userID + "/lessonsCompleted")
 		userLessonStatus.once("value")
         .then(snapshot => {
+        	if (snapshot.val()){
             that.setState({lessonsCompleted:snapshot.val()})
+        	}
         })
         .catch(err =>{
         	console.log(err)
