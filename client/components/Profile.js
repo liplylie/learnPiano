@@ -3,27 +3,43 @@ import { Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as AuthActions from '../actions/authActions.js'
+import { firebaseDB } from '../firebase'
 
 class Profile extends Component{
 	constructor(props){
 		super(props)
+		this.state = {
+			lessonsCompleted: {}
+		}
 	}
 
+	componentWillMount(){
+		let that = this
+		let userLessonStatus = firebaseDB.ref("/users/" + this.props.userID + "/lessonsCompleted")
+		userLessonStatus.once("value")
+        .then(snapshot => {
+            that.setState({lessonsCompleted:snapshot.val()})
+        })
+        .catch(err =>{
+        	console.log(err)
+        })
+	}	
+
 	formatAMPM(date) {
-	  var hours = date[0];
-	  var minutes = date[1];
-	  var ampm = hours >= 12 ? 'pm' : 'am';
-	  hours = hours % 12;
-	  hours = hours ? hours : 12; // the hour '0' should be '12'
-	  minutes = minutes < 10 ? '0'+minutes : minutes;
-	  var strTime = hours + ':' + minutes + ' ' + ampm;
-	  return strTime;
+	  var hours = date[0] + date[1]
+	  var minutes = date[3] + date[4]
+	  var ampm = hours >= 12 ? 'pm' : 'am'
+	  hours = hours % 12
+	  hours = hours ? hours : 12
+	  var strTime = hours + ':' + minutes + ' ' + ampm
+	  return strTime
 	}
 
 	render(){
 		console.log(this.props, 'profile props')
+		console.log(this.state, 'profile state')
 
-		let lessonData = Object.entries(this.props.LessonsCompleted)
+		let lessonData = Object.entries(this.state.lessonsCompleted)
 		console.log(lessonData, 'lessonData')
 		if (this.props.loading && this.props.online){
 			return (
@@ -48,10 +64,16 @@ class Profile extends Component{
 							<img className="span3 wow flipInX center" src={this.props.Auth.picture} style={{height: "10em", width:"10em", borderRadius: "5px", visibility: "visible", animationName: "flipInX"}}/>
 						</div>
 						<div className="col-md-4"></div>
-						<div className="col-md-4 text-center"> 
-							<Link to="/lessonOne" style={{fontFamily: "helvetica", fontSize: "2em"}}>Lesson One</Link>
+						<div className="col-md-4 text-left"> 
+							<Link to="/lessonOne" style={{fontFamily: "helvetica", fontSize: "1.5em"}}>Lesson One</Link>
 							<br/>
-							<Link to="/lessonTwo" style={{fontFamily: "helvetica", fontSize: "2em"}}>Lesson Two</Link>
+							<Link to="/lessonTwo" style={{fontFamily: "helvetica", fontSize: "1.5em"}}>Lesson Two</Link>
+							<br/>
+							<Link to="/lessonThree" style={{fontFamily: "helvetica", fontSize: "1.5em"}}>Lesson Three</Link>
+							<br/>
+							<Link to="/lessonFour" style={{fontFamily: "helvetica", fontSize: "1.5em"}}>Lesson Four</Link>
+							<br/>
+							<Link to="/lessonFive" style={{fontFamily: "helvetica", fontSize: "1.5em"}}>Lesson Five</Link>
 						</div>
 					</div>
 					<div className="row" style={{paddingTop: "1em", paddingBottom:"1em"}}>
@@ -89,8 +111,7 @@ class Profile extends Component{
 
 const ProfileMapStateToProps = (store)=>{
 	return{
-		Auth: store.Auth,
-		LessonsCompleted: store.LessonsCompleted
+		Auth: store.Auth
 	}
 }
 

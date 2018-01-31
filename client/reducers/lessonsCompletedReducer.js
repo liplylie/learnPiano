@@ -9,7 +9,10 @@ const lessonsCompletedReducer = (state=initialState, action) => {
     case 'USER_LESSONS_COMPLETED': {
       return Object.assign({}, state, {
         lesson1: action.payload.lesson1,
-        lesson2: action.payload.lesson2
+        lesson2: action.payload.lesson2,
+        lesson3: action.payload.lesson3,
+        lesson4: action.payload.lesson4,
+        lesson5: action.payload.lesson5
       })
     }
      default: {

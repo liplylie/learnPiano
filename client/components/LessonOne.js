@@ -431,8 +431,12 @@ class LessonOne extends Component {
 
   render() {
 
-    if (!this.props.Auth.online || this.state.lessonCompleted){
+    if (!this.props.Auth.online ){
       return <Redirect to="/"/>
+    }
+
+    if (this.state.lessonCompleted ){
+      return <Redirect to="/" lessonCompleted={{lesson1: true}}/>
     }
 
     return (

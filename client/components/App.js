@@ -18,7 +18,8 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      loading: true
+      loading: true,
+      userID: ""
     }
   }
 
@@ -26,11 +27,18 @@ class App extends Component {
     let that = this
     this.removeAuthListener = app.auth().onAuthStateChanged(user=>{
       if (user){
+        that.setState({
+          userID: user.uid
+        })
         let userData = firebaseDB.ref("/users").child(user.uid)
         let userLessonStatus = firebaseDB.ref("/users/" + user.uid + "/lessonsCompleted")
         let lessons = {
           lesson1: {completed: false, time: null},
-          lesson2: {completed: false, time: null}
+          lesson2: {completed: false, time: null},
+          lesson3: {completed: false, time: null},
+          lesson4: {completed: false, time: null},
+          lesson5: {completed: false, time: null}
+
         } 
         userLessonStatus.once("value")
         .then(snapshot => {
@@ -73,7 +81,7 @@ class App extends Component {
           <div style={{flexDirection: "row", flex:1}}>
             <Switch>
               <Route exact path='/' component={() => ( <DefaultHome authenticated={this.props.online} />)}/>
-              <Route exact path='/Profile' component={() => ( <Profile authenticated={this.props.online} loading={this.state.loading}/>)}/>
+              <Route exact path='/Profile' component={() => ( <Profile authenticated={this.props.online} loading={this.state.loading} userID={this.state.userID}/>)}/>
               <Route exact path='/LessonOne' component={() => ( <LessonOne />)}/>
               <Route render={() => {
                 return (
