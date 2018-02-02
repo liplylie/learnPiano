@@ -81,7 +81,7 @@ class Profile extends Component{
 		}
 		return (
 			<div style={{height:"100vh", width:"100vw", textAlign: "center", overflowY: "scroll"}}>
-				<div style={{width:"70vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1, overflowX: "scroll"}}>
+				<div style={{width:"80vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1, overflowX: "scroll"}}>
 					<div className="row" style={{height: "7em"}}></div>
 					<div className="row">
 						<div className="col-md-1"></div>

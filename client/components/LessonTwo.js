@@ -44,9 +44,9 @@ class LessonTwo extends Component {
     }
   }
 
-  // componentWillUnmount(){
-  //   this.turnOffMicrophone()
-  // }
+  componentWillUnmount(){
+    this.audio.close()
+  }
 
   findPitch(matchNote){
     let that = this
@@ -82,6 +82,7 @@ class LessonTwo extends Component {
 
         if (isAudioContextSupported()) {
             audioContext = new window.AudioContext();
+            that.audio = audioContext
         }
         else {
             reportError('AudioContext is not supported in this browser');

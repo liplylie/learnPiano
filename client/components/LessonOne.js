@@ -44,12 +44,12 @@ class LessonOne extends Component {
     }
   }
 
-  // componentWillUnmount(){
-  //   this.turnOffMicrophone()
-  // }
+  componentWillUnmount(){
+    this.audio.close()
+  }
 
   findPitch(matchNote){
-    let that = this
+    let that = this 
     var baseFreq = 440;
     var currentNoteIndex = 57; // A4
     var isRefSoundPlaying = false;
@@ -57,9 +57,9 @@ class LessonOne extends Component {
     var frameId,
         freqTable,
         gauge,
+        audioContext,
         micStream,
         notesArray,
-        audioContext,
         sourceAudioNode,
         analyserAudioNode;
 
@@ -81,7 +81,9 @@ class LessonOne extends Component {
         freqTable = pitchTable
 
         if (isAudioContextSupported()) {
+            console.log(that, 'this')
             audioContext = new window.AudioContext();
+            that.audio = audioContext
         }
         else {
             reportError('AudioContext is not supported in this browser');
