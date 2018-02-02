@@ -18,10 +18,18 @@ class Navbar extends Component {
                 </button>
                 <div className="collapse navbar-collapse" id="exCollapsingNavbar">
                     <ul className="nav navbar-nav">
-                        <li className="nav-item"><a href="#" className="nav-link">About</a></li>
+                        <li className="nav-item"><a href="/about" className="nav-link">About</a></li>
                         <li className="nav-item"><a href="#" className="nav-link">Link</a></li>
-                        <li className="nav-item"><a href="#" className="nav-link">Service</a></li>
-                        <li className="nav-item"><a href="#" className="nav-link">More</a></li>
+                        <li className="dropdown nav-item">
+                            <a data-toggle="dropdown" className="dropdown-toggle nav-link" href="#">Mini Games</a>
+                            <ul className="dropdown-menu text-center">
+                              <li><a href="/miniGame1">Mini Game 1</a></li>
+                              <li><a href="/miniGame2">Mini Game 2</a></li>
+                              <li><a href="/miniGame3">Mini Game 3</a></li>
+                              <li><a href="/miniGame4">Mini Game 4</a></li>
+                              <li><a href="/miniGame5">Mini Game 5</a></li>
+                            </ul>
+                          </li>
                     </ul>
                     <ul className="nav navbar-nav flex-row justify-content-between ml-auto">
                         <li className="nav-item order-2 order-md-1"><a href="#" className="nav-link" title="settings"><i className="fa fa-cog fa-fw fa-lg"></i></a></li>

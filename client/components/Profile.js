@@ -102,9 +102,9 @@ class Profile extends Component{
 							<Link to="/lessonFive" style={{fontFamily: "helvetica", fontSize: "1.5em"}}>Lesson Five</Link>
 						</div>
 					</div>
-					<div className="row" style={{paddingTop: "1em", paddingBottom:"1em"}}>
+					<div className="row" style={{paddingTop: ".5em", paddingBottom:".5em"}}>
 						<div className="col-md-5 text-center">
-						<span style={{fontFamily: "helvetica", fontSize: "3em"}}>{this.props.Auth.name}</span>
+						<span style={{fontFamily: "helvetica", fontSize: "2em"}}>{this.props.Auth.name}</span>
 						</div>
 					</div>
 					<div className="row">
