@@ -68,8 +68,7 @@ class App extends Component {
         }, (errorObject) => {
           console.log("The read failed: " + errorObject.code);
         })
-
-
+        
         let userInfo = {
           name : user.displayName,
           email : user.email,

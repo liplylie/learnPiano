@@ -119,8 +119,8 @@ class Profile extends Component{
 									{lessonData.map((data, i) =>{
 										return (
 											<tr key={i} className={data[1].completed ? "Complete" : "NotComplete"}> 
-												<th>lesson {i + 1}</th>
-												<th>{data[1].completed ? `completed` : `not completed`} </th>
+												<th>Lesson {i + 1}</th>
+												<th>{data[1].completed ? `Completed` : `Not Completed`} </th>
 												<th>{data[1].time ? new Date(data[1].time).toString().split(" ")[0] + " " + new Date(data[1].time).toString().split(" ")[1] + " " + new Date(data[1].time).toString().split(" ")[2] + ", " +  new Date(data[1].time).toString().split(" ")[3] + " at " + this.formatAMPM(new Date(data[1].time).toString().split(" ")[4]): ""} </th>
 											</tr>
 										)
@@ -137,8 +137,8 @@ class Profile extends Component{
 									{miniGameData.map((data, i) =>{
 										return (
 											<tr key={i} className={data[1].completed ? "Complete" : "NotComplete"}> 
-												<th>lesson {i + 1}</th>
-												<th>{data[1].completed ? `completed` : `not completed`} </th>
+												<th>Mini Game {i + 1}</th>
+												<th>{data[1].completed ? `Completed` : `Not Completed`} </th>
 												<th>{data[1].highScore ? `${data[1].highScore}` : ""} </th>
 											</tr>
 										)
