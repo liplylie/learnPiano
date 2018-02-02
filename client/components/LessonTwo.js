@@ -12,7 +12,7 @@ import Popup from 'react-popup'
 import pitchTable from "../helpers/pitchTable"
 import pitchTablePictures from "../helpers/pitchTablePictures"
 
-class LessonOne extends Component {
+class LessonTwo extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -26,16 +26,16 @@ class LessonOne extends Component {
     this.correctAnswers = 1
     this.noteArray = []
     this.findPitch = this.findPitch.bind(this)
-    this.lessonOneButtonTwo = this.lessonOneButtonTwo.bind(this)
-    this.lessonOneButtonFour = this.lessonOneButtonFour.bind(this)
-    this.lessonOneButtonSeven = this.lessonOneButtonSeven.bind(this)
+    this.lessonTwoButtonTwo = this.lessonTwoButtonTwo.bind(this)
+    this.lessonTwoButtonFour = this.lessonTwoButtonFour.bind(this)
+    this.lessonTwoButtonSeven = this.lessonTwoButtonSeven.bind(this)
     
   }
 
   componentDidUpdate(){
     if (this.state.correctNote === this.state.checkNote && this.popUpCount === this.correctAnswers && !this.state.lessonCompleted){
         Popup.alert(<div style={{fontFamily:"helvetica", fontSize:"2.5em"}}><img style={{height: "8em", width: "5em"}} src={pitchTablePictures[this.state.checkNote]}/> Correct! You played a {this.state.checkNote[0]} </div>)
-        document.getElementById(`lessonOneButton${this.state.buttonToShow}`).style.display = "block"
+        document.getElementById(`lessonTwoButton${this.state.buttonToShow}`).style.display = "block"
         this.popUpCount+=1
         this.correctAnswers+=1
         this.turnOffMicrophone()
@@ -308,23 +308,20 @@ class LessonOne extends Component {
 
     init()
     this.toggleMicrophone()    
-  
-
-  
   }
 
-  lessonOneButtonOne(){
-    document.getElementById("lessonOneMessageOne").style.display = "none"
-    document.getElementById("lessonOneButtonOne").style.display = "none"
-    document.getElementById("lessonOneMessageTwo").style.display = "block"
-    document.getElementById("lessonOneButtonTwo").style.display = "block"
+  lessonTwoButtonOne(){
+    document.getElementById("lessonTwoMessageOne").style.display = "none"
+    document.getElementById("lessonTwoButtonOne").style.display = "none"
+    document.getElementById("lessonTwoMessageTwo").style.display = "block"
+    document.getElementById("lessonTwoButtonTwo").style.display = "block"
     
   }
 
-  lessonOneButtonTwo(){
-    document.getElementById("lessonOneMessageTwo").style.display = "none"
-    document.getElementById("lessonOneButtonTwo").style.display = "none"
-    document.getElementById("lessonOneMessageThree").style.display = "block"
+  lessonTwoButtonTwo(){
+    document.getElementById("lessonTwoMessageTwo").style.display = "none"
+    document.getElementById("lessonTwoButtonTwo").style.display = "none"
+    document.getElementById("lessonTwoMessageThree").style.display = "block"
     this.setState({
       checkNote : "C4",
       buttonToShow: "Three"
@@ -333,96 +330,94 @@ class LessonOne extends Component {
 
   }
 
-  lessonOneButtonThree(){
-    document.getElementById("lessonOneMessageThree").style.display = "none"
-    document.getElementById("lessonOneButtonThree").style.display = "none"
-    document.getElementById("lessonOneMessageFour").style.display = "block"
-    document.getElementById("lessonOneButtonFour").style.display = "block"
+  lessonTwoButtonThree(){
+    document.getElementById("lessonTwoMessageThree").style.display = "none"
+    document.getElementById("lessonTwoButtonThree").style.display = "none"
+    document.getElementById("lessonTwoMessageFour").style.display = "block"
+    document.getElementById("lessonTwoButtonFour").style.display = "block"
   }
 
-  lessonOneButtonFour(){
-    document.getElementById("lessonOneMessageFour").style.display = "none"
-    document.getElementById("lessonOneButtonFour").style.display = "none"
-    document.getElementById("lessonOneMessageFive").style.display = "block"
+  lessonTwoButtonFour(){
+    document.getElementById("lessonTwoMessageFour").style.display = "none"
+    document.getElementById("lessonTwoButtonFour").style.display = "none"
+    document.getElementById("lessonTwoMessageFive").style.display = "block"
     this.setState({
-      checkNote : "D4",
+      checkNote : "B3",
       buttonToShow: "Five"
     })
-    this.findPitch("D4")
+    this.findPitch("B3")
   }
 
-  lessonOneButtonFive(){
-    document.getElementById("lessonOneMessageFive").style.display = "none"
-    document.getElementById("lessonOneButtonFive").style.display = "none"
-    document.getElementById("lessonOneMessageSix").style.display = "block"
-    document.getElementById("lessonOneButtonSix").style.display = "block"
+  lessonTwoButtonFive(){
+    document.getElementById("lessonTwoMessageFive").style.display = "none"
+    document.getElementById("lessonTwoButtonFive").style.display = "none"
+    document.getElementById("lessonTwoMessageSix").style.display = "block"
+    document.getElementById("lessonTwoButtonSix").style.display = "block"
   }
 
-  lessonOneButtonSix(){
-    document.getElementById("lessonOneMessageSix").style.display = "none"
-    document.getElementById("lessonOneButtonSix").style.display = "none"
-    document.getElementById("lessonOneMessageSeven").style.display = "block"
+  lessonTwoButtonSix(){
+    document.getElementById("lessonTwoMessageSix").style.display = "none"
+    document.getElementById("lessonTwoButtonSix").style.display = "none"
+    document.getElementById("lessonTwoMessageSeven").style.display = "block"
     this.setState({
-      checkNote : "E4",
+      checkNote : "A3",
       buttonToShow: "Seven"
     })
-    this.findPitch("E4")
+    this.findPitch("A3")
   }
 
-  lessonOneButtonSeven(){
-    document.getElementById("lessonOneMessageSeven").style.display = "none"
-    document.getElementById("lessonOneButtonSeven").style.display = "none"
-    document.getElementById("lessonOneMessageEight").style.display = "block"
-    document.getElementById("lessonOneButtonEight").style.display = "block"
+  lessonTwoButtonSeven(){
+    document.getElementById("lessonTwoMessageSeven").style.display = "none"
+    document.getElementById("lessonTwoButtonSeven").style.display = "none"
+    document.getElementById("lessonTwoMessageEight").style.display = "block"
+    document.getElementById("lessonTwoButtonEight").style.display = "block"
   }
 
-  lessonOneButtonEight(){
-    document.getElementById("lessonOneMessageEight").style.display = "none"
-    document.getElementById("lessonOneButtonEight").style.display = "none"
-    document.getElementById("lessonOneMessageNine").style.display = "block"
+  lessonTwoButtonEight(){
+    document.getElementById("lessonTwoMessageEight").style.display = "none"
+    document.getElementById("lessonTwoButtonEight").style.display = "none"
+    document.getElementById("lessonTwoMessageNine").style.display = "block"
     this.setState({
-      checkNote : "F4",
+      checkNote : "G3",
       buttonToShow: "Nine"
     })
-    this.findPitch("F4")
+    this.findPitch("G3")
   }
   
-  lessonOneButtonNine(){
-    document.getElementById("lessonOneMessageNine").style.display = "none"
-    document.getElementById("lessonOneButtonNine").style.display = "none"
-    document.getElementById("lessonOneMessageTen").style.display = "block"
-    document.getElementById("lessonOneButtonTen").style.display = "block"
+  lessonTwoButtonNine(){
+    document.getElementById("lessonTwoMessageNine").style.display = "none"
+    document.getElementById("lessonTwoButtonNine").style.display = "none"
+    document.getElementById("lessonTwoMessageTen").style.display = "block"
+    document.getElementById("lessonTwoButtonTen").style.display = "block"
   }
 
-  lessonOneButtonTen(){
-    document.getElementById("lessonOneMessageTen").style.display = "none"
-    document.getElementById("lessonOneButtonTen").style.display = "none"
-    document.getElementById("lessonOneMessageEleven").style.display = "block"
+  lessonTwoButtonTen(){
+    document.getElementById("lessonTwoMessageTen").style.display = "none"
+    document.getElementById("lessonTwoButtonTen").style.display = "none"
+    document.getElementById("lessonTwoMessageEleven").style.display = "block"
     this.setState({
-      checkNote : "G4",
+      checkNote : "F3",
       buttonToShow: "Eleven"
     })
-    this.findPitch("G4")
+    this.findPitch("F3")
   }
 
-  lessonOneButtonEleven(){
-    document.getElementById("lessonOneMessageEleven").style.display = "none"
-    document.getElementById("lessonOneButtonEleven").style.display = "none"
-    document.getElementById("lessonOneMessageTwelve").style.display = "block"
-    document.getElementById("lessonOneButtonTwelve").style.display = "block"
+  lessonTwoButtonEleven(){
+    document.getElementById("lessonTwoMessageEleven").style.display = "none"
+    document.getElementById("lessonTwoButtonEleven").style.display = "none"
+    document.getElementById("lessonTwoMessageTwelve").style.display = "block"
+    document.getElementById("lessonTwoButtonTwelve").style.display = "block"
   }
 
-  lessonOneButtonTwelve(){
-    // set data to firebase that lesson one is completed for the user
+  lessonTwoButtonTwelve(){
     let that = this
     let userLessonStatus = firebaseDB.ref("/users/" + this.props.Auth.userId + "/lessonsCompleted")
     
-    // 
     userLessonStatus.once("value")
         .then(snapshot => {
-            userLessonStatus.update( {lesson1: {completed: true, time: firebase.database.ServerValue.TIMESTAMP} })
+            userLessonStatus.update( {lesson2: {completed: true, time: firebase.database.ServerValue.TIMESTAMP} })
             that.props.LessonsCompleted.lessonsCompleted(snapshot.val())
-            console.log( snapshot.val(), 'lesson one completed' )
+            console.log( snapshot.val(), 'lesson two completed' )
             that.setState({
                 lessonCompleted: true
             })
@@ -446,36 +441,36 @@ class LessonOne extends Component {
           </div>
           <div className="row">
             <div className="col-md-12"> 
-              <div><span style={{fontFamily: "helvetica", fontSize: "5em"}}> Lesson One</span></div>
+              <div><span style={{fontFamily: "helvetica", fontSize: "5em"}}> Lesson Two</span></div>
             </div>
             <div className="col-md-4"> </div>
           </div>
           <div className="row">
             <div className="col-md-12">
-              <div style={{fontFamily: "helvetica", fontSize: "1.5em"}} id="lessonOneMessageOne"> Welcome to your first lesson! Today we will learn how to play 5 notes!</div>
-              <button id="lessonOneButtonOne" className="btn btn-primary"onClick={()=>this.lessonOneButtonOne()}> next </button>
-              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageTwo"> The first note we'll learn is middle C. Look at the image to determine where middle C is located on your piano. <br/> <img style={{height:"50vh", width: "60vw"}}src={require("../static/findMiddleC.jpg")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonTwo" className="btn btn-primary" onClick={()=>this.lessonOneButtonTwo()}> next </button>
-              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageThree"> When you find it, play Middle C <br/><img style={{height:"12em", width: "15em"}}src={require("../static/200w_d.gif")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonThree" className="btn btn-primary" onClick={()=>this.lessonOneButtonThree()}> next </button>
-              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageFour"> Excellent! Let's move on to the next note! The white key to the right of C is D.  <br/> <img style={{height:"50vh", width: "60vw"}}src={require("../static/MiddleD.jpg")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonFour" className="btn btn-primary" onClick={()=>this.lessonOneButtonFour()}> next </button>
-              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageFive"> Please play D! <br/> <img style={{height:"50vh", width: "60vw"}}src={require("../static/MiddleD.jpg")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonFive" className="btn btn-primary" onClick={()=>this.lessonOneButtonFive()}> next </button>
-              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageSix"> Good Work! After D, the next white key to the right is an E <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findE4.jpg")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonSix" className="btn btn-primary" onClick={()=>this.lessonOneButtonSix()}> next </button>
-              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageSeven"> Please play E!<br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findE4.jpg")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonSeven" className="btn btn-primary" onClick={()=>this.lessonOneButtonSeven()}> next </button>
-              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageEight"> Super! The next note to the right is F! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findF4.jpg")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonEight" className="btn btn-primary" onClick={()=>this.lessonOneButtonEight()}> next </button>
-              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageNine"> Please play F! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findF4.jpg")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonNine" className="btn btn-primary" onClick={()=>this.lessonOneButtonNine()}> next </button>
-              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageTen"> Great! The last note for this lesson is G. Please find G. <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findG4.jpg")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonTen" className="btn btn-primary" onClick={()=>this.lessonOneButtonTen()}> next </button>
-              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageEleven"> Play G! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findG4.jpg")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonEleven" className="btn btn-primary" onClick={()=>this.lessonOneButtonEleven()}> next </button>
-              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageTwelve"> Congrats! You have learned how to play your first five notes on the piano. Please continue to lesson two! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/goodJob.gif")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonTwelve" className="btn btn-primary" onClick={()=>this.lessonOneButtonTwelve()}> Finish </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em"}} id="lessonTwoMessageOne"> Welcome back! Get ready for Lesson 2! Today we will learn 5 more notes!</div>
+              <button id="lessonTwoButtonOne" className="btn btn-primary"onClick={()=>this.lessonTwoButtonOne()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonTwoMessageTwo"> We'll look at middle C. However, this time, middle C is in the bass Clef. For now, assume that whatever is played in the bass clef is played in the left hand. Look at the image to determine where middle C is located on your piano. <br/> <img style={{height:"50vh", width: "60vw"}}src={require("../static/findMiddleC.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonTwoButtonTwo" className="btn btn-primary" onClick={()=>this.lessonTwoButtonTwo()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonTwoMessageThree"> When you find it, play Middle C with your left hand <br/><img style={{height:"12em", width: "15em"}}src={require("../static/leftHandPianoHome1.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonTwoButtonThree" className="btn btn-primary" onClick={()=>this.lessonTwoButtonThree()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonTwoMessageFour"> Excellent! Let's move on to the next note! The white key to the left of C is B.  <br/> <img style={{height:"50vh", width: "60vw"}}src={require("../static/findB.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonTwoButtonFour" className="btn btn-primary" onClick={()=>this.lessonTwoButtonFour()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonTwoMessageFive"> Please play B! <br/> <img style={{height:"50vh", width: "60vw"}}src={require("../static/findB.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonTwoButtonFive" className="btn btn-primary" onClick={()=>this.lessonTwoButtonFive()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonTwoMessageSix"> Good Work! After B, the next white key to the left is an A <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findA.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonTwoButtonSix" className="btn btn-primary" onClick={()=>this.lessonTwoButtonSix()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonTwoMessageSeven"> Please play A!<br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findA.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonTwoButtonSeven" className="btn btn-primary" onClick={()=>this.lessonTwoButtonSeven()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonTwoMessageEight"> Super! The next note to the left is F! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findG.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonTwoButtonEight" className="btn btn-primary" onClick={()=>this.lessonTwoButtonEight()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonTwoMessageNine"> Please play G! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findG.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonTwoButtonNine" className="btn btn-primary" onClick={()=>this.lessonTwoButtonNine()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonTwoMessageTen"> Great! The last note for this lesson is F. Please find F. <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findF.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonTwoButtonTen" className="btn btn-primary" onClick={()=>this.lessonTwoButtonTen()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonTwoMessageEleven"> Play F! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findF.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonTwoButtonEleven" className="btn btn-primary" onClick={()=>this.lessonTwoButtonEleven()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonTwoMessageTwelve"> Congrats! You have learned how to play your first five notes with your left hand. Please continue to lesson three! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/goodJob.gif")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonTwoButtonTwelve" className="btn btn-primary" onClick={()=>this.lessonTwoButtonTwelve()}> Finish </button>
               <Popup/>
             </div>
           </div>
@@ -485,18 +480,18 @@ class LessonOne extends Component {
     )
   }
 }
-const LessonOneMapStateToProps = (store) => {
+const LessonTwoMapStateToProps = (store) => {
   return {
     Auth: store.Auth,
     LessonsCompleted: store.LessonsCompleted
   }
 }
 
-const LessonOneDispatch = (dispatch) => {
+const LessonTwoDispatch = (dispatch) => {
   return {
     AuthActions: bindActionCreators(AuthActions, dispatch),
     LessonsCompleted: bindActionCreators(LessonsCompleted, dispatch)
   }
 }
 
-export default connect(LessonOneMapStateToProps, LessonOneDispatch)(LessonOne)
+export default connect(LessonTwoMapStateToProps, LessonTwoDispatch)(LessonTwo)
