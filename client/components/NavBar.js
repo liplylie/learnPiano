@@ -19,7 +19,7 @@ class Navbar extends Component {
                 <div className="collapse navbar-collapse" id="exCollapsingNavbar">
                     <ul className="nav navbar-nav">
                         <li className="nav-item"><a href="/about" className="nav-link">About</a></li>
-                        <li className="nav-item"><a href="#" className="nav-link">Link</a></li>
+                        <li className="nav-item"><a href="/links" className="nav-link">Links</a></li>
                         <li className="dropdown nav-item">
                             <a data-toggle="dropdown" className="dropdown-toggle nav-link" href="#">Mini Games</a>
                             <ul className="dropdown-menu text-center">

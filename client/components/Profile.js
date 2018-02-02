@@ -82,15 +82,18 @@ class Profile extends Component{
 		return (
 			<div style={{height:"100vh", width:"100vw", textAlign: "center", overflowY: "scroll"}}>
 				<div style={{width:"70vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1, overflowX: "scroll"}}>
-					<div className="row" style={{height: "8em"}}>
-					</div>
+					<div className="row" style={{height: "7em"}}></div>
 					<div className="row">
 						<div className="col-md-1"></div>
 						<div className="col-md-3"> 
-							<img className="span3 wow flipInX center" src={this.props.Auth.picture} style={{height: "10em", width:"10em", borderRadius: "5px", visibility: "visible", animationName: "flipInX"}}/>
+							<div className="row" style={{margin:"0.3em"}}>
+								<img className="span3 wow flipInX center" src={this.props.Auth.picture} style={{height: "10em", width:"10em", borderRadius: "5px", visibility: "visible", animationName: "flipInX", margin: "auto"}}/>
+								<span style={{fontFamily: "helvetica", fontSize: "2em", margin:"auto"}}>{this.props.Auth.name}</span>
+							</div>
 						</div>
-						<div className="col-md-4"></div>
-						<div className="col-md-4 text-left"> 
+
+						<div className="col-md-3" style={{marginRight:"3em"}}></div>
+						<div className="col-md-4 text-left" style={{margin:".3em"}}> 
 							<Link to="/lessonOne" style={{fontFamily: "helvetica", fontSize: "1.5em"}}>Lesson One</Link>
 							<br/>
 							<Link to="/lessonTwo" style={{fontFamily: "helvetica", fontSize: "1.5em"}}>Lesson Two</Link>
@@ -102,11 +105,7 @@ class Profile extends Component{
 							<Link to="/lessonFive" style={{fontFamily: "helvetica", fontSize: "1.5em"}}>Lesson Five</Link>
 						</div>
 					</div>
-					<div className="row" style={{paddingTop: ".5em", paddingBottom:".5em"}}>
-						<div className="col-md-5 text-center">
-						<span style={{fontFamily: "helvetica", fontSize: "2em"}}>{this.props.Auth.name}</span>
-						</div>
-					</div>
+					
 					<div className="row">
 						<div className="col-md-12">
 							<table id="lessonTable" className="table">
