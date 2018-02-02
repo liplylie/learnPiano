@@ -64,7 +64,6 @@ const findPitch = () => {
     };
 
     var updatePitch = function (pitch) {
-        //$('#pitch').text(pitch + ' Hz');
     };
 
     var updateNote = function (note) {

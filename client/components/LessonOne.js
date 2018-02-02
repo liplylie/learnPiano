@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { BrowserRouter, Router, Route } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { app } from '../firebase'
+import { app, firebaseDB } from '../firebase'
+import firebase from "firebase"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as AuthActions from '../actions/authActions.js'
+import * as LessonsCompleted from '../actions/lessonsCompletedActions'
 import Popup from 'react-popup'
 import pitchTable from "../helpers/pitchTable"
 import pitchTablePictures from "../helpers/pitchTablePictures"
@@ -17,7 +19,8 @@ class LessonOne extends Component {
       correctNote: null,
       wrongNote: null,
       checkNote: null,
-      buttonToShow: null
+      buttonToShow: null,
+      lessonCompleted: false
     }
     this.popUpCount = 1
     this.correctAnswers = 1
@@ -25,17 +28,18 @@ class LessonOne extends Component {
     this.findPitch = this.findPitch.bind(this)
     this.lessonOneButtonTwo = this.lessonOneButtonTwo.bind(this)
     this.lessonOneButtonFour = this.lessonOneButtonFour.bind(this)
+    this.lessonOneButtonSeven = this.lessonOneButtonSeven.bind(this)
     
   }
 
   componentDidUpdate(){
-    if (this.state.correctNote === this.state.checkNote && this.popUpCount === this.correctAnswers){
+    if (this.state.correctNote === this.state.checkNote && this.popUpCount === this.correctAnswers && !this.state.lessonCompleted){
         Popup.alert(<div style={{fontFamily:"helvetica", fontSize:"2.5em"}}><img style={{height: "8em", width: "5em"}} src={pitchTablePictures[this.state.checkNote]}/> Correct! You played a {this.state.checkNote[0]} </div>)
         document.getElementById(`lessonOneButton${this.state.buttonToShow}`).style.display = "block"
         this.popUpCount+=1
         this.correctAnswers+=1
         this.turnOffMicrophone()
-    } else if (this.state.wrongNote && this.noteArray.length && this.popUpCount === this.correctAnswers){
+    } else if (this.state.wrongNote && this.noteArray.length && this.popUpCount === this.correctAnswers && !this.state.lessonCompleted){
       Popup.alert(<div style={{fontFamily:"helvetica", fontSize:"2.5em"}}><img style={{height: "8em", width: "5em"}} src={pitchTablePictures[this.state.wrongNote]} /> Incorrect! You played a {this.state.wrongNote[0]}</div>)
     }
   }
@@ -335,6 +339,7 @@ class LessonOne extends Component {
     document.getElementById("lessonOneMessageFour").style.display = "block"
     document.getElementById("lessonOneButtonFour").style.display = "block"
   }
+
   lessonOneButtonFour(){
     document.getElementById("lessonOneMessageFour").style.display = "none"
     document.getElementById("lessonOneButtonFour").style.display = "none"
@@ -345,19 +350,94 @@ class LessonOne extends Component {
     })
     this.findPitch("D4")
   }
+
   lessonOneButtonFive(){
     document.getElementById("lessonOneMessageFive").style.display = "none"
     document.getElementById("lessonOneButtonFive").style.display = "none"
+    document.getElementById("lessonOneMessageSix").style.display = "block"
+    document.getElementById("lessonOneButtonSix").style.display = "block"
+  }
+
+  lessonOneButtonSix(){
+    document.getElementById("lessonOneMessageSix").style.display = "none"
+    document.getElementById("lessonOneButtonSix").style.display = "none"
+    document.getElementById("lessonOneMessageSeven").style.display = "block"
+    this.setState({
+      checkNote : "E4",
+      buttonToShow: "Seven"
+    })
+    this.findPitch("E4")
+  }
+
+  lessonOneButtonSeven(){
+    document.getElementById("lessonOneMessageSeven").style.display = "none"
+    document.getElementById("lessonOneButtonSeven").style.display = "none"
+    document.getElementById("lessonOneMessageEight").style.display = "block"
+    document.getElementById("lessonOneButtonEight").style.display = "block"
+  }
+
+  lessonOneButtonEight(){
+    document.getElementById("lessonOneMessageEight").style.display = "none"
+    document.getElementById("lessonOneButtonEight").style.display = "none"
+    document.getElementById("lessonOneMessageNine").style.display = "block"
+    this.setState({
+      checkNote : "F4",
+      buttonToShow: "Nine"
+    })
+    this.findPitch("F4")
   }
   
+  lessonOneButtonNine(){
+    document.getElementById("lessonOneMessageNine").style.display = "none"
+    document.getElementById("lessonOneButtonNine").style.display = "none"
+    document.getElementById("lessonOneMessageTen").style.display = "block"
+    document.getElementById("lessonOneButtonTen").style.display = "block"
+  }
+
+  lessonOneButtonTen(){
+    document.getElementById("lessonOneMessageTen").style.display = "none"
+    document.getElementById("lessonOneButtonTen").style.display = "none"
+    document.getElementById("lessonOneMessageEleven").style.display = "block"
+    this.setState({
+      checkNote : "G4",
+      buttonToShow: "Eleven"
+    })
+    this.findPitch("G4")
+  }
+
+  lessonOneButtonEleven(){
+    document.getElementById("lessonOneMessageEleven").style.display = "none"
+    document.getElementById("lessonOneButtonEleven").style.display = "none"
+    document.getElementById("lessonOneMessageTwelve").style.display = "block"
+    document.getElementById("lessonOneButtonTwelve").style.display = "block"
+  }
+
+  lessonOneButtonTwelve(){
+    // set data to firebase that lesson one is completed for the user
+    let that = this
+    let userLessonStatus = firebaseDB.ref("/users/" + this.props.Auth.userId + "/lessonsCompleted")
+
+    userLessonStatus.once("value")
+        .then(snapshot => {
+            userLessonStatus.update( {lesson1: {completed: true, time: firebase.database.ServerValue.TIMESTAMP} })
+            that.props.LessonsCompleted.lessonsCompleted(snapshot.val())
+            console.log( snapshot.val(), 'lesson one completed' )
+            that.setState({
+                lessonCompleted: true
+            })
+    })
+  }
+
   render() {
-    
 
-    console.log(this.props, 'lessonOne')
-
-    if (!this.props.profile.online){
+    if (!this.props.Auth.online ){
       return <Redirect to="/"/>
     }
+
+    if (this.state.lessonCompleted ){
+      return <Redirect to="/" lessonCompleted={{lesson1: true}}/>
+    }
+
     return (
       <div style={{height:"100vh", width:"100vw", textAlign: "center"}}>
         <div style={{width:"70vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1}}>
@@ -374,14 +454,27 @@ class LessonOne extends Component {
               <div style={{fontFamily: "helvetica", fontSize: "1.5em"}} id="lessonOneMessageOne"> Welcome to your first lesson! Today we will learn how to play 5 notes!</div>
               <button id="lessonOneButtonOne" className="btn btn-primary"onClick={()=>this.lessonOneButtonOne()}> next </button>
               <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageTwo"> The first note we'll learn is middle C. Look at the image to determine where middle C is located on your piano. <br/> <img style={{height:"50vh", width: "60vw"}}src={require("../static/findMiddleC.jpg")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}}id="lessonOneButtonTwo" className="btn btn-primary" onClick={()=>this.lessonOneButtonTwo()}> next </button>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonTwo" className="btn btn-primary" onClick={()=>this.lessonOneButtonTwo()}> next </button>
               <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageThree"> When you find it, play Middle C <br/><img style={{height:"12em", width: "15em"}}src={require("../static/200w_d.gif")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}}id="lessonOneButtonThree" className="btn btn-primary" onClick={()=>this.lessonOneButtonThree()}> next </button>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonThree" className="btn btn-primary" onClick={()=>this.lessonOneButtonThree()}> next </button>
               <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageFour"> Excellent! Let's move on to the next note! The white key to the right of C is D.  <br/> <img style={{height:"50vh", width: "60vw"}}src={require("../static/MiddleD.jpg")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}}id="lessonOneButtonFour" className="btn btn-primary" onClick={()=>this.lessonOneButtonFour()}> next </button>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonFour" className="btn btn-primary" onClick={()=>this.lessonOneButtonFour()}> next </button>
               <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageFive"> Please play D! <br/> <img style={{height:"60vh", width: "60vw"}}src={require("../static/MiddleD.jpg")}/><br/></div>
-              <button style={{display: "none", margin: "auto", marginTop: "1em"}}id="lessonOneButtonFive" className="btn btn-primary" onClick={()=>this.lessonOneButtonFive()}> next </button>
-
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonFive" className="btn btn-primary" onClick={()=>this.lessonOneButtonFive()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageSix"> Good Work! After D, the next white key to the right is an E <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findE4.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonSix" className="btn btn-primary" onClick={()=>this.lessonOneButtonSix()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageSeven"> Please play E!<br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findE4.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonSeven" className="btn btn-primary" onClick={()=>this.lessonOneButtonSeven()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageEight"> Super! The next note to the right is F! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findF4.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonEight" className="btn btn-primary" onClick={()=>this.lessonOneButtonEight()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageNine"> Please play F! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findF4.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonNine" className="btn btn-primary" onClick={()=>this.lessonOneButtonNine()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageTen"> Great! The last note for this lesson is G. Please find G. <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findG4.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonTen" className="btn btn-primary" onClick={()=>this.lessonOneButtonTen()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageEleven"> Play G! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/findG4.jpg")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonEleven" className="btn btn-primary" onClick={()=>this.lessonOneButtonEleven()}> next </button>
+              <div style={{fontFamily: "helvetica", fontSize: "1.5em", display: "none"}} id="lessonOneMessageTwelve"> Congrats! You have learned how to play your first five notes on the piano. Please continue to lesson two! <br/> <img style={{height:"50vh", width: "60vw"}} src={require("../static/goodJob.gif")}/><br/></div>
+              <button style={{display: "none", margin: "auto", marginTop: "1em"}} id="lessonOneButtonTwelve" className="btn btn-primary" onClick={()=>this.lessonOneButtonTwelve()}> Finish </button>
               <Popup/>
             </div>
           </div>
@@ -393,13 +486,15 @@ class LessonOne extends Component {
 }
 const LessonOneMapStateToProps = (store) => {
   return {
-    profile: store.Auth
+    Auth: store.Auth,
+    LessonsCompleted: store.LessonsCompleted
   }
 }
 
 const LessonOneDispatch = (dispatch) => {
   return {
-    actions: bindActionCreators(AuthActions, dispatch),
+    AuthActions: bindActionCreators(AuthActions, dispatch),
+    LessonsCompleted: bindActionCreators(LessonsCompleted, dispatch)
   }
 }
 
