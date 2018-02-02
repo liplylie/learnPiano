@@ -15,6 +15,13 @@ class Profile extends Component{
 				lesson3: false,
 				lesson4: false,
 				lesson5: false
+			},
+			miniGamesCompleted: {
+				miniGame1: false,
+				miniGame2: false,
+				miniGame3: false,
+				miniGame4: false,
+				miniGame5: false
 			}
 		}
 	}
@@ -22,15 +29,25 @@ class Profile extends Component{
 	componentWillMount(){
 		let that = this
 		let userLessonStatus = firebaseDB.ref("/users/" + this.props.userID + "/lessonsCompleted")
+		let userMiniGameStatus = firebaseDB.ref("/users/" + this.props.userID + "/miniGamesCompleted")
 		userLessonStatus.once("value")
-        .then(snapshot => {
-        	if (snapshot.val()){
-            that.setState({lessonsCompleted:snapshot.val()})
-        	}
-        })
-        .catch(err =>{
-        	console.log(err)
-        })
+      .then(snapshot => {
+      	if (snapshot.val()){
+          that.setState({lessonsCompleted:snapshot.val()})
+      	}
+      })
+      .catch(err =>{
+      	console.log(err)
+      })
+    userMiniGameStatus.once("value")
+    .then(snapshot => {
+      	if (snapshot.val()){
+          that.setState({miniGamesCompleted:snapshot.val()})
+      	}
+      })
+      .catch(err =>{
+      	console.log(err)
+      })
 	}	
 
 	formatAMPM(date) {
@@ -48,7 +65,8 @@ class Profile extends Component{
 		console.log(this.state, 'profile state')
 
 		let lessonData = Object.entries(this.state.lessonsCompleted)
-		console.log(lessonData, 'lessonData')
+		let miniGameData = Object.entries(this.state.miniGamesCompleted)
+
 		if (this.props.loading && this.props.online){
 			return (
 				<div style={{height:"100vh", padding: "10em"}}>
@@ -91,7 +109,7 @@ class Profile extends Component{
 					</div>
 					<div className="row">
 						<div className="col-md-12">
-							<table className="table">
+							<table id="lessonTable" className="table">
 								<tbody>
 									<tr style={{backgroundColor: "lightgrey"}}>
 										<th>Lessons</th>
@@ -104,6 +122,24 @@ class Profile extends Component{
 												<th>lesson {i + 1}</th>
 												<th>{data[1].completed ? `completed` : `not completed`} </th>
 												<th>{data[1].time ? new Date(data[1].time).toString().split(" ")[0] + " " + new Date(data[1].time).toString().split(" ")[1] + " " + new Date(data[1].time).toString().split(" ")[2] + ", " +  new Date(data[1].time).toString().split(" ")[3] + " at " + this.formatAMPM(new Date(data[1].time).toString().split(" ")[4]): ""} </th>
+											</tr>
+										)
+									})}
+								</tbody>
+							</table>
+							<table id="miniGameTable" className="table">
+								<tbody>
+									<tr style={{backgroundColor: "lightgrey"}}>
+										<th>Mini Games</th>
+										<th>Status</th>
+										<th>High Score</th>
+									</tr>
+									{miniGameData.map((data, i) =>{
+										return (
+											<tr key={i} className={data[1].completed ? "Complete" : "NotComplete"}> 
+												<th>lesson {i + 1}</th>
+												<th>{data[1].completed ? `completed` : `not completed`} </th>
+												<th>{data[1].highScore ? `${data[1].highScore}` : ""} </th>
 											</tr>
 										)
 									})}

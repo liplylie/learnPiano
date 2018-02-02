@@ -6,13 +6,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as AuthActions from '../actions/authActions'
 import * as LessonsCompletedActions from '../actions/lessonsCompletedActions'
+import * as MiniGamesCompletedActions from '../actions/miniGamesCompletedActions'
 
 import NavBar from './NavBar'
 import DefaultHome from './DefaultHome'
 import Footer from './Footer'
 import Profile from'./Profile'
 import LessonOne from './LessonOne'
-
 
 class App extends Component {
   constructor(props) {
@@ -30,29 +30,46 @@ class App extends Component {
         that.setState({
           userID: user.uid
         })
-        let userData = firebaseDB.ref("/users").child(user.uid)
         let userLessonStatus = firebaseDB.ref("/users/" + user.uid + "/lessonsCompleted")
+        let userMiniGameStatus = firebaseDB.ref("/users/" + user.uid + "/miniGamesCompleted")
         let lessons = {
           lesson1: {completed: false, time: null},
           lesson2: {completed: false, time: null},
           lesson3: {completed: false, time: null},
           lesson4: {completed: false, time: null},
           lesson5: {completed: false, time: null}
-
         } 
+        let miniGames = {
+          miniGame1: {completed: false, highScore: null},
+          miniGame2: {completed: false, highScore: null},
+          miniGame3: {completed: false, highScore: null},
+          miniGame4: {completed: false, highScore: null},
+          miniGame5: {completed: false, highScore: null}
+        }
+
         userLessonStatus.once("value")
         .then(snapshot => {
           if (!snapshot.val()){
             userLessonStatus.update(lessons)
           } else {
             that.props.LessonsCompletedActions.lessonsCompleted(snapshot.val())
-            console.log(snapshot.val(), 'data from fireb')
-
           }
-          
         }, (errorObject) => {
           console.log("The read failed: " + errorObject.code);
-        });
+        })
+
+        userMiniGameStatus.once("value")
+        .then(snapshot => {
+          if (!snapshot.val()){
+            userMiniGameStatus.update(miniGames)
+          } else {
+            that.props.MiniGamesCompletedActions.miniGamesCompleted(snapshot.val())
+          }
+        }, (errorObject) => {
+          console.log("The read failed: " + errorObject.code);
+        })
+
+
         let userInfo = {
           name : user.displayName,
           email : user.email,
@@ -112,8 +129,8 @@ const appMapStateToProps = (store) => {
 const appDispatch = (dispatch) => {
   return {
     AuthActions: bindActionCreators(AuthActions, dispatch),
-    LessonsCompletedActions: bindActionCreators(LessonsCompletedActions, dispatch)
-
+    LessonsCompletedActions: bindActionCreators(LessonsCompletedActions, dispatch),
+    MiniGamesCompletedActions: bindActionCreators(MiniGamesCompletedActions, dispatch)
   }
 }
 

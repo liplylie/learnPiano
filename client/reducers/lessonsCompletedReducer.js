@@ -1,6 +1,9 @@
 const initialState = {
   lesson1: false,
-  lesson2: false
+  lesson2: false,
+  lesson3: false,
+  lesson4: false,
+  lesson5: false
 }
 
 const lessonsCompletedReducer = (state=initialState, action) => {
