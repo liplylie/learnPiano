@@ -83,7 +83,6 @@ class LessonOne extends Component {
         freqTable = pitchTable
 
         if (isAudioContextSupported()) {
-            console.log(that, 'this')
             audioContext = new window.AudioContext();
             that.audio = audioContext
         }
@@ -312,9 +311,6 @@ class LessonOne extends Component {
 
     init()
     this.toggleMicrophone()    
-  
-
-  
   }
 
   lessonOneButtonOne(){
