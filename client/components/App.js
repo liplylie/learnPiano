@@ -8,6 +8,8 @@ import * as AuthActions from '../actions/authActions'
 import * as LessonsCompletedActions from '../actions/lessonsCompletedActions'
 import * as MiniGamesCompletedActions from '../actions/miniGamesCompletedActions'
 
+import About from './About'
+import Links from './Links'
 import NavBar from './NavBar'
 import DefaultHome from './DefaultHome'
 import Footer from './Footer'
@@ -98,6 +100,8 @@ class App extends Component {
           <div style={{flexDirection: "row", flex:1}}>
             <Switch>
               <Route exact path='/' component={() => ( <DefaultHome authenticated={this.props.online} />)}/>
+              <Route exact path='/About' component={() => ( <About />)}/>
+              <Route exact path='/Links' component={() => ( <Links />)}/>
               <Route exact path='/Profile' component={() => ( <Profile authenticated={this.props.online} loading={this.state.loading} userID={this.state.userID}/>)}/>
               <Route exact path='/LessonOne' component={() => ( <LessonOne />)}/>
               <Route exact path='/LessonTwo' component={() => ( <LessonTwo />)}/>

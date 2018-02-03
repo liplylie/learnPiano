@@ -45,7 +45,9 @@ class LessonTwo extends Component {
   }
 
   componentWillUnmount(){
-    this.audio.close()
+    if (this.audio){
+      this.audio.close()
+    }
   }
 
   findPitch(matchNote){
