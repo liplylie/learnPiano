@@ -16,6 +16,7 @@ import Footer from './Footer'
 import Profile from'./Profile'
 import LessonOne from './LessonOne'
 import LessonTwo from './LessonTwo'
+import MiniGameOne from './MiniGameOne'
 
 class App extends Component {
   constructor(props) {
@@ -105,6 +106,7 @@ class App extends Component {
               <Route exact path='/Profile' component={() => ( <Profile authenticated={this.props.online} loading={this.state.loading} userID={this.state.userID}/>)}/>
               <Route exact path='/LessonOne' component={() => ( <LessonOne />)}/>
               <Route exact path='/LessonTwo' component={() => ( <LessonTwo />)}/>
+              <Route exact path='/miniGame1' component={() => ( <MiniGameOne />)}/>
               <Route render={() => {
                 return (
                   <div className="row" style={{backgroundColor: 'lightpink', height: '100vh', minWidth: '100vw', flex:1}}>
