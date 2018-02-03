@@ -51,6 +51,7 @@ class MiniGameOne extends Component {
 		    clearInterval(timer)
 		    document.getElementById("countDown").style.display = "none"
 		    document.getElementById("guessNote").style.display = "block"
+		    document.getElementById("currentScore").style.display = "block"
 		    that.generateNewNote()
 		  } else {
 		    that.setState({countDown: that.state.countDown-=1})
@@ -110,7 +111,6 @@ class MiniGameOne extends Component {
     var updateNote = function (note) {
       if (note !== "--" && note.indexOf("7") === -1 && note.indexOf("8") === -1 ){
         that.noteArray.push(note)
-        console.log(that.noteArray, 'that note array')
         if (that.noteArray.length > 2){
           if (that.noteArray.includes(matchNote)){
             that.turnOffMicrophone()
@@ -120,8 +120,8 @@ class MiniGameOne extends Component {
               noteIsWrong: false
           	}) 
           	that.score += 1
-          	console.log(that.score)
-          	setTimeout(that.generateNewNote(), 500 )
+          	console.log(that.noteArray, 'look here')
+          	setTimeout(()=>that.generateNewNote(), 400)
 
         } else {
 	          that.setState({
@@ -130,7 +130,7 @@ class MiniGameOne extends Component {
 	          })
 	          that.turnOffMicrophone()
 	          that.noteArray = []
-	          setTimeout(that.toggleMicrophone, 100)
+	          that.toggleMicrophone()
 	     	  }
      		}	
     	}
@@ -332,7 +332,12 @@ class MiniGameOne extends Component {
   }
 
   generateNewNote(){
-  	let notes = "C4 D4 E4 F4 G4".split(" ")
+  	if ( this.noteIsCorrect ) { 
+  		document.getElementById("greenCheck").style.display = "block" 
+  		setTimeout(()=>document.getElementById("greenCheck").style.display = "none", 300)
+  	}
+
+  	let notes = ["C4","D4","E4","F4","G4"]
 		let randomNumber = Math.floor(Math.random() * 5)
 		this.setState({ guessNote:notes[randomNumber]} )
     this.findPitch(notes[randomNumber])
@@ -351,7 +356,7 @@ class MiniGameOne extends Component {
            </div>
           <div className="row">
           	<div className="col-md-4">
-          		<img id="redX" style={{height: "10vh", width: "5vw", marginTop: "20vh", display: this.state.noteIsWrong ? "block": "none" }} src={require('../static/redX.png')}/>
+          		<img id="redX" style={{height: "10vh", width: "5vw", margin: "auto", marginTop: "20vh", display: this.state.noteIsWrong ? "block": "none" }} src={require('../static/redX.png')}/>
           	</div>
           	<div className="col-md-4">
           		<span id="countDown" style={{display:"none"}}> {this.state.countDown} </span>
@@ -362,6 +367,9 @@ class MiniGameOne extends Component {
        			</div>
           </div>
           <button id="startButton" onClick={()=>this.startGame()}> Ready </button>
+          <div style={{fontSize: "2.5em", fontFamily: "helvetica", display: "none"}} id="currentScore"> 
+          	Score: {this.score}
+          </div>
         </div>
       </div>
 
