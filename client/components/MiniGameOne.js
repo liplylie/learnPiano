@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import pitchTable from '../helpers/pitchTable'
+import { app, firebaseDB } from '../firebase'
+import { connect } from "react-redux"
+import { bindActionCreators } from 'redux'
+import * as MiniGamesCompleted from "../actions/miniGamesCompletedActions"
 
 import C4 from "../static/C4.gif"
 import D4 from "../static/D4.jpeg"
@@ -21,7 +25,9 @@ class MiniGameOne extends Component {
 			},
 			noteIsWrong: false,
 			noteIsCorrect: false,
-			countDown: 3
+			countDown: 3,
+			gameOver: false,
+			miniGameCompleted: false
 		}
 		this.score = 0
 		this.noteArray = []
@@ -44,21 +50,44 @@ class MiniGameOne extends Component {
 
 	startGame(){
 		let that = this
+		let flag = false
 		document.getElementById("countDown").style.display = "block"
 		document.getElementById("startButton").style.display = "none"
 		function handleTimer() {
-		  if(that.state.countDown === 0) {
-		    clearInterval(timer)
-		    document.getElementById("countDown").style.display = "none"
+		  if(that.state.countDown === 0 && !flag) {
+		  	flag = true
+		    that.state.countDown = 30
+		    
 		    document.getElementById("guessNote").style.display = "block"
 		    document.getElementById("currentScore").style.display = "block"
 		    that.generateNewNote()
+		  } else if (that.state.countDown === 0 && flag){
+		  	clearInterval(timer)
+		  	document.getElementById("countDown").style.display = "none"
+		  	that.endGame()
+		  	that.setState({gameOver: true})
 		  } else {
 		    that.setState({countDown: that.state.countDown-=1})
 		  }
 		}
 		
 		let timer = setInterval(()=>{handleTimer()}, 1000)
+	}
+
+	endGame(){
+		this.audio.close()
+		let that = this
+		let userMiniGameStatus = firebaseDB.ref("/users/" + this.props.Auth.userId + "/miniGamesCompleted")
+    
+    userMiniGameStatus.once("value")
+        .then(snapshot => {
+            userMiniGameStatus.update( {miniGame1: {completed: true, highScore: that.score} })
+            that.props.MiniGamesCompleted.miniGamesCompleted(snapshot.val())
+            console.log( snapshot.val(), 'mini game completed' )
+            that.setState({
+                miniGameCompleted: true
+            })
+    })
 	}
 
 	findPitch(matchNote){
@@ -333,11 +362,7 @@ class MiniGameOne extends Component {
   }
 
   generateNewNote(){
-
   	this.setState( {noteIsCorrect:false})
-  	//document.getElementById("greenCheck").style.display = "none"
-  	
-
   	let notes = ["C4","D4","E4","F4","G4"]
 		let randomNumber = Math.floor(Math.random() * 5)
 		this.setState({ guessNote:notes[randomNumber]} )
@@ -360,14 +385,14 @@ class MiniGameOne extends Component {
           		<img id="redX" className="span3 wow flipInX center" style={{height: "10vh", width: "5vw", margin: "auto", marginTop: "20vh",  visibility: "visible", animationName: "flipInX", display: this.state.noteIsWrong ? "block": "none" }} src={require('../static/redX.png')}/>
           	</div>
           	<div className="col-md-4">
-          		<span id="countDown" style={{display:"none"}}> {this.state.countDown} </span>
+          		<span id="countDown" style={{fontFamily: "helvetica", fontSize: "1.5em", display:"none"}}> {this.state.countDown} </span>
           	  <img id="guessNote" style={{height: "40vh", width: "12vw", margin: "auto", marginTop: "8vh", display: "none"}} src={this.state.notePicture[this.state.guessNote]}/>
        			</div>
        			<div className="col-md-4">
        				<img id="greenCheck" className="span3 wow flipInX center" style={{height: "10vh", width: "5vw", marginTop: "20vh", visibility: "visible", animationName: "flipInX", display: this.state.noteIsCorrect ? "block": "none" }} src={require('../static/greenCheck.png')}/>
        			</div>
           </div>
-          <button id="startButton" onClick={()=>this.startGame()}> Ready </button>
+          <button className="btn btn-primary" id="startButton" onClick={()=>this.startGame()}> Ready </button>
           <div style={{fontSize: "2.5em", fontFamily: "helvetica", display: "none"}} id="currentScore"> 
           	Score: {this.score}
           </div>
@@ -378,5 +403,16 @@ class MiniGameOne extends Component {
 	}
 }
 
+const mapStateToProps = (store) => {
+	return {
+		Auth: store.Auth
+	}
+}
 
-export default MiniGameOne
+const miniGameDispatch = (dispatch) =>{
+	return {
+		MiniGamesCompleted: bindActionCreators(MiniGamesCompleted, dispatch)
+	}
+}
+
+export default connect(mapStateToProps, miniGameDispatch)(MiniGameOne)
