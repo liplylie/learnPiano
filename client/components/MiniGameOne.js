@@ -130,6 +130,7 @@ class MiniGameOne extends Component {
 	          })
 	          that.turnOffMicrophone()
 	          that.noteArray = []
+	          setTimeout(()=>that.setState({noteIsWrong:false}), 500)
 	          that.toggleMicrophone()
 	     	  }
      		}	
@@ -332,10 +333,10 @@ class MiniGameOne extends Component {
   }
 
   generateNewNote(){
-  	if ( this.noteIsCorrect ) { 
-  		document.getElementById("greenCheck").style.display = "block" 
-  		setTimeout(()=>document.getElementById("greenCheck").style.display = "none", 300)
-  	}
+
+  	this.setState( {noteIsCorrect:false})
+  	//document.getElementById("greenCheck").style.display = "none"
+  	
 
   	let notes = ["C4","D4","E4","F4","G4"]
 		let randomNumber = Math.floor(Math.random() * 5)
@@ -356,14 +357,14 @@ class MiniGameOne extends Component {
            </div>
           <div className="row">
           	<div className="col-md-4">
-          		<img id="redX" style={{height: "10vh", width: "5vw", margin: "auto", marginTop: "20vh", display: this.state.noteIsWrong ? "block": "none" }} src={require('../static/redX.png')}/>
+          		<img id="redX" className="span3 wow flipInX center" style={{height: "10vh", width: "5vw", margin: "auto", marginTop: "20vh",  visibility: "visible", animationName: "flipInX", display: this.state.noteIsWrong ? "block": "none" }} src={require('../static/redX.png')}/>
           	</div>
           	<div className="col-md-4">
           		<span id="countDown" style={{display:"none"}}> {this.state.countDown} </span>
           	  <img id="guessNote" style={{height: "40vh", width: "12vw", margin: "auto", marginTop: "8vh", display: "none"}} src={this.state.notePicture[this.state.guessNote]}/>
        			</div>
        			<div className="col-md-4">
-       				<img id="greenCheck" style={{height: "10vh", width: "5vw", marginTop: "20vh", display: this.state.noteIsCorrect ? "block": "none" }} src={require('../static/greenCheck.png')}/>
+       				<img id="greenCheck" className="span3 wow flipInX center" style={{height: "10vh", width: "5vw", marginTop: "20vh", visibility: "visible", animationName: "flipInX", display: this.state.noteIsCorrect ? "block": "none" }} src={require('../static/greenCheck.png')}/>
        			</div>
           </div>
           <button id="startButton" onClick={()=>this.startGame()}> Ready </button>
