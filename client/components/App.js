@@ -94,6 +94,7 @@ class App extends Component {
   
 
   render() {
+    console.log(this.props, 'app props')
     return (
       <BrowserRouter>
         <div className="main" style={{display: 'flex'}}>  
@@ -104,9 +105,9 @@ class App extends Component {
               <Route exact path='/About' component={() => ( <About />)}/>
               <Route exact path='/Links' component={() => ( <Links />)}/>
               <Route exact path='/Profile' component={() => ( <Profile authenticated={this.props.online} loading={this.state.loading} userID={this.state.userID}/>)}/>
-              <Route exact path='/LessonOne' component={() => ( <LessonOne />)}/>
-              <Route exact path='/LessonTwo' component={() => ( <LessonTwo />)}/>
-              <Route exact path='/miniGame1' component={() => ( <MiniGameOne />)}/>
+              <Route exact path='/LessonOne' component={() => ( <LessonOne authenticated={this.props.online} />)}/>
+              <Route exact path='/LessonTwo' component={() => ( <LessonTwo authenticated={this.props.online} />)}/>
+              <Route exact path='/miniGame1' component={() => ( <MiniGameOne authenticated={this.props.online} />)}/>
               <Route render={() => {
                 return (
                   <div className="row" style={{backgroundColor: 'lightpink', height: '100vh', minWidth: '100vw', flex:1}}>

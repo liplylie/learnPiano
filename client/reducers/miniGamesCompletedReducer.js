@@ -7,7 +7,6 @@ const initialState = {
 }
 
 const miniGamesCompletedReducer = (state=initialState, action) => {
-  console.log(action, 'actions from miniGamesCompletedReducer')
   switch(action.type) {
     case 'USER_MINIGAMES_COMPLETED': {
       return Object.assign({}, state, {

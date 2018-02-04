@@ -3,6 +3,7 @@ import pitchTable from '../helpers/pitchTable'
 import { app, firebaseDB } from '../firebase'
 import { connect } from "react-redux"
 import { bindActionCreators } from 'redux'
+import { Redirect } from 'react-router-dom'
 import * as MiniGamesCompleted from "../actions/miniGamesCompletedActions"
 
 import C4 from "../static/C4.gif"
@@ -27,7 +28,8 @@ class MiniGameOne extends Component {
 			noteIsCorrect: false,
 			countDown: 3,
 			gameOver: false,
-			miniGameCompleted: false
+			miniGameCompleted: false,
+			previousHighScore: 0
 		}
 		this.score = 0
 		this.noteArray = []
@@ -38,7 +40,18 @@ class MiniGameOne extends Component {
 	}
 
 	componentDidMount(){
-		
+		let that = this
+		console.log(this.props, 'thisprops')
+		let userMiniGameStatus = firebaseDB.ref("/users/" + this.props.Auth.userId + "/miniGamesCompleted/miniGame1/highScore")
+		userMiniGameStatus.once("value")
+        .then(snapshot => {
+        	console.log(snapshot.val(), 'componentDudlUnmount')
+        	if (snapshot.val()){
+            that.setState({previousHighScore:snapshot.val()})
+        	}
+        }, (errorObject) => {
+          console.log("The read failed: " + errorObject.code);
+        })
 	}
 
 	componentWillUnmount(){
@@ -81,9 +94,8 @@ class MiniGameOne extends Component {
     
     userMiniGameStatus.once("value")
         .then(snapshot => {
-            userMiniGameStatus.update( {miniGame1: {completed: true, highScore: that.score} })
-            that.props.MiniGamesCompleted.miniGamesCompleted(snapshot.val())
-            console.log( snapshot.val(), 'mini game completed' )
+            userMiniGameStatus.update( {miniGame1: {completed: true, highScore: Math.max(that.score, that.state.previousHighScore)} })
+            that.props.MiniGamesCompleted.miniGamesCompleted(Math.max(that.score, that.state.previousHighScore))
             that.setState({
                 miniGameCompleted: true
             })
@@ -370,6 +382,12 @@ class MiniGameOne extends Component {
   }
 
 	render(){
+		console.log(this.props, 'mini game one props')
+		if (!this.props.Auth.online){
+			return (
+				<Redirect to="/"/>
+			)
+		}
 		return (
 			<div style={{height:"100vh", width:"100vw", textAlign: "center"}}>
         <div style={{width:"70vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1}}>
@@ -394,7 +412,8 @@ class MiniGameOne extends Component {
           </div>
           <button className="btn btn-primary" id="startButton" onClick={()=>this.startGame()}> Ready </button>
           <div style={{fontSize: "2.5em", fontFamily: "helvetica", display: "none"}} id="currentScore"> 
-          	Score: {this.score}
+          	<div>Score: {this.score} </div>
+          	<div>Previous High Score: {this.state.previousHighScore}</div>
           </div>
         </div>
       </div>

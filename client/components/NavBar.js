@@ -23,11 +23,11 @@ class Navbar extends Component {
                         <li className="dropdown nav-item">
                             <a data-toggle="dropdown" className="dropdown-toggle nav-link" href="#">Mini Games</a>
                             <ul className="dropdown-menu text-center">
-                              <li><a href="/miniGame1">Mini Game 1</a></li>
-                              <li><a href="/miniGame2">Mini Game 2</a></li>
-                              <li><a href="/miniGame3">Mini Game 3</a></li>
-                              <li><a href="/miniGame4">Mini Game 4</a></li>
-                              <li><a href="/miniGame5">Mini Game 5</a></li>
+                              <li><Link to="/miniGame1">Mini Game 1</Link></li>
+                              <li><Link to="/miniGame2">Mini Game 2</Link></li>
+                              <li><Link to="/miniGame3">Mini Game 3</Link></li>
+                              <li><Link to="/miniGame4">Mini Game 4</Link></li>
+                              <li><Link to="/miniGame5">Mini Game 5</Link></li>
                             </ul>
                           </li>
                     </ul>
