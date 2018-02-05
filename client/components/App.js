@@ -17,6 +17,7 @@ import Profile from'./Profile'
 import LessonOne from './LessonOne'
 import LessonTwo from './LessonTwo'
 import MiniGameOne from './MiniGameOne'
+import MiniGameTwo from './MiniGameTwo'
 
 class App extends Component {
   constructor(props) {
@@ -108,6 +109,7 @@ class App extends Component {
               <Route exact path='/LessonOne' component={() => ( <LessonOne authenticated={this.props.online} />)}/>
               <Route exact path='/LessonTwo' component={() => ( <LessonTwo authenticated={this.props.online} />)}/>
               <Route exact path='/miniGame1' component={() => ( <MiniGameOne authenticated={this.props.online} />)}/>
+              <Route exact path='/miniGame2' component={() => ( <MiniGameTwo authenticated={this.props.online} />)}/>
               <Route render={() => {
                 return (
                   <div className="row" style={{backgroundColor: 'lightpink', height: '100vh', minWidth: '100vw', flex:1}}>

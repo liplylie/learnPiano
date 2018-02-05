@@ -6,23 +6,23 @@ import { bindActionCreators } from 'redux'
 import { Redirect } from 'react-router-dom'
 import * as MiniGamesCompleted from "../actions/miniGamesCompletedActions"
 
-import C4 from "../static/C4.gif"
-import D4 from "../static/D4.jpeg"
-import E4 from "../static/E4.png"
-import F4 from "../static/F4.jpg"
-import G4 from "../static/G4.png"
+import C4 from "../static/middleCBassClef.gif"
+import B3 from "../static/B3.jpg"
+import A3 from "../static/A3.jpg"
+import G3 from "../static/G3.jpg"
+import F3 from "../static/F3.png"
 
-class MiniGameOne extends Component {
+class MiniGameTwo extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
 			guessNote: "",
 			notePicture: {
 				C4: C4,
-				D4: D4,
-				E4: E4,
-				F4: F4,
-				G4: G4
+				B3: B3,
+				A3: A3,
+				G3: G3,
+				F3: F3
 			},
 			noteIsWrong: false,
 			noteIsCorrect: false,
@@ -42,7 +42,7 @@ class MiniGameOne extends Component {
 	componentDidMount(){
 		let that = this
 		console.log(this.props, 'thisprops')
-		let userMiniGameStatus = firebaseDB.ref("/users/" + this.props.Auth.userId + "/miniGamesCompleted/miniGame1/highScore")
+		let userMiniGameStatus = firebaseDB.ref("/users/" + this.props.Auth.userId + "/miniGamesCompleted/miniGame2/highScore")
 		userMiniGameStatus.once("value")
         .then(snapshot => {
         	console.log(snapshot.val(), 'componentDudlUnmount')
@@ -94,8 +94,8 @@ class MiniGameOne extends Component {
     
     userMiniGameStatus.once("value")
         .then(snapshot => {
-            userMiniGameStatus.update( {miniGame1: {completed: true, highScore: Math.max(that.score, that.state.previousHighScore)} })
-            that.props.MiniGamesCompleted.miniGamesCompleted({miniGame1:Math.max(that.score, that.state.previousHighScore)})
+            userMiniGameStatus.update( {miniGame2: {completed: true, highScore: Math.max(that.score, that.state.previousHighScore)} })
+            that.props.MiniGamesCompleted.miniGamesCompleted({miniGame2:Math.max(that.score, that.state.previousHighScore)})
             that.setState({
                 miniGameCompleted: true
             })
@@ -375,7 +375,7 @@ class MiniGameOne extends Component {
 
   generateNewNote(){
   	this.setState( {noteIsCorrect:false})
-  	let notes = ["C4","D4","E4","F4","G4"]
+  	let notes = ["C4","B3","A3","G3","F3"]
 		let randomNumber = Math.floor(Math.random() * 5)
 		this.setState({ guessNote:notes[randomNumber]} )
     this.findPitch(notes[randomNumber])
@@ -394,7 +394,7 @@ class MiniGameOne extends Component {
           </div>
           <div className="row">
             <div className="col-md-12"> 
-              <div><span style={{fontFamily: "helvetica", fontSize: "5em"}}><h2>Mini Game One</h2></span></div>
+              <div><span style={{fontFamily: "helvetica", fontSize: "5em"}}><h2>Mini Game Two</h2></span></div>
               <div id="gameRules"  style={{fontFamily: "helvetica", fontSize: "2em"}}>
                 <p> Rules: Notes will flash on the screen. Play the correct note as fast as you can for thirty seconds! And try to beat your high score!</p>
                 <img className="span3 wow bounceInDown center" style={{height: "8em", width: "8em", padding: "1em", visibility: "visible", animationDelay: "0.5s"}} src={require("../static/pianoSlide.png")}/>
@@ -437,4 +437,4 @@ const miniGameDispatch = (dispatch) =>{
 	}
 }
 
-export default connect(mapStateToProps, miniGameDispatch)(MiniGameOne)
+export default connect(mapStateToProps, miniGameDispatch)(MiniGameTwo)
