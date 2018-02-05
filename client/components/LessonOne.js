@@ -446,7 +446,7 @@ class LessonOne extends Component {
           </div>
           <div className="row">
             <div className="col-md-12"> 
-              <div><span style={{fontFamily: "helvetica", fontSize: "5em"}}> Lesson One</span></div>
+              <div><span style={{fontFamily: "helvetica"}}> <h2> Lesson One </h2></span></div>
             </div>
             <div className="col-md-4"> </div>
           </div>

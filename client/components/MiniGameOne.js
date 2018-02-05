@@ -56,7 +56,6 @@ class MiniGameOne extends Component {
 
 	componentWillUnmount(){
 		if (this.audio){
-			console.log('off')
 			this.audio.close()
 		}
 	}
@@ -66,6 +65,7 @@ class MiniGameOne extends Component {
 		let flag = false
 		document.getElementById("countDown").style.display = "block"
 		document.getElementById("startButton").style.display = "none"
+        document.getElementById("gameRules").style.display = "none"
 		function handleTimer() {
 		  if(that.state.countDown === 0 && !flag) {
 		  	flag = true
@@ -395,7 +395,11 @@ class MiniGameOne extends Component {
           </div>
           <div className="row">
             <div className="col-md-12"> 
-              <div><span style={{fontFamily: "helvetica", fontSize: "5em"}}>Mini Game One</span></div>
+              <div><span style={{fontFamily: "helvetica", fontSize: "5em"}}><h2>Mini Game One</h2></span></div>
+              <div id="gameRules"  style={{fontFamily: "helvetica", fontSize: "2em"}}>
+                <p> Rules: Notes will flash on the screen. Play the correct note as fast as you can for thirty seconds! And try to beat your high score!</p>
+                <img className="span3 wow bounceInDown center" style={{height: "8em", width: "8em", padding: "1em", visibility: "visible", animationDelay: "0.5s"}} src={require("../static/pianoSlide.png")}/>
+              </div>
             </div>
            </div>
           <div className="row">
