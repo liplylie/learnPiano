@@ -1,4 +1,5 @@
-const path = require('path');
+const path = require('path')
+const Uglify = require("uglifyjs-webpack-plugin");
 
 const SRC_DIR = path.resolve(__dirname, 'client');
 const BUILD_DIR = path.resolve(__dirname, 'client/static');
@@ -29,5 +30,8 @@ module.exports = {
         options: {}
       }
     ]
-  }
+  },
+  plugins: [
+    new Uglify()
+  ]
 }
