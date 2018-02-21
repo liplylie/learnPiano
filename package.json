@@ -7,14 +7,14 @@
     "start": "node server/server.js",
     "start-nodemon": "nodemon server/server.js",
     "compile-watch": "webpack --watch",
-    "all": "npm run start-nodemon & npm run compile-watch"
+    "all": "npm run start-nodemon & npm run compile-watch",
+    "build": "NODE_ENV=production webpack -p --config ./webpack.production.config.js"
   },
   "author": "Jordan Daniels",
   "license": "ISC",
   "dependencies": {
     "@blueprintjs/core": "^2.0.0-beta.3",
     "axios": "^0.17.1",
-    "babel": "^6.23.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
@@ -41,6 +41,7 @@
     "webpack-dev-server": "^2.11.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "uglifyjs-webpack-plugin": "^1.1.8"
   }
 }
