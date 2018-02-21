@@ -25,7 +25,7 @@ class DefaultHome extends Component {
         </ol>
         <div className="carousel-inner" role="listbox">
           <div className="carousel-item active">
-            <img style={{height: "100vh", width: "100vw", position: "relative"}} className="d-block img-fluid image-size" src={require('../static/pianoBeginner.jpg')} alt="First slide"></img>
+            <img style={{height: "100vh", width: "100vw", position: "relative"}} className="d-block img-fluid image-size" src={"https://s3-us-west-1.amazonaws.com/learnpianofree/" + require('../static/pianoBeginner.jpg')} alt="First slide"></img>
             <div className="carousel-caption d-none d-md-block">
             </div>
             <h2 style={{position:"absolute", top: "5em", 
@@ -36,7 +36,7 @@ class DefaultHome extends Component {
               padding: ".4em"}}>Learn the Basics of Piano!<br/>Please Log In To Continue</span></h2>
           </div>
           <div className="carousel-item">
-            <img style={{height: "100vh", width: "100vw"}} className="d-block img-fluid image-size" src={require('../static/pianoHall.jpg')} alt="Second slide"></img>
+            <img style={{height: "100vh", width: "100vw"}} className="d-block img-fluid image-size" src={"https://s3-us-west-1.amazonaws.com/learnpianofree/" + require('../static/pianoHall.jpg')} alt="Second slide"></img>
             <div className="carousel-caption d-none d-md-block">
             </div>
             <h2 style={{position:"absolute", top: "5em", 
@@ -47,12 +47,12 @@ class DefaultHome extends Component {
               padding: ".4em"}}>Learn the Basics of Piano!<br/>Please Log In To Continue</span></h2>
           </div>
           <div className="carousel-item">
-            <img style={{height: "100vh", width: "100vw"}} className="d-block img-fluid image-size" src={require('../static/pianoBeginner.jpg')} alt="Third slide"></img>
+            <img style={{height: "100vh", width: "100vw"}} className="d-block img-fluid image-size" src={"https://s3-us-west-1.amazonaws.com/learnpianofree/" + require('../static/pianoBeginner.jpg')} alt="Third slide"></img>
             <div className="carousel-caption d-none d-md-block">
             </div>
           </div>
           <div className="carousel-item">
-            <img style={{height: "100vh", width: "100vw"}} className="d-block img-fluid image-size" src={require('../static/pianoBeginner.jpg')} alt="Fourth slide"></img>
+            <img style={{height: "100vh", width: "100vw"}} className="d-block img-fluid image-size" src={"https://s3-us-west-1.amazonaws.com/learnpianofree/" + require('../static/pianoBeginner.jpg')} alt="Fourth slide"></img>
             <div className="carousel-caption d-none d-md-block">
             </div>
           </div>
