@@ -5,41 +5,43 @@ import { firebase, app, facebookProvider } from '../firebase'
 class LogIn extends Component {
 	constructor(){
 		super()
-		this.state = {
-			redirect: false
-		}
 		this.authWithFacebook = this.authWithFacebook.bind(this)
 		this.authWithEmailPassword = this.authWithEmailPassword.bind(this)
 	}
 
 	authWithFacebook(){
-		console.log('authF')
 		app.auth().signInWithPopup(facebookProvider)
 		.then((result,error)=>{
 			if (error){
-				this.toaster.show({intent: Intent.DANGER, message: "Unable to sign in with Facebook"})
-			} else {
-				this.setState({redirect:true}) 
-			}
+				alert(error.message)
+			} 
 		})
 		.catch(err => {
-			this.toaster.show({intent: Intent.DANGER, message: "Unable to sign in with Facebook"})
+			alert(error.message)
 		})
 	}
 
-	authWithEmailPassword() {
+	authWithEmailPassword(event) {
+		console.log(event, 'here')
+		event.preventDefault()
     const email = document.getElementById('emailInput').value
     const pw = document.getElementById('passwordInput').value
-    const authDomain = firebase.auth()
 
-    app.auth().signInWithEmailAndPassword(email, pw)
+    app.auth().fetchProvidersForEmail(email)
+    .then(providers => {
+    	if (providers.length === 0){
+    		return app.auth().createUserWithEmailAndPassword(email, pw)
+    	} else {
+    		app.auth().signInWithEmailAndPassword(email, pw)
       .then(result => {
         console.log('logged in')
-          this.setState({
-            authenticated: true,
-          })
-        })
-      .catch(err => console.log('error with login', err))
+       })
+      .catch(err => {
+      	console.log('error with login', err)
+      	alert(err.message)
+      })
+    	}
+    })
     document.getElementById('emailInput').value = ''
     document.getElementById('passwordInput').value = ''
   }
@@ -47,8 +49,6 @@ class LogIn extends Component {
 	render(){
 		return(
 			<div>
-				<Toaster ref={(element => {this.toaster = element})}/>
-				<Toaster ref={(element => {this.toaster = element})}/>
 				<button type="button" id="dropdownMenu1" data-toggle="dropdown" className="btn btn-outline-secondary dropdown-toggle">Login <span className="caret"></span></button>
 				<ul style={{padding:"2em 4em 0px 4em"}} className="dropdown-menu dropdown-menu-right mt-1">
 	        <li className="p-3">
@@ -57,10 +57,10 @@ class LogIn extends Component {
 	                      <input id="emailInput" placeholder="Email" className="input-large" type="text" required=""/>
 	                  </div>
 	                  <div className="form-group">
-	                      <input id="passwordInput" placeholder="Password" className="input-large" type="text" required=""/>
+	                      <input id="passwordInput" placeholder="Password" className="input-large" type="password" required="" />
 	                  </div>
 	                  <div className="form-group">
-	                      <button type="submit" className="btn btn-primary btn-block" style={{cursor:"pointer"}}>Login</button>
+	                      <button className="btn btn-primary btn-block" style={{cursor:"pointer"}} onClick={()=>{this.authWithEmailPassword(event) }}>Login</button>
 	                  </div>
 	                  <div className="form-group text-xs-center">
 	                      <small><a href="#">Forgot password?</a></small>
