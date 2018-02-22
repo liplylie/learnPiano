@@ -87,8 +87,8 @@ class Profile extends Component{
 						<div className="col-md-1"></div>
 						<div className="col-md-3"> 
 							<div className="row" style={{margin:"0.3em"}}>
-								<img className="span3 wow flipInX center" src={this.props.Auth.picture} style={{height: "10em", width:"10em", borderRadius: "5px", visibility: "visible", animationName: "flipInX", margin: "auto"}}/>
-								<span style={{fontFamily: "helvetica", fontSize: "2em", margin:"auto"}}>{this.props.Auth.name}</span>
+								<img className="span3 wow flipInX center" src={this.props.Auth.picture ? this.props.Auth.picture : require("../static/defaultUser.png")} style={{height: "10em", width:"10em", borderRadius: "5px", visibility: "visible", animationName: "flipInX", margin: "auto"}}/>
+								<span style={{fontFamily: "helvetica", fontSize: "2em", margin:"auto"}}>{this.props.Auth.name ? this.props.Auth.name : this.props.Auth.email}</span>
 							</div>
 						</div>
 
