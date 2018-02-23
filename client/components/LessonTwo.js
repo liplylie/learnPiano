@@ -439,7 +439,7 @@ class LessonTwo extends Component {
 
     return (
       <div style={{height:"100vh", width:"100vw", textAlign: "center"}}>
-        <div style={{width:"70vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1}}>
+        <div style={{width:"70vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1,  overflowX: "scroll", overflowY: "scroll"}}>
           <div className="row" style={{height: "8em"}}>
           </div>
           <div className="row">
