@@ -63,7 +63,7 @@ class LogIn extends Component {
 	                      <button className="btn btn-primary btn-block" style={{cursor:"pointer"}} onClick={()=>{this.authWithEmailPassword(event) }}>Login</button>
 	                  </div>
 	                  <div className="form-group text-xs-center">
-	                      <small><a href="#">Forgot password?</a></small>
+	                      <small><a >Forgot password?</a></small>
 	                  </div>
 
 	                  <div className="container">

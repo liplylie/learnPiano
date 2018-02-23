@@ -11,7 +11,7 @@ class DefaultHome extends Component {
 
   render() {
     if (this.props.authenticated) {
-      return <Redirect to='/Profile'/>
+      return <Redirect to='/profile'/>
     }
 
     return (

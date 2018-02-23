@@ -18,10 +18,10 @@ class Navbar extends Component {
                 </button>
                 <div className="collapse navbar-collapse" id="exCollapsingNavbar">
                     <ul className="nav navbar-nav">
-                        <li className="nav-item"><a href="/About" className="nav-link">About</a></li>
-                        <li className="nav-item"><a href="/Links" className="nav-link">Links</a></li>
+                        <li className="nav-item"><Link to="/about" className="nav-link">About</Link></li>
+                        <li className="nav-item"><Link to="/links" className="nav-link">Links</Link></li>
                         <li className="dropdown nav-item">
-                            <a data-toggle="dropdown" className="dropdown-toggle nav-link" href="#">Mini Games</a>
+                            <a data-toggle="dropdown" className="dropdown-toggle nav-link">Mini Games</a>
                             <ul className="dropdown-menu text-center">
                               <li className="dropdown-item"><Link to="/miniGame1">Mini Game 1</Link></li>
                               <li className="dropdown-item"><Link to="/miniGame2">Mini Game 2</Link></li>
@@ -32,7 +32,7 @@ class Navbar extends Component {
                           </li>
                     </ul>
                     <ul className="nav navbar-nav flex-row justify-content-between ml-auto">
-                        <li className="nav-item order-2 order-md-1"><a href="#" className="nav-link" title="settings"><i className="fa fa-cog fa-fw fa-lg"></i></a></li>
+                        <li className="nav-item order-2 order-md-1"><a className="nav-link" title="settings"><i className="fa fa-cog fa-fw fa-lg"></i></a></li>
                         <li className="dropdown order-1">
                             {this.props.authenticated
                                 ?  <LogOut authenticated={this.props.authenticated}/>

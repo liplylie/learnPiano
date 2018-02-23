@@ -10,6 +10,7 @@ import * as MiniGamesCompletedActions from '../actions/miniGamesCompletedActions
 
 import About from './About'
 import Links from './Links'
+import PrivacyPolicy from './privacyPolicy'
 import NavBar from './NavBar'
 import DefaultHome from './DefaultHome'
 import Footer from './Footer'
@@ -103,11 +104,12 @@ class App extends Component {
           <div style={{flexDirection: "row", flex:1}}>
             <Switch>
               <Route exact path='/' component={() => ( <DefaultHome authenticated={this.props.online} />)}/>
-              <Route exact path='/About' component={() => ( <About />)}/>
-              <Route exact path='/Links' component={() => ( <Links />)}/>
-              <Route exact path='/Profile' component={() => ( <Profile authenticated={this.props.online} loading={this.state.loading} userID={this.state.userID}/>)}/>
-              <Route exact path='/LessonOne' component={() => ( <LessonOne authenticated={this.props.online} />)}/>
-              <Route exact path='/LessonTwo' component={() => ( <LessonTwo authenticated={this.props.online} />)}/>
+              <Route exact path='/about' component={() => ( <About />)}/>
+              <Route exact path='/links' component={() => ( <Links />)}/>
+              <Route exact path='/privacyPolicy' component={() => ( <PrivacyPolicy/>)}/>
+              <Route exact path='/profile' component={() => ( <Profile authenticated={this.props.online} loading={this.state.loading} userID={this.state.userID}/>)}/>
+              <Route exact path='/lessonOne' component={() => ( <LessonOne authenticated={this.props.online} />)}/>
+              <Route exact path='/lessonTwo' component={() => ( <LessonTwo authenticated={this.props.online} />)}/>
               <Route exact path='/miniGame1' component={() => ( <MiniGameOne authenticated={this.props.online} />)}/>
               <Route exact path='/miniGame2' component={() => ( <MiniGameTwo authenticated={this.props.online} />)}/>
               <Route render={() => {

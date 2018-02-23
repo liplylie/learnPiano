@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink} from 'react-router-dom';
+import { NavLink, Link} from 'react-router-dom';
 
 class Footer extends Component {
   render() {
@@ -32,7 +32,7 @@ class Footer extends Component {
               <li>About Learn Piano</li>
               <li>Careers</li>
               <li>Legal</li>
-              <li>Privacy & Cookies</li>
+              <li><Link to="/privacyPolicy">Privacy & Cookies</Link></li>
               <li>Corporate Information</li>
             </ul>
           </div>
