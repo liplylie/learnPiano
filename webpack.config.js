@@ -33,11 +33,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new Uglify(),
-      new webpack.DefinePlugin({ 
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
+    // new Uglify(),
+    //   new webpack.DefinePlugin({ 
+    //   'process.env': {
+    //     'NODE_ENV': JSON.stringify('production')
+    //   }
+    // }),
   ]
 }

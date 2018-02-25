@@ -40,7 +40,7 @@ class LessonOne extends Component {
         this.correctAnswers+=1
         this.turnOffMicrophone()
     } else if (this.state.wrongNote && this.noteArray.length && this.popUpCount === this.correctAnswers && !this.state.lessonCompleted){
-      Popup.alert(<div style={{fontFamily:"helvetica", fontSize:"2.5em"}}><img style={{height: "8em", width: "5em"}} src={pitchTablePictures[this.state.wrongNote]} /> Incorrect! You played a {this.state.wrongNote[0]}</div>)
+      Popup.alert(<div style={{fontFamily:"helvetica", fontSize:"2.5em"}}><img style={{height: "8em", width: "5em"}} src={pitchTablePictures[this.state.wrongNote]} /> Incorrect! You played a {this.state.wrongNote.length === 3 ? this.state.wrongNote[0] + this.state.wrongNote[1] : this.state.wrongNote[0]}</div>)
     }
   }
 
@@ -63,7 +63,8 @@ class LessonOne extends Component {
         micStream,
         notesArray,
         sourceAudioNode,
-        analyserAudioNode;
+        analyserAudioNode,
+        gainNode
 
 
     var isAudioContextSupported = function () {
@@ -201,8 +202,11 @@ class LessonOne extends Component {
     var streamReceived = function (stream) {
         micStream = stream;
         analyserAudioNode = audioContext.createAnalyser();
+        console.log(audioContext, 'audioContext')
         analyserAudioNode.fftSize = 2048;
         sourceAudioNode = audioContext.createMediaStreamSource(micStream);
+        // let gainNode = audioContext.createGain()
+        // analyserAudioNode.connect(gainNode)
         sourceAudioNode.connect(analyserAudioNode);
         detectPitch();
     };

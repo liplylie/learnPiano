@@ -41,7 +41,6 @@ class MiniGameOne extends Component {
 
 	componentDidMount(){
 		let that = this
-		console.log(this.props, 'thisprops')
 		let userMiniGameStatus = firebaseDB.ref("/users/" + this.props.Auth.userId + "/miniGamesCompleted/miniGame1/highScore")
 		userMiniGameStatus.once("value")
         .then(snapshot => {

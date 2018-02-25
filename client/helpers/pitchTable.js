@@ -185,7 +185,7 @@ const pitchTable = {
 			"frequency":216
 		},
 		{
-			"note":"A#3",
+			"note":"Bb3",
 			"frequency":228.84
 		},
 		{
@@ -233,7 +233,7 @@ const pitchTable = {
 			"frequency":432
 		},
 		{
-			"note":"A#4",
+			"note":"Bb4",
 			"frequency":457.69
 		},
 		{
@@ -281,7 +281,7 @@ const pitchTable = {
 			"frequency":864
 		},
 		{
-			"note":"A#5",
+			"note":"Bb5",
 			"frequency":915.38
 		},
 		{
@@ -619,7 +619,7 @@ const pitchTable = {
 			"frequency":217
 		},
 		{
-			"note":"A#3",
+			"note":"Bb3",
 			"frequency":229.9
 		},
 		{
@@ -667,7 +667,7 @@ const pitchTable = {
 			"frequency":434
 		},
 		{
-			"note":"A#4",
+			"note":"Bb4",
 			"frequency":459.81
 		},
 		{
@@ -715,7 +715,7 @@ const pitchTable = {
 			"frequency":868
 		},
 		{
-			"note":"A#5",
+			"note":"Bb5",
 			"frequency":919.61
 		},
 		{
@@ -1053,7 +1053,7 @@ const pitchTable = {
 			"frequency":218
 		},
 		{
-			"note":"A#3",
+			"note":"Bb3",
 			"frequency":230.96
 		},
 		{
@@ -1101,7 +1101,7 @@ const pitchTable = {
 			"frequency":436
 		},
 		{
-			"note":"A#4",
+			"note":"Bb4",
 			"frequency":461.93
 		},
 		{
@@ -1149,7 +1149,7 @@ const pitchTable = {
 			"frequency":872
 		},
 		{
-			"note":"A#5",
+			"note":"Bb5",
 			"frequency":923.85
 		},
 		{
@@ -1487,7 +1487,7 @@ const pitchTable = {
 			"frequency":219
 		},
 		{
-			"note":"A#3",
+			"note":"Bb3",
 			"frequency":232.02
 		},
 		{
@@ -1535,7 +1535,7 @@ const pitchTable = {
 			"frequency":438
 		},
 		{
-			"note":"A#4",
+			"note":"Bb4",
 			"frequency":464.04
 		},
 		{
@@ -1583,7 +1583,7 @@ const pitchTable = {
 			"frequency":876
 		},
 		{
-			"note":"A#5",
+			"note":"Bb5",
 			"frequency":928.09
 		},
 		{
@@ -1921,7 +1921,7 @@ const pitchTable = {
 			"frequency":220
 		},
 		{
-			"note":"A#3",
+			"note":"Bb3",
 			"frequency":233.08
 		},
 		{
@@ -1969,7 +1969,7 @@ const pitchTable = {
 			"frequency":440
 		},
 		{
-			"note":"A#4",
+			"note":"Bb4",
 			"frequency":466.16
 		},
 		{
@@ -2017,7 +2017,7 @@ const pitchTable = {
 			"frequency":880
 		},
 		{
-			"note":"A#5",
+			"note":"Bb5",
 			"frequency":932.33
 		},
 		{
@@ -2355,7 +2355,7 @@ const pitchTable = {
 			"frequency":221
 		},
 		{
-			"note":"A#3",
+			"note":"Bb3",
 			"frequency":234.14
 		},
 		{
@@ -2403,7 +2403,7 @@ const pitchTable = {
 			"frequency":442
 		},
 		{
-			"note":"A#4",
+			"note":"Bb4",
 			"frequency":468.28
 		},
 		{
@@ -2451,7 +2451,7 @@ const pitchTable = {
 			"frequency":884
 		},
 		{
-			"note":"A#5",
+			"note":"Bb5",
 			"frequency":936.57
 		},
 		{
@@ -2789,7 +2789,7 @@ const pitchTable = {
 			"frequency":222
 		},
 		{
-			"note":"A#3",
+			"note":"Bb3",
 			"frequency":235.2
 		},
 		{
@@ -2837,7 +2837,7 @@ const pitchTable = {
 			"frequency":444
 		},
 		{
-			"note":"A#4",
+			"note":"Bb4",
 			"frequency":470.4
 		},
 		{
@@ -2885,7 +2885,7 @@ const pitchTable = {
 			"frequency":888
 		},
 		{
-			"note":"A#5",
+			"note":"Bb5",
 			"frequency":940.8
 		},
 		{
@@ -3223,7 +3223,7 @@ const pitchTable = {
 			"frequency":223
 		},
 		{
-			"note":"A#3",
+			"note":"Bb3",
 			"frequency":236.26
 		},
 		{
@@ -3271,7 +3271,7 @@ const pitchTable = {
 			"frequency":446
 		},
 		{
-			"note":"A#4",
+			"note":"Bb4",
 			"frequency":472.52
 		},
 		{
@@ -3319,7 +3319,7 @@ const pitchTable = {
 			"frequency":892
 		},
 		{
-			"note":"A#5",
+			"note":"Bb5",
 			"frequency":945.04
 		},
 		{
