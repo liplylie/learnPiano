@@ -97,7 +97,9 @@ class LessonOne extends Component {
 
     var updateNote = function (note) {
       if (note !== "--" && note.indexOf("7") === -1 && note.indexOf("8") === -1 ){
-        that.noteArray.push(note)
+        if (that.noteArray.length === 0){
+            that.noteArray.push(note)
+        }
         if (that.noteArray.length > 0){
           if (that.noteArray.includes(matchNote)){
             that.turnOffMicrophone()
@@ -112,8 +114,8 @@ class LessonOne extends Component {
           console.log(that.noteArray, 'note array')
           that.turnOffMicrophone()
           that.noteArray = []
-          that.toggleMicrophone()
-          setTimeout(()=>{that.toggleMicrophone}, 500)
+          //that.toggleMicrophone()
+          setTimeout(()=>{that.toggleMicrophone()}, 700)
         }
       }
     }
