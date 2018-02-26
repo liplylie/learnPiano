@@ -97,10 +97,13 @@ class LessonOne extends Component {
 
     var updateNote = function (note) {
       if (note !== "--" && note.indexOf("7") === -1 && note.indexOf("8") === -1 ){
-        if (that.noteArray.length === 0){
+            console.log(note, 'note')
             that.noteArray.push(note)
-        }
-        if (that.noteArray.length > 0){
+            if( ( note.includes("3") && that.noteArray.length === 1 ) || ( note === "D4" && that.noteArray.length === 1) ){
+                that.noteArray.push(note)
+                that.noteArray.push(note)
+            }
+        if (that.noteArray.length === 3){
           if (that.noteArray.includes(matchNote)){
             that.turnOffMicrophone()
             that.noteArray = []
@@ -109,11 +112,16 @@ class LessonOne extends Component {
           }) 
         } else {
           that.setState({
-            wrongNote: that.noteArray[0]
+            wrongNote: that.noteArray[2]
           })
           console.log(that.noteArray, 'note array')
           that.turnOffMicrophone()
           that.noteArray = []
+          if ( document.getElementsByClassName("mm-popup__btn mm-popup__btn--ok") ) {
+            let okButton = document.getElementsByClassName("mm-popup__btn mm-popup__btn--ok")[0]
+            console.log(okButton, "okbutton")
+            setTimeout(() => {okButton.click()}, 1000)
+          }
           //that.toggleMicrophone()
           setTimeout(()=>{that.toggleMicrophone()}, 700)
         }
