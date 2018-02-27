@@ -38,7 +38,7 @@ class Navbar extends Component {
                             <div className="dropdown-toggle nav-link" title="settings" >
                                 <i className="fa fa-cog fa-fw fa-lg" data-toggle="dropdown"></i>
                                 <ul className="dropdown-menu text-center">
-                                  <li className="dropdown-item"><Link to="/profile/settings">Profile Settings</Link></li>
+                                  <li className="dropdown-item"><Link to="/settings">Profile Settings</Link></li>
                                 </ul>
                             </div>
                         </li>

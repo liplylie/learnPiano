@@ -90,7 +90,8 @@ class App extends Component {
           if (!snapshot.val()){
             userSettings.update(userInfo)
             that.props.AuthActions.userLoginInfo(userInfo)
-          } else {
+          } 
+          else {
             that.props.AuthActions.userLoginInfo(snapshot.val())
           }
         }, (errorObject) => {
@@ -123,7 +124,7 @@ class App extends Component {
               <Route exact path='/links' component={() => ( <Links />)}/>
               <Route exact path='/privacyPolicy' component={() => ( <PrivacyPolicy/>)}/>
               <Route exact path='/profile' component={() => ( <Profile authenticated={this.props.online} loading={this.state.loading} userID={this.state.userID}/>)}/>
-              <Route exact path='/profile/settings' component={() => ( <ProfileSettings authenticated={this.props.online} loading={this.state.loading}/>)}/>
+              <Route exact path='/settings' component={() => ( <ProfileSettings authenticated={this.props.online} loading={this.state.loading}/>)}/>
               <Route exact path='/lessonOne' component={() => ( <LessonOne authenticated={this.props.online} />)}/>
               <Route exact path='/lessonTwo' component={() => ( <LessonTwo authenticated={this.props.online} />)}/>
               <Route exact path='/miniGame1' component={() => ( <MiniGameOne authenticated={this.props.online} />)}/>
