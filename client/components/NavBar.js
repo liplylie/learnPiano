@@ -20,7 +20,7 @@ class Navbar extends Component {
                     <ul className="nav navbar-nav">
                         <li className="nav-item"><Link to="/about" className="nav-link">About</Link></li>
                         <li className="nav-item"><Link to="/links" className="nav-link">Links</Link></li>
-                        <li className="dropdown nav-item">
+                        <li className="dropdown nav-item" style={{display: this.props.authenticated ? "block" : "none"}}>
                             <a data-toggle="dropdown" className="dropdown-toggle nav-link">Mini Games</a>
                             <ul className="dropdown-menu text-center">
                               <li className="dropdown-item"><Link to="/miniGame1">Mini Game 1</Link></li>

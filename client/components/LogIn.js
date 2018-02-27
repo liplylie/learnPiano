@@ -49,18 +49,18 @@ class LogIn extends Component {
 	render(){
 		return(
 			<div>
-				<button type="button" id="dropdownMenu1" data-toggle="dropdown" className="btn btn-outline-secondary dropdown-toggle">Login <span className="caret"></span></button>
-				<ul style={{padding:"2em 4em 0px 4em"}} className="dropdown-menu dropdown-menu-right mt-1">
+				<button type="button" id="dropdownMenu1" data-toggle="dropdown" className="btn dropbtn btn-outline-secondary dropdown-toggle">Login <span className="caret"></span></button>
+				<ul style={{padding:"2em 4em 0px 4em"}} className="dropdown-menu dropdown-menu-right dropdown-content mt-1">
 	        <li className="p-3">
 	              <form className="form" role="form">
 	                  <div className="form-group">
-	                      <input id="emailInput" placeholder="Email" className="input-large" type="text" required=""/>
+	                      <input id="emailInput" placeholder="Email" className="input-large" type="email" required=""/>
 	                  </div>
 	                  <div className="form-group">
 	                      <input id="passwordInput" placeholder="Password" className="input-large" type="password" required="" />
 	                  </div>
 	                  <div className="form-group">
-	                      <button className="btn btn-primary btn-block" style={{cursor:"pointer"}} onClick={()=>{this.authWithEmailPassword(event) }}>Login</button>
+	                      <button className="btn btn-primary btn-block" style={{cursor:"pointer"}} onClick={()=>{this.authWithEmailPassword(event) }}>Login/SignUp</button>
 	                  </div>
 	                  <div className="form-group text-xs-center">
 	                      <small><a >Forgot password?</a></small>

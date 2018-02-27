@@ -21,7 +21,10 @@ class LogOut extends Component {
 	render(){
 		return(
 			<div>
-				<button type="button" id="signOut" onClick={()=>this.handleClick()}className="btn btn-outline-secondary">Log Out<span className="caret"></span></button>
+				<button type="button" id="signOut" onClick={()=>this.handleClick()} className="btn btn-outline-secondary">
+					<img src={this.props.picture} style={{height: "1.5em", width: "2em", paddingRight: "5px"}}/>
+					Log Out
+				</button>
 			</div>
 			)
 	}
@@ -29,7 +32,8 @@ class LogOut extends Component {
 
 const LogOutMapStateToProps = (store) => {
   return {
-    online: store.Auth.online
+    online: store.Auth.online,
+    picture: store.Auth.picture
   }
 }
 
