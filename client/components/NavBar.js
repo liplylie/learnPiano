@@ -31,8 +31,18 @@ class Navbar extends Component {
                             </ul>
                           </li>
                     </ul>
+
                     <ul className="nav navbar-nav flex-row justify-content-between ml-auto">
-                        <li className="nav-item order-2 order-md-1"><a className="nav-link" title="settings"><i className="fa fa-cog fa-fw fa-lg"></i></a></li>
+                    <div class="btn-group">
+                        <li className="nav-item order-2 order-md-1">
+                            <a className="dropdown-toggle nav-link" title="settings" >
+                                <i className="fa fa-cog fa-fw fa-lg" data-toggle="dropdown"></i>
+                                <ul className="dropdown-menu text-center">
+                                  <li className="dropdown-item"><Link to="/profile/settings">profile settings</Link></li>
+                                </ul>
+                            </a>
+                        </li>
+                    </div>
                         <li className="dropdown order-1">
                             {this.props.authenticated
                                 ?  <LogOut authenticated={this.props.authenticated}/>

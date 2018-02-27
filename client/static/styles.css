@@ -325,3 +325,8 @@ table .NotComplete {
   top: 11px;
   left: -6px;
 }
+
+.btn-primary-outline {
+  background-color: transparent;
+  border: none;
+}
