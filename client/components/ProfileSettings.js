@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { app, firebaseDB } from '../firebase'
@@ -26,10 +27,9 @@ class ProfileSettings extends Component {
 		let userSettings = firebaseDB.ref("/users/" + this.props.profile.userId + "/userSettings")
 		userSettings.once("value")
         .then(snapshot => {
-        	console.log('change Name', snapshot.val())
         	userSettings.update(userInfo)
         }, (errorObject) => {
-          console.log("The read failed: " + errorObject.code);
+          alert("The read failed: " + errorObject.code);
         })
    this.props.AuthActions.userLoginInfo(userInfo)
 
@@ -44,6 +44,9 @@ class ProfileSettings extends Component {
 	}
 
 	render(){
+		if (!this.props.authenticated) {
+				return <Redirect to="/"/>
+			}
 		return (
      <div style={{height:"100vh", width:"100vw", textAlign: "center", overflowY: "scroll"}}>
 				<div style={{width:"80vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1, overflowX: "scroll"}}>
@@ -64,17 +67,16 @@ class ProfileSettings extends Component {
 							<button className="btn btn-primary" onClick={()=>{this.showChangeName()}}>Change Name </button>
 						</div>
 					</div>
-					<div className="row" style={{margin: "auto", padding: "1em"}}>	
-						<div style={{fontSize: "1.5em"}}>
-							Picture: <img src={this.props.profile.picture ? this.props.profile.picture : require("../static/defaultUser.png")} style={{height: "10em", width: "10em", padding: "1em"}}/>
-						</div>
-					</div>
 					<div className="row" style={{margin: "auto", padding: "1em"}}>	 
 						<div style={{fontSize: "1.5em"}}>
 							Email: {this.props.profile.email}
 						</div>
 					</div>
-
+					<div className="row" style={{margin: "auto", padding: "1em"}}>	
+						<div style={{fontSize: "1.5em"}}>
+							Picture: <img src={this.props.profile.picture ? this.props.profile.picture : require("../static/defaultUser.png")} style={{height: "10em", width: "10em", padding: "1em"}}/>
+						</div>
+					</div>
 					</div>
 			</div>
     )

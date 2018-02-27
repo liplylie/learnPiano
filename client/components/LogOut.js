@@ -22,7 +22,7 @@ class LogOut extends Component {
 		return(
 			<div>
 				<button type="button" id="signOut" onClick={()=>this.handleClick()} className="btn btn-outline-secondary">
-					<img src={this.props.picture} style={{height: "1.5em", width: "1.5em", paddingRight: "5px"}}/>
+					<img src={this.props.picture ? this.props.picture : require("../static/defaultUser.png") } style={{height: "1.5em", width: "1.5em", paddingRight: "5px"}}/>
 					Log Out
 				</button>
 			</div>

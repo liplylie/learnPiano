@@ -60,7 +60,7 @@ class LogIn extends Component {
 	                      <input id="passwordInput" placeholder="Password" className="input-large" type="password" required="" />
 	                  </div>
 	                  <div className="form-group">
-	                      <button className="btn btn-primary btn-block" style={{cursor:"pointer"}} onClick={()=>{this.authWithEmailPassword(event) }}>Login/SignUp</button>
+	                      <button className="btn btn-primary btn-block" style={{cursor:"pointer"}} onClick={(event)=>{event.preventDefault; this.authWithEmailPassword(event) }}>Login/SignUp</button>
 	                  </div>
 	                  <div className="form-group text-xs-center">
 	                      <small><a >Forgot password?</a></small>
