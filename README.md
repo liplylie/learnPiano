@@ -1,6 +1,6 @@
 ### LearnPiano
-website for interactive learning with the piano
-Currently in development. Please see other branches to look at progress.
+website for interactive learning with the piano <br/>
+Currently in development. 
 
 ## Table of Contents
 
