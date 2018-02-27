@@ -14,7 +14,7 @@ Currently in development. Please see other branches to look at progress.
   - [npm run eject](#npm-run-eject)
 - [Supported Browsers](#supported-browsers)
 
-# Tech Stack
+## Tech Stack
 - JavaScript
 - React
 - React Redux
