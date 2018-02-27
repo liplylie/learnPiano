@@ -93,7 +93,7 @@ class Profile extends Component{
 						</div>
 
 						<div className="col-md-3" style={{marginRight:"3em"}}></div>
-						<div className="col-md-4 text-left" style={{margin:".3em"}}> 
+						<div className="col-md-4 text-left wow fadeIn animated" style={{margin:".3em"}}> 
 							<Link to="/lessonOne" style={{fontFamily: "helvetica", fontSize: "1.5em"}}>Lesson One</Link>
 							<br/>
 							<Link to="/lessonTwo" style={{fontFamily: "helvetica", fontSize: "1.5em"}}>Lesson Two</Link>
@@ -106,7 +106,7 @@ class Profile extends Component{
 						</div>
 					</div>
 					
-					<div className="row">
+					<div className="row wow fadeIn animated">
 						<div className="col-md-12">
 							<table id="lessonTable" className="table">
 								<tbody>

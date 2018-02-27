@@ -7,8 +7,7 @@
     "start": "node server/server.js",
     "start-nodemon": "nodemon server/server.js",
     "compile-watch": "webpack --watch",
-    "all": "npm run start-nodemon & npm run compile-watch",
-    "build": "NODE_ENV=production webpack -p --config ./webpack.production.config.js"
+    "all": "npm run start-nodemon & npm run compile-watch"
   },
   "author": "Jordan Daniels",
   "license": "ISC",

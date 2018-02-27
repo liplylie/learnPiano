@@ -21,11 +21,11 @@ class DefaultHome extends Component {
           <div style={{width:"80vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1, overflowX: "scroll"}}>
             <div className="row" style={{height: "7em"}}></div>
             <div className="row">
-              <div className="col-md-12"> 
-                <img src={require("../static/learnpianofun.png")}/>
+              <div className="col-md-12 wow fadeIn animated"> 
+                <img src={require("../static/learnpianofun.png")} alt="learnpianofun"/>
               </div>
             </div>
-            <div className="row" style={{padding: "1em"}}>
+            <div className="row wow fadeIn animated" style={{padding: "1em"}}>
               <div className="col-md-4"> 
                 <p style={{fontFamily: 'Helvetica', color: "skyblue", fontSize: "1.5em"}}> Learn the basics of piano. No installation or plugins needed!</p>
                  <ImageZoom
@@ -73,8 +73,8 @@ class DefaultHome extends Component {
               </div>
             </div>
             <div className="row" style={{padding: "1em"}}>
-              <div className="col-md-12" style={{fontFamily: 'Helvetica', fontSize: "3em"}}>
-              All you need is a piano or piano app to get started!
+              <div className="col-md-12 wow fadeIn animated" style={{fontFamily: 'Helvetica', fontSize: "3em"}}>
+              All you will need is a piano or piano app to get started!
               </div>
             </div>
           </div>
