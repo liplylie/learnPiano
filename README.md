@@ -9,9 +9,9 @@ Currently in development. Please see other branches to look at progress.
 - [Folder Structure](#folder-structure)
 - [Available Scripts](#available-scripts)
   - [npm start](#npm-start)
-  - [npm test](#npm-test)
-  - [npm run build](#npm-run-build)
-  - [npm run eject](#npm-run-eject)
+  - [npm run start-nodemon](#npm-run-start-nodemon)
+  - [npm run compile-watch](#npm-run-compile-watch)
+  - [npm run all](#npm-run-all)
 - [Supported Browsers](#supported-browsers)
 
 ## Tech Stack
@@ -27,3 +27,31 @@ Currently in development. Please see other branches to look at progress.
 - ExpressJS
 - Firebase Auth and Database
 - Webpack
+## Available Scripts
+
+In the terminal, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
+
+### `npm start-nodemon`
+
+Launches the test runner in the interactive watch mode.<br>
+
+### `npm run compile-watch`
+
+Runs the webpack and builds the bundle.js file. 
+
+### `npm run all`
+
+Runs npm start nodemon and npm run compile-watch <br/>
+
+For production, modify the webpack.config.js file and add the uglify and production plugins.
+
+
+
