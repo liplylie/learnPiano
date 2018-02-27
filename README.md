@@ -4,7 +4,6 @@ Currently in development. Please see other branches to look at progress.
 
 ## Table of Contents
 
-- [Updating to New Releases](#updating-to-new-releases)
 - [TechStack](#tech-stack)
 - [Folder Structure](#folder-structure)
 - [Available Scripts](#available-scripts)
@@ -52,6 +51,12 @@ Runs the webpack and builds the bundle.js file.
 Runs npm start nodemon and npm run compile-watch <br/>
 
 For production, modify the webpack.config.js file and add the uglify and production plugins.
+
+## Supported Browsers
+
+LearnPianoFun works on all browsers. However, the web audio api is unable to work properly on mobile browsers, so the lessons and mini games cannot be played on mobile devices.
+
+You can refer [to the React documentation](https://reactjs.org/docs/react-dom.html#browser-support) for more information about supported browsers.
 
 
 
