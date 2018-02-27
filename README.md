@@ -5,7 +5,7 @@ Currently in development. Please see other branches to look at progress.
 ## Table of Contents
 
 - [Updating to New Releases](#updating-to-new-releases)
-- [TechStack](# Tech Stack)
+- [TechStack](#Tech-Stack)
 - [Folder Structure](#folder-structure)
 - [Available Scripts](#available-scripts)
   - [npm start](#npm-start)
