@@ -33,14 +33,14 @@ class Navbar extends Component {
                     </ul>
 
                     <ul className="nav navbar-nav flex-row justify-content-between ml-auto">
-                    <div class="btn-group">
+                    <div className="btn-group">
                         <li className="nav-item order-2 order-md-1">
-                            <a className="dropdown-toggle nav-link" title="settings" >
+                            <div className="dropdown-toggle nav-link" title="settings" >
                                 <i className="fa fa-cog fa-fw fa-lg" data-toggle="dropdown"></i>
                                 <ul className="dropdown-menu text-center">
-                                  <li className="dropdown-item"><Link to="/profile/settings">profile settings</Link></li>
+                                  <li className="dropdown-item"><Link to="/profile/settings">Profile Settings</Link></li>
                                 </ul>
-                            </a>
+                            </div>
                         </li>
                     </div>
                         <li className="dropdown order-1">

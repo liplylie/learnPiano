@@ -12,6 +12,7 @@ import About from './About'
 import Links from './Links'
 import PrivacyPolicy from './privacyPolicy'
 import NavBar from './NavBar'
+import ProfileSettings from './ProfileSettings'
 import DefaultHome from './DefaultHome'
 import Footer from './Footer'
 import Profile from'./Profile'
@@ -38,6 +39,7 @@ class App extends Component {
         })
         let userLessonStatus = firebaseDB.ref("/users/" + user.uid + "/lessonsCompleted")
         let userMiniGameStatus = firebaseDB.ref("/users/" + user.uid + "/miniGamesCompleted")
+        let userSettings = firebaseDB.ref("/users/" + user.uid + "/userSettings")
         let lessons = {
           lesson1: {completed: false, time: null},
           lesson2: {completed: false, time: null},
@@ -81,7 +83,20 @@ class App extends Component {
           userId : user.uid,
           picture : user.photoURL
         }
-        this.props.AuthActions.userLoginInfo(userInfo)
+
+
+        userSettings.once("value")
+        .then(snapshot => {
+          if (!snapshot.val()){
+            userSettings.update(userInfo)
+            that.props.AuthActions.userLoginInfo(userInfo)
+          } else {
+            that.props.AuthActions.userLoginInfo(snapshot.val())
+          }
+        }, (errorObject) => {
+          console.log("The read failed: " + errorObject.code);
+        })
+
         this.setState({loading:false})
       } else {
         console.log('fail')
@@ -108,6 +123,7 @@ class App extends Component {
               <Route exact path='/links' component={() => ( <Links />)}/>
               <Route exact path='/privacyPolicy' component={() => ( <PrivacyPolicy/>)}/>
               <Route exact path='/profile' component={() => ( <Profile authenticated={this.props.online} loading={this.state.loading} userID={this.state.userID}/>)}/>
+              <Route exact path='/profile/settings' component={() => ( <ProfileSettings authenticated={this.props.online} loading={this.state.loading}/>)}/>
               <Route exact path='/lessonOne' component={() => ( <LessonOne authenticated={this.props.online} />)}/>
               <Route exact path='/lessonTwo' component={() => ( <LessonTwo authenticated={this.props.online} />)}/>
               <Route exact path='/miniGame1' component={() => ( <MiniGameOne authenticated={this.props.online} />)}/>
