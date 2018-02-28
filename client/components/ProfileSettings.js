@@ -42,12 +42,12 @@ class ProfileSettings extends Component {
 
 	showChangePicture(){
 		document.getElementById("showChangePicture").style.display = "block"
-		document.getElementById("changePicture").style.display = "block"
+		document.getElementById("changePicture").style.display = "none"
 
 	}
 
 	changePicture(){
-
+		document.getElementByIds("show")
 	}
 
 	render(){
@@ -68,7 +68,7 @@ class ProfileSettings extends Component {
 									<tr style={{border:"none"}}onClick={()=>{this.showChangeName()}} >
 										<th style={{border:"none"}}>Name</th>
 										<td style={{color: "grey", border:"none"}}>{this.props.profile.name ? this.props.profile.name : "Not Set"}</td>
-										<td id="changeName" style={{border:"none"}}><span style={{color: "blue", textAlign: "center"}} > edit </span></td>
+										<td id="changeName" style={{border:"none"}}><span style={{color: "#365899", textAlign: "center"}} > Edit </span></td>
 										<td id="showChangeName" style={{display:"none", border:"none"}}>
 											<form onSubmit={(event)=>{event.preventDefault; this.changeName(event)}} >
 												<input id="newName" type="name" placeholder="Enter new name" />
@@ -86,13 +86,20 @@ class ProfileSettings extends Component {
 										<td style={{border:"none"}}> 
 											<img src={this.props.profile.picture ? this.props.profile.picture : require("../static/defaultUser.png")} style={{height: "10em", width: "10em"}}/>
 										</td>
-										<td id="changePicture" style={{border:"none"}} ><span style={{color: "blue", textAlign: "center"}} > edit </span></td>
+										<td id="changePicture" style={{border:"none"}} ><span style={{color: "#365899", textAlign: "center"}} > Edit </span></td>
+										<td id="showChangePicture" style={{display:"none", border:"none", width: "20em"}}>
+											<label className="custom-file">
+											  <input type="file" id="file" className="custom-file-input"/>
+											  <span className="custom-file-control"></span>
+										</label>
+										</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
 				</div>
+
 			</div>
     )
 	}
