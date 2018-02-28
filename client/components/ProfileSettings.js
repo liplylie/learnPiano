@@ -37,6 +37,13 @@ class ProfileSettings extends Component {
 
 	showChangeName(){
 		document.getElementById("showChangeName").style.display = "block"
+		document.getElementById("changeName").style.display = "none"
+	}
+
+	showChangePicture(){
+		document.getElementById("showChangePicture").style.display = "block"
+		document.getElementById("changePicture").style.display = "block"
+
 	}
 
 	changePicture(){
@@ -44,40 +51,48 @@ class ProfileSettings extends Component {
 	}
 
 	render(){
-		if (!this.props.authenticated) {
-				return <Redirect to="/"/>
-			}
+		// if (!this.props.authenticated) {
+		// 		return <Redirect to="/"/>
+		// 	}
 		return (
-     <div style={{height:"100vh", width:"100vw", textAlign: "center", overflowY: "scroll"}}>
+     <div style={{height:"100vh", width:"100vw", overflowY: "scroll"}}>
 				<div style={{width:"80vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1, overflowX: "scroll"}}>
 					<div className="row" margin = "1em"></div>
 					<div className="col-md-12"> 
 						<h1>Profile Settings</h1> 
 					</div>
 					<div className="row" style={{margin: "auto", padding: "1em"}}>	
-						<div style={{fontSize: "1.5em"}}>
-							Name: {this.props.profile.name ? this.props.profile.name : "Not Set"}
-							<div id="showChangeName" style={{display:"none"}}>
-								<form onSubmit={(event)=>{event.preventDefault; this.changeName(event)}} >
-									<input id="newName" type="name" placeholder="Enter new name" />
-									<input type="submit" className="btn-info" placeholder="submit"/>
-								</form>
-							</div>
-							<br/>
-							<button className="btn btn-primary" onClick={()=>{this.showChangeName()}}>Change Name </button>
+						<div className="col-md-12"> 
+							<table id="settingTable" className="table table-hover" style={{border:"none"}}>
+								<tbody>
+									<tr style={{border:"none"}}onClick={()=>{this.showChangeName()}} >
+										<th style={{border:"none"}}>Name</th>
+										<td style={{color: "grey", border:"none"}}>{this.props.profile.name ? this.props.profile.name : "Not Set"}</td>
+										<td id="changeName" style={{border:"none"}}><span style={{color: "blue", textAlign: "center"}} > edit </span></td>
+										<td id="showChangeName" style={{display:"none", border:"none"}}>
+											<form onSubmit={(event)=>{event.preventDefault; this.changeName(event)}} >
+												<input id="newName" type="name" placeholder="Enter new name" />
+												<input type="submit" className="btn-info" placeholder="submit"/>
+											</form>
+										</td>
+									</tr>
+									<tr style={{border:"none"}}>
+										<th style={{border:"none"}}>Email</th>
+										<td style={{border:"none", color: "grey"}}>{this.props.profile.email}</td>
+										<td style={{border:"none"}}></td>
+									</tr>
+									<tr onClick={()=>{this.showChangePicture()}} style={{border:"none"}}>
+										<th style={{border:"none"}}>Picture</th>
+										<td style={{border:"none"}}> 
+											<img src={this.props.profile.picture ? this.props.profile.picture : require("../static/defaultUser.png")} style={{height: "10em", width: "10em"}}/>
+										</td>
+										<td id="changePicture" style={{border:"none"}} ><span style={{color: "blue", textAlign: "center"}} > edit </span></td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
-					<div className="row" style={{margin: "auto", padding: "1em"}}>	 
-						<div style={{fontSize: "1.5em"}}>
-							Email: {this.props.profile.email}
-						</div>
-					</div>
-					<div className="row" style={{margin: "auto", padding: "1em"}}>	
-						<div style={{fontSize: "1.5em"}}>
-							Picture: <img src={this.props.profile.picture ? this.props.profile.picture : require("../static/defaultUser.png")} style={{height: "10em", width: "10em", padding: "1em"}}/>
-						</div>
-					</div>
-					</div>
+				</div>
 			</div>
     )
 	}

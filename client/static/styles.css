@@ -330,3 +330,7 @@ table .NotComplete {
   background-color: transparent;
   border: none;
 }
+
+#settingTable {
+    cursor: pointer;
+}
