@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@blueprintjs/core": "^2.0.0-beta.3",
+    "aws-sdk": "^2.205.0",
     "axios": "^0.17.1",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -22,6 +23,7 @@
     "express": "^4.16.2",
     "file-loader": "^1.1.6",
     "firebase": "^4.9.0",
+    "jquery": "^3.3.1",
     "nodemon": "^1.14.11",
     "re-base": "^3.2.2",
     "react": "^16.2.0",

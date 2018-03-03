@@ -4,6 +4,9 @@ import { Switch } from "react-router-dom";
 import { app, firebaseDB } from "../firebase";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AWS, { Config, CognitoIdentityCredentials } from 'aws-sdk'
+import secret from '../../secret.json'
+
 import * as AuthActions from "../actions/authActions";
 import * as LessonsCompletedActions from "../actions/lessonsCompletedActions";
 import * as MiniGamesCompletedActions from "../actions/miniGamesCompletedActions";
@@ -37,6 +40,21 @@ class App extends Component {
         that.setState({
           userID: user.uid
         });
+        const albumBucketName = secret.BucketName;
+        const bucketRegion = secret.AWSRegion;
+        const IdentityPoolId = secret.AWSIdentityId;
+        AWS.config.update({
+          region: bucketRegion,
+          credentials: new AWS.CognitoIdentityCredentials({
+            IdentityPoolId: IdentityPoolId
+          })
+        });
+
+        const s3 = new AWS.S3({
+          apiVersion: '2006-03-01',
+          params: {Bucket: albumBucketName}
+        });
+
         let userLessonStatus = firebaseDB.ref(
           "/users/" + user.uid + "/lessonsCompleted"
         );
