@@ -14,7 +14,7 @@ import * as AuthActions from '../actions/authActions'
 class ProfileSettings extends Component {
 	constructor(){
 		super()
-
+		this.count = 0
 	}
 
 	changeName(event){
@@ -44,18 +44,23 @@ class ProfileSettings extends Component {
 	}
 
 	showChangePicture(){
+		let that = this
+
 		document.getElementById("showChangePicture").style.display = "block"
 		document.getElementById("changePicture").style.display = "none"
 		$("#photoupload").change(function(){
 			$("#upload-file-info").html(this.files[0].name)
+			that.count +=1
 			console.log('photoupload')
-        //this.addPhoto()
- });
-
+			if (that.count <=1){
+      	that.addPhoto()
+			}
+ 		});
 	}
 
 
 	addPhoto() {
+		let that = this
 		let s3 = new AWS.S3({
       apiVersion: '2006-03-01',
       params: {Bucket: secret.BucketName}
@@ -67,7 +72,6 @@ class ProfileSettings extends Component {
 	  let file = files[0];
 	  let fileName = file.name;
 	  let albumPhotosKey = encodeURIComponent("pictures") + '/' + this.props.profile.userId + '/';
-
 	  let photoKey = albumPhotosKey + fileName;
 	  s3.upload({
 	    Key: photoKey,
@@ -75,10 +79,26 @@ class ProfileSettings extends Component {
 	    ACL: 'public-read'
 	  }, (err, data) => {
 	    if (err) {
+	    	console.log(err)
 	      return alert('There was an error uploading your photo: ', err.message);
 	    }
+
+	    let userInfo = {
+          name : this.props.profile.name,
+          email : this.props.profile.email,
+          userId : this.props.profile.userId,
+          picture : data.Location
+        }
+    that.props.AuthActions.userLoginInfo(userInfo)
+		let userSettings = firebaseDB.ref("/users/" + this.props.profile.userId + "/userSettings")
+		userSettings.once("value")
+        .then(snapshot => {
+        	userSettings.update(userInfo)
+        }, (errorObject) => {
+          alert("The read failed: " + errorObject.code);
+        })
 	    console.log(data)
-	    alert('Successfully uploaded photo.');
+
 	  });
 	}
 
