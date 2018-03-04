@@ -8,8 +8,8 @@ import secret from '../../secret.json'
 import $ from 'jquery'
 
 import * as AuthActions from '../actions/authActions'
-
-
+import * as LessonsCompletedActions from '../actions/lessonsCompletedActions'
+import * as MiniGamesCompletedActions from '../actions/miniGamesCompletedActions'
 
 class ProfileSettings extends Component {
 	constructor(){
@@ -82,7 +82,6 @@ class ProfileSettings extends Component {
 	    	console.log(err)
 	      return alert('There was an error uploading your photo: ', err.message);
 	    }
-
 	    let userInfo = {
           name : this.props.profile.name,
           email : this.props.profile.email,
@@ -100,6 +99,57 @@ class ProfileSettings extends Component {
 	    console.log(data)
 
 	  });
+	}
+
+	resetSettings(){
+		let that = this
+		let userLessonStatus = firebaseDB.ref(
+          "/users/" + user.uid + "/lessonsCompleted"
+        );
+        let userMiniGameStatus = firebaseDB.ref(
+          "/users/" + user.uid + "/miniGamesCompleted"
+        );
+         let lessons = {
+          lesson1: { completed: false, time: null },
+          lesson2: { completed: false, time: null },
+          lesson3: { completed: false, time: null },
+          lesson4: { completed: false, time: null },
+          lesson5: { completed: false, time: null }
+        };
+        let miniGames = {
+          miniGame1: { completed: false, highScore: null },
+          miniGame2: { completed: false, highScore: null },
+          miniGame3: { completed: false, highScore: null },
+          miniGame4: { completed: false, highScore: null },
+          miniGame5: { completed: false, highScore: null }
+        };
+
+         userLessonStatus.once("value").then(
+          snapshot => {
+          	userLessonStatus.update(lessons)
+              that.props.LessonsCompletedActions.lessonsCompleted(
+                lessons
+              );
+          },
+          errorObject => {
+            console.log("The read failed: " + errorObject.code);
+          }
+        );
+
+        userMiniGameStatus.once("value").then(
+          snapshot => {
+            if (!snapshot.val()) {
+              userMiniGameStatus.update(miniGames);
+            } else {
+              that.props.MiniGamesCompletedActions.miniGamesCompleted(
+                snapshot.val()
+              );
+            }
+          },
+          errorObject => {
+            console.log("The read failed: " + errorObject.code);
+          }
+        );
 	}
 
 	render(){
@@ -167,6 +217,8 @@ const profileSettingsMapStateToProps = (store) => {
 const profileSettingsDispatch = (dispatch) => {
   return {
     AuthActions: bindActionCreators(AuthActions, dispatch),
+    LessonsCompletedActions: bindActionCreators(LessonsCompletedActions, dispatch),
+    MiniGamesCompletedActions: bindActionCreators(MiniGamesCompletedActions, dispatch)
     }
 }
 

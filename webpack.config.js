@@ -29,6 +29,10 @@ module.exports = {
         test: /\.(png|jpg|gif|jpeg)$/,
         loader: 'file-loader',
         options: {}
+      },
+      {
+      test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+      loader: 'url-loader',
       }
     ]
   },

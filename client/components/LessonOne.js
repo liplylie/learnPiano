@@ -11,6 +11,7 @@ import * as LessonsCompleted from "../actions/lessonsCompletedActions";
 import Popup from "react-popup";
 import pitchTable from "../helpers/pitchTable";
 import pitchTablePictures from "../helpers/pitchTablePictures";
+import Piano from './Piano.js'
 
 class LessonOne extends Component {
     constructor(props) {
@@ -910,6 +911,7 @@ class LessonOne extends Component {
                             <Popup />
                         </div>
                     </div>
+                <Piano/>
                 </div>
             </div>
         );
