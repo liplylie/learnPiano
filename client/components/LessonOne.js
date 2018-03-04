@@ -525,6 +525,16 @@ class LessonOne extends Component {
         });
     }
 
+    showPiano(){
+        document.getElementById("showPiano").style.display = "block"
+        document.getElementById("showPianoButton").style.display = "none"
+    }
+
+    hidePiano(){
+        document.getElementById("showPiano").style.display = "none"
+        document.getElementById("showPianoButton").style.display = "block"
+    }
+
     render() {
         if (!this.props.Auth.online) {
             return <Redirect to="/" />;
@@ -911,7 +921,14 @@ class LessonOne extends Component {
                             <Popup />
                         </div>
                     </div>
-                <Piano/>
+                    <div id="showPianoButton" style={{cursor: "pointer"}} onClick={()=>this.showPiano()}>
+                        <img  className="wow rollIn" style={{height: "4em", width: "4em", margin: ".5em"}} src={require('../static/pianoKeys.png')} />
+                        <p className="wow flipInX center"> Open Piano</p>
+                    </div>
+                <div id="showPiano" style={{display:"none"}}>
+                    <Piano/>
+                    <p onClick={()=>this.hidePiano()} style={{cursor: "pointer"}} > hide</p>
+                </div>
                 </div>
             </div>
         );
