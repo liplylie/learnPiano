@@ -20,6 +20,10 @@ class ProfileSettings extends Component {
 		this.resetMiniGameSettings = this.resetMiniGameSettings.bind(this)
 	}
 
+	componentWillMount(){
+
+	}
+
 	changeName(event){
 		event.preventDefault()
 		let newName = document.getElementById("newName").value
@@ -182,11 +186,15 @@ class ProfileSettings extends Component {
 	    }
 		});
 	}
-	
+
 	render(){
 		// if (!this.props.authenticated) {
 		// 		return <Redirect to="/"/>
 		// 	}
+		let miniGamesNum = Object.values(this.props.miniGames)
+			.filter(game => {
+				return game.completed !== false
+			})
 		return (
      <div style={{height:"100vh", width:"100vw", overflowY: "scroll"}}>
 				<div style={{width:"80vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1, overflowX: "scroll"}}>
@@ -230,7 +238,7 @@ class ProfileSettings extends Component {
 									</tr>
 									<tr style={{border:"none"}} onClick={()=>{this.showMiniGameStatus()}}>
 										<th style={{border:"none"}}>Mini Games </th>
-										<td style={{border:"none", color: "grey"}}>Games</td>
+										<td style={{border:"none", color: "grey"}}>Completed: {miniGamesNum.length}</td>
 										<td id="showMiniGameStatus" style={{border:"none"}}><span style={{color: "#365899", textAlign: "center"}} > Edit </span></td>
 
 										<td id="miniGameButton" style={{border:"none", display: "none"}}>
@@ -251,7 +259,9 @@ class ProfileSettings extends Component {
 
 const profileSettingsMapStateToProps = (store) => {
   return {
-    profile: store.Auth
+    profile: store.Auth,
+    miniGames: store.MiniGamesCompleted,
+    lessons: store.LessonsCompleted
   }
 }
 
