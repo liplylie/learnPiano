@@ -54,7 +54,7 @@ class Piano extends Component {
   }
 
   /* Piano keyboard pitches. Names match sound files by ID attribute. */
-  componentDidMount() {
+  componentWillMount() {
     var keys = [
       "A2",
       "Bb2",
@@ -276,7 +276,6 @@ class Piano extends Component {
     /* Register keyboard event callbacks. */
 
     $(document).keydown(function(event) {
-      console.log("click");
       if (event.which === pedal) {
         sustaining = true;
         $(pianoClass("pedal")).addClass("piano-sustain");

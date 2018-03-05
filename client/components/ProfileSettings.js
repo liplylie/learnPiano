@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { app, firebaseDB } from '../firebase'
 import AWS from 'aws-sdk'
 import secret from '../../secret.json'
+import Popup from "react-popup";
 import $ from 'jquery'
 
 import * as AuthActions from '../actions/authActions'
@@ -15,6 +16,8 @@ class ProfileSettings extends Component {
 	constructor(){
 		super()
 		this.count = 0
+		this.resetLessonsSettings = this.resetLessonsSettings.bind(this)
+		this.resetMiniGameSettings = this.resetMiniGameSettings.bind(this)
 	}
 
 	changeName(event){
@@ -97,13 +100,10 @@ class ProfileSettings extends Component {
 	  });
 	}
 
-	resetSettings(){
+	resetLessonsSettings(){
 		let that = this
 		let userLessonStatus = firebaseDB.ref(
-          "/users/" + user.uid + "/lessonsCompleted"
-        );
-        let userMiniGameStatus = firebaseDB.ref(
-          "/users/" + user.uid + "/miniGamesCompleted"
+          "/users/" + this.props.profile.userId + "/lessonsCompleted"
         );
          let lessons = {
           lesson1: { completed: false, time: null },
@@ -112,6 +112,23 @@ class ProfileSettings extends Component {
           lesson4: { completed: false, time: null },
           lesson5: { completed: false, time: null }
         };
+
+         userLessonStatus.once("value").then(
+          snapshot => {
+          	userLessonStatus.update(lessons)
+              that.props.LessonsCompletedActions.lessonsCompleted(lessons);
+          },
+          errorObject => {
+            console.log("The read failed: " + errorObject.code);
+          }
+        );
+	}
+
+	resetMiniGameSettings(){
+		let that = this
+        let userMiniGameStatus = firebaseDB.ref(
+          "/users/" + this.props.profile.userId + "/miniGamesCompleted"
+        );
         let miniGames = {
           miniGame1: { completed: false, highScore: null },
           miniGame2: { completed: false, highScore: null },
@@ -120,27 +137,10 @@ class ProfileSettings extends Component {
           miniGame5: { completed: false, highScore: null }
         };
 
-         userLessonStatus.once("value").then(
-          snapshot => {
-          	userLessonStatus.update(lessons)
-              that.props.LessonsCompletedActions.lessonsCompleted(
-                lessons
-              );
-          },
-          errorObject => {
-            console.log("The read failed: " + errorObject.code);
-          }
-        );
-
         userMiniGameStatus.once("value").then(
           snapshot => {
-            if (!snapshot.val()) {
               userMiniGameStatus.update(miniGames);
-            } else {
-              that.props.MiniGamesCompletedActions.miniGamesCompleted(
-                snapshot.val()
-              );
-            }
+              that.props.MiniGamesCompletedActions.miniGamesCompleted(miniGames)
           },
           errorObject => {
             console.log("The read failed: " + errorObject.code);
@@ -148,6 +148,41 @@ class ProfileSettings extends Component {
         );
 	}
 
+
+
+	showMiniGameStatus(){
+		document.getElementById("showMiniGameStatus").style.display = "none"
+		document.getElementById("miniGameButton").style.display = "block"
+
+	}
+
+	deleteMiniGameStatus(){
+		let that = this
+		let miniGamePopup = Popup.create({
+	    title: null,
+	    content: 'Are you sure that you want to delete your Mini Game Data?',
+	    buttons: {
+	        left: [{
+	            text: 'No',
+	            className: 'danger',
+	            action: () => {
+	                Popup.alert('Your data will not be deleted');
+	                Popup.close();
+	            }
+	        }],
+	        right: [{
+	            text: 'Yes',
+	            key: 'enter',
+	            action: () =>{
+	            	that.resetMiniGameSettings()
+	            	 Popup.alert('Your data is deleted');
+	               Popup.close();
+	            }
+	        }]
+	    }
+		});
+	}
+	
 	render(){
 		// if (!this.props.authenticated) {
 		// 		return <Redirect to="/"/>
@@ -156,6 +191,7 @@ class ProfileSettings extends Component {
      <div style={{height:"100vh", width:"100vw", overflowY: "scroll"}}>
 				<div style={{width:"80vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1, overflowX: "scroll"}}>
 					<div className="row" margin = "1em"></div>
+					<Popup/>
 					<div className="col-md-12"> 
 						<h1>Profile Settings</h1> 
 					</div>
@@ -189,7 +225,16 @@ class ProfileSettings extends Component {
 											<label className="custom-file">
 											  <input type="file" id="photoupload" accept=".jpg, .jpeg, .png, .gif, .pdf" className="custom-file-input"/>
 											  <span className="custom-file-control" id="upload-file-info"></span>
-										</label>
+											</label>
+										</td>
+									</tr>
+									<tr style={{border:"none"}} onClick={()=>{this.showMiniGameStatus()}}>
+										<th style={{border:"none"}}>Mini Games </th>
+										<td style={{border:"none", color: "grey"}}>Games</td>
+										<td id="showMiniGameStatus" style={{border:"none"}}><span style={{color: "#365899", textAlign: "center"}} > Edit </span></td>
+
+										<td id="miniGameButton" style={{border:"none", display: "none"}}>
+											<button className="btn btn-primary" onClick={()=>{this.deleteMiniGameStatus()}}> Delete Mini Games Status</button>
 										</td>
 									</tr>
 								</tbody>
