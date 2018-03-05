@@ -160,18 +160,18 @@ class Piano extends Component {
       return keyup(code);
     }
 
-    function press(key) {
+    async function press(key) {
       var audio = sound(key);
       if (depressed[key]) {
         return;
       }
       clearInterval(intervals[key]);
       if (audio) {
-        audio.pause();
+        let pause = await audio.pause();
         audio.volume = 1.0;
         if (audio.readyState >= 2) {
           audio.currentTime = 0;
-          audio.play();
+          let play = await audio.play();
           depressed[key] = true;
         }
       }
