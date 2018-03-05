@@ -44,7 +44,9 @@ class Footer extends Component {
               <li>
                 <Link to="/privacyPolicy">Privacy & Cookies</Link>
               </li>
-              <li>Corporate Information</li>
+              <li>
+              <Link to="/settings" > Settings </Link>
+              </li>
             </ul>
           </div>
           <div className="col-md-2">

@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Redirect } from "react-router-dom";
 import * as MiniGamesCompleted from "../actions/miniGamesCompletedActions";
+import Piano from "./Piano";
+
 
 import C4 from "../static/C4.gif";
 import D4 from "../static/D4.jpeg";
@@ -428,6 +430,17 @@ class MiniGameOne extends Component {
         this.findPitch(notes[randomNumber]);
     }
 
+    showPiano() {
+        document.getElementById("showPiano").style.display = "block";
+        document.getElementById("showPianoButton").style.display = "none";
+    }
+
+    hidePiano() {
+        document.getElementById("showPiano").style.display = "none";
+        document.getElementById("showPianoButton").style.display = "block";
+    }
+
+
     render() {
         if (!this.props.Auth.online) {
             return <Redirect to="/" />;
@@ -569,6 +582,32 @@ class MiniGameOne extends Component {
                         <div>
                             Previous High Score: {this.state.previousHighScore}
                         </div>
+                    </div>
+                    <div
+                        id="showPianoButton"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => this.showPiano()}
+                    >
+                        <img
+                            className="wow rollIn"
+                            style={{
+                                height: "4em",
+                                width: "4em",
+                                margin: ".5em"
+                            }}
+                            src={require("../static/pianoKeys.png")}
+                        />
+                        <p className="wow flipInX center"> Open Piano</p>
+                    </div>
+                    <div id="showPiano" style={{ display: "none" }}>
+                        <Piano />
+                        <p
+                            onClick={() => this.hidePiano()}
+                            style={{ cursor: "pointer" }}
+                        >
+                            {" "}
+                            hide
+                        </p>
                     </div>
                 </div>
             </div>

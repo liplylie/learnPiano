@@ -67,8 +67,6 @@ class Profile extends Component {
 	}
 
 	render() {
-		console.log(this.props, "profile props");
-		console.log(this.state, "profile state");
 
 		let lessonData = Object.entries(this.state.lessonsCompleted);
 		let miniGameData = Object.entries(this.state.miniGamesCompleted);

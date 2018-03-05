@@ -11,7 +11,7 @@ import * as LessonsCompleted from "../actions/lessonsCompletedActions";
 import Popup from "react-popup";
 import pitchTable from "../helpers/pitchTable";
 import pitchTablePictures from "../helpers/pitchTablePictures";
-import Piano from './Piano.js'
+import Piano from "./Piano.js";
 
 class LessonOne extends Component {
     constructor(props) {
@@ -525,14 +525,14 @@ class LessonOne extends Component {
         });
     }
 
-    showPiano(){
-        document.getElementById("showPiano").style.display = "block"
-        document.getElementById("showPianoButton").style.display = "none"
+    showPiano() {
+        document.getElementById("showPiano").style.display = "block";
+        document.getElementById("showPianoButton").style.display = "none";
     }
 
-    hidePiano(){
-        document.getElementById("showPiano").style.display = "none"
-        document.getElementById("showPianoButton").style.display = "block"
+    hidePiano() {
+        document.getElementById("showPiano").style.display = "none";
+        document.getElementById("showPianoButton").style.display = "block";
     }
 
     render() {
@@ -548,6 +548,8 @@ class LessonOne extends Component {
             <div
                 style={{ height: "100vh", width: "100vw", textAlign: "center" }}
             >
+            <script src="./jquery-1.7.2.min.js"></script>
+    <script src="./jquery-ui-1.8.20.custom.min.js"></script>
                 <div
                     style={{
                         width: "70vw",
@@ -921,14 +923,32 @@ class LessonOne extends Component {
                             <Popup />
                         </div>
                     </div>
-                    <div id="showPianoButton" style={{cursor: "pointer"}} onClick={()=>this.showPiano()}>
-                        <img  className="wow rollIn" style={{height: "4em", width: "4em", margin: ".5em"}} src={require('../static/pianoKeys.png')} />
+                    <div
+                        id="showPianoButton"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => this.showPiano()}
+                    >
+                        <img
+                            className="wow rollIn"
+                            style={{
+                                height: "4em",
+                                width: "4em",
+                                margin: ".5em"
+                            }}
+                            src={require("../static/pianoKeys.png")}
+                        />
                         <p className="wow flipInX center"> Open Piano</p>
                     </div>
-                <div id="showPiano" style={{display:"none"}}>
-                    <Piano/>
-                    <p onClick={()=>this.hidePiano()} style={{cursor: "pointer"}} > hide</p>
-                </div>
+                    <div id="showPiano" style={{ display: "none" }}>
+                        <Piano />
+                        <p
+                            onClick={() => this.hidePiano()}
+                            style={{ cursor: "pointer" }}
+                        >
+                            {" "}
+                            hide
+                        </p>
+                    </div>
                 </div>
             </div>
         );

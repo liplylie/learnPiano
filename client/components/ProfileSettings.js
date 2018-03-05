@@ -40,7 +40,6 @@ class ProfileSettings extends Component {
 	showChangeName(){
 		document.getElementById("showChangeName").style.display = "block"
 		document.getElementById("changeName").style.display = "none"
-		console.log(document.getElementById('file').value)
 	}
 
 	showChangePicture(){
@@ -51,7 +50,6 @@ class ProfileSettings extends Component {
 		$("#photoupload").change(function(){
 			$("#upload-file-info").html(this.files[0].name)
 			that.count +=1
-			console.log('photoupload')
 			if (that.count <=1){
       	that.addPhoto()
 			}
@@ -79,7 +77,6 @@ class ProfileSettings extends Component {
 	    ACL: 'public-read'
 	  }, (err, data) => {
 	    if (err) {
-	    	console.log(err)
 	      return alert('There was an error uploading your photo: ', err.message);
 	    }
 	    let userInfo = {
@@ -96,7 +93,6 @@ class ProfileSettings extends Component {
         }, (errorObject) => {
           alert("The read failed: " + errorObject.code);
         })
-	    console.log(data)
 
 	  });
 	}
