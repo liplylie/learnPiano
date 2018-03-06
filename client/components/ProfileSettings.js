@@ -160,6 +160,12 @@ class ProfileSettings extends Component {
 
 	}
 
+	showLessonStatus(){
+		document.getElementById("showLessonStatus").style.display = "none"
+		document.getElementById("lessonButton").style.display = "block"
+
+	}
+
 	deleteMiniGameStatus(){
 		let that = this
 		let miniGamePopup = Popup.create({
@@ -187,6 +193,33 @@ class ProfileSettings extends Component {
 		});
 	}
 
+	deleteLessonStatus(){
+		let that = this
+		let lessonPopup = Popup.create({
+	    title: null,
+	    content: 'Are you sure that you want to delete your Lesson Data?',
+	    buttons: {
+	        left: [{
+	            text: 'No',
+	            className: 'danger',
+	            action: () => {
+	                Popup.alert('Your data will not be deleted');
+	                Popup.close();
+	            }
+	        }],
+	        right: [{
+	            text: 'Yes',
+	            key: 'enter',
+	            action: () =>{
+	            	that.resetLessonsSettings()
+	            	 Popup.alert('Your data is deleted');
+	               Popup.close();
+	            }
+	        }]
+	    }
+		});
+	}
+
 	render(){
 		// if (!this.props.authenticated) {
 		// 		return <Redirect to="/"/>
@@ -195,6 +228,11 @@ class ProfileSettings extends Component {
 			.filter(game => {
 				return game.completed !== false
 			})
+		let lessonNum = Object.values(this.props.lessons)
+			.filter(lesson => {
+				return lesson.completed !== false
+			})
+
 		return (
      <div style={{height:"100vh", width:"100vw", overflowY: "scroll"}}>
 				<div style={{width:"80vw", height: "100vh", margin:"auto", backgroundColor: "white", flex:1, overflowX: "scroll"}}>
@@ -243,6 +281,15 @@ class ProfileSettings extends Component {
 
 										<td id="miniGameButton" style={{border:"none", display: "none"}}>
 											<button className="btn btn-primary" onClick={()=>{this.deleteMiniGameStatus()}}> Delete Mini Games Status</button>
+										</td>
+									</tr>
+									<tr style={{border:"none"}} onClick={()=>{this.showLessonStatus()}}>
+										<th style={{border:"none"}}>Lessons</th>
+										<td style={{border:"none", color: "grey"}}>Completed: {lessonNum.length}</td>
+										<td id="showLessonStatus" style={{border:"none"}}><span style={{color: "#365899", textAlign: "center"}} > Edit </span></td>
+
+										<td id="lessonButton" style={{border:"none", display: "none"}}>
+											<button className="btn btn-primary" onClick={()=>{this.deleteLessonStatus()}}> Delete Lessons Status</button>
 										</td>
 									</tr>
 								</tbody>
