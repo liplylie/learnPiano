@@ -1,7 +1,7 @@
-import pitchTable  from './pitchTable.js'
-    
+import pitchTable from "./pitchTable.js";
+
 const findPitch = () => {
-    let noteReturn 
+    let noteReturn;
     var baseFreq = 440;
     var currentNoteIndex = 57; // A4
     var isRefSoundPlaying = false;
@@ -15,24 +15,24 @@ const findPitch = () => {
         sourceAudioNode,
         analyserAudioNode;
 
-
-    var isAudioContextSupported = function () {
+    var isAudioContextSupported = function() {
         // This feature is still prefixed in Safari
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         if (window.AudioContext) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     };
 
-    var reportError = function (message) {
-        $('#errorMessage').html(message).show();
+    var reportError = function(message) {
+        $("#errorMessage")
+            .html(message)
+            .show();
     };
 
-    var init = function () {
-        freqTable = pitchTable
+    var init = function() {
+        freqTable = pitchTable;
 
         // $('.tuner__options').toggle(false);
 
@@ -57,38 +57,42 @@ const findPitch = () => {
 
         if (isAudioContextSupported()) {
             audioContext = new window.AudioContext();
-        }
-        else {
-            reportError('AudioContext is not supported in this browser');
+        } else {
+            reportError("AudioContext is not supported in this browser");
         }
     };
 
-    var updatePitch = function (pitch) {
-    };
+    var updatePitch = function(pitch) {};
 
-    var updateNote = function (note) {
-        noteReturn = note
-        console.log(note, 'note')
+    var updateNote = function(note) {
+        noteReturn = note;
+        console.log(note, "note");
         //$('#note').text(note);
     };
 
-    var updateCents = function (cents) {
+    var updateCents = function(cents) {
         // We may get negative values here.
         // Add 50 cents to what we get
         // gauge.set(cents + 50);
         // $('#cents').text(cents);
     };
 
-    var isGetUserMediaSupported = function () {
-        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-        if ((navigator.mediaDevices && navigator.mediaDevices.getUserMedia) || navigator.getUserMedia) {
+    var isGetUserMediaSupported = function() {
+        navigator.getUserMedia =
+            navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia;
+        if (
+            (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) ||
+            navigator.getUserMedia
+        ) {
             return true;
         }
 
         return false;
     };
 
-    var findFundamentalFreq = function (buffer, sampleRate) {
+    var findFundamentalFreq = function(buffer, sampleRate) {
         // We use Autocorrelation to find the fundamental frequency.
 
         // In order to correlate the signal with itself (hence the name of the algorithm), we will check two points 'k' frames away.
@@ -104,7 +108,7 @@ const findPitch = () => {
             var sum = 0;
 
             for (var i = 0; i < n; i++) {
-                sum += ((buffer[i] - 128) / 128) * ((buffer[i + k] - 128) / 128);
+                sum += (buffer[i] - 128) / 128 * ((buffer[i + k] - 128) / 128);
             }
 
             var r = sum / (n + k);
@@ -124,14 +128,13 @@ const findPitch = () => {
             // The period (in frames) of the fundamental frequency is 'bestK'. Getting the frequency from there is trivial.
             var fundamentalFreq = sampleRate / bestK;
             return fundamentalFreq;
-        }
-        else {
+        } else {
             // We haven't found a good correlation
             return -1;
         }
     };
 
-    var findClosestNote = function (freq, notes) {
+    var findClosestNote = function(freq, notes) {
         // Use binary search to find the closest note
         var low = -1;
         var high = notes.length;
@@ -144,7 +147,10 @@ const findPitch = () => {
             }
         }
 
-        if (Math.abs(notes[high].frequency - freq) <= Math.abs(notes[low].frequency - freq)) {
+        if (
+            Math.abs(notes[high].frequency - freq) <=
+            Math.abs(notes[low].frequency - freq)
+        ) {
             // notes[high] is closer to the frequency we found
             return notes[high];
         }
@@ -152,7 +158,7 @@ const findPitch = () => {
         return notes[low];
     };
 
-    var findCentsOffPitch = function (freq, refFreq) {
+    var findCentsOffPitch = function(freq, refFreq) {
         // We need to find how far freq is from baseFreq in cents
         var log2 = 0.6931471805599453; // Math.log(2)
         var multiplicativeFactor = freq / refFreq;
@@ -162,27 +168,29 @@ const findPitch = () => {
         return cents;
     };
 
-    var detectPitch = function () {
+    var detectPitch = function() {
         var buffer = new Uint8Array(analyserAudioNode.fftSize);
         analyserAudioNode.getByteTimeDomainData(buffer);
 
-        var fundalmentalFreq = findFundamentalFreq(buffer, audioContext.sampleRate);
+        var fundalmentalFreq = findFundamentalFreq(
+            buffer,
+            audioContext.sampleRate
+        );
 
         if (fundalmentalFreq !== -1) {
             var note = findClosestNote(fundalmentalFreq, notesArray);
             var cents = findCentsOffPitch(fundalmentalFreq, note.frequency);
             updateNote(note.note);
             updateCents(cents);
-        }
-        else {
-            updateNote('--');
+        } else {
+            updateNote("--");
             updateCents(-50);
         }
 
         frameId = window.requestAnimationFrame(detectPitch);
     };
 
-    var streamReceived = function (stream) {
+    var streamReceived = function(stream) {
         micStream = stream;
 
         analyserAudioNode = audioContext.createAnalyser();
@@ -194,30 +202,34 @@ const findPitch = () => {
         detectPitch();
     };
 
-    var turnOffReferenceSound = function () {
+    var turnOffReferenceSound = function() {
         sourceAudioNode.stop();
         sourceAudioNode = null;
-        updatePitch('--');
-        updateNote('--');
-        $('#referenceOptions').toggle(false);
+        updatePitch("--");
+        updateNote("--");
+        $("#referenceOptions").toggle(false);
         isRefSoundPlaying = false;
     };
 
-    var turnOffMicrophone = function () {
-        if (sourceAudioNode && sourceAudioNode.mediaStream && sourceAudioNode.mediaStream.stop) {
+    var turnOffMicrophone = function() {
+        if (
+            sourceAudioNode &&
+            sourceAudioNode.mediaStream &&
+            sourceAudioNode.mediaStream.stop
+        ) {
             sourceAudioNode.mediaStream.stop();
         }
         sourceAudioNode = null;
-        updatePitch('--');
-        updateNote('--');
+        updatePitch("--");
+        updateNote("--");
         updateCents(-50);
-        $('#microphoneOptions').toggle(false);
+        $("#microphoneOptions").toggle(false);
         analyserAudioNode = null;
         window.cancelAnimationFrame(frameId);
         isMicrophoneInUse = false;
     };
 
-    var toggleMicrophone = function () {
+    var toggleMicrophone = function() {
         if (isRefSoundPlaying) {
             turnOffReferenceSound();
         }
@@ -228,38 +240,49 @@ const findPitch = () => {
             if (isGetUserMediaSupported()) {
                 notesArray = freqTable[baseFreq.toString()];
 
-                var getUserMedia = navigator.mediaDevices && navigator.mediaDevices.getUserMedia ?
-                    navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices) :
-                    function (constraints) {
-                        return new Promise(function (resolve, reject) {
-                            navigator.getUserMedia(constraints, resolve, reject);
-                        });
-                    };
+                var getUserMedia =
+                    navigator.mediaDevices &&
+                    navigator.mediaDevices.getUserMedia
+                        ? navigator.mediaDevices.getUserMedia.bind(
+                              navigator.mediaDevices
+                          )
+                        : function(constraints) {
+                              return new Promise(function(resolve, reject) {
+                                  navigator.getUserMedia(
+                                      constraints,
+                                      resolve,
+                                      reject
+                                  );
+                              });
+                          };
 
-                getUserMedia({audio: true}).then(streamReceived).catch(reportError);
+                getUserMedia({ audio: true })
+                    .then(streamReceived)
+                    .catch(reportError);
                 updatePitch(baseFreq);
                 isMicrophoneInUse = true;
+            } else {
+                reportError(
+                    "It looks like this browser does not support getUserMedia. " +
+                        'Check <a href="http://caniuse.com/#feat=stream">http://caniuse.com/#feat=stream</a> for more info.'
+                );
             }
-            else {
-                reportError('It looks like this browser does not support getUserMedia. ' +
-                'Check <a href="http://caniuse.com/#feat=stream">http://caniuse.com/#feat=stream</a> for more info.');
-            }
-        }
-        else {
+        } else {
             turnOffMicrophone();
         }
     };
 
-    var toggleReferenceSound = function () {
+    var toggleReferenceSound = function() {
         if (isMicrophoneInUse) {
             toggleMicrophone();
         }
 
         if (!isRefSoundPlaying) {
-            $('#referenceOptions').toggle(true);
+            $("#referenceOptions").toggle(true);
             notesArray = freqTable[baseFreq];
             sourceAudioNode = audioContext.createOscillator();
-            sourceAudioNode.frequency.value = notesArray[currentNoteIndex].frequency;
+            sourceAudioNode.frequency.value =
+                notesArray[currentNoteIndex].frequency;
             sourceAudioNode.connect(audioContext.destination);
             sourceAudioNode.start();
             updatePitch(notesArray[currentNoteIndex].frequency);
@@ -270,7 +293,7 @@ const findPitch = () => {
         }
     };
 
-    var changeBaseFreq = function (delta) {
+    var changeBaseFreq = function(delta) {
         var newBaseFreq = baseFreq + delta;
         if (newBaseFreq >= 432 && newBaseFreq <= 446) {
             baseFreq = newBaseFreq;
@@ -286,7 +309,7 @@ const findPitch = () => {
         }
     };
 
-    var changeReferenceSoundNote = function (delta) {
+    var changeReferenceSoundNote = function(delta) {
         if (isRefSoundPlaying) {
             var newNoteIndex = currentNoteIndex + delta;
             if (newNoteIndex >= 0 && newNoteIndex < notesArray.length) {
@@ -299,11 +322,11 @@ const findPitch = () => {
         }
     };
 
-    var baseFreqChangeHandler = function (event) {
+    var baseFreqChangeHandler = function(event) {
         changeBaseFreq(event.data);
     };
 
-    var referenceSoundNoteHandler = function (event) {
+    var referenceSoundNoteHandler = function(event) {
         changeReferenceSoundNote(event.data);
     };
 
@@ -314,12 +337,12 @@ const findPitch = () => {
     // $('#refDecreaseNoteButton').click(-1, referenceSoundNoteHandler);
     // $('#refIncreaseNoteButton').click(1, referenceSoundNoteHandler);
 
-    init()
-    toggleMicrophone()
-    if (noteReturn){
-        arr.push(noteReturn)
+    init();
+    toggleMicrophone();
+    if (noteReturn) {
+        arr.push(noteReturn);
     }
-    console.log(arr, 'arr')
-}
+    console.log(arr, "arr");
+};
 
-export default findPitch
+export default findPitch;

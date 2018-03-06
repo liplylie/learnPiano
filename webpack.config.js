@@ -1,4 +1,6 @@
-const path = require('path');
+const path = require('path')
+const Uglify = require("uglifyjs-webpack-plugin");
+const webpack = require("webpack")
 
 const SRC_DIR = path.resolve(__dirname, 'client');
 const BUILD_DIR = path.resolve(__dirname, 'client/static');
@@ -27,7 +29,19 @@ module.exports = {
         test: /\.(png|jpg|gif|jpeg)$/,
         loader: 'file-loader',
         options: {}
+      },
+      {
+      test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+      loader: 'url-loader',
       }
     ]
-  }
+  },
+  plugins: [
+    // new Uglify(),
+    //   new webpack.DefinePlugin({ 
+    //   'process.env': {
+    //     'NODE_ENV': JSON.stringify('production')
+    //   }
+    // }),
+  ]
 }

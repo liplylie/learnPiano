@@ -1,6 +1,6 @@
 html,
 body {
-  height: 100%
+  height: 100%;
   max-width: 100%;
   overflow-x: hidden;
   background-color: lightgray;
@@ -366,4 +366,92 @@ table .NotComplete {
   left: 10px;
   top: 11px;
   left: -6px;
+}
+
+.btn-primary-outline {
+  background-color: transparent;
+  border: none;
+}
+
+#settingTable {
+    cursor: pointer;
+}
+
+/*piano*/
+
+audio {
+  display: none;
+}
+
+.piano-javascript {
+  border: 3px solid #f88;
+  display: block;
+}
+
+.piano {
+  padding: 5px;
+  margin: 0 auto;
+  width: 550px;
+}
+
+.piano-container, .piano-javascript {
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.piano-container {
+  text-align: center;
+}
+
+.piano-keys{
+  word-spacing: 0;
+  letter-spacing: 0;
+  font-size: 0;
+}
+
+.piano-pedal {
+  margin: 10px;
+  color: rgba(0, 0, 0, 0.1);
+}
+
+.piano-sustain {
+  color: black;
+}
+
+.piano-white, .piano-black {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  direction: ltr;
+  margin: 0;
+  padding: 0;
+}
+
+.piano-white, .piano-black-raised {
+  border-radius: 2px;
+  border-color: #222;
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  cursor: pointer;
+}
+
+.piano-white {
+  width: 24px;
+  height: 100px;
+  background-color: white;
+  z-index: 1;
+}
+
+.piano-black {
+  width: 0px;
+  height: 100px;
+  z-index: 2;
+}
+.piano-black-raised {
+  width: 16px;
+  height: 70px;
+  position: relative;
+  left: -10px;
+  background-color: black;
 }

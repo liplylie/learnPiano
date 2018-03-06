@@ -7,7 +7,6 @@ const initialState = {
 }
 
 const lessonsCompletedReducer = (state=initialState, action) => {
-  console.log(action, 'actions from lessonsCompletedReducer')
   switch(action.type) {
     case 'USER_LESSONS_COMPLETED': {
       return Object.assign({}, state, {
