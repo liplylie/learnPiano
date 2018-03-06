@@ -11,7 +11,7 @@ class Navbar extends Component {
     render() {
         return (
             <nav
-                className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+                className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top wow fadeIn"
                 role="navigation"
             >
                 <div className="container" style={{ maxWidth: "100vw" }}>

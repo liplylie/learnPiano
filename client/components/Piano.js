@@ -54,7 +54,7 @@ class Piano extends Component {
   }
 
   /* Piano keyboard pitches. Names match sound files by ID attribute. */
-  componentWillMount() {
+  componentDidMount() {
     var keys = [
       "A2",
       "Bb2",
@@ -129,7 +129,6 @@ class Piano extends Component {
 
     var intervals = {};
     var depressed = {};
-
     /* Selectors */
 
     function pianoClass(name) {
@@ -214,7 +213,7 @@ class Piano extends Component {
       return function() {
         clearInterval(intervals[key]);
         if (audio) {
-          audio.pause();
+          let pause = audio.pause();
         }
         if (key.length > 2) {
           $(pianoClass(key)).animate(
