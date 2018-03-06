@@ -26,6 +26,7 @@ Currently in development.
 - ExpressJS
 - Firebase Auth and Database
 - Webpack
+- React-Popup
 ## Available Scripts
 
 In the terminal, you can run:
