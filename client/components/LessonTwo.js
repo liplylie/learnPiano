@@ -542,7 +542,7 @@ class LessonTwo extends Component {
             >
                 <div
                     style={{
-                        width: "70vw",
+                        width: "80vw",
                         height: "100vh",
                         margin: "auto",
                         backgroundColor: "white",
@@ -550,6 +550,7 @@ class LessonTwo extends Component {
                         overflowX: "scroll",
                         overflowY: "scroll"
                     }}
+                    className="effect8 wow fadeIn"
                 >
                     <div className="row" style={{ height: "8em" }} />
                     <div className="row">

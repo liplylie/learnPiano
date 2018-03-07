@@ -552,7 +552,7 @@ class LessonOne extends Component {
     <script src="./jquery-ui-1.8.20.custom.min.js"></script>
                 <div
                     style={{
-                        width: "70vw",
+                        width: "80vw",
                         height: "100vh",
                         margin: "auto",
                         backgroundColor: "white",
@@ -560,6 +560,7 @@ class LessonOne extends Component {
                         overflowX: "scroll",
                         overflowY: "scroll"
                     }}
+                    className="effect8 wow fadeIn"
                 >
                     <div className="row" style={{ height: "8em" }} />
                     <div className="row">

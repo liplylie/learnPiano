@@ -256,6 +256,7 @@ class ProfileSettings extends Component {
 						flex: 1,
 						overflowX: "scroll"
 					}}
+					className="effect8"
 				>
 					<div className="row" margin="1em" />
 					<Popup />
@@ -266,7 +267,7 @@ class ProfileSettings extends Component {
 						<div className="col-md-12">
 							<table
 								id="settingTable"
-								className="table table-hover"
+								className="table table-hover effect8"
 								style={{ border: "none" }}
 							>
 								<tbody>
@@ -333,6 +334,7 @@ class ProfileSettings extends Component {
 														: require("../static/defaultUser.png")
 												}
 												style={{ height: "10em", width: "10em" }}
+												className="effect8"
 											/>
 										</td>
 										<td id="changePicture" style={{ border: "none" }}>

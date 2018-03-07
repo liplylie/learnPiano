@@ -100,6 +100,7 @@ class Profile extends Component {
 						flex: 1,
 						overflowX: "scroll"
 					}}
+					className="effect8 fadeIn"
 				>
 					<div className="row" style={{ height: "7em" }} />
 					<div className="row">
@@ -107,7 +108,7 @@ class Profile extends Component {
 						<div className="col-md-3">
 							<div className="row" style={{ margin: "0.3em" }}>
 								<img
-									className="span3 wow flipInX center"
+									className="span3 wow flipInX center effect8"
 									src={
 										this.props.Auth.picture
 											? this.props.Auth.picture
@@ -180,7 +181,7 @@ class Profile extends Component {
 
 					<div className="row wow fadeIn animated">
 						<div className="col-md-12">
-							<table id="lessonTable" className="table">
+							<table id="lessonTable" className="table effect8">
 								<tbody>
 									<tr style={{ backgroundColor: "lightgrey" }}>
 										<th>Lessons</th>
@@ -219,7 +220,7 @@ class Profile extends Component {
 									})}
 								</tbody>
 							</table>
-							<table id="miniGameTable" className="table">
+							<table id="miniGameTable" className="table effect8">
 								<tbody>
 									<tr style={{ backgroundColor: "lightgrey" }}>
 										<th>Mini Games</th>

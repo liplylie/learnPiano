@@ -451,12 +451,13 @@ class MiniGameTwo extends Component {
             >
                 <div
                     style={{
-                        width: "70vw",
+                        width: "80vw",
                         height: "100vh",
                         margin: "auto",
                         backgroundColor: "white",
                         flex: 1
                     }}
+                    className="effect8 wow fadeIn"
                 >
                     <div className="row" style={{ height: "8em" }} />
                     <div className="row">

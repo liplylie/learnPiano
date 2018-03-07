@@ -24,6 +24,7 @@ class Links extends Component {
 						flex: 1,
 						overflowX: "scroll"
 					}}
+					className="effect8 wow fadeIn"
 				>
 					<div className="row" style={{ height: "7em" }} />
 					<div className="col-md-12">Links</div>

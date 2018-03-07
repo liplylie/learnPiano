@@ -34,6 +34,7 @@ class DefaultHome extends Component {
               flex: 1,
               overflowX: "scroll"
             }}
+            className="effect8"
           >
             <div className="row" style={{ height: "7em" }} />
             <div className="row">
