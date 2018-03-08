@@ -606,15 +606,14 @@ class LessonThree extends Component {
                                 on the screen. Don't worry about rhythm just yet.
                                 <br />{" "}
                                 <div className="row">
-                                    <div className = "col-md-10" style={{position: "relative", minHeight: "50vh", minWidth: "60vw", margin: "auto"}}>
+                                    <div className = "sheetMusicContainer col-md-10">
                                         <img
-                                            style={{ height: "50vh", width: "60vw", position: "relative", zIndex: "1"}}
+                                            className = "sheetMusicStaff"
                                             src={require("../static/sheetMusic1.png")}
                                         />
                                         <img
                                             id="MaryHad1"
-                                            className="playMusicNote"
-                                            style={{height: "14vh", width: "7vw", position: "absolute", left: "38vh", top: "6.7vh", zIndex: "3"}}
+                                            className="playMusicNote noteOrderFirst noteE4 "
                                             src={require("../static/quarterNote.png")}
                                         />
                                     </div> 
