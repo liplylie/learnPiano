@@ -180,7 +180,7 @@ class Profile extends Component {
 					</div>
 
 					<div className="row wow fadeIn animated">
-						<div className="col-md-12">
+						<div className="col-md-11" style={{margin: "auto"}}>
 							<table id="lessonTable" className="table effect8">
 								<tbody>
 									<tr style={{ backgroundColor: "lightgrey" }}>
