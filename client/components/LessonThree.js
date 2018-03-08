@@ -13,7 +13,7 @@ import pitchTable from "../helpers/pitchTable";
 import pitchTablePictures from "../helpers/pitchTablePictures";
 import Piano from "./Piano.js";
 
-class LessonOne extends Component {
+class LessonThree extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -512,13 +512,13 @@ class LessonOne extends Component {
         //
         userLessonStatus.once("value").then(snapshot => {
             userLessonStatus.update({
-                lesson1: {
+                lesson3: {
                     completed: true,
                     time: firebase.database.ServerValue.TIMESTAMP
                 }
             });
             that.props.LessonsCompleted.lessonsCompleted(snapshot.val());
-            console.log(snapshot.val(), "lesson one completed");
+            console.log(snapshot.val(), "lesson three completed");
             that.setState({
                 lessonCompleted: true
             });
@@ -566,7 +566,7 @@ class LessonOne extends Component {
                             <div>
                                 <span style={{ fontFamily: "helvetica" }}>
                                     {" "}
-                                    <h2> Lesson One </h2>
+                                    <h2> Lesson Three </h2>
                                 </span>
                             </div>
                         </div>
@@ -582,8 +582,8 @@ class LessonOne extends Component {
                                 id="lessonOneMessageOne"
                             >
                                 {" "}
-                                Welcome to your first lesson! Today we will
-                                learn how to play 5 notes!
+                                Welcome to your Third lesson! Today we will
+                                play through a few songs!
                             </div>
                             <button
                                 id="lessonOneButtonOne"
@@ -602,13 +602,23 @@ class LessonOne extends Component {
                                 id="lessonOneMessageTwo"
                             >
                                 {" "}
-                                The first note we'll learn is middle C. Look at
-                                the image to determine where middle C is located
-                                on your piano. <br />{" "}
-                                <img
-                                    style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/findMiddleC.jpg")}
-                                />
+                                Let's look at Mary Had A Little Lamb. Please play through the notes 
+                                on the screen. Don't worry about rhythm just yet.
+                                <br />{" "}
+                                <div className="row">
+                                    <div className = "col-md-10" style={{position: "relative", minHeight: "50vh", minWidth: "60vw", margin: "auto"}}>
+                                        <img
+                                            style={{ height: "50vh", width: "60vw", position: "relative", zIndex: "1"}}
+                                            src={require("../static/sheetMusic1.png")}
+                                        />
+                                        <img
+                                            id="MaryHad1"
+                                            className="playMusicNote"
+                                            style={{height: "14vh", width: "7vw", position: "absolute", left: "38vh", top: "6.7vh", zIndex: "3"}}
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                    </div> 
+                                </div>
                                 <br />
                             </div>
                             <button
@@ -630,276 +640,11 @@ class LessonOne extends Component {
                                     fontSize: "1.5em",
                                     display: "none"
                                 }}
-                                id="lessonOneMessageThree"
-                            >
-                                {" "}
-                                When you find it, play Middle C <br />
-                                <img
-                                    style={{ height: "12em", width: "15em" }}
-                                    src={require("../static/200w_d.gif")}
-                                />
-                                <br />
-                            </div>
-                            <button
-                                style={{
-                                    display: "none",
-                                    margin: "auto",
-                                    marginTop: "1em"
-                                }}
-                                id="lessonOneButtonThree"
-                                className="btn btn-primary"
-                                onClick={() => this.lessonOneButtonThree()}
-                            >
-                                {" "}
-                                next{" "}
-                            </button>
-                            <div
-                                style={{
-                                    fontFamily: "helvetica",
-                                    fontSize: "1.5em",
-                                    display: "none"
-                                }}
-                                id="lessonOneMessageFour"
-                            >
-                                {" "}
-                                Excellent! Let's move on to the next note! The
-                                white key to the right of C is D. <br />{" "}
-                                <img
-                                    style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/MiddleD.jpg")}
-                                />
-                                <br />
-                            </div>
-                            <button
-                                style={{
-                                    display: "none",
-                                    margin: "auto",
-                                    marginTop: "1em"
-                                }}
-                                id="lessonOneButtonFour"
-                                className="btn btn-primary"
-                                onClick={() => this.lessonOneButtonFour()}
-                            >
-                                {" "}
-                                next{" "}
-                            </button>
-                            <div
-                                style={{
-                                    fontFamily: "helvetica",
-                                    fontSize: "1.5em",
-                                    display: "none"
-                                }}
-                                id="lessonOneMessageFive"
-                            >
-                                {" "}
-                                Please play D! <br />{" "}
-                                <img
-                                    style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/MiddleD.jpg")}
-                                />
-                                <br />
-                            </div>
-                            <button
-                                style={{
-                                    display: "none",
-                                    margin: "auto",
-                                    marginTop: "1em"
-                                }}
-                                id="lessonOneButtonFive"
-                                className="btn btn-primary"
-                                onClick={() => this.lessonOneButtonFive()}
-                            >
-                                {" "}
-                                next{" "}
-                            </button>
-                            <div
-                                style={{
-                                    fontFamily: "helvetica",
-                                    fontSize: "1.5em",
-                                    display: "none"
-                                }}
-                                id="lessonOneMessageSix"
-                            >
-                                {" "}
-                                Good Work! After D, the next white key to the
-                                right is an E <br />{" "}
-                                <img
-                                    style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/findE4.jpg")}
-                                />
-                                <br />
-                            </div>
-                            <button
-                                style={{
-                                    display: "none",
-                                    margin: "auto",
-                                    marginTop: "1em"
-                                }}
-                                id="lessonOneButtonSix"
-                                className="btn btn-primary"
-                                onClick={() => this.lessonOneButtonSix()}
-                            >
-                                {" "}
-                                next{" "}
-                            </button>
-                            <div
-                                style={{
-                                    fontFamily: "helvetica",
-                                    fontSize: "1.5em",
-                                    display: "none"
-                                }}
-                                id="lessonOneMessageSeven"
-                            >
-                                {" "}
-                                Please play E!<br />{" "}
-                                <img
-                                    style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/findE4.jpg")}
-                                />
-                                <br />
-                            </div>
-                            <button
-                                style={{
-                                    display: "none",
-                                    margin: "auto",
-                                    marginTop: "1em"
-                                }}
-                                id="lessonOneButtonSeven"
-                                className="btn btn-primary"
-                                onClick={() => this.lessonOneButtonSeven()}
-                            >
-                                {" "}
-                                next{" "}
-                            </button>
-                            <div
-                                style={{
-                                    fontFamily: "helvetica",
-                                    fontSize: "1.5em",
-                                    display: "none"
-                                }}
-                                id="lessonOneMessageEight"
-                            >
-                                {" "}
-                                Super! The next note to the right is F! <br />{" "}
-                                <img
-                                    style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/findF4.jpg")}
-                                />
-                                <br />
-                            </div>
-                            <button
-                                style={{
-                                    display: "none",
-                                    margin: "auto",
-                                    marginTop: "1em"
-                                }}
-                                id="lessonOneButtonEight"
-                                className="btn btn-primary"
-                                onClick={() => this.lessonOneButtonEight()}
-                            >
-                                {" "}
-                                next{" "}
-                            </button>
-                            <div
-                                style={{
-                                    fontFamily: "helvetica",
-                                    fontSize: "1.5em",
-                                    display: "none"
-                                }}
-                                id="lessonOneMessageNine"
-                            >
-                                {" "}
-                                Please play F! <br />{" "}
-                                <img
-                                    style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/findF4.jpg")}
-                                />
-                                <br />
-                            </div>
-                            <button
-                                style={{
-                                    display: "none",
-                                    margin: "auto",
-                                    marginTop: "1em"
-                                }}
-                                id="lessonOneButtonNine"
-                                className="btn btn-primary"
-                                onClick={() => this.lessonOneButtonNine()}
-                            >
-                                {" "}
-                                next{" "}
-                            </button>
-                            <div
-                                style={{
-                                    fontFamily: "helvetica",
-                                    fontSize: "1.5em",
-                                    display: "none"
-                                }}
-                                id="lessonOneMessageTen"
-                            >
-                                {" "}
-                                Great! The last note for this lesson is G.
-                                Please find G. <br />{" "}
-                                <img
-                                    style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/findG4.jpg")}
-                                />
-                                <br />
-                            </div>
-                            <button
-                                style={{
-                                    display: "none",
-                                    margin: "auto",
-                                    marginTop: "1em"
-                                }}
-                                id="lessonOneButtonTen"
-                                className="btn btn-primary"
-                                onClick={() => this.lessonOneButtonTen()}
-                            >
-                                {" "}
-                                next{" "}
-                            </button>
-                            <div
-                                style={{
-                                    fontFamily: "helvetica",
-                                    fontSize: "1.5em",
-                                    display: "none"
-                                }}
-                                id="lessonOneMessageEleven"
-                            >
-                                {" "}
-                                Play G! <br />{" "}
-                                <img
-                                    style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/findG4.jpg")}
-                                />
-                                <br />
-                            </div>
-                            <button
-                                style={{
-                                    display: "none",
-                                    margin: "auto",
-                                    marginTop: "1em"
-                                }}
-                                id="lessonOneButtonEleven"
-                                className="btn btn-primary"
-                                onClick={() => this.lessonOneButtonEleven()}
-                            >
-                                {" "}
-                                next{" "}
-                            </button>
-                            <div
-                                style={{
-                                    fontFamily: "helvetica",
-                                    fontSize: "1.5em",
-                                    display: "none"
-                                }}
                                 id="lessonOneMessageTwelve"
                             >
                                 {" "}
-                                Congrats! You have learned how to play your
-                                first five notes on the piano. Please continue
-                                to lesson two! <br />{" "}
+                                Congrats! You have played through your first songs. Please continue
+                                to the next lesson! <br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
                                     src={require("../static/goodJob.gif")}
@@ -924,7 +669,7 @@ class LessonOne extends Component {
                     </div>
                     <div
                         id="showPianoButton"
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: "pointer"}}
                         onClick={() => this.showPiano()}
                     >
                         <img
@@ -953,18 +698,18 @@ class LessonOne extends Component {
         );
     }
 }
-const LessonOneMapStateToProps = store => {
+const LessonThreeMapStateToProps = store => {
     return {
         Auth: store.Auth,
         LessonsCompleted: store.LessonsCompleted
     };
 };
 
-const LessonOneDispatch = dispatch => {
+const LessonThreeDispatch = dispatch => {
     return {
         AuthActions: bindActionCreators(AuthActions, dispatch),
         LessonsCompleted: bindActionCreators(LessonsCompleted, dispatch)
     };
 };
 
-export default connect(LessonOneMapStateToProps, LessonOneDispatch)(LessonOne);
+export default connect(LessonThreeMapStateToProps, LessonThreeDispatch)(LessonThree);

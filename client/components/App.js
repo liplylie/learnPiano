@@ -21,6 +21,7 @@ import Footer from "./Footer";
 import Profile from "./Profile";
 import LessonOne from "./LessonOne";
 import LessonTwo from "./LessonTwo";
+import LessonThree from "./LessonThree";
 import MiniGameOne from "./MiniGameOne";
 import MiniGameTwo from "./MiniGameTwo";
 
@@ -192,6 +193,13 @@ class App extends Component {
                 path="/lessonTwo"
                 component={() => (
                   <LessonTwo authenticated={this.props.online} />
+                )}
+              />
+              <Route
+                exact
+                path="/lessonThree"
+                component={() => (
+                  <LessonThree authenticated={this.props.online} />
                 )}
               />
               <Route
