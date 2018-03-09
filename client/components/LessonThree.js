@@ -34,52 +34,48 @@ class LessonThree extends Component {
     }
 
     componentDidUpdate() {
+        let getCssProperty = (elmId, property) => {
+            let elem = document.getElementById(elmId);
+            return window.getComputedStyle(elem,null).getPropertyValue(property);
+        }
+
         if (
             this.state.correctNote === this.state.checkNote &&
             this.popUpCount === this.correctAnswers &&
             !this.state.lessonCompleted
         ) {
-            // Popup.alert(
-            //     <div style={{ fontFamily: "helvetica", fontSize: "2.5em" }}>
-            //         <img
-            //             style={{ height: "8em", width: "5em" }}
-            //             src={pitchTablePictures[this.state.checkNote]}
-            //         />{" "}
-            //         Correct! You played a {this.state.checkNote[0]}{" "}
-            //     </div>
-            // );
-            // this.setState({
-            //     noteClass: "correctNote"
-            // })
-
-            // document.getElementById(
-            //     `lessonOneButton${this.state.buttonToShow}`
-            // ).style.display =
-            //     "block";
+           
+            let noteOnePosition = document.getElementById('MaryHad1')
+            
+            let left = getCssProperty("MaryHad1", "left");
+            left = Number(left.substring(0, left.length - 2))
+            console.log(left,'left')
+            let move = () => {
+                if (left < 100){
+                    clearInterval(moveNote)
+                } else {
+                    left -= 10
+                    noteOnePosition.style.left = left + "px"
+                }
+            }
+            let moveNote = setInterval(move, 50)
+            this.turnOffMicrophone();
+            if (this.popUpCount === 1){
+                this.setState({
+                    checkNote: "D4",
+                    buttonToShow: "Three"
+                });
+                this.findPitch("D4");
+            }
             this.popUpCount += 1;
             this.correctAnswers += 1;
-            this.turnOffMicrophone();
+             
         } else if (
             this.state.wrongNote &&
             this.noteArray.length &&
             this.popUpCount === this.correctAnswers &&
             !this.state.lessonCompleted
         ) {
-            // Popup.alert(
-            //     <div style={{ fontFamily: "helvetica", fontSize: "2.5em" }}>
-            //         <img
-            //             style={{ height: "8em", width: "5em" }}
-            //             src={pitchTablePictures[this.state.wrongNote]}
-            //         />{" "}
-            //         Incorrect! You played a{" "}
-            //         {this.state.wrongNote.length === 3
-            //             ? this.state.wrongNote[0] + this.state.wrongNote[1]
-            //             : this.state.wrongNote[0]}
-            //     </div>
-            //);
-            // this.setState({
-            //     noteClass: "wrongNote"
-            // })
         }
     }
 
@@ -637,22 +633,18 @@ class LessonThree extends Component {
                                             src={require("../static/sheetMusic1.png")}
                                         />
                                         <img
-                                            id="MaryHad1"
                                             className="playMusicNote noteOrderFirst noteE4 "
                                             src={require("../static/quarterNote.png")}
                                         />
                                          <img
-                                            id="MaryHad2"
                                             className="playMusicNote noteOrderSecond noteD4"
                                             src={require("../static/quarterNote.png")}
                                         />
                                         <img
-                                            id="MaryHad3"
                                             className="playMusicNote noteOrderThird noteC4"
                                             src={require("../static/musicNoteLine.png")}
                                         />
                                         <img
-                                            id="MaryHad4"
                                             className="playMusicNote noteOrderFourth noteD4"
                                             src={require("../static/quarterNote.png")}
                                         />

@@ -464,6 +464,19 @@ audio {
   position: absolute
 }
 
+/*.playMusicNote:hover
+{
+  transform: translate(3em,0);
+  -webkit-transform: translate(3em,0);
+  -moz-transform: translate(3em,0);
+  -o-transform: translate(3em,0);
+  -ms-transform: translate(3em,0);
+}
+*/
+.moveNote{
+  
+}
+
 .noteC4{
   top: 10vh;
 }
