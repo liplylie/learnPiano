@@ -44,21 +44,43 @@ class LessonThree extends Component {
             this.popUpCount === this.correctAnswers &&
             !this.state.lessonCompleted
         ) {
-           
-            let noteOnePosition = document.getElementById('MaryHad1')
-            
-            let left = getCssProperty("MaryHad1", "left");
-            left = Number(left.substring(0, left.length - 2))
-            console.log(left,'left')
-            let move = () => {
-                if (left < 100){
-                    clearInterval(moveNote)
+            let noteOne = getCssProperty("MaryHad1", "left");
+            noteOne = Number(noteOne.substring(0, noteOne.length - 2))
+            let noteTwo = getCssProperty("MaryHad2", "left")
+            noteTwo = Number(noteTwo.substring(0, noteTwo.length - 2))
+            let noteThree = getCssProperty("MaryHad3", "left")
+            noteThree = Number(noteThree.substring(0, noteThree.length - 2))
+            let noteFour = getCssProperty("MaryHad4", "left")
+            noteFour = Number(noteFour.substring(0, noteFour.length - 2))
+            console.log(noteOne,'left')
+            console.log(noteTwo,'next')
+            let movingDistance = noteTwo - noteOne
+            let moveFirst = () => {
+                if (noteOne <= 100){
+                    console.log(noteOne, 'left now')
+                    clearInterval(moveFirstNote)
+                    document.getElementById(`MaryHad1`).style.display = "none"
                 } else {
-                    left -= 10
-                    noteOnePosition.style.left = left + "px"
+                    noteOne -= 10
+                    document.getElementById(`MaryHad1`).style.left = noteOne + "px"
                 }
             }
-            let moveNote = setInterval(move, 50)
+            let moveFirstNote = setInterval(moveFirst, 50)
+            let moveOthers = () => {
+                if (movingDistance <=0){
+                    clearInterval(moveOtherNotes)
+                } else {
+                    noteTwo -= 10
+                    noteThree -= 10
+                    noteFour -= 10
+                    movingDistance -= 10
+                    document.getElementById(`MaryHad2`).style.left = noteTwo + "px"
+                    document.getElementById(`MaryHad3`).style.left = noteThree + "px"
+                    document.getElementById(`MaryHad4`).style.left = noteFour + "px"
+                }
+            }
+            let moveOtherNotes = setInterval(moveOthers, 50)
+
             this.turnOffMicrophone();
             if (this.popUpCount === 1){
                 this.setState({
