@@ -474,7 +474,7 @@ audio {
 }
 */
 .moveNote{
-  
+
 }
 
 .noteC4{
@@ -487,6 +487,9 @@ audio {
 
 .noteE4{
   top: 6.65vh
+}
+.noteG4{
+  top: 3vh
 }
 
 .noteOrderFirst{

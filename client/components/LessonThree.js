@@ -63,7 +63,7 @@ class LessonThree extends Component {
                     document.getElementById(`MaryHad1`).style.left = noteOne + "px"
                 }
             }
-            let moveFirstNote = setInterval(moveFirst, 50)
+            let moveFirstNote = setInterval(moveFirst, 20)
             let moveOthers = () => {
                 if (movingDistance <=0){
                     clearInterval(moveOtherNotes)
@@ -83,58 +83,160 @@ class LessonThree extends Component {
                     document.getElementById(`MaryHad4`).style.left = noteFour + "px"
                 }
             }
-            let moveOtherNotes = setInterval(moveOthers, 50)
+            let moveOtherNotes = setInterval(moveOthers, 20)
 
-            // this.turnOffMicrophone();
+            this.turnOffMicrophone();
             this.audio.close()
             if (this.correctAnswers === 1){
                 this.setState({
                     checkNote: "D4",
                 });
                 this.findPitch("D4");
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
             } else if (this.correctAnswers === 2){
                 this.setState({
                     checkNote: "C4",
                 });
                 this.findPitch("C4");
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
             } else if (this.correctAnswers === 3){
                 this.setState({
                     checkNote: "D4",
                 });
                 this.findPitch("D4");
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
             } else if (this.correctAnswers === 4){
                 this.setState({
                     checkNote: "E4",
                 });
                 this.findPitch("E4");
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
             } else if (this.correctAnswers === 5){
-                this.setState({
-                    checkNote: "E4",
-                });
-                this.findPitch("E4");
+                setTimeout(()=>{this.findPitch("E4")},300)
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
             } else if (this.correctAnswers === 6){
-                this.setState({
-                    checkNote: "E4",
-                });
-                this.findPitch("E4");
+                setTimeout(()=>{this.findPitch("E4")},300)
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
             } else if (this.correctAnswers === 7){
                 this.setState({
                     checkNote: "D4",
                 });
                 this.findPitch("D4");
-            } else if (this.correctAnswers === 8){
-                this.setState({
-                    checkNote: "D4",
-                });
-                this.findPitch("D4");
-            } else if (this.correctAnswers === 9){
-                this.setState({
-                    checkNote: "D4",
-                });
-                this.findPitch("D4");
-            }
-            this.popUpCount += 1;
+                this.popUpCount += 1;
             this.correctAnswers += 1;
+            } else if (this.correctAnswers === 8){
+                setTimeout(()=>{this.findPitch("D4")},300)
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 9){
+                setTimeout(()=>{this.findPitch("D4")},300)
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 10){
+                this.setState({
+                    checkNote: "E4",
+                });
+                this.findPitch("E4");
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 11){
+                this.setState({
+                    checkNote: "G4",
+                });
+                this.findPitch("G4");
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 12){
+                setTimeout(()=>{this.findPitch("G4")},300)
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 13){
+                this.setState({
+                    checkNote: "E4",
+                });
+                this.findPitch("E4");
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 14){
+                this.setState({
+                    checkNote: "D4",
+                });
+                this.findPitch("D4");
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 15){
+                this.setState({
+                    checkNote: "C4",
+                });
+                this.findPitch("C4");
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 16){
+                this.setState({
+                    checkNote: "D4",
+                });
+                this.findPitch("D4");
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 17){
+                this.setState({
+                    checkNote: "E4",
+                });
+                this.findPitch("E4");
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 18){
+                setTimeout(()=>{this.findPitch("E4")},300)
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 19){
+                setTimeout(()=>{this.findPitch("E4")},300)
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 20){
+                setTimeout(()=>{this.findPitch("E4")},300)
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 21){
+                this.setState({
+                    checkNote: "D4",
+                });
+                this.findPitch("D4");
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 22){
+                setTimeout(()=>{this.findPitch("D4")},300)
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 23){
+                this.setState({
+                    checkNote: "E4",
+                });
+                this.findPitch("E4");
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 24){
+                this.setState({
+                    checkNote: "D4",
+                });
+                this.findPitch("D4");
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            } else if (this.correctAnswers === 25){
+                this.setState({
+                    checkNote: "C4",
+                });
+                this.findPitch("C4");
+                this.popUpCount += 1;
+            this.correctAnswers += 1;
+            }
+            
              
         } else if (
             this.state.wrongNote &&
@@ -217,6 +319,7 @@ class LessonThree extends Component {
                             wrongNote: null,
                             noteClass: "correctNote"
                         });
+                        console.log(that.noteArray, 'notearray')
                     } else {
                         if (that.state.noteClass === "wrongNote"){
                             that.setState({
@@ -376,12 +479,6 @@ class LessonThree extends Component {
 
         this.toggleMicrophone = function() {
             let that = this
-            // if (that.state.noteClass === "correctNote"){
-            //     setTimeout(()=>{that.setState({
-            //         noteClass: ""
-            //         })
-            //     }, 200)
-            // }
             if (isRefSoundPlaying) {
                 turnOffReferenceSound();
             }
@@ -802,6 +899,112 @@ class LessonThree extends Component {
                                             style={{display:"none"}}
                                             className="playMusicNote noteOrderFourth noteE4"
                                             src={require("../static/quarterNote.png")}
+                                        />
+                                         <img
+                                            id="MaryHad12"
+                                            style={{display:"none"}}
+                                            className="playMusicNote noteOrderFourth noteG4"
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                         <img
+                                            id="MaryHad13"
+                                            style={{display:"none"}}
+                                            className="playMusicNote noteOrderFourth noteG4"
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad14"
+                                            style={{display:"none"}}
+                                            className="playMusicNote noteOrderFourth noteE4"
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad15"
+                                            style={{display:"none"}}
+                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 15 ? this.state.noteClass : ""}`}
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad16"
+                                            style={{display:"none"}}
+                                            className={`playMusicNote noteOrderFourth noteC4 ${this.correctAnswers === 16 ? this.state.noteClass : ""}`}
+                                            src={require("../static/musicNoteLine.png")}
+                                        />
+                                        <img
+                                            id="MaryHad17"
+                                            style={{display:"none"}}
+                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 17 ? this.state.noteClass : ""}`}
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad18"
+                                            style={{display:"none"}}
+                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 18 ? this.state.noteClass : ""}`}
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad19"
+                                            style={{display:"none"}}
+                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 6 ? this.state.noteClass : ""}`}
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad20"
+                                            style={{display:"none"}}
+                                            className="playMusicNote noteOrderFourth noteE4"
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                         <img
+                                            id="MaryHad21"
+                                            style={{display:"none"}}
+                                            className="playMusicNote noteOrderFourth noteE4"
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                         <img
+                                            id="MaryHad22"
+                                            style={{display:"none"}}
+                                            className="playMusicNote noteOrderFourth noteD4"
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad23"
+                                            style={{display:"none"}}
+                                            className="playMusicNote noteOrderFourth noteD4"
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad24"
+                                            style={{display:"none"}}
+                                            className="playMusicNote noteOrderFourth noteE4"
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                         <img
+                                            id="MaryHad25"
+                                            style={{display:"none"}}
+                                            className="playMusicNote noteOrderFourth noteD4"
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad26"
+                                            style={{display:"none"}}
+                                            className="playMusicNote noteOrderFourth noteC4"
+                                            src={require("../static/musicNoteLine.png")}
+                                        />
+                                         <img
+                                            id="MaryHad27"
+                                            style={{display:"none"}}
+                                        />
+                                        <img
+                                            id="MaryHad28"
+                                            style={{display:"none"}}
+                                        />
+                                        <img
+                                            id="MaryHad29"
+                                            style={{display:"none"}}
+                                        />
+                                         <img
+                                            id="MaryHad30"
+                                            style={{display:"none"}}
                                         />
                                     </div> 
                                 </div>
