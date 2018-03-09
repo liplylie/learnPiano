@@ -179,7 +179,8 @@ class Piano extends Component {
           backgroundColor: "#88FFAA"
         },
         0
-      );
+      ).promise()
+            .done();;
     }
 
     /* Manually diminish the volume when the key is not sustained. */
@@ -210,10 +211,10 @@ class Piano extends Component {
 
     function kill(key) {
       var audio = sound(key);
-      return function() {
+      return async function() {
         clearInterval(intervals[key]);
         if (audio) {
-          let pause = audio.pause();
+          let pause = await audio.pause();
         }
         if (key.length > 2) {
           $(pianoClass(key)).animate(
@@ -230,7 +231,8 @@ class Piano extends Component {
             },
             300,
             "easeOutExpo"
-          );
+          ).promise()
+            .done()
         }
       };
     }
@@ -252,7 +254,8 @@ class Piano extends Component {
             backgroundColor: "#88FFAA"
           },
           0
-        );
+        ).promise()
+            .done()
         press(key);
       });
       if (fadeout) {

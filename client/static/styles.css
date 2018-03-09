@@ -495,9 +495,19 @@ audio {
 .wrongNote{
   -webkit-filter: opacity(.5) drop-shadow(0 0 0 red);
   filter: opacity(.5) drop-shadow(0 0 0 red);
+    -webkit-transition: opacity 2s ease-in;
+       -moz-transition: opacity 2s ease-in;
+        -ms-transition: opacity 2s ease-in;
+         -o-transition: opacity 2s ease-in;
+            transition: opacity 2s ease-in;
 }
 
 .correctNote{
   -webkit-filter: opacity(.5) drop-shadow(0 0 0 green);
   filter: opacity(.5) drop-shadow(0 0 0 green);
+    -webkit-transition: opacity 2s ease-in;
+       -moz-transition: opacity 2s ease-in;
+        -ms-transition: opacity 2s ease-in;
+         -o-transition: opacity 2s ease-in;
+            transition: opacity 2s ease-in;
 }

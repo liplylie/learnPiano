@@ -21,7 +21,8 @@ class LessonThree extends Component {
             wrongNote: null,
             checkNote: null,
             buttonToShow: null,
-            lessonCompleted: false
+            lessonCompleted: false,
+            noteClass: ""
         };
         this.popUpCount = 1;
         this.correctAnswers = 1;
@@ -38,19 +39,23 @@ class LessonThree extends Component {
             this.popUpCount === this.correctAnswers &&
             !this.state.lessonCompleted
         ) {
-            Popup.alert(
-                <div style={{ fontFamily: "helvetica", fontSize: "2.5em" }}>
-                    <img
-                        style={{ height: "8em", width: "5em" }}
-                        src={pitchTablePictures[this.state.checkNote]}
-                    />{" "}
-                    Correct! You played a {this.state.checkNote[0]}{" "}
-                </div>
-            );
-            document.getElementById(
-                `lessonOneButton${this.state.buttonToShow}`
-            ).style.display =
-                "block";
+            // Popup.alert(
+            //     <div style={{ fontFamily: "helvetica", fontSize: "2.5em" }}>
+            //         <img
+            //             style={{ height: "8em", width: "5em" }}
+            //             src={pitchTablePictures[this.state.checkNote]}
+            //         />{" "}
+            //         Correct! You played a {this.state.checkNote[0]}{" "}
+            //     </div>
+            // );
+            // this.setState({
+            //     noteClass: "correctNote"
+            // })
+
+            // document.getElementById(
+            //     `lessonOneButton${this.state.buttonToShow}`
+            // ).style.display =
+            //     "block";
             this.popUpCount += 1;
             this.correctAnswers += 1;
             this.turnOffMicrophone();
@@ -60,18 +65,21 @@ class LessonThree extends Component {
             this.popUpCount === this.correctAnswers &&
             !this.state.lessonCompleted
         ) {
-            Popup.alert(
-                <div style={{ fontFamily: "helvetica", fontSize: "2.5em" }}>
-                    <img
-                        style={{ height: "8em", width: "5em" }}
-                        src={pitchTablePictures[this.state.wrongNote]}
-                    />{" "}
-                    Incorrect! You played a{" "}
-                    {this.state.wrongNote.length === 3
-                        ? this.state.wrongNote[0] + this.state.wrongNote[1]
-                        : this.state.wrongNote[0]}
-                </div>
-            );
+            // Popup.alert(
+            //     <div style={{ fontFamily: "helvetica", fontSize: "2.5em" }}>
+            //         <img
+            //             style={{ height: "8em", width: "5em" }}
+            //             src={pitchTablePictures[this.state.wrongNote]}
+            //         />{" "}
+            //         Incorrect! You played a{" "}
+            //         {this.state.wrongNote.length === 3
+            //             ? this.state.wrongNote[0] + this.state.wrongNote[1]
+            //             : this.state.wrongNote[0]}
+            //     </div>
+            //);
+            // this.setState({
+            //     noteClass: "wrongNote"
+            // })
         }
     }
 
@@ -132,7 +140,8 @@ class LessonThree extends Component {
                 that.noteArray.push(note);
                 if (
                     (note.includes("3") && that.noteArray.length === 1) ||
-                    (note === "D4" && that.noteArray.length === 1)
+                    (note === "D4" && that.noteArray.length === 1) || 
+                    (note === "C4" && that.noteArray.length === 1)
                 ) {
                     that.noteArray.push(note);
                     that.noteArray.push(note);
@@ -142,29 +151,44 @@ class LessonThree extends Component {
                         that.turnOffMicrophone();
                         that.noteArray = [];
                         that.setState({
-                            correctNote: matchNote
+                            correctNote: matchNote,
+                            wrongNote: null,
+                            noteClass: "correctNote"
                         });
                     } else {
-                        that.setState({
-                            wrongNote: that.noteArray[2]
-                        });
+                        if (that.state.noteClass === "wrongNote"){
+                            that.setState({
+                                noteClass: ""
+                            })
+                            setTimeout(()=>{
+                                that.setState({
+                                    noteClass: "wrongNote"
+                                })
+                            }, 200)
+                        } else {
+                            that.setState({
+                                wrongNote: that.noteArray[2],
+                                noteClass: "wrongNote"
+                            });
+                            
+                        }
                         console.log(that.noteArray, "note array");
                         that.turnOffMicrophone();
                         that.noteArray = [];
-                        if (
-                            document.getElementsByClassName(
-                                "mm-popup__btn mm-popup__btn--ok"
-                            )
-                        ) {
-                            let okButton = document.getElementsByClassName(
-                                "mm-popup__btn mm-popup__btn--ok"
-                            )[0];
-                            console.log(okButton, "okbutton");
-                            setTimeout(() => {
-                                okButton.click();
-                            }, 1000);
-                        }
-                        //that.toggleMicrophone()
+                        
+                        // if (
+                        //     document.getElementsByClassName(
+                        //         "mm-popup__btn mm-popup__btn--ok"
+                        //     )
+                        // ) {
+                        //     let okButton = document.getElementsByClassName(
+                        //         "mm-popup__btn mm-popup__btn--ok"
+                        //     )[0];
+                        //     console.log(okButton, "okbutton");
+                        //     setTimeout(() => {
+                        //         okButton.click();
+                        //     }, 1000);
+                        // }
                         setTimeout(() => {
                             that.toggleMicrophone();
                         }, 700);
@@ -411,10 +435,10 @@ class LessonThree extends Component {
         document.getElementById("lessonOneMessageThree").style.display =
             "block";
         this.setState({
-            checkNote: "C4",
+            checkNote: "E4",
             buttonToShow: "Three"
         });
-        this.findPitch("C4");
+        this.findPitch("E4");
     }
 
     lessonOneButtonThree() {
@@ -645,6 +669,61 @@ class LessonThree extends Component {
                                 id="lessonOneButtonTwo"
                                 className="btn btn-primary"
                                 onClick={() => this.lessonOneButtonTwo()}
+                            >
+                                {" "}
+                                next{" "}
+                            </button>
+                            <div
+                                style={{
+                                    fontFamily: "helvetica",
+                                    fontSize: "1.5em",
+                                    display: "none"
+                                }}
+                                id="lessonOneMessageThree"
+                            >
+                                {" "}
+                                Go!
+                                <br/>{" "}
+                                <div className="row">
+                                    <div className = "sheetMusicContainer col-md-10">
+                                        <img
+                                            className = "sheetMusicStaff"
+
+                                            src={require("../static/sheetMusic1.png")}
+                                        />
+                                        <img
+                                            id="MaryHad1"
+                                            className={`playMusicNote noteOrderFirst noteE4 ${this.state.noteClass} `}
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                         <img
+                                            id="MaryHad2"
+                                            className="playMusicNote noteOrderSecond noteD4"
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad3"
+                                            className="playMusicNote noteOrderThird noteC4"
+                                            src={require("../static/musicNoteLine.png")}
+                                        />
+                                        <img
+                                            id="MaryHad4"
+                                            className="playMusicNote noteOrderFourth noteD4"
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                    </div> 
+                                </div>
+                                <br />
+                            </div>
+                            <button
+                                style={{
+                                    display: "none",
+                                    margin: "auto",
+                                    marginTop: "1em"
+                                }}
+                                id="lessonOneButtonThree"
+                                className="btn btn-primary"
+                                onClick={() => this.lessonOneButtonThree()}
                             >
                                 {" "}
                                 next{" "}
