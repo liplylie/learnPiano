@@ -52,14 +52,12 @@ class LessonThree extends Component {
             noteThree = Number(noteThree.substring(0, noteThree.length - 2))
             let noteFour = getCssProperty("MaryHad4", "left")
             noteFour = Number(noteFour.substring(0, noteFour.length - 2))
-            console.log(noteOne,'left')
-            console.log(noteTwo,'next')
             let movingDistance = noteTwo - noteOne
             let moveFirst = () => {
                 if (noteOne <= 100){
-                    console.log(noteOne, 'left now')
                     clearInterval(moveFirstNote)
                     document.getElementById(`MaryHad1`).style.display = "none"
+                    document.getElementById(`MaryHad1`).id = ""
                 } else {
                     noteOne -= 10
                     document.getElementById(`MaryHad1`).style.left = noteOne + "px"
@@ -69,6 +67,12 @@ class LessonThree extends Component {
             let moveOthers = () => {
                 if (movingDistance <=0){
                     clearInterval(moveOtherNotes)
+                    console.log(this.correctAnswers, 'look bro')
+                    document.getElementById(`MaryHad${this.correctAnswers + 3}`).style.display = "block"
+                    document.getElementById(`MaryHad2`).id = "MaryHad1"
+                    document.getElementById(`MaryHad3`).id = "MaryHad2"
+                    document.getElementById(`MaryHad4`).id = "MaryHad3"
+                    document.getElementById(`MaryHad${this.correctAnswers + 3}`).id = "MaryHad4"
                 } else {
                     noteTwo -= 10
                     noteThree -= 10
@@ -81,11 +85,51 @@ class LessonThree extends Component {
             }
             let moveOtherNotes = setInterval(moveOthers, 50)
 
-            this.turnOffMicrophone();
-            if (this.popUpCount === 1){
+            // this.turnOffMicrophone();
+            this.audio.close()
+            if (this.correctAnswers === 1){
                 this.setState({
                     checkNote: "D4",
-                    buttonToShow: "Three"
+                });
+                this.findPitch("D4");
+            } else if (this.correctAnswers === 2){
+                this.setState({
+                    checkNote: "C4",
+                });
+                this.findPitch("C4");
+            } else if (this.correctAnswers === 3){
+                this.setState({
+                    checkNote: "D4",
+                });
+                this.findPitch("D4");
+            } else if (this.correctAnswers === 4){
+                this.setState({
+                    checkNote: "E4",
+                });
+                this.findPitch("E4");
+            } else if (this.correctAnswers === 5){
+                this.setState({
+                    checkNote: "E4",
+                });
+                this.findPitch("E4");
+            } else if (this.correctAnswers === 6){
+                this.setState({
+                    checkNote: "E4",
+                });
+                this.findPitch("E4");
+            } else if (this.correctAnswers === 7){
+                this.setState({
+                    checkNote: "D4",
+                });
+                this.findPitch("D4");
+            } else if (this.correctAnswers === 8){
+                this.setState({
+                    checkNote: "D4",
+                });
+                this.findPitch("D4");
+            } else if (this.correctAnswers === 9){
+                this.setState({
+                    checkNote: "D4",
                 });
                 this.findPitch("D4");
             }
@@ -193,20 +237,6 @@ class LessonThree extends Component {
                         console.log(that.noteArray, "note array");
                         that.turnOffMicrophone();
                         that.noteArray = [];
-                        
-                        // if (
-                        //     document.getElementsByClassName(
-                        //         "mm-popup__btn mm-popup__btn--ok"
-                        //     )
-                        // ) {
-                        //     let okButton = document.getElementsByClassName(
-                        //         "mm-popup__btn mm-popup__btn--ok"
-                        //     )[0];
-                        //     console.log(okButton, "okbutton");
-                        //     setTimeout(() => {
-                        //         okButton.click();
-                        //     }, 1000);
-                        // }
                         setTimeout(() => {
                             that.toggleMicrophone();
                         }, 700);
@@ -345,6 +375,13 @@ class LessonThree extends Component {
         };
 
         this.toggleMicrophone = function() {
+            let that = this
+            // if (that.state.noteClass === "correctNote"){
+            //     setTimeout(()=>{that.setState({
+            //         noteClass: ""
+            //         })
+            //     }, 200)
+            // }
             if (isRefSoundPlaying) {
                 turnOffReferenceSound();
             }
@@ -435,7 +472,6 @@ class LessonThree extends Component {
         var referenceSoundNoteHandler = function(event) {
             changeReferenceSoundNote(event.data);
         };
-
         init();
         this.toggleMicrophone();
     }
@@ -712,17 +748,59 @@ class LessonThree extends Component {
                                         />
                                          <img
                                             id="MaryHad2"
-                                            className="playMusicNote noteOrderSecond noteD4"
+                                            className={`playMusicNote noteOrderSecond noteD4 ${this.correctAnswers === 2 ? this.state.noteClass : ""}`}
                                             src={require("../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad3"
-                                            className="playMusicNote noteOrderThird noteC4"
+                                            className={`playMusicNote noteOrderThird noteC4 ${this.correctAnswers === 3 ? this.state.noteClass : ""}`}
                                             src={require("../static/musicNoteLine.png")}
                                         />
                                         <img
                                             id="MaryHad4"
+                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 4 ? this.state.noteClass : ""}`}
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad5"
+                                            style={{display:"none"}}
+                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 5 ? this.state.noteClass : ""}`}
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad6"
+                                            style={{display:"none"}}
+                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 6 ? this.state.noteClass : ""}`}
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad7"
+                                            style={{display:"none"}}
+                                            className="playMusicNote noteOrderFourth noteE4"
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad8"
+                                            style={{display:"none"}}
                                             className="playMusicNote noteOrderFourth noteD4"
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad9"
+                                            style={{display:"none"}}
+                                            className="playMusicNote noteOrderFourth noteD4"
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad10"
+                                            style={{display:"none"}}
+                                            className="playMusicNote noteOrderFourth noteD4"
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad11"
+                                            style={{display:"none"}}
+                                            className="playMusicNote noteOrderFourth noteE4"
                                             src={require("../static/quarterNote.png")}
                                         />
                                     </div> 
