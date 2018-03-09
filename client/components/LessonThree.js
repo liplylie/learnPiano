@@ -604,7 +604,7 @@ class LessonThree extends Component {
                                 {" "}
                                 Let's look at Mary Had A Little Lamb. Please play through the notes 
                                 on the screen. Don't worry about rhythm just yet.
-                                <br />{" "}
+                                <br/>{" "}
                                 <div className="row">
                                     <div className = "sheetMusicContainer col-md-10">
                                         <img
