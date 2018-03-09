@@ -609,11 +609,27 @@ class LessonThree extends Component {
                                     <div className = "sheetMusicContainer col-md-10">
                                         <img
                                             className = "sheetMusicStaff"
+
                                             src={require("../static/sheetMusic1.png")}
                                         />
                                         <img
                                             id="MaryHad1"
                                             className="playMusicNote noteOrderFirst noteE4 "
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                         <img
+                                            id="MaryHad2"
+                                            className="playMusicNote noteOrderSecond noteD4"
+                                            src={require("../static/quarterNote.png")}
+                                        />
+                                        <img
+                                            id="MaryHad3"
+                                            className="playMusicNote noteOrderThird noteC4"
+                                            src={require("../static/musicNoteLine.png")}
+                                        />
+                                        <img
+                                            id="MaryHad4"
+                                            className="playMusicNote noteOrderFourth noteD4"
                                             src={require("../static/quarterNote.png")}
                                         />
                                     </div> 

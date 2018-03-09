@@ -454,7 +454,7 @@ audio {
 
 .sheetMusicStaff{
   height: 50vh;
-  width: 60vw;
+  min-width: 60vw;
   position: relative
 }
 
@@ -464,10 +464,30 @@ audio {
   position: absolute
 }
 
+.noteC4{
+  top: 10vh;
+}
+
+.noteD4{
+  top: 8.2vh
+}
+
 .noteE4{
-  top: 6.7vh
+  top: 6.65vh
 }
 
 .noteOrderFirst{
-  left: 35vh
+  left: 20vw
+}
+
+.noteOrderSecond{
+  left: 32vw
+}
+
+.noteOrderThird{
+  left: 44vw
+}
+
+.noteOrderFourth{
+  left: 56vw
 }
