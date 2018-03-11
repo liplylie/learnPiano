@@ -29,12 +29,12 @@ class LessonThree extends Component {
         this.correctAnswers = 1;
         this.noteArray = [];
         this.findPitch = this.findPitch.bind(this);
-        this.lessonOneButtonTwo = this.lessonOneButtonTwo.bind(this);
-        this.lessonOneButtonFour = this.lessonOneButtonFour.bind(this);
-        this.lessonOneButtonSeven = this.lessonOneButtonSeven.bind(this);
+        this.lessonThreeButtonTwo = this.lessonThreeButtonTwo.bind(this);
+        this.finishSong = this.finishSong.bind(this);
     }
 
     componentDidUpdate() {
+        if (this.correctAnswers < 27){
         let getCssProperty = (elmId, property) => {
             let elem = document.getElementById(elmId);
             return window.getComputedStyle(elem,null).getPropertyValue(property);
@@ -239,6 +239,8 @@ class LessonThree extends Component {
             } else if (this.correctAnswers === 26){
                 this.turnOffMicrophone();
             this.audio.close()
+            this.finishSong()
+            this.correctAnswers += 1;
             }
         } else if (
             this.state.wrongNote &&
@@ -247,6 +249,7 @@ class LessonThree extends Component {
             !this.state.lessonCompleted
         ) {
         }
+    }
     }
 
     componentWillUnmount() {
@@ -577,17 +580,17 @@ class LessonThree extends Component {
         this.toggleMicrophone();
     }
 
-    lessonOneButtonOne() {
-        document.getElementById("lessonOneMessageOne").style.display = "none";
-        document.getElementById("lessonOneButtonOne").style.display = "none";
-        document.getElementById("lessonOneMessageTwo").style.display = "block";
-        document.getElementById("lessonOneButtonTwo").style.display = "block";
+    lessonThreeButtonOne() {
+        document.getElementById("lessonThreeMessageOne").style.display = "none";
+        document.getElementById("lessonThreeButtonOne").style.display = "none";
+        document.getElementById("lessonThreeMessageTwo").style.display = "block";
+        document.getElementById("lessonThreeButtonTwo").style.display = "block";
     }
 
-    lessonOneButtonTwo() {
-        document.getElementById("lessonOneMessageTwo").style.display = "none";
-        document.getElementById("lessonOneButtonTwo").style.display = "none";
-        document.getElementById("lessonOneMessageThree").style.display =
+    lessonThreeButtonTwo() {
+        document.getElementById("lessonThreeMessageTwo").style.display = "none";
+        document.getElementById("lessonThreeButtonTwo").style.display = "none";
+        document.getElementById("lessonThreeMessageThree").style.display = 
             "block";
         this.setState({
             checkNote: "E4",
@@ -596,92 +599,15 @@ class LessonThree extends Component {
         this.findPitch("E4");
     }
 
-    lessonOneButtonThree() {
-        document.getElementById("lessonOneMessageThree").style.display = "none";
-        document.getElementById("lessonOneButtonThree").style.display = "none";
-        document.getElementById("lessonOneMessageFour").style.display = "block";
-        document.getElementById("lessonOneButtonFour").style.display = "block";
+    finishSong() {
+        console.log("done")
+        document.getElementById("lessonThreeMessageThree").style.display = "none";
+        document.getElementById("lessonThreeMessageFour").style.display = "block";
+        document.getElementById("lessonThreeButtonFour").style.display = "block";
     }
 
-    lessonOneButtonFour() {
-        document.getElementById("lessonOneMessageFour").style.display = "none";
-        document.getElementById("lessonOneButtonFour").style.display = "none";
-        document.getElementById("lessonOneMessageFive").style.display = "block";
-        this.setState({
-            checkNote: "D4",
-            buttonToShow: "Five"
-        });
-        this.findPitch("D4");
-    }
 
-    lessonOneButtonFive() {
-        document.getElementById("lessonOneMessageFive").style.display = "none";
-        document.getElementById("lessonOneButtonFive").style.display = "none";
-        document.getElementById("lessonOneMessageSix").style.display = "block";
-        document.getElementById("lessonOneButtonSix").style.display = "block";
-    }
-
-    lessonOneButtonSix() {
-        document.getElementById("lessonOneMessageSix").style.display = "none";
-        document.getElementById("lessonOneButtonSix").style.display = "none";
-        document.getElementById("lessonOneMessageSeven").style.display =
-            "block";
-        this.setState({
-            checkNote: "E4",
-            buttonToShow: "Seven"
-        });
-        this.findPitch("E4");
-    }
-
-    lessonOneButtonSeven() {
-        document.getElementById("lessonOneMessageSeven").style.display = "none";
-        document.getElementById("lessonOneButtonSeven").style.display = "none";
-        document.getElementById("lessonOneMessageEight").style.display =
-            "block";
-        document.getElementById("lessonOneButtonEight").style.display = "block";
-    }
-
-    lessonOneButtonEight() {
-        document.getElementById("lessonOneMessageEight").style.display = "none";
-        document.getElementById("lessonOneButtonEight").style.display = "none";
-        document.getElementById("lessonOneMessageNine").style.display = "block";
-        this.setState({
-            checkNote: "F4",
-            buttonToShow: "Nine"
-        });
-        this.findPitch("F4");
-    }
-
-    lessonOneButtonNine() {
-        document.getElementById("lessonOneMessageNine").style.display = "none";
-        document.getElementById("lessonOneButtonNine").style.display = "none";
-        document.getElementById("lessonOneMessageTen").style.display = "block";
-        document.getElementById("lessonOneButtonTen").style.display = "block";
-    }
-
-    lessonOneButtonTen() {
-        document.getElementById("lessonOneMessageTen").style.display = "none";
-        document.getElementById("lessonOneButtonTen").style.display = "none";
-        document.getElementById("lessonOneMessageEleven").style.display =
-            "block";
-        this.setState({
-            checkNote: "G4",
-            buttonToShow: "Eleven"
-        });
-        this.findPitch("G4");
-    }
-
-    lessonOneButtonEleven() {
-        document.getElementById("lessonOneMessageEleven").style.display =
-            "none";
-        document.getElementById("lessonOneButtonEleven").style.display = "none";
-        document.getElementById("lessonOneMessageTwelve").style.display =
-            "block";
-        document.getElementById("lessonOneButtonTwelve").style.display =
-            "block";
-    }
-
-    lessonOneButtonTwelve() {
+    finishLesson() {
         // set data to firebase that lesson one is completed for the user
         let that = this;
         let userLessonStatus = firebaseDB.ref(
@@ -758,16 +684,16 @@ class LessonThree extends Component {
                                     fontFamily: "helvetica",
                                     fontSize: "1.5em"
                                 }}
-                                id="lessonOneMessageOne"
+                                id="lessonThreeMessageOne"
                             >
                                 {" "}
                                 Welcome to your Third lesson! Today we will
                                 play through a few songs!
                             </div>
                             <button
-                                id="lessonOneButtonOne"
+                                id="lessonThreeButtonOne"
                                 className="btn btn-primary"
-                                onClick={() => this.lessonOneButtonOne()}
+                                onClick={() => this.lessonThreeButtonOne()}
                             >
                                 {" "}
                                 next{" "}
@@ -778,7 +704,7 @@ class LessonThree extends Component {
                                     fontSize: "1.5em",
                                     display: "none"
                                 }}
-                                id="lessonOneMessageTwo"
+                                id="lessonThreeMessageTwo"
                             >
                                 {" "}
                                 Let's look at Mary Had A Little Lamb. Please play through the notes 
@@ -817,9 +743,9 @@ class LessonThree extends Component {
                                     margin: "auto",
                                     marginTop: "1em"
                                 }}
-                                id="lessonOneButtonTwo"
+                                id="lessonThreeButtonTwo"
                                 className="btn btn-primary"
-                                onClick={() => this.lessonOneButtonTwo()}
+                                onClick={() => this.lessonThreeButtonTwo()}
                             >
                                 {" "}
                                 next{" "}
@@ -830,7 +756,7 @@ class LessonThree extends Component {
                                     fontSize: "1.5em",
                                     display: "none"
                                 }}
-                                id="lessonOneMessageThree"
+                                id="lessonThreeMessageThree"
                             >
                                 {" "}
                                 Go!
@@ -1014,26 +940,13 @@ class LessonThree extends Component {
                                 </div>
                                 <br />
                             </div>
-                            <button
-                                style={{
-                                    display: "none",
-                                    margin: "auto",
-                                    marginTop: "1em"
-                                }}
-                                id="lessonOneButtonThree"
-                                className="btn btn-primary"
-                                onClick={() => this.lessonOneButtonThree()}
-                            >
-                                {" "}
-                                next{" "}
-                            </button>
                             <div
                                 style={{
                                     fontFamily: "helvetica",
                                     fontSize: "1.5em",
                                     display: "none"
                                 }}
-                                id="lessonOneMessageTwelve"
+                                id="lessonThreeMessageFour"
                             >
                                 {" "}
                                 Congrats! You have played through your first songs. Please continue
@@ -1050,9 +963,9 @@ class LessonThree extends Component {
                                     margin: "auto",
                                     marginTop: "1em"
                                 }}
-                                id="lessonOneButtonTwelve"
+                                id="lessonThreeButtonFour"
                                 className="btn btn-primary"
-                                onClick={() => this.lessonOneButtonTwelve()}
+                                onClick={() => this.finishLesson()}
                             >
                                 {" "}
                                 Finish{" "}
