@@ -12,6 +12,7 @@ import Popup from "react-popup";
 import pitchTable from "../../helpers/pitchTable";
 import pitchTablePictures from "../../helpers/pitchTablePictures";
 import Piano from "../Piano.js";
+import easySongView from "../../helpers/easySongView"
 
 class MaryHadLamb extends Component {
     constructor(props) {
@@ -25,13 +26,14 @@ class MaryHadLamb extends Component {
             noteClass: ""
         };
         this.start = false
-        this.lessonNotes = ["E4", "D4", "C4", "D4", "E4", "E4", "E4", "D4", "D4", "D4", "D4", "E4", "D4", "D4", "E4", "D4", "C4", "D4", "E4", "E4", "E4", "E4", "D4", "D4", "E4", "D4", "C4"]
+        this.lessonNotes = ["E4", "D4", "C4", "D4", "E4", "E4", "E4", "D4", "D4", "D4", "E4", "G4", "G4", "E4", "D4", "C4", "D4", "E4", "E4", "E4", "E4", "D4", "D4", "E4", "D4", "C4"]
         this.popUpCount = 1;
         this.correctAnswers = 1;
         this.noteArray = [];
         this.findPitch = this.findPitch.bind(this);
         this.lessonThreeButtonTwo = this.lessonThreeButtonTwo.bind(this);
         this.finishSong = this.finishSong.bind(this);
+
     }
 
     componentDidUpdate() {
@@ -89,169 +91,37 @@ class MaryHadLamb extends Component {
 
             this.turnOffMicrophone();
             this.audio.close()
-            if (this.correctAnswers === 1){
-                this.setState({
-                    checkNote: "D4",
-                });
-                setTimeout(()=>{this.findPitch("D4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 2){
-                this.setState({
-                    checkNote: "C4",
-                });
-                setTimeout(()=>{this.findPitch("C4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 3){
-                this.setState({
-                    checkNote: "D4",
-                });
-                setTimeout(()=>{this.findPitch("D4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 4){
-                this.setState({
-                    checkNote: "E4",
-                });
-                setTimeout(()=>{this.findPitch("E4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 5){
-                setTimeout(()=>{this.findPitch("E4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 6){
-                setTimeout(()=>{this.findPitch("E4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 7){
-                this.setState({
-                    checkNote: "D4",
-                });
-                setTimeout(()=>{this.findPitch("D4")},300)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 8){
-                setTimeout(()=>{this.findPitch("D4")},300)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 9){
-                setTimeout(()=>{this.findPitch("D4")},300)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 10){
-                this.setState({
-                    checkNote: "E4",
-                });
-                setTimeout(()=>{this.findPitch("E4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 11){
-                this.setState({
-                    checkNote: "G4",
-                });
-                setTimeout(()=>{this.findPitch("G4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 12){
-                setTimeout(()=>{this.findPitch("G4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 13){
-                this.setState({
-                    checkNote: "E4",
-                });
-                setTimeout(()=>{this.findPitch("E4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 14){
-                this.setState({
-                    checkNote: "D4",
-                });
-                setTimeout(()=>{this.findPitch("D4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 15){
-                this.setState({
-                    checkNote: "C4",
-                });
-                setTimeout(()=>{this.findPitch("C4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 16){
-                this.setState({
-                    checkNote: "D4",
-                });
-               setTimeout(()=>{this.findPitch("D4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 17){
-                this.setState({
-                    checkNote: "E4",
-                });
-                setTimeout(()=>{this.findPitch("E4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 18){
-                setTimeout(()=>{this.findPitch("E4")},300)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 19){
-                setTimeout(()=>{this.findPitch("E4")},300)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 20){
-                setTimeout(()=>{this.findPitch("E4")},300)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 21){
-                this.setState({
-                    checkNote: "D4",
-                });
-                setTimeout(()=>{this.findPitch("D4")},300)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 22){
-                setTimeout(()=>{this.findPitch("D4")},300)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 23){
-                this.setState({
-                    checkNote: "E4",
-                });
-                setTimeout(()=>{this.findPitch("E4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 24){
-                this.setState({
-                    checkNote: "D4",
-                });
-                setTimeout(()=>{this.findPitch("D4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 25){
-                this.setState({
-                    checkNote: "C4",
-                });
-                setTimeout(()=>{this.findPitch("C4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 26){
-                this.turnOffMicrophone();
-            this.audio.close()
-            this.finishSong()
-            this.correctAnswers += 1;
+            for ( let i = 1; i <= this.lessonNotes.length; i++ ){
+                if (this.correctAnswers === i && (this.lessonNotes[i] === this.lessonNotes[i - 1]) ){
+                     setTimeout(()=>{this.findPitch(this.lessonNotes[i])},300)
+                    this.popUpCount += 1;
+                    this.correctAnswers += 1;
+                    break;
+                }
+               else if (this.correctAnswers === i) {
+                    this.setState({
+                        checkNote: this.lessonNotes[i],
+                    });
+                    setTimeout(()=>{this.findPitch(this.lessonNotes[i])},200)
+                    this.popUpCount += 1;
+                    this.correctAnswers += 1;
+                    break;
+               } else if (this.correctAnswers === this.lessonNotes.length){
+                    this.turnOffMicrophone();
+                    this.audio.close()
+                    this.finishSong()
+                    this.correctAnswers += 1;
+                    break;
+               }
             }
-        } 
-    //     else if (
-    //         this.state.wrongNote &&
-    //         this.noteArray.length &&
-    //         this.popUpCount === this.correctAnswers &&
-    //         !this.state.lessonCompleted
-    //     ) {
-    //     }
-     }
+        } else if (
+            this.state.wrongNote &&
+            this.noteArray.length &&
+            this.popUpCount === this.correctAnswers &&
+            !this.state.lessonCompleted
+        ) {
+        }
+    }
     }
 
     componentWillUnmount() {
@@ -640,6 +510,10 @@ class MaryHadLamb extends Component {
         if (this.state.lessonCompleted) {
             return <Redirect to="/" />;
         }
+        let easySong = []
+        for (let i = 5; i <= this.lessonNotes.length; i++) {
+            easySong.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass) )
+        }
 
         return (
             <div
@@ -727,138 +601,7 @@ class MaryHadLamb extends Component {
                                             className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 4 ? this.state.noteClass : ""}`}
                                             src={require("../../static/quarterNote.png")}
                                         />
-                                        <img
-                                            id="MaryHad5"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 5 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad6"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 6 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad7"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 7 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad8"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 8 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad9"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 9 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad10"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 10 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad11"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 11 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                         <img
-                                            id="MaryHad12"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteG4 ${this.correctAnswers === 12 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                         <img
-                                            id="MaryHad13"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteG4 ${this.correctAnswers === 13 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad14"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 14 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad15"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 15 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad16"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteC4 ${this.correctAnswers === 16 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/musicNoteLine.png")}
-                                        />
-                                        <img
-                                            id="MaryHad17"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 17 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad18"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 18 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad19"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 19 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad20"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 20 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                         <img
-                                            id="MaryHad21"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 21 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                         <img
-                                            id="MaryHad22"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 22 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad23"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 23 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad24"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 24 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                         <img
-                                            id="MaryHad25"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 25 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad26"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteC4 ${this.correctAnswers === 26 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/musicNoteLine.png")}
-                                        />
+                                       {easySong}
                                          <img
                                             id="MaryHad27"
                                             style={{display:"none", left: 0}}
