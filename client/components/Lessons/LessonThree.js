@@ -24,7 +24,7 @@ class LessonThree extends Component {
             lessonCompleted: false,
             noteClass: ""
         };
-        this.lessonNotes = ["E4", "D4", "C4", "D4", "E4", "E4", "E4", "D4", "D4", "D4", "D4", "E4", "D4", "D4", "E4", "D4", "C4", "D4", "E4", "E4", "E4", "E4", "D4", "D4", "E4", "D4", "C4"]
+        this.lessonNotes = ["E4", "D4", "C4", "D4", "E4", "E4", "E4", "D4", "D4", "D4", "E4", "G4", "G4", "E4", "D4", "C4", "D4", "E4", "E4", "E4", "E4", "D4", "D4", "E4", "D4", "C4"]
         this.popUpCount = 1;
         this.correctAnswers = 1;
         this.noteArray = [];
@@ -88,159 +88,28 @@ class LessonThree extends Component {
 
             this.turnOffMicrophone();
             this.audio.close()
-            if (this.correctAnswers === 1){
-                this.setState({
-                    checkNote: "D4",
-                });
-                setTimeout(()=>{this.findPitch("D4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 2){
-                this.setState({
-                    checkNote: "C4",
-                });
-                setTimeout(()=>{this.findPitch("C4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 3){
-                this.setState({
-                    checkNote: "D4",
-                });
-                setTimeout(()=>{this.findPitch("D4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 4){
-                this.setState({
-                    checkNote: "E4",
-                });
-                setTimeout(()=>{this.findPitch("E4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 5){
-                setTimeout(()=>{this.findPitch("E4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 6){
-                setTimeout(()=>{this.findPitch("E4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 7){
-                this.setState({
-                    checkNote: "D4",
-                });
-                setTimeout(()=>{this.findPitch("D4")},300)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 8){
-                setTimeout(()=>{this.findPitch("D4")},300)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 9){
-                setTimeout(()=>{this.findPitch("D4")},300)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 10){
-                this.setState({
-                    checkNote: "E4",
-                });
-                setTimeout(()=>{this.findPitch("E4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 11){
-                this.setState({
-                    checkNote: "G4",
-                });
-                setTimeout(()=>{this.findPitch("G4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 12){
-                setTimeout(()=>{this.findPitch("G4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 13){
-                this.setState({
-                    checkNote: "E4",
-                });
-                setTimeout(()=>{this.findPitch("E4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 14){
-                this.setState({
-                    checkNote: "D4",
-                });
-                setTimeout(()=>{this.findPitch("D4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 15){
-                this.setState({
-                    checkNote: "C4",
-                });
-                setTimeout(()=>{this.findPitch("C4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 16){
-                this.setState({
-                    checkNote: "D4",
-                });
-               setTimeout(()=>{this.findPitch("D4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 17){
-                this.setState({
-                    checkNote: "E4",
-                });
-                setTimeout(()=>{this.findPitch("E4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 18){
-                setTimeout(()=>{this.findPitch("E4")},300)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 19){
-                setTimeout(()=>{this.findPitch("E4")},300)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 20){
-                setTimeout(()=>{this.findPitch("E4")},300)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 21){
-                this.setState({
-                    checkNote: "D4",
-                });
-                setTimeout(()=>{this.findPitch("D4")},300)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 22){
-                setTimeout(()=>{this.findPitch("D4")},300)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 23){
-                this.setState({
-                    checkNote: "E4",
-                });
-                setTimeout(()=>{this.findPitch("E4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 24){
-                this.setState({
-                    checkNote: "D4",
-                });
-                setTimeout(()=>{this.findPitch("D4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 25){
-                this.setState({
-                    checkNote: "C4",
-                });
-                setTimeout(()=>{this.findPitch("C4")},200)
-                this.popUpCount += 1;
-            this.correctAnswers += 1;
-            } else if (this.correctAnswers === 26){
-                this.turnOffMicrophone();
-            this.audio.close()
-            this.finishSong()
-            this.correctAnswers += 1;
+            for ( let i = 1; i <= this.lessonNotes.length; i++ ){
+                if (this.correctAnswers === i && (this.lessonNotes[i] === this.lessonNotes[i - 1]) ){
+                     setTimeout(()=>{this.findPitch(this.lessonNotes[i])},300)
+                    this.popUpCount += 1;
+                    this.correctAnswers += 1;
+                    break;
+                }
+               else if (this.correctAnswers === i) {
+                    this.setState({
+                        checkNote: this.lessonNotes[i],
+                    });
+                    setTimeout(()=>{this.findPitch(this.lessonNotes[i])},200)
+                    this.popUpCount += 1;
+                    this.correctAnswers += 1;
+                    break;
+               } else if (this.correctAnswers === this.lessonNotes.length){
+                    this.turnOffMicrophone();
+                    this.audio.close()
+                    this.finishSong()
+                    this.correctAnswers += 1;
+                    break;
+               }
             }
         } else if (
             this.state.wrongNote &&
