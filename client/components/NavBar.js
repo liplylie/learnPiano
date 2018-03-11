@@ -73,6 +73,35 @@ class Navbar extends Component {
                                     </li>
                                 </ul>
                             </li>
+                            <li
+                                className="dropdown nav-item"
+                                style={{
+                                    display: this.props.authenticated
+                                        ? "block"
+                                        : "none"
+                                }}
+                            >
+                                <a
+                                    data-toggle="dropdown"
+                                    className="dropdown-toggle nav-link"
+                                >
+                                    Song Collection
+                                </a>
+                                <ul className="dropdown-menu text-center">
+                                    <li className="dropdown-item">
+                                        <Link to="/SongList/intro">Introduction Songs</Link>
+                                    </li>
+                                    <li className="dropdown-item">
+                                        <Link to="/SongList/easy">Easy Level Songs</Link>
+                                    </li>
+                                    <li className="dropdown-item">
+                                        <Link to="/SongList/medium">Medium Level Songs</Link>
+                                    </li>
+                                    <li className="dropdown-item">
+                                        <Link to="/SongList/hard">Hard Level Songs</Link>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                         <ul className="nav navbar-nav flex-row justify-content-between ml-auto">
                             <div

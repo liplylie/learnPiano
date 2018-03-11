@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import { BrowserRouter, Router, Route } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { app, firebaseDB } from "../firebase";
+import { app, firebaseDB } from "../../firebase";
 import firebase from "firebase";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as AuthActions from "../actions/authActions.js";
-import * as LessonsCompleted from "../actions/lessonsCompletedActions";
+import * as AuthActions from "../../actions/authActions.js";
+import * as LessonsCompleted from "../../actions/lessonsCompletedActions";
 import Popup from "react-popup";
-import pitchTable from "../helpers/pitchTable";
-import pitchTablePictures from "../helpers/pitchTablePictures";
-import Piano from "./Piano.js";
+import pitchTable from "../../helpers/pitchTable";
+import pitchTablePictures from "../../helpers/pitchTablePictures";
+import Piano from "../Piano.js";
 
 class LessonThree extends Component {
     constructor(props) {
@@ -715,23 +715,23 @@ class LessonThree extends Component {
                                         <img
                                             className = "sheetMusicStaff"
 
-                                            src={require("../static/sheetMusic1.png")}
+                                            src={require("../../static/sheetMusic1.png")}
                                         />
                                         <img
                                             className="playMusicNote noteOrderFirst noteE4 "
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                          <img
                                             className="playMusicNote noteOrderSecond noteD4"
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             className="playMusicNote noteOrderThird noteC4"
-                                            src={require("../static/musicNoteLine.png")}
+                                            src={require("../../static/musicNoteLine.png")}
                                         />
                                         <img
                                             className="playMusicNote noteOrderFourth noteD4"
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                     </div> 
                                 </div>
@@ -766,159 +766,159 @@ class LessonThree extends Component {
                                         <img
                                             className = "sheetMusicStaff"
 
-                                            src={require("../static/sheetMusic1.png")}
+                                            src={require("../../static/sheetMusic1.png")}
                                         />
                                         <img
                                             id="MaryHad1"
                                             className={`playMusicNote noteOrderFirst noteE4 ${this.state.noteClass} `}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                          <img
                                             id="MaryHad2"
                                             className={`playMusicNote noteOrderSecond noteD4 ${this.correctAnswers === 2 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad3"
                                             className={`playMusicNote noteOrderThird noteC4 ${this.correctAnswers === 3 ? this.state.noteClass : ""}`}
-                                            src={require("../static/musicNoteLine.png")}
+                                            src={require("../../static/musicNoteLine.png")}
                                         />
                                         <img
                                             id="MaryHad4"
                                             className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 4 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad5"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 5 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad6"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 6 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad7"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 7 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad8"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 8 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad9"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 9 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad10"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 10 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad11"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 11 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                          <img
                                             id="MaryHad12"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteG4 ${this.correctAnswers === 12 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                          <img
                                             id="MaryHad13"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteG4 ${this.correctAnswers === 13 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad14"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 14 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad15"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 15 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad16"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteC4 ${this.correctAnswers === 16 ? this.state.noteClass : ""}`}
-                                            src={require("../static/musicNoteLine.png")}
+                                            src={require("../../static/musicNoteLine.png")}
                                         />
                                         <img
                                             id="MaryHad17"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 17 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad18"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 18 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad19"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 19 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad20"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 20 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                          <img
                                             id="MaryHad21"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 21 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                          <img
                                             id="MaryHad22"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 22 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad23"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 23 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad24"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 24 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                          <img
                                             id="MaryHad25"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 25 ? this.state.noteClass : ""}`}
-                                            src={require("../static/quarterNote.png")}
+                                            src={require("../../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad26"
                                             style={{display:"none"}}
                                             className={`playMusicNote noteOrderFourth noteC4 ${this.correctAnswers === 26 ? this.state.noteClass : ""}`}
-                                            src={require("../static/musicNoteLine.png")}
+                                            src={require("../../static/musicNoteLine.png")}
                                         />
                                          <img
                                             id="MaryHad27"
@@ -949,11 +949,10 @@ class LessonThree extends Component {
                                 id="lessonThreeMessageFour"
                             >
                                 {" "}
-                                Congrats! You have played through your first songs. Please continue
-                                to the next lesson! <br />{" "}
+                                Congrats! You have played through your first song. Please play through more songs in the song collection before moving to the next lesson! <br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/goodJob.gif")}
+                                    src={require("../../static/goodJob.gif")}
                                 />
                                 <br />
                             </div>
@@ -985,7 +984,7 @@ class LessonThree extends Component {
                                 width: "4em",
                                 margin: ".5em"
                             }}
-                            src={require("../static/pianoKeys.png")}
+                            src={require("../../static/pianoKeys.png")}
                         />
                         <p className="wow flipInX center"> Open Piano</p>
                     </div>

@@ -2,17 +2,17 @@ import React, { Component } from "react";
 import { BrowserRouter, Router, Route } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { app, firebaseDB } from "../firebase";
+import { app, firebaseDB } from "../../firebase";
 import firebase from "firebase";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import Piano from "./Piano";
+import Piano from "../Piano";
 
-import * as AuthActions from "../actions/authActions.js";
-import * as LessonsCompleted from "../actions/lessonsCompletedActions";
+import * as AuthActions from "../../actions/authActions.js";
+import * as LessonsCompleted from "../../actions/lessonsCompletedActions";
 import Popup from "react-popup";
-import pitchTable from "../helpers/pitchTable";
-import pitchTablePictures from "../helpers/pitchTablePictures";
+import pitchTable from "../../helpers/pitchTable";
+import pitchTablePictures from "../../helpers/pitchTablePictures";
 
 class LessonTwo extends Component {
     constructor(props) {
@@ -607,7 +607,7 @@ class LessonTwo extends Component {
                                 piano. <br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/findMiddleC.jpg")}
+                                    src={require("../../static/findMiddleC.jpg")}
                                 />
                                 <br />
                             </div>
@@ -637,7 +637,7 @@ class LessonTwo extends Component {
                                 hand <br />
                                 <img
                                     style={{ height: "12em", width: "15em" }}
-                                    src={require("../static/leftHandPianoHome1.jpg")}
+                                    src={require("../../static/leftHandPianoHome1.jpg")}
                                 />
                                 <br />
                             </div>
@@ -667,7 +667,7 @@ class LessonTwo extends Component {
                                 white key to the left of C is B. <br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/findB.jpg")}
+                                    src={require("../../static/findB.jpg")}
                                 />
                                 <br />
                             </div>
@@ -696,7 +696,7 @@ class LessonTwo extends Component {
                                 Please play B! <br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/findB.jpg")}
+                                    src={require("../../static/findB.jpg")}
                                 />
                                 <br />
                             </div>
@@ -726,7 +726,7 @@ class LessonTwo extends Component {
                                 left is an A <br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/findA.jpg")}
+                                    src={require("../../static/findA.jpg")}
                                 />
                                 <br />
                             </div>
@@ -755,7 +755,7 @@ class LessonTwo extends Component {
                                 Please play A!<br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/findA.jpg")}
+                                    src={require("../../static/findA.jpg")}
                                 />
                                 <br />
                             </div>
@@ -784,7 +784,7 @@ class LessonTwo extends Component {
                                 Super! The next note to the left is F! <br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/findG.jpg")}
+                                    src={require("../../static/findG.jpg")}
                                 />
                                 <br />
                             </div>
@@ -813,7 +813,7 @@ class LessonTwo extends Component {
                                 Please play G! <br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/findG.jpg")}
+                                    src={require("../../static/findG.jpg")}
                                 />
                                 <br />
                             </div>
@@ -843,7 +843,7 @@ class LessonTwo extends Component {
                                 Please find F. <br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/findF.jpg")}
+                                    src={require("../../static/findF.jpg")}
                                 />
                                 <br />
                             </div>
@@ -872,7 +872,7 @@ class LessonTwo extends Component {
                                 Play F! <br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/findF.jpg")}
+                                    src={require("../../static/findF.jpg")}
                                 />
                                 <br />
                             </div>
@@ -903,7 +903,7 @@ class LessonTwo extends Component {
                                 continue to lesson three! <br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../static/goodJob.gif")}
+                                    src={require("../../static/goodJob.gif")}
                                 />
                                 <br />
                             </div>
@@ -935,7 +935,7 @@ class LessonTwo extends Component {
                                 width: "4em",
                                 margin: ".5em"
                             }}
-                            src={require("../static/pianoKeys.png")}
+                            src={require("../../static/pianoKeys.png")}
                         />
                         <p className="wow flipInX center"> Open Piano</p>
                     </div>
