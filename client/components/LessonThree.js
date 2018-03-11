@@ -24,6 +24,7 @@ class LessonThree extends Component {
             lessonCompleted: false,
             noteClass: ""
         };
+        this.lessonNotes = ["E4", "D4", "C4", "D4", "E4", "E4", "E4", "D4", "D4", "D4", "D4", "E4", "D4", "D4", "E4", "D4", "C4", "D4", "E4", "E4", "E4", "E4", "D4", "D4", "E4", "D4", "C4"]
         this.popUpCount = 1;
         this.correctAnswers = 1;
         this.noteArray = [];
@@ -91,43 +92,43 @@ class LessonThree extends Component {
                 this.setState({
                     checkNote: "D4",
                 });
-                this.findPitch("D4");
+                setTimeout(()=>{this.findPitch("D4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 2){
                 this.setState({
                     checkNote: "C4",
                 });
-                this.findPitch("C4");
+                setTimeout(()=>{this.findPitch("C4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 3){
                 this.setState({
                     checkNote: "D4",
                 });
-                this.findPitch("D4");
+                setTimeout(()=>{this.findPitch("D4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 4){
                 this.setState({
                     checkNote: "E4",
                 });
-                this.findPitch("E4");
+                setTimeout(()=>{this.findPitch("E4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 5){
-                setTimeout(()=>{this.findPitch("E4")},300)
+                setTimeout(()=>{this.findPitch("E4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 6){
-                setTimeout(()=>{this.findPitch("E4")},300)
+                setTimeout(()=>{this.findPitch("E4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 7){
                 this.setState({
                     checkNote: "D4",
                 });
-                this.findPitch("D4");
+                setTimeout(()=>{this.findPitch("D4")},300)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 8){
@@ -142,53 +143,53 @@ class LessonThree extends Component {
                 this.setState({
                     checkNote: "E4",
                 });
-                this.findPitch("E4");
+                setTimeout(()=>{this.findPitch("E4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 11){
                 this.setState({
                     checkNote: "G4",
                 });
-                this.findPitch("G4");
+                setTimeout(()=>{this.findPitch("G4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 12){
-                setTimeout(()=>{this.findPitch("G4")},300)
+                setTimeout(()=>{this.findPitch("G4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 13){
                 this.setState({
                     checkNote: "E4",
                 });
-                this.findPitch("E4");
+                setTimeout(()=>{this.findPitch("E4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 14){
                 this.setState({
                     checkNote: "D4",
                 });
-                this.findPitch("D4");
+                setTimeout(()=>{this.findPitch("D4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 15){
                 this.setState({
                     checkNote: "C4",
                 });
-                this.findPitch("C4");
+                setTimeout(()=>{this.findPitch("C4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 16){
                 this.setState({
                     checkNote: "D4",
                 });
-                this.findPitch("D4");
+               setTimeout(()=>{this.findPitch("D4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 17){
                 this.setState({
                     checkNote: "E4",
                 });
-                this.findPitch("E4");
+                setTimeout(()=>{this.findPitch("E4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 18){
@@ -207,7 +208,7 @@ class LessonThree extends Component {
                 this.setState({
                     checkNote: "D4",
                 });
-                this.findPitch("D4");
+                setTimeout(()=>{this.findPitch("D4")},300)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 22){
@@ -218,26 +219,27 @@ class LessonThree extends Component {
                 this.setState({
                     checkNote: "E4",
                 });
-                this.findPitch("E4");
+                setTimeout(()=>{this.findPitch("E4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 24){
                 this.setState({
                     checkNote: "D4",
                 });
-                this.findPitch("D4");
+                setTimeout(()=>{this.findPitch("D4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
             } else if (this.correctAnswers === 25){
                 this.setState({
                     checkNote: "C4",
                 });
-                this.findPitch("C4");
+                setTimeout(()=>{this.findPitch("C4")},200)
                 this.popUpCount += 1;
             this.correctAnswers += 1;
+            } else if (this.correctAnswers === 26){
+                this.turnOffMicrophone();
+            this.audio.close()
             }
-            
-             
         } else if (
             this.state.wrongNote &&
             this.noteArray.length &&
@@ -314,12 +316,13 @@ class LessonThree extends Component {
                     if (that.noteArray.includes(matchNote)) {
                         that.turnOffMicrophone();
                         that.noteArray = [];
+                        that.noteArray.length = 0
                         that.setState({
                             correctNote: matchNote,
                             wrongNote: null,
                             noteClass: "correctNote"
                         });
-                        console.log(that.noteArray, 'notearray')
+                        console.log(that.noteArray, 'note array correct')
                     } else {
                         if (that.state.noteClass === "wrongNote"){
                             that.setState({
@@ -337,9 +340,10 @@ class LessonThree extends Component {
                             });
                             
                         }
-                        console.log(that.noteArray, "note array");
+                        console.log(that.noteArray, "note array wrong");
                         that.turnOffMicrophone();
                         that.noteArray = [];
+                        that.noteArray.length = 0
                         setTimeout(() => {
                             that.toggleMicrophone();
                         }, 700);
@@ -873,49 +877,49 @@ class LessonThree extends Component {
                                         <img
                                             id="MaryHad7"
                                             style={{display:"none"}}
-                                            className="playMusicNote noteOrderFourth noteE4"
+                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 7 ? this.state.noteClass : ""}`}
                                             src={require("../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad8"
                                             style={{display:"none"}}
-                                            className="playMusicNote noteOrderFourth noteD4"
+                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 8 ? this.state.noteClass : ""}`}
                                             src={require("../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad9"
                                             style={{display:"none"}}
-                                            className="playMusicNote noteOrderFourth noteD4"
+                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 9 ? this.state.noteClass : ""}`}
                                             src={require("../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad10"
                                             style={{display:"none"}}
-                                            className="playMusicNote noteOrderFourth noteD4"
+                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 10 ? this.state.noteClass : ""}`}
                                             src={require("../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad11"
                                             style={{display:"none"}}
-                                            className="playMusicNote noteOrderFourth noteE4"
+                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 11 ? this.state.noteClass : ""}`}
                                             src={require("../static/quarterNote.png")}
                                         />
                                          <img
                                             id="MaryHad12"
                                             style={{display:"none"}}
-                                            className="playMusicNote noteOrderFourth noteG4"
+                                            className={`playMusicNote noteOrderFourth noteG4 ${this.correctAnswers === 12 ? this.state.noteClass : ""}`}
                                             src={require("../static/quarterNote.png")}
                                         />
                                          <img
                                             id="MaryHad13"
                                             style={{display:"none"}}
-                                            className="playMusicNote noteOrderFourth noteG4"
+                                            className={`playMusicNote noteOrderFourth noteG4 ${this.correctAnswers === 13 ? this.state.noteClass : ""}`}
                                             src={require("../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad14"
                                             style={{display:"none"}}
-                                            className="playMusicNote noteOrderFourth noteE4"
+                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 14 ? this.state.noteClass : ""}`}
                                             src={require("../static/quarterNote.png")}
                                         />
                                         <img
@@ -945,66 +949,66 @@ class LessonThree extends Component {
                                         <img
                                             id="MaryHad19"
                                             style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 6 ? this.state.noteClass : ""}`}
+                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 19 ? this.state.noteClass : ""}`}
                                             src={require("../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad20"
                                             style={{display:"none"}}
-                                            className="playMusicNote noteOrderFourth noteE4"
+                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 20 ? this.state.noteClass : ""}`}
                                             src={require("../static/quarterNote.png")}
                                         />
                                          <img
                                             id="MaryHad21"
                                             style={{display:"none"}}
-                                            className="playMusicNote noteOrderFourth noteE4"
+                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 21 ? this.state.noteClass : ""}`}
                                             src={require("../static/quarterNote.png")}
                                         />
                                          <img
                                             id="MaryHad22"
                                             style={{display:"none"}}
-                                            className="playMusicNote noteOrderFourth noteD4"
+                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 22 ? this.state.noteClass : ""}`}
                                             src={require("../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad23"
                                             style={{display:"none"}}
-                                            className="playMusicNote noteOrderFourth noteD4"
+                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 23 ? this.state.noteClass : ""}`}
                                             src={require("../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad24"
                                             style={{display:"none"}}
-                                            className="playMusicNote noteOrderFourth noteE4"
+                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 24 ? this.state.noteClass : ""}`}
                                             src={require("../static/quarterNote.png")}
                                         />
                                          <img
                                             id="MaryHad25"
                                             style={{display:"none"}}
-                                            className="playMusicNote noteOrderFourth noteD4"
+                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 25 ? this.state.noteClass : ""}`}
                                             src={require("../static/quarterNote.png")}
                                         />
                                         <img
                                             id="MaryHad26"
                                             style={{display:"none"}}
-                                            className="playMusicNote noteOrderFourth noteC4"
+                                            className={`playMusicNote noteOrderFourth noteC4 ${this.correctAnswers === 26 ? this.state.noteClass : ""}`}
                                             src={require("../static/musicNoteLine.png")}
                                         />
                                          <img
                                             id="MaryHad27"
-                                            style={{display:"none"}}
+                                            style={{display:"none", left: 0}}
                                         />
                                         <img
                                             id="MaryHad28"
-                                            style={{display:"none"}}
+                                            style={{display:"none", left: 0}}
                                         />
                                         <img
                                             id="MaryHad29"
-                                            style={{display:"none"}}
+                                            style={{display:"none", left: 0}}
                                         />
                                          <img
                                             id="MaryHad30"
-                                            style={{display:"none"}}
+                                            style={{display:"none", left: 0}}
                                         />
                                     </div> 
                                 </div>
