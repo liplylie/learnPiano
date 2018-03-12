@@ -23,7 +23,8 @@ class IntroSongList extends Component {
 						margin: "auto",
 						backgroundColor: "white",
 						flex: 1,
-						overflowX: "scroll"
+						overflowX: "scroll",
+						overflowY: "scroll"
 					}}
 					className="effect8 wow fadeIn"
 				>
@@ -32,7 +33,7 @@ class IntroSongList extends Component {
 						<div className="col-md-12">
 							<h1> Intro Song List</h1>
 						</div>
-					<div className="col-md-4">
+					<div className="col-md-4" >
 						<ol type="A" className="alphabetList">
 							<li >
 							</li>
@@ -50,7 +51,7 @@ class IntroSongList extends Component {
 							</li>
 							<li>
 								<ul>
-									<Link to="/SongList/intro/HotCrossBuns">HotCrossBuns</Link>
+									<Link to="/SongList/intro/HotCrossBuns">Hot Cross Buns</Link>
 								</ul>
 							</li>
 						</ol>

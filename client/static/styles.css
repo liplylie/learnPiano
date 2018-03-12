@@ -532,24 +532,34 @@ audio {
 .alphabetList li {
   margin: 1em;
   font-family: Helvetica, Verdana, sans-serif;
-  text-align: center;
   font-size: 2em;
 }
 
+.alphabestList li ul{
+  padding: 1em;
+}
 
 .alphabetList li a {
   text-decoration: none;
   color: #000;
-
   -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
   -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
   -o-transition: font-size 0.3s ease, background-color 0.3s ease;
   -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
   transition: font-size 0.3s ease, background-color 0.3s ease;
   display: block;
-  width: 200px;
 }
+
 
 .alphabetList li a:hover {
   font-size: 1.1em;
+  text-decoration: underline;
 }
+
+/*.col-md-4 {
+   -moz-hyphens:auto;
+   -ms-hyphens:auto;
+   -webkit-hyphens:auto;
+   hyphens:auto;
+   word-wrap:break-word;
+}*/
