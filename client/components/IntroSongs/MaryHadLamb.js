@@ -511,8 +511,8 @@ class MaryHadLamb extends Component {
             return <Redirect to="/" />;
         }
         let MaryNotes = []
-        for (let i = 5; i <= this.lessonNotes.length; i++) {
-            MaryNotes.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass) )
+        for (let i = 1; i < this.lessonNotes.length + 4; i++) {
+            MaryNotes.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass, this.lessonNotes.length) )
         }
 
         return (
@@ -581,43 +581,8 @@ class MaryHadLamb extends Component {
 
                                             src={require("../../static/sheetMusic1.png")}
                                         />
-                                        <img
-                                            id="MaryHad1"
-                                            className={`playMusicNote noteOrderFirst noteE4 ${this.state.noteClass} `}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                         <img
-                                            id="MaryHad2"
-                                            className={`playMusicNote noteOrderSecond noteD4 ${this.correctAnswers === 2 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad3"
-                                            className={`playMusicNote noteOrderThird noteC4 ${this.correctAnswers === 3 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/musicNoteLine.png")}
-                                        />
-                                        <img
-                                            id="MaryHad4"
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 4 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
+                                    
                                        {MaryNotes}
-                                         <img
-                                            id="MaryHad27"
-                                            style={{display:"none", left: 0}}
-                                        />
-                                        <img
-                                            id="MaryHad28"
-                                            style={{display:"none", left: 0}}
-                                        />
-                                        <img
-                                            id="MaryHad29"
-                                            style={{display:"none", left: 0}}
-                                        />
-                                         <img
-                                            id="MaryHad30"
-                                            style={{display:"none", left: 0}}
-                                        />
                                     </div> 
                                 </div>
                                 <br />

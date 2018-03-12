@@ -1,28 +1,55 @@
 import React, { Component } from "react";
 
 
-const easySongView = (note, index, correctAnswers, noteClass) =>{
+const easySongView = (note, index, correctAnswers, noteClass, limit) =>{
+		let noteOrder, display
+		if (index <= limit){
+			if (index === 1){
+			noteOrder = "First"
+		} else if (index === 2){
+			noteOrder = "Second"
+		} else if (index === 3){
+			noteOrder = "Third"
+		} else {
+			noteOrder = "Fourth"
+		}
+
+		if ( index < 5 ) {
+			display= "block"
+		} else {
+			display = "none"
+		}
+
 		if (note === "C4") {
 			return (
 				<img
 					key={index}
 			  	id={`MaryHad${index}`}
-			 	  className={`playMusicNote noteOrderFourth note${note} ${correctAnswers === index ? noteClass : ""}`}
+			 	  className={`playMusicNote noteOrder${noteOrder} note${note} ${correctAnswers === index ? noteClass : ""}`}
 			  	src={require("../static/musicNoteLine.png")}
-			  	style={{display:"none"}}
+			  	style={{display:display}}
 				/>
 			)
-		} else {
+		}	else {
 			return (
-			<img
-				key={index}
-			  id={`MaryHad${index}`}
-			  className={`playMusicNote noteOrderFourth note${note} ${correctAnswers === index ? noteClass : ""}`}
-			  src={require("../static/quarterNote.png")}
-			  style={{display:"none"}}
-			/>
+				<img
+					key={index}
+				  id={`MaryHad${index}`}
+				  className={`playMusicNote noteOrder${noteOrder} note${note} ${correctAnswers === index ? noteClass : ""}`}
+				  src={require("../static/quarterNote.png")}
+				  style={{display:display}}
+				/>
+			)
+		} 
+	} else {
+		return (
+			 <img
+          id={`MaryHad${index}`}
+          style={{display:"none", left: 0}}
+      />
 		)
-		}
 	}
+		
+}
 
-	export default easySongView
+export default easySongView
