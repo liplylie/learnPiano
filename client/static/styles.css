@@ -447,6 +447,16 @@ audio {
             transform:skew(8deg) rotate(3deg);
 }
 
+.effect1{
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+       -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
+}
+
+.one-edge-shadow {
+  box-shadow: 0 8px 6px -6px black;
+}
+
 .sheetMusicContainer{
   position: relative; 
   margin: auto
@@ -556,10 +566,9 @@ audio {
   text-decoration: underline;
 }
 
-/*.col-md-4 {
-   -moz-hyphens:auto;
-   -ms-hyphens:auto;
-   -webkit-hyphens:auto;
-   hyphens:auto;
-   word-wrap:break-word;
-}*/
+ul li a {
+  color: gray;
+}
+ul li a:hover {
+  font-size:1.1em;
+}

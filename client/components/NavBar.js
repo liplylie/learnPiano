@@ -55,7 +55,7 @@ class Navbar extends Component {
                                 >
                                     Mini Games
                                 </a>
-                                <ul className="dropdown-menu text-center">
+                                <ul className="dropdown-menu text-center effect1">
                                     <li className="dropdown-item">
                                         <Link to="/miniGame1">Mini Game 1</Link>
                                     </li>
@@ -87,7 +87,7 @@ class Navbar extends Component {
                                 >
                                     Song Collection
                                 </a>
-                                <ul className="dropdown-menu text-center">
+                                <ul className="dropdown-menu text-center effect1">
                                     <li className="dropdown-item">
                                         <Link to="/SongList/intro">Introduction Songs</Link>
                                     </li>
@@ -121,7 +121,7 @@ class Navbar extends Component {
                                             className="fa fa-cog fa-fw fa-lg"
                                             data-toggle="dropdown"
                                         />
-                                        <ul className="dropdown-menu text-center">
+                                        <ul className="dropdown-menu text-center effect1">
                                             <li className="dropdown-item">
                                                 <Link to="/settings">
                                                     Profile Settings

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 
-const easySongView = (note, index, correctAnswers, noteClass, limit) =>{
+const easySongView = (note, index, correctAnswers, noteClass, songName, limit) =>{
 		let noteOrder, display
 		if (index <= limit){
 			if (index === 1){
@@ -19,12 +19,12 @@ const easySongView = (note, index, correctAnswers, noteClass, limit) =>{
 		} else {
 			display = "none"
 		}
-
+		
 		if (note === "C4") {
 			return (
 				<img
 					key={index}
-			  	id={`MaryHad${index}`}
+			  	id={`${songName}${index}`}
 			 	  className={`playMusicNote noteOrder${noteOrder} note${note} ${correctAnswers === index ? noteClass : ""}`}
 			  	src={require("../static/musicNoteLine.png")}
 			  	style={{display:display}}
@@ -34,7 +34,7 @@ const easySongView = (note, index, correctAnswers, noteClass, limit) =>{
 			return (
 				<img
 					key={index}
-				  id={`MaryHad${index}`}
+				  id={`${songName}${index}`}
 				  className={`playMusicNote noteOrder${noteOrder} note${note} ${correctAnswers === index ? noteClass : ""}`}
 				  src={require("../static/quarterNote.png")}
 				  style={{display:display}}
@@ -44,7 +44,8 @@ const easySongView = (note, index, correctAnswers, noteClass, limit) =>{
 	} else {
 		return (
 			 <img
-          id={`MaryHad${index}`}
+			 		key={index}
+          id={`${songName}${index}`}
           style={{display:"none", left: 0}}
       />
 		)

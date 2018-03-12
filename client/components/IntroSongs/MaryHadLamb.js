@@ -13,6 +13,7 @@ import pitchTable from "../../helpers/pitchTable";
 import pitchTablePictures from "../../helpers/pitchTablePictures";
 import Piano from "../Piano.js";
 import easySongView from "../../helpers/easySongView"
+import noteTransition from "../../helpers/noteTransition"
 
 class MaryHadLamb extends Component {
     constructor(props) {
@@ -26,6 +27,7 @@ class MaryHadLamb extends Component {
             noteClass: ""
         };
         this.start = false
+        this.songName = "MaryHad"
         this.lessonNotes = ["E4", "D4", "C4", "D4", "E4", "E4", "E4", "D4", "D4", "D4", "E4", "G4", "G4", "E4", "D4", "C4", "D4", "E4", "E4", "E4", "E4", "D4", "D4", "E4", "D4", "C4"]
         this.popUpCount = 1;
         this.correctAnswers = 1;
@@ -33,7 +35,6 @@ class MaryHadLamb extends Component {
         this.findPitch = this.findPitch.bind(this);
         this.lessonThreeButtonTwo = this.lessonThreeButtonTwo.bind(this);
         this.finishSong = this.finishSong.bind(this);
-
     }
 
     componentDidUpdate() {
@@ -48,52 +49,12 @@ class MaryHadLamb extends Component {
             this.popUpCount === this.correctAnswers &&
             !this.state.lessonCompleted
         ) {
-            let noteOne = getCssProperty("MaryHad1", "left");
-            noteOne = Number(noteOne.substring(0, noteOne.length - 2))
-            let noteTwo = getCssProperty("MaryHad2", "left")
-            noteTwo = Number(noteTwo.substring(0, noteTwo.length - 2))
-            let noteThree = getCssProperty("MaryHad3", "left")
-            noteThree = Number(noteThree.substring(0, noteThree.length - 2))
-            let noteFour = getCssProperty("MaryHad4", "left")
-            noteFour = Number(noteFour.substring(0, noteFour.length - 2))
-            let movingDistance = noteTwo - noteOne
-            let moveFirst = () => {
-                if (noteOne <= 100){
-                    clearInterval(moveFirstNote)
-                    document.getElementById(`MaryHad1`).style.display = "none"
-                    document.getElementById(`MaryHad1`).id = ""
-                } else {
-                    noteOne -= 10
-                    document.getElementById(`MaryHad1`).style.left = noteOne + "px"
-                }
-            }
-            let moveFirstNote = setInterval(moveFirst, 20)
-            let moveOthers = () => {
-                if (movingDistance <=0){
-                    clearInterval(moveOtherNotes)
-                    console.log(this.correctAnswers, 'look bro')
-                    document.getElementById(`MaryHad${this.correctAnswers + 3}`).style.display = "block"
-                    document.getElementById(`MaryHad2`).id = "MaryHad1"
-                    document.getElementById(`MaryHad3`).id = "MaryHad2"
-                    document.getElementById(`MaryHad4`).id = "MaryHad3"
-                    document.getElementById(`MaryHad${this.correctAnswers + 3}`).id = "MaryHad4"
-                } else {
-                    noteTwo -= 10
-                    noteThree -= 10
-                    noteFour -= 10
-                    movingDistance -= 10
-                    document.getElementById(`MaryHad2`).style.left = noteTwo + "px"
-                    document.getElementById(`MaryHad3`).style.left = noteThree + "px"
-                    document.getElementById(`MaryHad4`).style.left = noteFour + "px"
-                }
-            }
-            let moveOtherNotes = setInterval(moveOthers, 20)
-
+            noteTransition(this.songName, this.correctAnswers)
             this.turnOffMicrophone();
             this.audio.close()
             for ( let i = 1; i <= this.lessonNotes.length; i++ ){
                 if (this.correctAnswers === i && (this.lessonNotes[i] === this.lessonNotes[i - 1]) ){
-                     setTimeout(()=>{this.findPitch(this.lessonNotes[i])},300)
+                    setTimeout(()=>{this.findPitch(this.lessonNotes[i])},300)
                     this.popUpCount += 1;
                     this.correctAnswers += 1;
                     break;
@@ -512,7 +473,7 @@ class MaryHadLamb extends Component {
         }
         let MaryNotes = []
         for (let i = 1; i < this.lessonNotes.length + 4; i++) {
-            MaryNotes.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass, this.lessonNotes.length) )
+            MaryNotes.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass, this.songName, this.lessonNotes.length) )
         }
 
         return (
@@ -578,10 +539,8 @@ class MaryHadLamb extends Component {
                                     <div className = "sheetMusicContainer col-md-10">
                                         <img
                                             className = "sheetMusicStaff"
-
                                             src={require("../../static/sheetMusic1.png")}
                                         />
-                                    
                                        {MaryNotes}
                                     </div> 
                                 </div>
