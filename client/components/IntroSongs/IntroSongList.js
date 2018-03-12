@@ -28,14 +28,80 @@ class IntroSongList extends Component {
 					className="effect8 wow fadeIn"
 				>
 					<div className="row" style={{ height: "7em" }} />
-					<div className="col-md-12">
-						<h1> Intro Song List</h1>
-						<ul>
-							M
-							<li>
-							<Link to="/SongList/intro/MaryHadLamb">Mary Had A Little Lamb</Link>
+					<div className="row">
+						<div className="col-md-12">
+							<h1> Intro Song List</h1>
+						</div>
+					<div className="col-md-4">
+						<ol type="A" className="alphabetList">
+							<li >
 							</li>
-						</ul>
+							<li >
+							</li>
+							<li >
+							</li>
+							<li >
+							</li>
+							<li > 
+							</li>
+							<li >
+							</li>
+							<li >
+							</li>
+							<li>
+								<ul>
+									<Link to="/SongList/intro/HotCrossBuns">HotCrossBuns</Link>
+								</ul>
+							</li>
+						</ol>
+					</div>
+					<div className="col-md-4">
+						<ol type="A" start="9" className="alphabetList">
+							<li>
+							</li>
+							<li >
+							</li>
+							<li >
+							</li>
+							<li >
+							</li>
+							<li>
+								<ul>
+									<Link to="/SongList/intro/MaryHadLamb">Mary Had A Little Lamb</Link>
+								</ul>
+							</li>
+							<li>
+							</li>
+							<li>
+							</li>
+							<li>
+							</li>
+						</ol>
+					</div>
+					<div className="col-md-4">
+						<ol type="A" start="17" className="alphabetList">
+							<li>
+							</li>
+							<li>
+							</li>
+							<li>
+							</li>
+							<li>
+							</li>
+							<li>
+							</li>
+							<li>
+							</li>
+							<li>
+							</li>
+							<li>
+							</li>
+							<li>
+							</li>
+							<li >
+							</li>
+						</ol>
+					</div>
 					</div>
 				</div>
 			</div>

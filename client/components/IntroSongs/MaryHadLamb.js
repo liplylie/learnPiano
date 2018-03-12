@@ -510,9 +510,9 @@ class MaryHadLamb extends Component {
         if (this.state.lessonCompleted) {
             return <Redirect to="/" />;
         }
-        let easySong = []
+        let MaryNotes = []
         for (let i = 5; i <= this.lessonNotes.length; i++) {
-            easySong.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass) )
+            MaryNotes.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass) )
         }
 
         return (
@@ -601,7 +601,7 @@ class MaryHadLamb extends Component {
                                             className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 4 ? this.state.noteClass : ""}`}
                                             src={require("../../static/quarterNote.png")}
                                         />
-                                       {easySong}
+                                       {MaryNotes}
                                          <img
                                             id="MaryHad27"
                                             style={{display:"none", left: 0}}

@@ -527,3 +527,29 @@ audio {
          -o-transition: opacity 2s ease-in;
             transition: opacity 2s ease-in;
 }
+
+
+.alphabetList li {
+  margin: 1em;
+  font-family: Helvetica, Verdana, sans-serif;
+  text-align: center;
+  font-size: 2em;
+}
+
+
+.alphabetList li a {
+  text-decoration: none;
+  color: #000;
+
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+  display: block;
+  width: 200px;
+}
+
+.alphabetList li a:hover {
+  font-size: 1.1em;
+}

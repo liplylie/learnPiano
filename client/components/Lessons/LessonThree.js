@@ -12,6 +12,7 @@ import Popup from "react-popup";
 import pitchTable from "../../helpers/pitchTable";
 import pitchTablePictures from "../../helpers/pitchTablePictures";
 import Piano from "../Piano.js";
+import easySongView from "../../helpers/easySongView"
 
 class LessonThree extends Component {
     constructor(props) {
@@ -188,7 +189,6 @@ class LessonThree extends Component {
                     if (that.noteArray.includes(matchNote)) {
                         that.turnOffMicrophone();
                         that.noteArray = [];
-                        that.noteArray.length = 0
                         that.setState({
                             correctNote: matchNote,
                             wrongNote: null,
@@ -215,7 +215,6 @@ class LessonThree extends Component {
                         console.log(that.noteArray, "note array wrong");
                         that.turnOffMicrophone();
                         that.noteArray = [];
-                        that.noteArray.length = 0
                         setTimeout(() => {
                             that.toggleMicrophone();
                         }, 700);
@@ -518,6 +517,11 @@ class LessonThree extends Component {
             return <Redirect to="/" />;
         }
 
+        let MaryNotes = []
+        for (let i = 5; i <= this.lessonNotes.length; i++) {
+            MaryNotes.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass) )
+        }
+
         return (
             <div
                 style={{ height: "100vh", width: "100vw", textAlign: "center" }}
@@ -657,138 +661,7 @@ class LessonThree extends Component {
                                             className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 4 ? this.state.noteClass : ""}`}
                                             src={require("../../static/quarterNote.png")}
                                         />
-                                        <img
-                                            id="MaryHad5"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 5 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad6"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 6 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad7"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 7 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad8"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 8 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad9"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 9 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad10"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 10 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad11"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 11 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                         <img
-                                            id="MaryHad12"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteG4 ${this.correctAnswers === 12 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                         <img
-                                            id="MaryHad13"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteG4 ${this.correctAnswers === 13 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad14"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 14 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad15"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 15 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad16"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteC4 ${this.correctAnswers === 16 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/musicNoteLine.png")}
-                                        />
-                                        <img
-                                            id="MaryHad17"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 17 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad18"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 18 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad19"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 19 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad20"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 20 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                         <img
-                                            id="MaryHad21"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 21 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                         <img
-                                            id="MaryHad22"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 22 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad23"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 23 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad24"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteE4 ${this.correctAnswers === 24 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                         <img
-                                            id="MaryHad25"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 25 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad26"
-                                            style={{display:"none"}}
-                                            className={`playMusicNote noteOrderFourth noteC4 ${this.correctAnswers === 26 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/musicNoteLine.png")}
-                                        />
+                                        {MaryNotes}
                                          <img
                                             id="MaryHad27"
                                             style={{display:"none", left: 0}}
