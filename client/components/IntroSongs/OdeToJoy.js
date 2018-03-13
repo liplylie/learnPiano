@@ -15,7 +15,7 @@ import Piano from "../Piano.js";
 import easySongView from "../../helpers/easySongView"
 import noteTransition from "../../helpers/noteTransition"
 
-class MaryHadLamb extends Component {
+class OdeToJoy extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,8 +27,8 @@ class MaryHadLamb extends Component {
             noteClass: ""
         };
         this.start = false
-        this.songName = "MaryHad"
-        this.lessonNotes = ["E4", "D4", "C4", "D4", "E4", "E4", "E4", "D4", "D4", "D4", "E4", "G4", "G4", "E4", "D4", "C4", "D4", "E4", "E4", "E4", "E4", "D4", "D4", "E4", "D4", "C4"]
+        this.songName = "OdeToJoy"
+        this.lessonNotes = "E4 E4 F4 G4 G4 F4 E4 D4 C4 C4 D4 E4 E4 D4 D4 E4 E4 F4 G4 G4 F4 E4 D4 C4 C4 D4 E4 D4 C4 C4".split(" ")
         this.popUpCount = 1;
         this.correctAnswers = 1;
         this.noteArray = [];
@@ -38,7 +38,7 @@ class MaryHadLamb extends Component {
     }
 
     componentDidUpdate() {
-        if (this.correctAnswers <=this.lessonNotes.length  && this.start){
+        if (this.correctAnswers <= this.lessonNotes.length && this.start){
         let getCssProperty = (elmId, property) => {
             let elem = document.getElementById(elmId);
             return window.getComputedStyle(elem,null).getPropertyValue(property);
@@ -471,9 +471,9 @@ class MaryHadLamb extends Component {
         if (this.state.lessonCompleted) {
             return <Redirect to="/" />;
         }
-        let MaryNotes = []
+        let HotCrossNotes = []
         for (let i = 1; i < this.lessonNotes.length + 4; i++) {
-            MaryNotes.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass, this.songName, this.lessonNotes.length) )
+            HotCrossNotes.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass, this.songName, this.lessonNotes.length) )
         }
 
         return (
@@ -498,7 +498,7 @@ class MaryHadLamb extends Component {
                             <div>
                                 <span style={{ fontFamily: "helvetica" }}>
                                     {" "}
-                                    <h2> Mary Had A Little Lamb </h2>
+                                    <h2> Ode To Joy </h2>
                                 </span>
                             </div>
                         </div>
@@ -513,8 +513,6 @@ class MaryHadLamb extends Component {
                                 }}
                                 id="lessonThreeMessageOne"
                             >
-                                {" "}
-                                Get ready to play Mary Had A Little Lamb!
                             </div>
                             <button
                                 id="lessonThreeButtonOne"
@@ -541,7 +539,7 @@ class MaryHadLamb extends Component {
                                             className = "sheetMusicStaff"
                                             src={require("../../static/sheetMusic1.png")}
                                         />
-                                       {MaryNotes}
+                                       {HotCrossNotes}
                                     </div> 
                                 </div>
                                 <br />
@@ -555,7 +553,7 @@ class MaryHadLamb extends Component {
                                 id="lessonThreeMessageFour"
                             >
                                 {" "}
-                                Congrats! You have played through Mary Had A Little Lamb!<br />{" "}
+                                Congrats! You have played through Ode To Joy!<br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
                                     src={require("../../static/goodJob.gif")}
@@ -609,18 +607,18 @@ class MaryHadLamb extends Component {
         );
     }
 }
-const MaryHadLambMapStateToProps = store => {
+const OdeToJoyMapStateToProps = store => {
     return {
         Auth: store.Auth,
         LessonsCompleted: store.LessonsCompleted
     };
 };
 
-const MaryHadLambDispatch = dispatch => {
+const OdeToJoyDispatch = dispatch => {
     return {
         AuthActions: bindActionCreators(AuthActions, dispatch),
         LessonsCompleted: bindActionCreators(LessonsCompleted, dispatch)
     };
 };
 
-export default connect(MaryHadLambMapStateToProps, MaryHadLambDispatch)(MaryHadLamb);
+export default connect(OdeToJoyMapStateToProps, OdeToJoyDispatch)(OdeToJoy);

@@ -19,13 +19,18 @@ import ProfileSettings from "./ProfileSettings";
 import DefaultHome from "./DefaultHome";
 import Footer from "./Footer";
 import Profile from "./Profile";
+
 import LessonOne from "./Lessons/LessonOne";
 import LessonTwo from "./Lessons/LessonTwo";
+
 import LessonThree from "./Lessons/LessonThree";
 import MiniGameOne from "./MiniGames/MiniGameOne";
 import MiniGameTwo from "./MiniGames/MiniGameTwo";
+
 import IntroSongList from "./IntroSongs/IntroSongList";
 import MaryHadLamb from "./IntroSongs/MaryHadLamb"
+import HotCrossBuns from "./IntroSongs/HotCrossBuns"
+import OdeToJoy from "./IntroSongs/OdeToJoy"
 
 class App extends Component {
   constructor(props) {
@@ -229,7 +234,21 @@ class App extends Component {
                 exact
                 path="/SongList/intro/MaryHadLamb"
                 component={() => (
-                  <MaryHadLamb authenticated={this.props.online} />
+                  <MaryHadLamb />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/HotCrossBuns"
+                component={() => (
+                  <HotCrossBuns />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/OdeToJoy"
+                component={() => (
+                  <OdeToJoy />
                 )}
               />
               <Route
