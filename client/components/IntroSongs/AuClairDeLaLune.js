@@ -15,7 +15,7 @@ import Piano from "../Piano.js";
 import easySongView from "../../helpers/easySongView"
 import noteTransition from "../../helpers/noteTransition"
 
-class OdeToJoy extends Component {
+class AuClairDeLaLune extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,8 +27,8 @@ class OdeToJoy extends Component {
             noteClass: ""
         };
         this.start = false
-        this.songName = "OdeToJoy"
-        this.lessonNotes = "E4 E4 F4 G4 G4 F4 E4 D4 C4 C4 D4 E4 E4 D4 D4 E4 E4 F4 G4 G4 F4 E4 D4 C4 C4 D4 E4 D4 C4 C4".split(" ")
+        this.songName = "AuClairDeLaLune"
+        this.lessonNotes = "C4 C4 C4 D4 E4 D4 C4 E4 D4 D4 C4".split(" ")
         this.popUpCount = 1;
         this.correctAnswers = 1;
         this.noteArray = [];
@@ -286,8 +286,6 @@ class OdeToJoy extends Component {
             console.log(audioContext, "audioContext");
             analyserAudioNode.fftSize = 2048;
             sourceAudioNode = audioContext.createMediaStreamSource(micStream);
-            // let gainNode = audioContext.createGain()
-            // analyserAudioNode.connect(gainNode)
             sourceAudioNode.connect(analyserAudioNode);
             detectPitch();
         };
@@ -419,10 +417,10 @@ class OdeToJoy extends Component {
         document.getElementById("lessonThreeMessageThree").style.display = 
             "block";
         this.setState({
-            checkNote: "E4",
+            checkNote: this.lessonNotes[0],
             buttonToShow: "Three"
         });
-        this.findPitch("E4");
+        this.findPitch(this.lessonNotes[0]);
     }
 
     finishSong() {
@@ -471,9 +469,9 @@ class OdeToJoy extends Component {
         if (this.state.lessonCompleted) {
             return <Redirect to="/" />;
         }
-        let OdeToJoyNotes = []
+        let AuClairDeLaLuneNotes = []
         for (let i = 1; i < this.lessonNotes.length + 4; i++) {
-            OdeToJoyNotes.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass, this.songName, this.lessonNotes.length) )
+            AuClairDeLaLuneNotes.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass, this.songName, this.lessonNotes.length) )
         }
 
         return (
@@ -498,7 +496,7 @@ class OdeToJoy extends Component {
                             <div>
                                 <span style={{ fontFamily: "helvetica" }}>
                                     {" "}
-                                    <h2> Ode To Joy </h2>
+                                    <h2> Au Clair De La Lune </h2>
                                 </span>
                             </div>
                         </div>
@@ -539,7 +537,7 @@ class OdeToJoy extends Component {
                                             className = "sheetMusicStaff"
                                             src={require("../../static/sheetMusic1.png")}
                                         />
-                                       {OdeToJoyNotes}
+                                       {AuClairDeLaLuneNotes}
                                     </div> 
                                 </div>
                                 <br />
@@ -553,7 +551,7 @@ class OdeToJoy extends Component {
                                 id="lessonThreeMessageFour"
                             >
                                 {" "}
-                                Congrats! You have played through Ode To Joy!<br />{" "}
+                                Congrats! You have played through Au Clair De La Lune!<br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
                                     src={require("../../static/goodJob.gif")}
@@ -607,18 +605,18 @@ class OdeToJoy extends Component {
         );
     }
 }
-const OdeToJoyMapStateToProps = store => {
+const AuClairDeLaLuneMapStateToProps = store => {
     return {
         Auth: store.Auth,
         LessonsCompleted: store.LessonsCompleted
     };
 };
 
-const OdeToJoyDispatch = dispatch => {
+const AuClairDeLaLuneDispatch = dispatch => {
     return {
         AuthActions: bindActionCreators(AuthActions, dispatch),
         LessonsCompleted: bindActionCreators(LessonsCompleted, dispatch)
     };
 };
 
-export default connect(OdeToJoyMapStateToProps, OdeToJoyDispatch)(OdeToJoy);
+export default connect(AuClairDeLaLuneMapStateToProps, AuClairDeLaLuneDispatch)(AuClairDeLaLune);
