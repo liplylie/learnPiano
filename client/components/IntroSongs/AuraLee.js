@@ -15,7 +15,7 @@ import Piano from "../Piano.js";
 import easySongView from "../../helpers/easySongView"
 import noteTransition from "../../helpers/noteTransition"
 
-class AuClairDeLaLune extends Component {
+class AuraLee extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,8 +27,8 @@ class AuClairDeLaLune extends Component {
             noteClass: ""
         };
         this.start = false
-        this.songName = "AuClairDeLaLune"
-        this.lessonNotes = "C4 C4 C4 D4 E4 D4 C4 E4 D4 D4 C4".split(" ")
+        this.songName = "AuraLee"
+        this.lessonNotes = "C4 F4 E4 F4 G4 D4 G4 F4 E4 D4 E4 F4 C4 C4 F4 E4 F4 G4 D4 G4 F4 E4 D4 E4 F4".split(" ")
         this.popUpCount = 1;
         this.correctAnswers = 1;
         this.noteArray = [];
@@ -463,9 +463,9 @@ class AuClairDeLaLune extends Component {
         if (this.state.lessonCompleted) {
             return <Redirect to="/" />;
         }
-        let AuClairDeLaLuneNotes = []
+        let AuraLeeNotes = []
         for (let i = 1; i < this.lessonNotes.length + 4; i++) {
-            AuClairDeLaLuneNotes.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass, this.songName, this.lessonNotes.length) )
+            AuraLeeNotes.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass, this.songName, this.lessonNotes.length) )
         }
 
         return (
@@ -490,7 +490,7 @@ class AuClairDeLaLune extends Component {
                             <div>
                                 <span style={{ fontFamily: "helvetica" }}>
                                     {" "}
-                                    <h2> Au Clair De La Lune </h2>
+                                    <h2> Aura Lee </h2>
                                 </span>
                             </div>
                         </div>
@@ -531,7 +531,7 @@ class AuClairDeLaLune extends Component {
                                             className = "sheetMusicStaff"
                                             src={require("../../static/sheetMusic1.png")}
                                         />
-                                       {AuClairDeLaLuneNotes}
+                                       {AuraLeeNotes}
                                     </div> 
                                 </div>
                                 <br />
@@ -545,7 +545,7 @@ class AuClairDeLaLune extends Component {
                                 id="lessonThreeMessageFour"
                             >
                                 {" "}
-                                Congrats! You have played through Au Clair De La Lune!<br />{" "}
+                                Congrats! You have played through Aura Lee!<br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
                                     src={require("../../static/goodJob.gif")}
@@ -599,18 +599,18 @@ class AuClairDeLaLune extends Component {
         );
     }
 }
-const AuClairDeLaLuneMapStateToProps = store => {
+const AuraLeeMapStateToProps = store => {
     return {
         Auth: store.Auth,
         LessonsCompleted: store.LessonsCompleted
     };
 };
 
-const AuClairDeLaLuneDispatch = dispatch => {
+const AuraLeeDispatch = dispatch => {
     return {
         AuthActions: bindActionCreators(AuthActions, dispatch),
         LessonsCompleted: bindActionCreators(LessonsCompleted, dispatch)
     };
 };
 
-export default connect(AuClairDeLaLuneMapStateToProps, AuClairDeLaLuneDispatch)(AuClairDeLaLune);
+export default connect(AuraLeeMapStateToProps, AuraLeeDispatch)(AuraLee);

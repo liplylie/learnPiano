@@ -32,6 +32,7 @@ import MaryHadLamb from "./IntroSongs/MaryHadLamb"
 import HotCrossBuns from "./IntroSongs/HotCrossBuns"
 import OdeToJoy from "./IntroSongs/OdeToJoy"
 import AuClairDeLaLune from "./IntroSongs/AuClairDeLaLune"
+import AuraLee from "./IntroSongs/AuraLee"
 
 class App extends Component {
   constructor(props) {
@@ -257,6 +258,13 @@ class App extends Component {
                 path="/SongList/intro/AuClairDeLaLune"
                 component={() => (
                   <AuClairDeLaLune />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/AuraLee"
+                component={() => (
+                  <AuraLee />
                 )}
               />
               <Route
