@@ -15,7 +15,7 @@ import Piano from "../Piano.js";
 import easySongView from "../../helpers/easySongView";
 import noteTransition from "../../helpers/noteTransition";
 
-class Musette extends Component {
+class SaintsGoMarchin extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,8 +27,8 @@ class Musette extends Component {
             noteClass: ""
         };
         this.start = false;
-        this.songName = "Musette";
-        this.lessonNotes = "G4 F4 E4 D4 C4 G4 F4 E4 D4 C4 E4 F4 G4 F4 E4 D4 G4 E4 C4 G4 F4 E4 D4 C4 G4 F4 E4 D4 C4 E4 F4 G4 F4 E4 D4 G4 C4".split(" ");
+        this.songName = "SaintsGoMarchin";
+        this.lessonNotes = "C4 E4 F4 G4 C4 E4 F4 G4 C4 E4 F4 G4 E4 C4 E4 D4 E4 D4 C4 C4 E4 G4 G4 G4 F4 E4 F4 G4 E4 C4 D4 C4".split(" ");
         this.popUpCount = 1;
         this.correctAnswers = 1;
         this.noteArray = [];
@@ -466,9 +466,9 @@ class Musette extends Component {
         if (this.state.lessonCompleted) {
             return <Redirect to="/" />;
         }
-        let MusetteNotes = [];
+        let SaintsGoMarchinNotes = [];
         for (let i = 1; i < this.lessonNotes.length + 4; i++) {
-            MusetteNotes.push(
+            SaintsGoMarchinNotes.push(
                 easySongView(
                     this.lessonNotes[i - 1],
                     i,
@@ -502,7 +502,7 @@ class Musette extends Component {
                             <div>
                                 <span style={{ fontFamily: "helvetica" }}>
                                     {" "}
-                                    <h2> Musette </h2>
+                                    <h2> Saints Go Marchin </h2>
                                 </span>
                             </div>
                         </div>
@@ -542,7 +542,7 @@ class Musette extends Component {
                                             className="sheetMusicStaff"
                                             src={require("../../static/sheetMusic1.png")}
                                         />
-                                        {MusetteNotes}
+                                        {SaintsGoMarchinNotes}
                                     </div>
                                 </div>
                                 <br />
@@ -556,7 +556,7 @@ class Musette extends Component {
                                 id="lessonThreeMessageFour"
                             >
                                 {" "}
-                                Congrats! You have played through Musette<br />{" "}
+                                Congrats! You have played through When the Saints Go Marchin<br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
                                     src={require("../../static/goodJob.gif")}
@@ -610,20 +610,20 @@ class Musette extends Component {
         );
     }
 }
-const MusetteMapStateToProps = store => {
+const SaintsGoMarchinMapStateToProps = store => {
     return {
         Auth: store.Auth,
         LessonsCompleted: store.LessonsCompleted
     };
 };
 
-const MusetteDispatch = dispatch => {
+const SaintsGoMarchinDispatch = dispatch => {
     return {
         AuthActions: bindActionCreators(AuthActions, dispatch),
         LessonsCompleted: bindActionCreators(LessonsCompleted, dispatch)
     };
 };
 
-export default connect(MusetteMapStateToProps, MusetteDispatch)(
-    Musette
+export default connect(SaintsGoMarchinMapStateToProps, SaintsGoMarchinDispatch)(
+    SaintsGoMarchin
 );

@@ -39,6 +39,7 @@ import MaryHadLamb from "./IntroSongs/MaryHadLamb"
 import Musette from "./IntroSongs/Musette"
 import NewWorldSymphony from "./IntroSongs/NewWorldSymphony"
 import OdeToJoy from "./IntroSongs/OdeToJoy"
+import SaintsGoMarchin from "./IntroSongs/SaintsGoMarchin"
 
 class App extends Component {
   constructor(props) {
@@ -308,11 +309,18 @@ class App extends Component {
                   <NewWorldSymphony />
                 )}
               />
-                <Route
+              <Route
                 exact
                 path="/SongList/intro/OdeToJoy"
                 component={() => (
                   <OdeToJoy />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/SaintsGoMarchin"
+                component={() => (
+                  <SaintsGoMarchin />
                 )}
               />
               <Route
