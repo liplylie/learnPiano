@@ -3,9 +3,7 @@ const noteTransition=(SongName, correctAnswers)=>{
     let elem = document.getElementById(elmId);
     return window.getComputedStyle(elem,null).getPropertyValue(property);
 	}
-		console.log(correctAnswers, 'correctAnswers')
 		let nextNumber = correctAnswers + 4
-		console.log(nextNumber, 'nextNumber')
 	  let noteOne = getCssProperty(`${SongName}1`, "left");
 		noteOne = Number(noteOne.substring(0, noteOne.length - 2))
 		let noteTwo = getCssProperty(`${SongName}2`, "left")
@@ -46,46 +44,5 @@ const noteTransition=(SongName, correctAnswers)=>{
 		}
 		let moveOtherNotes = setInterval(moveOthers, 20)
 }
-
-// let noteOne = getCssProperty("MaryHad1", "left");
-//             noteOne = Number(noteOne.substring(0, noteOne.length - 2))
-//             let noteTwo = getCssProperty("MaryHad2", "left")
-//             noteTwo = Number(noteTwo.substring(0, noteTwo.length - 2))
-//             let noteThree = getCssProperty("MaryHad3", "left")
-//             noteThree = Number(noteThree.substring(0, noteThree.length - 2))
-//             let noteFour = getCssProperty("MaryHad4", "left")
-//             noteFour = Number(noteFour.substring(0, noteFour.length - 2))
-//             let movingDistance = noteTwo - noteOne
-//             let moveFirst = () => {
-//                 if (noteOne <= 100){
-//                     clearInterval(moveFirstNote)
-//                     document.getElementById(`MaryHad1`).style.display = "none"
-//                     document.getElementById(`MaryHad1`).id = ""
-//                 } else {
-//                     noteOne -= 10
-//                     document.getElementById(`MaryHad1`).style.left = noteOne + "px"
-//                 }
-//             }
-//             let moveFirstNote = setInterval(moveFirst, 20)
-//             let moveOthers = () => {
-//                 if (movingDistance <=0){
-//                     clearInterval(moveOtherNotes)
-//                     console.log(this.correctAnswers, 'look bro')
-//                     document.getElementById(`MaryHad${this.correctAnswers + 3}`).style.display = "block"
-//                     document.getElementById(`MaryHad2`).id = "MaryHad1"
-//                     document.getElementById(`MaryHad3`).id = "MaryHad2"
-//                     document.getElementById(`MaryHad4`).id = "MaryHad3"
-//                     document.getElementById(`MaryHad${this.correctAnswers + 3}`).id = "MaryHad4"
-//                 } else {
-//                     noteTwo -= 10
-//                     noteThree -= 10
-//                     noteFour -= 10
-//                     movingDistance -= 10
-//                     document.getElementById(`MaryHad2`).style.left = noteTwo + "px"
-//                     document.getElementById(`MaryHad3`).style.left = noteThree + "px"
-//                     document.getElementById(`MaryHad4`).style.left = noteFour + "px"
-//                 }
-//             }
-//             let moveOtherNotes = setInterval(moveOthers, 20)
 
 export default noteTransition

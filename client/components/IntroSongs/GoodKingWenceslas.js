@@ -15,7 +15,7 @@ import Piano from "../Piano.js";
 import easySongView from "../../helpers/easySongView";
 import noteTransition from "../../helpers/noteTransition";
 
-class AuraLee extends Component {
+class GoodKingWenceslas extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,10 +27,8 @@ class AuraLee extends Component {
             noteClass: ""
         };
         this.start = false;
-        this.songName = "AuraLee";
-        this.lessonNotes = "C4 F4 E4 F4 G4 D4 G4 F4 E4 D4 E4 F4 C4 C4 F4 E4 F4 G4 D4 G4 F4 E4 D4 E4 F4".split(
-            " "
-        );
+        this.songName = "GoodKingWenceslas";
+        this.lessonNotes = "F4 F4 F4 G4 F4 F4 C4 D4 C4 D4 E4 F4 F4 F4 F4 F4 G4 F4 F4 C4 D4 C4 D4 E4 F4 F4".split(" ");
         this.popUpCount = 1;
         this.correctAnswers = 1;
         this.noteArray = [];
@@ -41,6 +39,13 @@ class AuraLee extends Component {
 
     componentDidUpdate() {
         if (this.correctAnswers <= this.lessonNotes.length && this.start) {
+            let getCssProperty = (elmId, property) => {
+                let elem = document.getElementById(elmId);
+                return window
+                    .getComputedStyle(elem, null)
+                    .getPropertyValue(property);
+            };
+
             if (
                 this.state.correctNote === this.state.checkNote &&
                 this.popUpCount === this.correctAnswers &&
@@ -468,9 +473,9 @@ class AuraLee extends Component {
         if (this.state.lessonCompleted) {
             return <Redirect to="/" />;
         }
-        let AuraLeeNotes = [];
+        let GoodKingWenceslasNotes = [];
         for (let i = 1; i < this.lessonNotes.length + 4; i++) {
-            AuraLeeNotes.push(
+            GoodKingWenceslasNotes.push(
                 easySongView(
                     this.lessonNotes[i - 1],
                     i,
@@ -504,7 +509,7 @@ class AuraLee extends Component {
                             <div>
                                 <span style={{ fontFamily: "helvetica" }}>
                                     {" "}
-                                    <h2> Aura Lee </h2>
+                                    <h2> Good King Wenceslas </h2>
                                 </span>
                             </div>
                         </div>
@@ -544,7 +549,7 @@ class AuraLee extends Component {
                                             className="sheetMusicStaff"
                                             src={require("../../static/sheetMusic1.png")}
                                         />
-                                        {AuraLeeNotes}
+                                        {GoodKingWenceslasNotes}
                                     </div>
                                 </div>
                                 <br />
@@ -558,7 +563,7 @@ class AuraLee extends Component {
                                 id="lessonThreeMessageFour"
                             >
                                 {" "}
-                                Congrats! You have played through Aura Lee!<br />{" "}
+                                Congrats! You have played through Good King Wenceslas<br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
                                     src={require("../../static/goodJob.gif")}
@@ -612,18 +617,20 @@ class AuraLee extends Component {
         );
     }
 }
-const AuraLeeMapStateToProps = store => {
+const GoodKingWenceslasMapStateToProps = store => {
     return {
         Auth: store.Auth,
         LessonsCompleted: store.LessonsCompleted
     };
 };
 
-const AuraLeeDispatch = dispatch => {
+const GoodKingWenceslasDispatch = dispatch => {
     return {
         AuthActions: bindActionCreators(AuthActions, dispatch),
         LessonsCompleted: bindActionCreators(LessonsCompleted, dispatch)
     };
 };
 
-export default connect(AuraLeeMapStateToProps, AuraLeeDispatch)(AuraLee);
+export default connect(GoodKingWenceslasMapStateToProps, GoodKingWenceslasDispatch)(
+    GoodKingWenceslas
+);

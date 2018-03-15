@@ -41,13 +41,6 @@ class HotCrossBuns extends Component {
 
     componentDidUpdate() {
         if (this.correctAnswers <= this.lessonNotes.length && this.start) {
-            let getCssProperty = (elmId, property) => {
-                let elem = document.getElementById(elmId);
-                return window
-                    .getComputedStyle(elem, null)
-                    .getPropertyValue(property);
-            };
-
             if (
                 this.state.correctNote === this.state.checkNote &&
                 this.popUpCount === this.correctAnswers &&

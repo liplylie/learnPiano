@@ -28,7 +28,9 @@ class NewWorldSymphony extends Component {
         };
         this.start = false;
         this.songName = "NewWorldSymphony";
-        this.lessonNotes = "E4 G4 G4 E4 D4 C4 D4 E4 G4 E4 D4 E4 G4 G4 E4 D4 C4 D4 E4 D4 C4 C4".split(" ");
+        this.lessonNotes = "E4 G4 G4 E4 D4 C4 D4 E4 G4 E4 D4 E4 G4 G4 E4 D4 C4 D4 E4 D4 C4 C4".split(
+            " "
+        );
         this.popUpCount = 1;
         this.correctAnswers = 1;
         this.noteArray = [];
@@ -39,13 +41,6 @@ class NewWorldSymphony extends Component {
 
     componentDidUpdate() {
         if (this.correctAnswers <= this.lessonNotes.length && this.start) {
-            let getCssProperty = (elmId, property) => {
-                let elem = document.getElementById(elmId);
-                return window
-                    .getComputedStyle(elem, null)
-                    .getPropertyValue(property);
-            };
-
             if (
                 this.state.correctNote === this.state.checkNote &&
                 this.popUpCount === this.correctAnswers &&
@@ -563,7 +558,8 @@ class NewWorldSymphony extends Component {
                                 id="lessonThreeMessageFour"
                             >
                                 {" "}
-                                Congrats! You have played through New World Symphony<br />{" "}
+                                Congrats! You have played through New World
+                                Symphony<br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
                                     src={require("../../static/goodJob.gif")}
@@ -631,6 +627,7 @@ const NewWorldSymphonyDispatch = dispatch => {
     };
 };
 
-export default connect(NewWorldSymphonyMapStateToProps, NewWorldSymphonyDispatch)(
-    NewWorldSymphony
-);
+export default connect(
+    NewWorldSymphonyMapStateToProps,
+    NewWorldSymphonyDispatch
+)(NewWorldSymphony);

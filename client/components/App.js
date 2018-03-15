@@ -30,6 +30,7 @@ import MiniGameTwo from "./MiniGames/MiniGameTwo";
 import IntroSongList from "./IntroSongs/IntroSongList";
 import AuClairDeLaLune from "./IntroSongs/AuClairDeLaLune"
 import AuraLee from "./IntroSongs/AuraLee"
+import GoodKingWenceslas from "./IntroSongs/GoodKingWenceslas"
 import HotCrossBuns from "./IntroSongs/HotCrossBuns"
 import LightlyRow from"./IntroSongs/LightlyRow"
 import LoveSomebody from"./IntroSongs/LoveSomebody"
@@ -256,6 +257,13 @@ class App extends Component {
                 path="/SongList/intro/HotCrossBuns"
                 component={() => (
                   <HotCrossBuns />
+                )}
+              />
+               <Route
+                exact
+                path="/SongList/intro/GoodKingWenceslas"
+                component={() => (
+                  <GoodKingWenceslas />
                 )}
               />
               <Route
