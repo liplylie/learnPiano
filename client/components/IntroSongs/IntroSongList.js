@@ -34,7 +34,7 @@ class IntroSongList extends Component {
 							<h1> Intro Level Song List</h1>
 							<p style={{color: "gray"}}>Contains songs for right hand only. No rhythm check!</p>
 						</div>
-					<div className="col-md-4" >
+					<div className="col-md-4 " >
 						<ol type="A" className="alphabetList">
 							<li >
 							<ul>
@@ -84,10 +84,16 @@ class IntroSongList extends Component {
 							</li>
 							<li>
 								<ul>
-									<Link to="/SongList/intro/MaryHadLamb">Mary Had A Little Lamb</Link>
+									<li><Link to="/SongList/intro/MaryHadLamb">Mary Had A Little Lamb</Link></li>
+								</ul>
+								<ul>
+									<li><Link to="/SongList/intro/Musette">Musette</Link></li>
 								</ul>
 							</li>
 							<li>
+								<ul>
+									<Link to="/SongList/intro/NewWorldSymphony">New World Symphony</Link>
+								</ul>
 							</li>
 							<li>
 								<ul>

@@ -22,21 +22,22 @@ import Profile from "./Profile";
 
 import LessonOne from "./Lessons/LessonOne";
 import LessonTwo from "./Lessons/LessonTwo";
-
 import LessonThree from "./Lessons/LessonThree";
+
 import MiniGameOne from "./MiniGames/MiniGameOne";
 import MiniGameTwo from "./MiniGames/MiniGameTwo";
 
 import IntroSongList from "./IntroSongs/IntroSongList";
-import MaryHadLamb from "./IntroSongs/MaryHadLamb"
-import HotCrossBuns from "./IntroSongs/HotCrossBuns"
-import OdeToJoy from "./IntroSongs/OdeToJoy"
 import AuClairDeLaLune from "./IntroSongs/AuClairDeLaLune"
 import AuraLee from "./IntroSongs/AuraLee"
+import HotCrossBuns from "./IntroSongs/HotCrossBuns"
 import LightlyRow from"./IntroSongs/LightlyRow"
 import LoveSomebody from"./IntroSongs/LoveSomebody"
 import JingleBells from"./IntroSongs/JingleBells"
-
+import MaryHadLamb from "./IntroSongs/MaryHadLamb"
+import Musette from "./IntroSongs/Musette"
+import NewWorldSymphony from "./IntroSongs/NewWorldSymphony"
+import OdeToJoy from "./IntroSongs/OdeToJoy"
 
 class App extends Component {
   constructor(props) {
@@ -238,9 +239,16 @@ class App extends Component {
               />
               <Route
                 exact
-                path="/SongList/intro/MaryHadLamb"
+                path="/SongList/intro/AuClairDeLaLune"
                 component={() => (
-                  <MaryHadLamb />
+                  <AuClairDeLaLune />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/AuraLee"
+                component={() => (
+                  <AuraLee />
                 )}
               />
               <Route
@@ -252,23 +260,9 @@ class App extends Component {
               />
               <Route
                 exact
-                path="/SongList/intro/OdeToJoy"
+                path="/SongList/intro/JingleBells"
                 component={() => (
-                  <OdeToJoy />
-                )}
-              />
-              <Route
-                exact
-                path="/SongList/intro/AuClairDeLaLune"
-                component={() => (
-                  <AuClairDeLaLune />
-                )}
-              />
-              <Route
-                exact
-                path="/SongList/intro/AuraLee"
-                component={() => (
-                  <AuraLee />
+                  <JingleBells />
                 )}
               />
               <Route
@@ -287,9 +281,30 @@ class App extends Component {
               />
                <Route
                 exact
-                path="/SongList/intro/JingleBells"
+                path="/SongList/intro/MaryHadLamb"
                 component={() => (
-                  <JingleBells />
+                  <MaryHadLamb />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/Musette"
+                component={() => (
+                  <Musette />
+                )}
+              />
+               <Route
+                exact
+                path="/SongList/intro/NewWorldSymphony"
+                component={() => (
+                  <NewWorldSymphony />
+                )}
+              />
+                <Route
+                exact
+                path="/SongList/intro/OdeToJoy"
+                component={() => (
+                  <OdeToJoy />
                 )}
               />
               <Route
