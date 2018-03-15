@@ -35,6 +35,7 @@ import AuClairDeLaLune from "./IntroSongs/AuClairDeLaLune"
 import AuraLee from "./IntroSongs/AuraLee"
 import LightlyRow from"./IntroSongs/LightlyRow"
 import LoveSomebody from"./IntroSongs/LoveSomebody"
+import JingleBells from"./IntroSongs/JingleBells"
 
 
 class App extends Component {
@@ -282,6 +283,13 @@ class App extends Component {
                 path="/SongList/intro/LoveSomebody"
                 component={() => (
                   <LoveSomebody />
+                )}
+              />
+               <Route
+                exact
+                path="/SongList/intro/JingleBells"
+                component={() => (
+                  <JingleBells />
                 )}
               />
               <Route

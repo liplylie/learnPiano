@@ -37,6 +37,12 @@ class IntroSongList extends Component {
 					<div className="col-md-4" >
 						<ol type="A" className="alphabetList">
 							<li >
+							<ul>
+									<li><Link to="/SongList/intro/AuClairDeLaLune">Au Clair De La Lune</Link></li>
+								</ul>
+								<ul>
+									<li><Link to="/SongList/intro/AuraLee">Aura Lee</Link></li>
+								</ul>
 							</li>
 							<li >
 							</li>
@@ -60,14 +66,11 @@ class IntroSongList extends Component {
 					<div className="col-md-4">
 						<ol type="A" start="9" className="alphabetList">
 							<li>
-								<ul>
-									<li><Link to="/SongList/intro/AuClairDeLaLune">Au Clair De La Lune</Link></li>
-								</ul>
-								<ul>
-									<li><Link to="/SongList/intro/AuraLee">Aura Lee</Link></li>
-								</ul>
 							</li>
 							<li>
+								<ul>
+									<li><Link to="/SongList/intro/JingleBells">Jingle Bells</Link></li>
+								</ul>
 							</li>
 							<li>
 							</li>
