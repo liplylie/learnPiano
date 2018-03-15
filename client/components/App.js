@@ -33,6 +33,9 @@ import HotCrossBuns from "./IntroSongs/HotCrossBuns"
 import OdeToJoy from "./IntroSongs/OdeToJoy"
 import AuClairDeLaLune from "./IntroSongs/AuClairDeLaLune"
 import AuraLee from "./IntroSongs/AuraLee"
+import LightlyRow from"./IntroSongs/LightlyRow"
+import LoveSomebody from"./IntroSongs/LoveSomebody"
+
 
 class App extends Component {
   constructor(props) {
@@ -265,6 +268,20 @@ class App extends Component {
                 path="/SongList/intro/AuraLee"
                 component={() => (
                   <AuraLee />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/LightlyRow"
+                component={() => (
+                  <LightlyRow />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/LoveSomebody"
+                component={() => (
+                  <LoveSomebody />
                 )}
               />
               <Route

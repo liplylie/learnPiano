@@ -32,6 +32,7 @@ class IntroSongList extends Component {
 					<div className="row">
 						<div className="col-md-12">
 							<h1> Intro Level Song List</h1>
+							<p style={{color: "gray"}}>Contains songs for right hand only. No rhythm check!</p>
 						</div>
 					<div className="col-md-4" >
 						<ol type="A" className="alphabetList">
@@ -66,11 +67,17 @@ class IntroSongList extends Component {
 									<li><Link to="/SongList/intro/AuraLee">Aura Lee</Link></li>
 								</ul>
 							</li>
-							<li >
+							<li>
 							</li>
-							<li >
+							<li>
 							</li>
-							<li >
+							<li>
+								<ul>
+									<li><Link to="/SongList/intro/LightlyRow">Lightly Row</Link></li>
+								</ul>
+								<ul>
+									<li><Link to="/SongList/intro/LoveSomebody">Love Somebody</Link></li>
+								</ul>
 							</li>
 							<li>
 								<ul>
