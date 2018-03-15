@@ -9,7 +9,7 @@ import { bindActionCreators } from "redux";
 import Piano from "../Piano";
 
 import * as AuthActions from "../../actions/authActions.js";
-import * as LessonsCompleted from "../../actions/lessonsCompletedActions";
+import * as LessonsCompletedActions from "../../actions/lessonsCompletedActions";
 import Popup from "react-popup";
 import pitchTable from "../../helpers/pitchTable";
 import pitchTablePictures from "../../helpers/pitchTablePictures";
@@ -509,7 +509,7 @@ class LessonTwo extends Component {
                     time: firebase.database.ServerValue.TIMESTAMP
                 }
             });
-            that.props.LessonsCompleted.lessonsCompleted(snapshot.val());
+            that.props.LessonsCompletedActions.lessonsCompleted(snapshot.val());
             console.log(snapshot.val(), "lesson two completed");
             that.setState({
                 lessonCompleted: true
@@ -964,7 +964,7 @@ const LessonTwoMapStateToProps = store => {
 const LessonTwoDispatch = dispatch => {
     return {
         AuthActions: bindActionCreators(AuthActions, dispatch),
-        LessonsCompleted: bindActionCreators(LessonsCompleted, dispatch)
+        LessonsCompletedActions: bindActionCreators(LessonsCompletedActions, dispatch)
     };
 };
 

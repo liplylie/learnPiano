@@ -16,7 +16,7 @@ import Piano from "../Piano.js";
 import easySongView from "../../helpers/easySongView";
 import noteTransition from "../../helpers/noteTransition";
 
-class GoodKingWenceslas extends Component {
+class createIntroSong extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,8 +28,6 @@ class GoodKingWenceslas extends Component {
             noteClass: ""
         };
         this.start = false;
-        this.songName = "GoodKingWenceslas";
-        this.lessonNotes = "F4 F4 F4 G4 F4 F4 C4 D4 C4 D4 E4 F4 F4 F4 F4 F4 G4 F4 F4 C4 D4 C4 D4 E4 F4 F4".split(" ");
         this.popUpCount = 1;
         this.correctAnswers = 1;
         this.noteArray = [];
@@ -39,45 +37,38 @@ class GoodKingWenceslas extends Component {
     }
 
     componentDidUpdate() {
-        if (this.correctAnswers <= this.lessonNotes.length && this.start) {
-            let getCssProperty = (elmId, property) => {
-                let elem = document.getElementById(elmId);
-                return window
-                    .getComputedStyle(elem, null)
-                    .getPropertyValue(property);
-            };
-
+        if (this.correctAnswers <= this.props.lessonNotes.length && this.start) {
             if (
                 this.state.correctNote === this.state.checkNote &&
                 this.popUpCount === this.correctAnswers &&
                 !this.state.lessonCompleted
             ) {
-                noteTransition(this.songName, this.correctAnswers);
+                noteTransition(this.props.songName, this.correctAnswers);
                 this.turnOffMicrophone();
                 this.audio.close();
-                for (let i = 1; i <= this.lessonNotes.length; i++) {
+                for (let i = 1; i <= this.props.lessonNotes.length; i++) {
                     if (
                         this.correctAnswers === i &&
-                        this.lessonNotes[i] === this.lessonNotes[i - 1]
+                        this.props.lessonNotes[i] === this.props.lessonNotes[i - 1]
                     ) {
                         setTimeout(() => {
-                            this.findPitch(this.lessonNotes[i]);
+                            this.findPitch(this.props.lessonNotes[i]);
                         }, 300);
                         this.popUpCount += 1;
                         this.correctAnswers += 1;
                         break;
                     } else if (this.correctAnswers === i) {
                         this.setState({
-                            checkNote: this.lessonNotes[i]
+                            checkNote: this.props.lessonNotes[i]
                         });
                         setTimeout(() => {
-                            this.findPitch(this.lessonNotes[i]);
+                            this.findPitch(this.props.lessonNotes[i]);
                         }, 200);
                         this.popUpCount += 1;
                         this.correctAnswers += 1;
                         break;
                     } else if (
-                        this.correctAnswers === this.lessonNotes.length
+                        this.correctAnswers === this.props.lessonNotes.length
                     ) {
                         this.turnOffMicrophone();
                         this.audio.close();
@@ -423,10 +414,10 @@ class GoodKingWenceslas extends Component {
         document.getElementById("lessonThreeMessageThree").style.display =
             "block";
         this.setState({
-            checkNote: this.lessonNotes[0],
+            checkNote: this.props.lessonNotes[0],
             buttonToShow: "Three"
         });
-        this.findPitch(this.lessonNotes[0]);
+        this.findPitch(this.props.lessonNotes[0]);
     }
 
     finishSong() {
@@ -439,13 +430,15 @@ class GoodKingWenceslas extends Component {
     }
 
     finishLesson() {
+        // set data to firebase that lesson one is completed for the user
         let that = this;
         let userSongStatus = firebaseDB.ref(
             "/users/" + this.props.Auth.userId + "/introSongsCompleted"
         );
+
         userSongStatus.once("value").then(snapshot => {
             userSongStatus.update({
-                [this.songName]: {
+                [this.props.songName] : {
                     completed: true,
                     time: firebase.database.ServerValue.TIMESTAMP
                 }
@@ -471,16 +464,16 @@ class GoodKingWenceslas extends Component {
         if (this.state.lessonCompleted) {
             return <Redirect to="/" />;
         }
-        let GoodKingWenceslasNotes = [];
-        for (let i = 1; i < this.lessonNotes.length + 4; i++) {
-            GoodKingWenceslasNotes.push(
+        let createIntroSongNotes = [];
+        for (let i = 1; i < this.props.lessonNotes.length + 4; i++) {
+            createIntroSongNotes.push(
                 easySongView(
-                    this.lessonNotes[i - 1],
+                    this.props.lessonNotes[i - 1],
                     i,
                     this.correctAnswers,
                     this.state.noteClass,
-                    this.songName,
-                    this.lessonNotes.length
+                    this.props.songName,
+                    this.props.lessonNotes.length
                 )
             );
         }
@@ -507,7 +500,7 @@ class GoodKingWenceslas extends Component {
                             <div>
                                 <span style={{ fontFamily: "helvetica" }}>
                                     {" "}
-                                    <h2> Good King Wenceslas </h2>
+                                    <h2> {this.props.songHeading} </h2>
                                 </span>
                             </div>
                         </div>
@@ -547,7 +540,7 @@ class GoodKingWenceslas extends Component {
                                             className="sheetMusicStaff"
                                             src={require("../../static/sheetMusic1.png")}
                                         />
-                                        {GoodKingWenceslasNotes}
+                                        {createIntroSongNotes}
                                     </div>
                                 </div>
                                 <br />
@@ -561,7 +554,7 @@ class GoodKingWenceslas extends Component {
                                 id="lessonThreeMessageFour"
                             >
                                 {" "}
-                                Congrats! You have played through Good King Wenceslas<br />{" "}
+                                Congrats! You have played through {this.props.songHeading}!<br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
                                     src={require("../../static/goodJob.gif")}
@@ -615,20 +608,17 @@ class GoodKingWenceslas extends Component {
         );
     }
 }
-const GoodKingWenceslasMapStateToProps = store => {
+const createIntroSongMapStateToProps = store => {
     return {
-        Auth: store.Auth,
-        LessonsCompleted: store.LessonsCompleted
+        Auth: store.Auth
     };
 };
 
-const GoodKingWenceslasDispatch = dispatch => {
+const createIntroSongDispatch = dispatch => {
     return {
         AuthActions: bindActionCreators(AuthActions, dispatch),
         IntroSongsCompletedActions: bindActionCreators(IntroSongsCompletedActions, dispatch)
     };
 };
 
-export default connect(GoodKingWenceslasMapStateToProps, GoodKingWenceslasDispatch)(
-    GoodKingWenceslas
-);
+export default connect(createIntroSongMapStateToProps, createIntroSongDispatch)(createIntroSong);

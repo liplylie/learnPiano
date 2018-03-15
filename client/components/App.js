@@ -10,6 +10,7 @@ import secret from '../../secret.json'
 import * as AuthActions from "../actions/authActions";
 import * as LessonsCompletedActions from "../actions/lessonsCompletedActions";
 import * as MiniGamesCompletedActions from "../actions/miniGamesCompletedActions";
+import * as IntroSongsCompletedActions from "../actions/introSongsCompletedActions";
 
 import About from "./About";
 import Links from "./Links";
@@ -28,6 +29,7 @@ import MiniGameOne from "./MiniGames/MiniGameOne";
 import MiniGameTwo from "./MiniGames/MiniGameTwo";
 
 import IntroSongList from "./IntroSongs/IntroSongList";
+import CreateIntroSong from "./IntroSongs/CreateIntroSong"
 import AuClairDeLaLune from "./IntroSongs/AuClairDeLaLune"
 import AuraLee from "./IntroSongs/AuraLee"
 import GoodKingWenceslas from "./IntroSongs/GoodKingWenceslas"
@@ -76,6 +78,9 @@ class App extends Component {
         let userSettings = firebaseDB.ref(
           "/users/" + user.uid + "/userSettings"
         );
+        let introSongsStatus = firebaseDB.ref(
+          "/users/" + user.uid + "/introSongsCompleted"
+        );
         let lessons = {
           lesson1: { completed: false, time: null },
           lesson2: { completed: false, time: null },
@@ -90,6 +95,19 @@ class App extends Component {
           miniGame4: { completed: false, highScore: null },
           miniGame5: { completed: false, highScore: null }
         };
+        let introSongs = {
+          AuClairDeLaLune: false,
+          AuraLee: false,
+          GoodKingWenceslas: false,
+          HotCrossBuns: false,
+          LightlyRow: false,
+          LoveSomebody: false,
+          MaryHadLamb: false,
+          Musette: false,
+          NewWorldSymphony: false,
+          OdeToJoy: false, 
+          SaintsGoMarchin: false
+        }
 
         userLessonStatus.once("value").then(
           snapshot => {
@@ -142,10 +160,19 @@ class App extends Component {
           }
         );
 
+        introSongsStatus.once("value").then(
+          snapshot => {
+            if (snapshot.val()) {
+              that.props.IntroSongsCompletedActions.introSongsCompleted(snapshot.val())
+            } else {
+              introSongsStatus.update(introSongs)
+              this.props.IntroSongsCompletedActions.introSongsCompleted(introSongs)
+            }
+          })
+
         this.setState({ loading: false });
       } else {
         console.log("fail");
-        //this.setState({authenticated: false})
       }
     });
   }
@@ -323,6 +350,13 @@ class App extends Component {
                   <SaintsGoMarchin />
                 )}
               />
+               <Route
+                exact
+                path="/SongList/intro/Sample"
+                component={() => (
+                  <CreateIntroSong songName="Sample" lessonNotes={"C4 C4 D4 E4".split(" ")} songHeading="Sample" />
+                )}
+              />
               <Route
                 render={() => {
                   return (
@@ -368,6 +402,10 @@ const appDispatch = dispatch => {
     ),
     MiniGamesCompletedActions: bindActionCreators(
       MiniGamesCompletedActions,
+      dispatch
+    ),
+    IntroSongsCompletedActions: bindActionCreators(
+      IntroSongsCompletedActions,
       dispatch
     )
   };
