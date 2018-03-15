@@ -12,8 +12,8 @@ import Popup from "react-popup";
 import pitchTable from "../../helpers/pitchTable";
 import pitchTablePictures from "../../helpers/pitchTablePictures";
 import Piano from "../Piano.js";
-import easySongView from "../../helpers/easySongView"
-import noteTransition from "../../helpers/noteTransition"
+import easySongView from "../../helpers/easySongView";
+import noteTransition from "../../helpers/noteTransition";
 
 class AuClairDeLaLune extends Component {
     constructor(props) {
@@ -26,9 +26,9 @@ class AuClairDeLaLune extends Component {
             lessonCompleted: false,
             noteClass: ""
         };
-        this.start = false
-        this.songName = "AuClairDeLaLune"
-        this.lessonNotes = "C4 C4 C4 D4 E4 D4 C4 E4 D4 D4 C4".split(" ")
+        this.start = false;
+        this.songName = "AuClairDeLaLune";
+        this.lessonNotes = "C4 C4 C4 D4 E4 D4 C4 E4 D4 D4 C4".split(" ");
         this.popUpCount = 1;
         this.correctAnswers = 1;
         this.noteArray = [];
@@ -38,51 +38,61 @@ class AuClairDeLaLune extends Component {
     }
 
     componentDidUpdate() {
-        if (this.correctAnswers <= this.lessonNotes.length && this.start){
-        let getCssProperty = (elmId, property) => {
-            let elem = document.getElementById(elmId);
-            return window.getComputedStyle(elem,null).getPropertyValue(property);
-        }
+        if (this.correctAnswers <= this.lessonNotes.length && this.start) {
+            let getCssProperty = (elmId, property) => {
+                let elem = document.getElementById(elmId);
+                return window
+                    .getComputedStyle(elem, null)
+                    .getPropertyValue(property);
+            };
 
-        if (
-            this.state.correctNote === this.state.checkNote &&
-            this.popUpCount === this.correctAnswers &&
-            !this.state.lessonCompleted
-        ) {
-            noteTransition(this.songName, this.correctAnswers)
-            this.turnOffMicrophone();
-            this.audio.close()
-            for ( let i = 1; i <= this.lessonNotes.length; i++ ){
-                if (this.correctAnswers === i && (this.lessonNotes[i] === this.lessonNotes[i - 1]) ){
-                    setTimeout(()=>{this.findPitch(this.lessonNotes[i])},300)
-                    this.popUpCount += 1;
-                    this.correctAnswers += 1;
-                    break;
+            if (
+                this.state.correctNote === this.state.checkNote &&
+                this.popUpCount === this.correctAnswers &&
+                !this.state.lessonCompleted
+            ) {
+                noteTransition(this.songName, this.correctAnswers);
+                this.turnOffMicrophone();
+                this.audio.close();
+                for (let i = 1; i <= this.lessonNotes.length; i++) {
+                    if (
+                        this.correctAnswers === i &&
+                        this.lessonNotes[i] === this.lessonNotes[i - 1]
+                    ) {
+                        setTimeout(() => {
+                            this.findPitch(this.lessonNotes[i]);
+                        }, 300);
+                        this.popUpCount += 1;
+                        this.correctAnswers += 1;
+                        break;
+                    } else if (this.correctAnswers === i) {
+                        this.setState({
+                            checkNote: this.lessonNotes[i]
+                        });
+                        setTimeout(() => {
+                            this.findPitch(this.lessonNotes[i]);
+                        }, 200);
+                        this.popUpCount += 1;
+                        this.correctAnswers += 1;
+                        break;
+                    } else if (
+                        this.correctAnswers === this.lessonNotes.length
+                    ) {
+                        this.turnOffMicrophone();
+                        this.audio.close();
+                        this.finishSong();
+                        this.correctAnswers += 1;
+                        break;
+                    }
                 }
-               else if (this.correctAnswers === i) {
-                    this.setState({
-                        checkNote: this.lessonNotes[i],
-                    });
-                    setTimeout(()=>{this.findPitch(this.lessonNotes[i])},200)
-                    this.popUpCount += 1;
-                    this.correctAnswers += 1;
-                    break;
-               } else if (this.correctAnswers === this.lessonNotes.length){
-                    this.turnOffMicrophone();
-                    this.audio.close()
-                    this.finishSong()
-                    this.correctAnswers += 1;
-                    break;
-               }
+            } else if (
+                this.state.wrongNote &&
+                this.noteArray.length &&
+                this.popUpCount === this.correctAnswers &&
+                !this.state.lessonCompleted
+            ) {
             }
-        } else if (
-            this.state.wrongNote &&
-            this.noteArray.length &&
-            this.popUpCount === this.correctAnswers &&
-            !this.state.lessonCompleted
-        ) {
         }
-    }
     }
 
     componentWillUnmount() {
@@ -141,7 +151,7 @@ class AuClairDeLaLune extends Component {
                 that.noteArray.push(note);
                 if (
                     (note.includes("3") && that.noteArray.length === 1) ||
-                    (note === "D4" && that.noteArray.length === 1) || 
+                    (note === "D4" && that.noteArray.length === 1) ||
                     (note === "C4" && that.noteArray.length === 1)
                 ) {
                     that.noteArray.push(note);
@@ -151,32 +161,31 @@ class AuClairDeLaLune extends Component {
                     if (that.noteArray.includes(matchNote)) {
                         that.turnOffMicrophone();
                         that.noteArray = [];
-                        that.noteArray.length = 0
+                        that.noteArray.length = 0;
                         that.setState({
                             correctNote: matchNote,
                             wrongNote: null,
                             noteClass: "correctNote"
                         });
                     } else {
-                        if (that.state.noteClass === "wrongNote"){
+                        if (that.state.noteClass === "wrongNote") {
                             that.setState({
                                 noteClass: ""
-                            })
-                            setTimeout(()=>{
+                            });
+                            setTimeout(() => {
                                 that.setState({
                                     noteClass: "wrongNote"
-                                })
-                            }, 200)
+                                });
+                            }, 200);
                         } else {
                             that.setState({
                                 wrongNote: that.noteArray[2],
                                 noteClass: "wrongNote"
                             });
-                            
                         }
                         that.turnOffMicrophone();
                         that.noteArray = [];
-                        that.noteArray.length = 0
+                        that.noteArray.length = 0;
                         setTimeout(() => {
                             that.toggleMicrophone();
                         }, 700);
@@ -312,7 +321,7 @@ class AuClairDeLaLune extends Component {
         };
 
         this.toggleMicrophone = function() {
-            let that = this
+            let that = this;
             if (isRefSoundPlaying) {
                 turnOffReferenceSound();
             }
@@ -408,9 +417,9 @@ class AuClairDeLaLune extends Component {
     }
 
     lessonThreeButtonTwo() {
-        this.start = true
+        this.start = true;
         document.getElementById("lessonThreeButtonOne").style.display = "none";
-        document.getElementById("lessonThreeMessageThree").style.display = 
+        document.getElementById("lessonThreeMessageThree").style.display =
             "block";
         this.setState({
             checkNote: this.lessonNotes[0],
@@ -420,11 +429,13 @@ class AuClairDeLaLune extends Component {
     }
 
     finishSong() {
-        document.getElementById("lessonThreeMessageThree").style.display = "none";
-        document.getElementById("lessonThreeMessageFour").style.display = "block";
-        document.getElementById("lessonThreeButtonFour").style.display = "block";
+        document.getElementById("lessonThreeMessageThree").style.display =
+            "none";
+        document.getElementById("lessonThreeMessageFour").style.display =
+            "block";
+        document.getElementById("lessonThreeButtonFour").style.display =
+            "block";
     }
-
 
     finishLesson() {
         // set data to firebase that lesson one is completed for the user
@@ -459,13 +470,21 @@ class AuClairDeLaLune extends Component {
     }
 
     render() {
-
         if (this.state.lessonCompleted) {
             return <Redirect to="/" />;
         }
-        let AuClairDeLaLuneNotes = []
+        let AuClairDeLaLuneNotes = [];
         for (let i = 1; i < this.lessonNotes.length + 4; i++) {
-            AuClairDeLaLuneNotes.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass, this.songName, this.lessonNotes.length) )
+            AuClairDeLaLuneNotes.push(
+                easySongView(
+                    this.lessonNotes[i - 1],
+                    i,
+                    this.correctAnswers,
+                    this.state.noteClass,
+                    this.songName,
+                    this.lessonNotes.length
+                )
+            );
         }
 
         return (
@@ -504,8 +523,7 @@ class AuClairDeLaLune extends Component {
                                     fontSize: "1.5em"
                                 }}
                                 id="lessonThreeMessageOne"
-                            >
-                            </div>
+                            />
                             <button
                                 id="lessonThreeButtonOne"
                                 className="btn btn-primary"
@@ -524,15 +542,15 @@ class AuClairDeLaLune extends Component {
                             >
                                 {" "}
                                 Go!
-                                <br/>{" "}
+                                <br />{" "}
                                 <div className="row">
-                                    <div className = "sheetMusicContainer col-md-10">
+                                    <div className="sheetMusicContainer col-md-10">
                                         <img
-                                            className = "sheetMusicStaff"
+                                            className="sheetMusicStaff"
                                             src={require("../../static/sheetMusic1.png")}
                                         />
-                                       {AuClairDeLaLuneNotes}
-                                    </div> 
+                                        {AuClairDeLaLuneNotes}
+                                    </div>
                                 </div>
                                 <br />
                             </div>
@@ -545,7 +563,8 @@ class AuClairDeLaLune extends Component {
                                 id="lessonThreeMessageFour"
                             >
                                 {" "}
-                                Congrats! You have played through Au Clair De La Lune!<br />{" "}
+                                Congrats! You have played through Au Clair De La
+                                Lune!<br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
                                     src={require("../../static/goodJob.gif")}
@@ -570,7 +589,7 @@ class AuClairDeLaLune extends Component {
                     </div>
                     <div
                         id="showPianoButton"
-                        style={{ cursor: "pointer"}}
+                        style={{ cursor: "pointer" }}
                         onClick={() => this.showPiano()}
                     >
                         <img
@@ -613,4 +632,6 @@ const AuClairDeLaLuneDispatch = dispatch => {
     };
 };
 
-export default connect(AuClairDeLaLuneMapStateToProps, AuClairDeLaLuneDispatch)(AuClairDeLaLune);
+export default connect(AuClairDeLaLuneMapStateToProps, AuClairDeLaLuneDispatch)(
+    AuClairDeLaLune
+);

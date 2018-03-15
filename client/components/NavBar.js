@@ -89,7 +89,7 @@ class Navbar extends Component {
                                 </a>
                                 <ul className="dropdown-menu text-center effect1">
                                     <li className="dropdown-item">
-                                        <Link to="/SongList/intro">Introduction Songs</Link>
+                                        <Link to="/SongList/intro">Intro Level Songs</Link>
                                     </li>
                                     <li className="dropdown-item">
                                         <Link to="/SongList/easy">Easy Level Songs</Link>

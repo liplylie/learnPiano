@@ -38,7 +38,7 @@ class MaryHadLamb extends Component {
     }
 
     componentDidUpdate() {
-        if (this.correctAnswers <=this.lessonNotes.length  && this.start){
+        if (this.correctAnswers <= this.lessonNotes.length  && this.start){
         let getCssProperty = (elmId, property) => {
             let elem = document.getElementById(elmId);
             return window.getComputedStyle(elem,null).getPropertyValue(property);
@@ -419,10 +419,10 @@ class MaryHadLamb extends Component {
         document.getElementById("lessonThreeMessageThree").style.display = 
             "block";
         this.setState({
-            checkNote: "E4",
+            checkNote: this.lessonNotes[0],
             buttonToShow: "Three"
         });
-        this.findPitch("E4");
+        this.findPitch(this.lessonNotes[0]);
     }
 
     finishSong() {

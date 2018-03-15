@@ -31,7 +31,7 @@ class IntroSongList extends Component {
 					<div className="row" style={{ height: "7em" }} />
 					<div className="row">
 						<div className="col-md-12">
-							<h1> Intro Song List</h1>
+							<h1> Intro Level Song List</h1>
 						</div>
 					<div className="col-md-4" >
 						<ol type="A" className="alphabetList">
