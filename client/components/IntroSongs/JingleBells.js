@@ -7,7 +7,8 @@ import firebase from "firebase";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as AuthActions from "../../actions/authActions.js";
-import * as LessonsCompleted from "../../actions/lessonsCompletedActions";
+import * as LessonsCompletedActions from "../../actions/lessonsCompletedActions";
+import * as IntroSongsCompletedActions from "../../actions/introSongsCompletedActions";
 import Popup from "react-popup";
 import pitchTable from "../../helpers/pitchTable";
 import pitchTablePictures from "../../helpers/pitchTablePictures";
@@ -432,17 +433,17 @@ class JingleBells extends Component {
 
     finishLesson() {
         let that = this;
-        let userLessonStatus = firebaseDB.ref(
-            "/users/" + this.props.Auth.userId + "/lessonsCompleted"
+        let userSongStatus = firebaseDB.ref(
+            "/users/" + this.props.Auth.userId + "/introSongsCompleted"
         );
-        userLessonStatus.once("value").then(snapshot => {
-            userLessonStatus.update({
-                lesson3: {
+        userSongStatus.once("value").then(snapshot => {
+            userSongStatus.update({
+                [this.songName]: {
                     completed: true,
                     time: firebase.database.ServerValue.TIMESTAMP
                 }
             });
-            that.props.LessonsCompleted.lessonsCompleted(snapshot.val());
+            that.props.IntroSongsCompletedActions.introSongsCompleted(snapshot.val());
             that.setState({
                 lessonCompleted: true
             });
@@ -617,7 +618,8 @@ const JingleBellsMapStateToProps = store => {
 const JingleBellsDispatch = dispatch => {
     return {
         AuthActions: bindActionCreators(AuthActions, dispatch),
-        LessonsCompleted: bindActionCreators(LessonsCompleted, dispatch)
+        LessonsCompletedActions: bindActionCreators(LessonsCompletedActions, dispatch),
+        IntroSongsCompletedActions: bindActionCreators(LessonsCompletedActions, dispatch)
     };
 };
 

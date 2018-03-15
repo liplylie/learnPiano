@@ -11,6 +11,9 @@ import $ from "jquery";
 import * as AuthActions from "../actions/authActions";
 import * as LessonsCompletedActions from "../actions/lessonsCompletedActions";
 import * as MiniGamesCompletedActions from "../actions/miniGamesCompletedActions";
+import * as IntroSongsCompletedActions from "../actions/introSongsCompletedActions";
+
+import introSongsList from "../helpers/introSongs"
 
 class ProfileSettings extends Component {
 	constructor() {
@@ -19,8 +22,6 @@ class ProfileSettings extends Component {
 		this.resetLessonsSettings = this.resetLessonsSettings.bind(this);
 		this.resetMiniGameSettings = this.resetMiniGameSettings.bind(this);
 	}
-
-	componentWillMount() {}
 
 	changeName(event) {
 		event.preventDefault();
@@ -138,6 +139,25 @@ class ProfileSettings extends Component {
 		);
 	}
 
+	resetIntroSongsSettings() {
+		let that = this;
+		let introSongsStatus = firebaseDB.ref(
+      "/users/" + this.props.profile.userId + "/introSongsCompleted"
+    );
+		let introSongs = introSongsList
+		introSongsStatus
+			.once("value")
+			.then(
+				snapshot => {
+				introSongsStatus.update(introSongs);
+				that.props.IntroSongsCompletedActions.introSongsCompleted(introSongs);
+			},
+			errorObject => {
+				console.log("The read failed: " + errorObject.code);
+			}
+		);
+	}
+
 	resetMiniGameSettings() {
 		let that = this;
 		let userMiniGameStatus = firebaseDB.ref(
@@ -170,6 +190,11 @@ class ProfileSettings extends Component {
 	showLessonStatus() {
 		document.getElementById("showLessonStatus").style.display = "none";
 		document.getElementById("lessonButton").style.display = "block";
+	}
+
+	showIntroSongsStatus() {
+		document.getElementById("showIntroSongsStatus").style.display = "none";
+		document.getElementById("introSongsButton").style.display = "block";
 	}
 
 	deleteMiniGameStatus() {
@@ -234,15 +259,51 @@ class ProfileSettings extends Component {
 		});
 	}
 
+		deleteIntroSongsStatus() {
+		let that = this;
+		let lessonPopup = Popup.create({
+			title: null,
+			content: "Are you sure that you want to delete your Intro Song Data?",
+			buttons: {
+				left: [
+					{
+						text: "No",
+						className: "danger",
+						action: () => {
+							Popup.alert("Your data will not be deleted");
+							Popup.close();
+						}
+					}
+				],
+				right: [
+					{
+						text: "Yes",
+						key: "enter",
+						action: () => {
+							that.resetIntroSongsSettings();
+							Popup.alert("Your data is deleted");
+							Popup.close();
+						}
+					}
+				]
+			}
+		});
+	}
+
 	render() {
 		// if (!this.props.authenticated) {
 		// 		return <Redirect to="/"/>
 		// 	}
 		let miniGamesNum = Object.values(this.props.miniGames).filter(game => {
+			console.log(game, 'game')
 			return game.completed !== false;
 		});
 		let lessonNum = Object.values(this.props.lessons).filter(lesson => {
 			return lesson.completed !== false;
+		});
+		let introSongsNum = Object.values(this.props.introSongs).filter(song => {
+			console.log(song, 'songs')
+			return song !== false;
 		});
 
 		return (
@@ -425,6 +486,38 @@ class ProfileSettings extends Component {
 											</button>
 										</td>
 									</tr>
+									<tr
+										style={{ border: "none" }}
+										onClick={() => {
+											this.showIntroSongsStatus();
+										}}
+									>
+										<th style={{ border: "none" }}>Intro Songs</th>
+										<td style={{ border: "none", color: "grey" }}>
+											Completed: {introSongsNum.length}
+										</td>
+										<td id="showIntroSongsStatus" style={{ border: "none" }}>
+											<span style={{ color: "#365899", textAlign: "center" }}>
+												{" "}
+												Edit{" "}
+											</span>
+										</td>
+
+										<td
+											id="introSongsButton"
+											style={{ border: "none", display: "none" }}
+										>
+											<button
+												className="btn btn-primary"
+												onClick={() => {
+													this.deleteIntroSongsStatus();
+												}}
+											>
+												{" "}
+												Delete Intro Songs Status
+											</button>
+										</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
@@ -439,7 +532,8 @@ const profileSettingsMapStateToProps = store => {
 	return {
 		profile: store.Auth,
 		miniGames: store.MiniGamesCompleted,
-		lessons: store.LessonsCompleted
+		lessons: store.LessonsCompleted,
+		introSongs: store.IntroSongsCompleted
 	};
 };
 
@@ -452,6 +546,10 @@ const profileSettingsDispatch = dispatch => {
 		),
 		MiniGamesCompletedActions: bindActionCreators(
 			MiniGamesCompletedActions,
+			dispatch
+		),
+		IntroSongsCompletedActions: bindActionCreators(
+			IntroSongsCompletedActions,
 			dispatch
 		)
 	};

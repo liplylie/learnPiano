@@ -7,7 +7,9 @@ import firebase from "firebase";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as AuthActions from "../../actions/authActions.js";
-import * as LessonsCompleted from "../../actions/lessonsCompletedActions";
+import * as LessonsCompletedActopms from "../../actions/lessonsCompletedActions";
+import * as IntroSongsCompletedActions from "../../actions/introSongsCompletedActions";
+
 import Popup from "react-popup";
 import pitchTable from "../../helpers/pitchTable";
 import pitchTablePictures from "../../helpers/pitchTablePictures";
@@ -627,7 +629,8 @@ const LoveSomebodyMapStateToProps = store => {
 const LoveSomebodyDispatch = dispatch => {
     return {
         AuthActions: bindActionCreators(AuthActions, dispatch),
-        LessonsCompleted: bindActionCreators(LessonsCompleted, dispatch)
+        LessonsCompletedActions: bindActionCreators(LessonsCompletedActions, dispatch),
+        IntroSongsCompletedActions: bindActionCreators(IntroSongsCompletedActions, dispatch)
     };
 };
 

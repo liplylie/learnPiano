@@ -6,6 +6,8 @@ import { bindActionCreators } from "redux";
 import { Redirect } from "react-router-dom";
 import * as MiniGamesCompleted from "../../actions/miniGamesCompletedActions";
 import Piano from "../Piano";
+import Popup from "react-popup";
+
 
 import C4 from "../../static/middleCBassClef.gif";
 import B3 from "../../static/B3.jpg";
@@ -29,7 +31,7 @@ class MiniGameTwo extends Component {
             noteIsCorrect: false,
             countDown: 3,
             gameOver: false,
-            miniGameCompleted: false,
+            lessonCompleted: false,
             previousHighScore: 0
         };
         this.score = 0;
@@ -99,6 +101,53 @@ class MiniGameTwo extends Component {
     endGame() {
         this.audio.close();
         let that = this;
+        let lessonPopup = Popup.create({
+            title: null,
+            content: "Do you want to Play Again?",
+            buttons: {
+                left: [
+                    {
+                        text: "No",
+                        className: "danger",
+                        action: () => {
+                            that.saveData();
+                             that.setState({
+                                lessonCompleted: true
+                            })
+
+                            Popup.close();
+                        }
+                    }
+                ],
+                right: [
+                    {
+                        text: "Yes",
+                        key: "enter",
+                        action: () => {
+                            that.setState({ 
+                                noteIsWrong: false,
+                                noteIsCorrect: false,
+                                countDown: 3,
+                                gameOver: false,
+                                previousHighScore: Math.max(
+                                    that.score,
+                                    that.state.previousHighScore
+                                ),
+                                lessonCompleted: false
+                            })
+                            that.saveData();
+                            Popup.close();
+                            that.startGame()
+                            that.score = 0
+                        }
+                    }
+                ]
+            }
+        });
+    }
+
+    saveData(){
+        let that = this
         let userMiniGameStatus = firebaseDB.ref(
             "/users/" + this.props.Auth.userId + "/miniGamesCompleted"
         );
@@ -114,10 +163,7 @@ class MiniGameTwo extends Component {
                 }
             });
             that.props.MiniGamesCompleted.miniGamesCompleted({
-                miniGame2: Math.max(that.score, that.state.previousHighScore)
-            });
-            that.setState({
-                miniGameCompleted: true
+                miniGame1: Math.max(that.score, that.state.previousHighScore)
             });
         });
     }
@@ -445,6 +491,11 @@ class MiniGameTwo extends Component {
         if (!this.props.Auth.online) {
             return <Redirect to="/" />;
         }
+
+        if (this.state.lessonCompleted) {
+            return <Redirect to="/" />;
+        }
+
         return (
             <div
                 style={{ height: "100vh", width: "100vw", textAlign: "center" }}
@@ -462,6 +513,7 @@ class MiniGameTwo extends Component {
                     <div className="row" style={{ height: "8em" }} />
                     <div className="row">
                         <div className="col-md-12">
+                            <Popup />
                             <div>
                                 <span
                                     style={{
