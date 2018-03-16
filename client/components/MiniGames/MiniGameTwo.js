@@ -492,7 +492,7 @@ class MiniGameTwo extends Component {
         }
 
         if (this.state.lessonCompleted) {
-            return <Redirect to="/" />;
+            return <Redirect push to="/" />;
         }
 
         return (

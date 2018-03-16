@@ -44,7 +44,7 @@ class createIntroSong extends Component {
                 !this.state.lessonCompleted
             ) {
                 noteTransition(this.props.songName, this.correctAnswers);
-                this.turnOffMicrophone();
+                //this.turnOffMicrophone();
                 this.audio.close();
                 for (let i = 1; i <= this.props.lessonNotes.length; i++) {
                     if (
@@ -56,6 +56,7 @@ class createIntroSong extends Component {
                         }, 300);
                         this.popUpCount += 1;
                         this.correctAnswers += 1;
+                        console.log(this.popUpCount, this.correctAnswers, 'look')
                         break;
                     } else if (this.correctAnswers === i) {
                         this.setState({

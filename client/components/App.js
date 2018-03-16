@@ -32,8 +32,10 @@ import MiniGameTwo from "./MiniGames/MiniGameTwo";
 
 import IntroSongList from "./IntroSongs/IntroSongList";
 import CreateIntroSong from "./IntroSongs/CreateIntroSong"
+import Alouette from "./IntroSongs/Alouette"
 import AuClairDeLaLune from "./IntroSongs/AuClairDeLaLune"
 import AuraLee from "./IntroSongs/AuraLee"
+import CamptownRaces from "./IntroSongs/CamptownRaces"
 import GoodKingWenceslas from "./IntroSongs/GoodKingWenceslas"
 import GoTellAuntRhody from "./IntroSongs/GoTellAuntRhody"
 import FrogSong from "./IntroSongs/FrogSong"
@@ -261,6 +263,13 @@ class App extends Component {
               />
               <Route
                 exact
+                path="/SongList/intro/Alouette"
+                component={() => (
+                  <CreateIntroSong songName={Alouette.songName} lessonNotes={Alouette.lessonNotes} songHeading={Alouette.songHeading} />
+                )}
+              />
+              <Route
+                exact
                 path="/SongList/intro/AuClairDeLaLune"
                 component={() => (
                   <AuClairDeLaLune />
@@ -271,6 +280,13 @@ class App extends Component {
                 path="/SongList/intro/AuraLee"
                 component={() => (
                   <AuraLee />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/CamptownRaces"
+                component={() => (
+                  <CreateIntroSong songName={CamptownRaces.songName} lessonNotes={CamptownRaces.lessonNotes} songHeading={CamptownRaces.songHeading} />
                 )}
               />
               <Route
@@ -386,6 +402,7 @@ class App extends Component {
                       <div className="col align-self-center">
                         <div style={{ textAlign: "center" }}>
                           <h1>Error 404 Page Not Found</h1>
+                          <p> Or page is still in development </p>
                         </div>
                       </div>
                     </div>

@@ -10,7 +10,7 @@ class IntroSongList extends Component {
 		return (
 			<div
 				style={{
-					height: "100vh",
+					minHeight: "100vh",
 					width: "100vw",
 					textAlign: "center",
 					overflowY: "scroll"
@@ -19,7 +19,7 @@ class IntroSongList extends Component {
 				<div
 					style={{
 						width: "80vw",
-						height: "100vh",
+						minHeight: "100vh",
 						margin: "auto",
 						backgroundColor: "white",
 						flex: 1,
@@ -38,15 +38,21 @@ class IntroSongList extends Component {
 						<ol type="A" className="alphabetList">
 							<li>
 								<ul>
+								<ul>
+									<li><Link to="/SongList/intro/Alouette">Alouette</Link></li>
+								</ul>
 									<li><Link to="/SongList/intro/AuClairDeLaLune">Au Clair De La Lune</Link></li>
 								</ul>
 								<ul>
 									<li><Link to="/SongList/intro/AuraLee">Aura Lee</Link></li>
 								</ul>
 							</li>
-							<li >
+							<li>
 							</li>
-							<li >
+							<li>
+							<ul>
+									<Link to="/SongList/intro/CamptownRaces">Camptown Races</Link>
+								</ul>
 							</li>
 							<li >
 							</li>

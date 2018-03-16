@@ -1,6 +1,8 @@
 const introSongs = {
+  Alouette: false,
 	AuClairDeLaLune: false,
   AuraLee: false,
+  CampTownRaces: false,
   FrogSong: false,
   GoodKingWenceslas: false,
   GoTellAuntRhody: false,

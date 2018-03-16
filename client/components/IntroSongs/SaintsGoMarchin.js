@@ -463,7 +463,7 @@ class SaintsGoMarchin extends Component {
 
     render() {
         if (this.state.lessonCompleted) {
-            return <Redirect to="/" />;
+            return <Redirect push to="/" />;
         }
         let SaintsGoMarchinNotes = [];
         for (let i = 1; i < this.lessonNotes.length + 4; i++) {
