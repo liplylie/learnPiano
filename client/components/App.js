@@ -11,6 +11,8 @@ import * as AuthActions from "../actions/authActions";
 import * as LessonsCompletedActions from "../actions/lessonsCompletedActions";
 import * as MiniGamesCompletedActions from "../actions/miniGamesCompletedActions";
 import * as IntroSongsCompletedActions from "../actions/introSongsCompletedActions";
+import introSongsList from "../helpers/introSongs"
+
 
 import About from "./About";
 import Links from "./Links";
@@ -33,6 +35,8 @@ import CreateIntroSong from "./IntroSongs/CreateIntroSong"
 import AuClairDeLaLune from "./IntroSongs/AuClairDeLaLune"
 import AuraLee from "./IntroSongs/AuraLee"
 import GoodKingWenceslas from "./IntroSongs/GoodKingWenceslas"
+import GoTellAuntRhody from "./IntroSongs/GoTellAuntRhody"
+import FrogSong from "./IntroSongs/FrogSong"
 import HotCrossBuns from "./IntroSongs/HotCrossBuns"
 import LightlyRow from"./IntroSongs/LightlyRow"
 import LoveSomebody from"./IntroSongs/LoveSomebody"
@@ -96,19 +100,7 @@ class App extends Component {
           miniGame4: { completed: false, highScore: null },
           miniGame5: { completed: false, highScore: null }
         };
-        let introSongs = {
-          AuClairDeLaLune: false,
-          AuraLee: false,
-          GoodKingWenceslas: false,
-          HotCrossBuns: false,
-          LightlyRow: false,
-          LoveSomebody: false,
-          MaryHadLamb: false,
-          Musette: false,
-          NewWorldSymphony: false,
-          OdeToJoy: false, 
-          SaintsGoMarchin: false
-        }
+        let introSongs = introSongsList
 
         userLessonStatus.once("value").then(
           snapshot => {
@@ -283,16 +275,30 @@ class App extends Component {
               />
               <Route
                 exact
+                path="/SongList/intro/FrogSong"
+                component={() => (
+                  <CreateIntroSong songName={FrogSong.songName} lessonNotes={FrogSong.lessonNotes} songHeading={FrogSong.songHeading} />
+                )}
+              />
+              <Route
+                exact
                 path="/SongList/intro/HotCrossBuns"
                 component={() => (
                   <HotCrossBuns />
                 )}
               />
-               <Route
+              <Route
                 exact
                 path="/SongList/intro/GoodKingWenceslas"
                 component={() => (
                   <GoodKingWenceslas />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/GoTellAuntRhody"
+                component={() => (
+                  <CreateIntroSong songName={GoTellAuntRhody.songName} lessonNotes={GoTellAuntRhody.lessonNotes} songHeading={GoTellAuntRhody.songHeading} />
                 )}
               />
               <Route

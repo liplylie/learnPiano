@@ -488,6 +488,9 @@ audio {
   top: 3vh;
 }
 
+.noteA4 {
+  top: 1.35vh;
+}
 .noteOrderFirst {
   left: 20vw;
 }

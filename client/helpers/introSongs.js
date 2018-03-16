@@ -1,13 +1,16 @@
 const introSongs = {
 	AuClairDeLaLune: false,
   AuraLee: false,
+  FrogSong: false,
   GoodKingWenceslas: false,
+  GoTellAuntRhody: false,
   HotCrossBuns: false,
   LightlyRow: false,
   LoveSomebody: false,
   MaryHadLamb: false,
   Musette: false,
   NewWorldSymphony: false,
+  OatsAndBeans: false,
   OdeToJoy: false, 
   SaintsGoMarchin: false
 }
