@@ -40,6 +40,7 @@ import JingleBells from"./IntroSongs/JingleBells"
 import MaryHadLamb from "./IntroSongs/MaryHadLamb"
 import Musette from "./IntroSongs/Musette"
 import NewWorldSymphony from "./IntroSongs/NewWorldSymphony"
+import OatsAndBeans from "./IntroSongs/OatsAndBeans"
 import OdeToJoy from "./IntroSongs/OdeToJoy"
 import SaintsGoMarchin from "./IntroSongs/SaintsGoMarchin"
 
@@ -341,6 +342,13 @@ class App extends Component {
                 path="/SongList/intro/OdeToJoy"
                 component={() => (
                   <OdeToJoy />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/OatsAndBeans"
+                component={() => (
+                  <CreateIntroSong songName={OatsAndBeans.songName} lessonNotes={OatsAndBeans.lessonNotes} songHeading={OatsAndBeans.songHeading} />
                 )}
               />
               <Route

@@ -8,7 +8,6 @@ import * as MiniGamesCompleted from "../../actions/miniGamesCompletedActions";
 import Piano from "../Piano";
 import Popup from "react-popup";
 
-
 import C4 from "../../static/middleCBassClef.gif";
 import B3 from "../../static/B3.jpg";
 import A3 from "../../static/A3.jpg";
