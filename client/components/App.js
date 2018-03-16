@@ -23,23 +23,27 @@ import DefaultHome from "./DefaultHome";
 import Footer from "./Footer";
 import Profile from "./Profile";
 
+// Lessons
 import LessonOne from "./Lessons/LessonOne";
 import LessonTwo from "./Lessons/LessonTwo";
 import LessonThree from "./Lessons/LessonThree";
 
+// Mini Games
 import MiniGameOne from "./MiniGames/MiniGameOne";
 import MiniGameTwo from "./MiniGames/MiniGameTwo";
 
+// Intro Songs
 import IntroSongList from "./IntroSongs/IntroSongList";
 import CreateIntroSong from "./IntroSongs/CreateIntroSong"
 import Alouette from "./IntroSongs/Alouette"
 import AuClairDeLaLune from "./IntroSongs/AuClairDeLaLune"
 import AuraLee from "./IntroSongs/AuraLee"
 import CamptownRaces from "./IntroSongs/CamptownRaces"
+import FrogSong from "./IntroSongs/FrogSong"
 import GoodKingWenceslas from "./IntroSongs/GoodKingWenceslas"
 import GoTellAuntRhody from "./IntroSongs/GoTellAuntRhody"
-import FrogSong from "./IntroSongs/FrogSong"
 import HotCrossBuns from "./IntroSongs/HotCrossBuns"
+import LondonBridges from "./IntroSongs/LondonBridges"
 import LightlyRow from"./IntroSongs/LightlyRow"
 import LoveSomebody from"./IntroSongs/LoveSomebody"
 import JingleBells from"./IntroSongs/JingleBells"
@@ -298,16 +302,16 @@ class App extends Component {
               />
               <Route
                 exact
-                path="/SongList/intro/HotCrossBuns"
+                path="/SongList/intro/GoodKingWenceslas"
                 component={() => (
-                  <HotCrossBuns />
+                  <GoodKingWenceslas />
                 )}
               />
               <Route
                 exact
-                path="/SongList/intro/GoodKingWenceslas"
+                path="/SongList/intro/HotCrossBuns"
                 component={() => (
-                  <GoodKingWenceslas />
+                  <HotCrossBuns />
                 )}
               />
               <Route
@@ -329,6 +333,13 @@ class App extends Component {
                 path="/SongList/intro/LightlyRow"
                 component={() => (
                   <LightlyRow />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/LondonBridges"
+                component={() => (
+                  <CreateIntroSong songName={LondonBridges.songName} lessonNotes={LondonBridges.lessonNotes} songHeading={LondonBridges.songHeading} />
                 )}
               />
               <Route
