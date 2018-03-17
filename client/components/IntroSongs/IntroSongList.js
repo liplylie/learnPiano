@@ -73,7 +73,10 @@ class IntroSongList extends Component {
 							</li>
 							<li>
 								<ul>
-									<Link to="/SongList/intro/HotCrossBuns">Hot Cross Buns</Link>
+									<li><Link to="/SongList/intro/HotCrossBuns">Hot Cross Buns</Link></li>
+								</ul>
+								<ul>
+									<li><Link to="/SongList/intro/HakyoJung">Ha'kyo Jung</Link></li>
 								</ul>
 							</li>
 						</ol>

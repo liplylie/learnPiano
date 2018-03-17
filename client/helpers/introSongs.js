@@ -6,6 +6,7 @@ const introSongs = {
   FrogSong: false,
   GoodKingWenceslas: false,
   GoTellAuntRhody: false,
+  HakyoJung: false,
   HotCrossBuns: false,
   LondonBridges: false,
   LightlyRow: false,

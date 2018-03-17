@@ -42,6 +42,7 @@ import CamptownRaces from "./IntroSongs/CamptownRaces"
 import FrogSong from "./IntroSongs/FrogSong"
 import GoodKingWenceslas from "./IntroSongs/GoodKingWenceslas"
 import GoTellAuntRhody from "./IntroSongs/GoTellAuntRhody"
+import HakyoJung from "./IntroSongs/HakyoJung"
 import HotCrossBuns from "./IntroSongs/HotCrossBuns"
 import LondonBridges from "./IntroSongs/LondonBridges"
 import LightlyRow from"./IntroSongs/LightlyRow"
@@ -305,6 +306,13 @@ class App extends Component {
                 path="/SongList/intro/GoodKingWenceslas"
                 component={() => (
                   <GoodKingWenceslas />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/HakyoJung"
+                component={() => (
+                  <CreateIntroSong songName={HakyoJung.songName} lessonNotes={HakyoJung.lessonNotes} songHeading={HakyoJung.songHeading} />
                 )}
               />
               <Route

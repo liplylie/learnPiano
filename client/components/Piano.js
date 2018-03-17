@@ -131,6 +131,7 @@ class Piano extends Component {
     var depressed = {};
     /* Selectors */
 
+
     function pianoClass(name) {
       return ".piano-" + name;
     }
@@ -159,18 +160,19 @@ class Piano extends Component {
       return keyup(code);
     }
 
-    async function press(key) {
+    function press(key) {
+      console.log('press')
       var audio = sound(key);
       if (depressed[key]) {
         return;
       }
       clearInterval(intervals[key]);
       if (audio) {
-        let pause = await audio.pause();
+        audio.pause();
         audio.volume = 1.0;
         if (audio.readyState >= 2) {
           audio.currentTime = 0;
-          let play = await audio.play();
+          audio.play();
           depressed[key] = true;
         }
       }
@@ -179,14 +181,14 @@ class Piano extends Component {
           backgroundColor: "#88FFAA"
         },
         0
-      ).promise()
-            .done();;
+      )
     }
 
     /* Manually diminish the volume when the key is not sustained. */
     /* These values are hand-selected for a pleasant fade-out quality. */
 
     function fade(key) {
+      console.log('fade')
       var audio = sound(key);
       var stepfade = function() {
         if (audio) {
@@ -210,11 +212,12 @@ class Piano extends Component {
     /* Bring a key to an immediate halt. */
 
     function kill(key) {
+      console.log('kill')
       var audio = sound(key);
-      return async function() {
+      return function() {
         clearInterval(intervals[key]);
         if (audio) {
-          let pause = await audio.pause();
+          audio.pause();
         }
         if (key.length > 2) {
           $(pianoClass(key)).animate(
@@ -231,8 +234,7 @@ class Piano extends Component {
             },
             300,
             "easeOutExpo"
-          ).promise()
-            .done()
+          )
         }
       };
     }
@@ -254,8 +256,7 @@ class Piano extends Component {
             backgroundColor: "#88FFAA"
           },
           0
-        ).promise()
-            .done()
+        )
         press(key);
       });
       if (fadeout) {
@@ -278,6 +279,7 @@ class Piano extends Component {
     /* Register keyboard event callbacks. */
 
     $(document).keydown(function(event) {
+       event.stopImmediatePropagation()
       if (event.which === pedal) {
         sustaining = true;
         $(pianoClass("pedal")).addClass("piano-sustain");
@@ -286,6 +288,7 @@ class Piano extends Component {
     });
 
     $(document).keyup(function(event) {
+      event.stopImmediatePropagation()
       if (event.which === pedal) {
         sustaining = false;
         $(pianoClass("pedal")).removeClass("piano-sustain");
