@@ -3,6 +3,7 @@ const noteTransition=(SongName, correctAnswers)=>{
     let elem = document.getElementById(elmId);
     return window.getComputedStyle(elem,null).getPropertyValue(property);
 	}
+		let transitionSpeed = 5
 		let nextNumber = correctAnswers + 4
 	  let noteOne = getCssProperty(`${SongName}1`, "left");
 		noteOne = Number(noteOne.substring(0, noteOne.length - 2))
@@ -23,7 +24,7 @@ const noteTransition=(SongName, correctAnswers)=>{
 		        document.getElementById(`${SongName}1`).style.left = noteOne + "px"
 		    }
 		}
-		let moveFirstNote = setInterval(moveFirst, 20)
+		let moveFirstNote = setInterval(moveFirst, transitionSpeed)
 		let moveOthers = () => {
 		    if (movingDistance <=0){
 		        clearInterval(moveOtherNotes)
@@ -42,7 +43,7 @@ const noteTransition=(SongName, correctAnswers)=>{
 		        document.getElementById(`${SongName}4`).style.left = noteFour + "px"
 		    }
 		}
-		let moveOtherNotes = setInterval(moveOthers, 20)
+		let moveOtherNotes = setInterval(moveOthers, transitionSpeed)
 }
 
 export default noteTransition

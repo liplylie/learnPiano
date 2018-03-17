@@ -273,9 +273,6 @@ class Profile extends Component {
 									})}
 								</tbody>
 							</table>
-						</div>
-						<div className="row">
-							<div className="col-md-6" style={{ margin: "auto"}}>
 								<table id="introSongsTable" className="table effect8">
 								<tbody>
 									<tr style={{ backgroundColor: "lightgrey" }}>
@@ -317,7 +314,6 @@ class Profile extends Component {
 							</table>
 							</div>
 						</div>
-					</div>
 				</div>
 			</div>
 		);

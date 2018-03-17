@@ -56,7 +56,6 @@ class createIntroSong extends Component {
                         }, 300);
                         this.popUpCount += 1;
                         this.correctAnswers += 1;
-                        console.log(this.popUpCount, this.correctAnswers, 'look')
                         break;
                     } else if (this.correctAnswers === i) {
                         this.setState({
@@ -154,7 +153,6 @@ class createIntroSong extends Component {
                     if (that.noteArray.includes(matchNote)) {
                         that.turnOffMicrophone();
                         that.noteArray = [];
-                        that.noteArray.length = 0;
                         that.setState({
                             correctNote: matchNote,
                             wrongNote: null,
@@ -169,7 +167,7 @@ class createIntroSong extends Component {
                                 that.setState({
                                     noteClass: "wrongNote"
                                 });
-                            }, 200);
+                            }, 150);
                         } else {
                             that.setState({
                                 wrongNote: that.noteArray[2],
@@ -178,10 +176,9 @@ class createIntroSong extends Component {
                         }
                         that.turnOffMicrophone();
                         that.noteArray = [];
-                        that.noteArray.length = 0;
                         setTimeout(() => {
                             that.toggleMicrophone();
-                        }, 700);
+                        }, 500);
                     }
                 }
             }

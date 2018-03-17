@@ -36,90 +36,90 @@ class LessonThree extends Component {
 
     componentDidUpdate() {
         if (this.correctAnswers < 27){
-        let getCssProperty = (elmId, property) => {
-            let elem = document.getElementById(elmId);
-            return window.getComputedStyle(elem,null).getPropertyValue(property);
-        }
+            let getCssProperty = (elmId, property) => {
+                let elem = document.getElementById(elmId);
+                return window.getComputedStyle(elem,null).getPropertyValue(property);
+            }
 
-        if (
-            this.state.correctNote === this.state.checkNote &&
-            this.popUpCount === this.correctAnswers &&
-            !this.state.lessonCompleted
-        ) {
-            let noteOne = getCssProperty("MaryHad1", "left");
-            noteOne = Number(noteOne.substring(0, noteOne.length - 2))
-            let noteTwo = getCssProperty("MaryHad2", "left")
-            noteTwo = Number(noteTwo.substring(0, noteTwo.length - 2))
-            let noteThree = getCssProperty("MaryHad3", "left")
-            noteThree = Number(noteThree.substring(0, noteThree.length - 2))
-            let noteFour = getCssProperty("MaryHad4", "left")
-            noteFour = Number(noteFour.substring(0, noteFour.length - 2))
-            let movingDistance = noteTwo - noteOne
-            let moveFirst = () => {
-                if (noteOne <= 100){
-                    clearInterval(moveFirstNote)
-                    document.getElementById(`MaryHad1`).style.display = "none"
-                    document.getElementById(`MaryHad1`).id = ""
-                } else {
-                    noteOne -= 10
-                    document.getElementById(`MaryHad1`).style.left = noteOne + "px"
+            if (
+                this.state.correctNote === this.state.checkNote &&
+                this.popUpCount === this.correctAnswers &&
+                !this.state.lessonCompleted
+            ) {
+                let noteOne = getCssProperty("MaryHad1", "left");
+                noteOne = Number(noteOne.substring(0, noteOne.length - 2))
+                let noteTwo = getCssProperty("MaryHad2", "left")
+                noteTwo = Number(noteTwo.substring(0, noteTwo.length - 2))
+                let noteThree = getCssProperty("MaryHad3", "left")
+                noteThree = Number(noteThree.substring(0, noteThree.length - 2))
+                let noteFour = getCssProperty("MaryHad4", "left")
+                noteFour = Number(noteFour.substring(0, noteFour.length - 2))
+                let movingDistance = noteTwo - noteOne
+                let moveFirst = () => {
+                    if (noteOne <= 100){
+                        clearInterval(moveFirstNote)
+                        document.getElementById(`MaryHad1`).style.display = "none"
+                        document.getElementById(`MaryHad1`).id = ""
+                    } else {
+                        noteOne -= 10
+                        document.getElementById(`MaryHad1`).style.left = noteOne + "px"
+                    }
                 }
-            }
-            let moveFirstNote = setInterval(moveFirst, 20)
-            let moveOthers = () => {
-                if (movingDistance <=0){
-                    clearInterval(moveOtherNotes)
-                    console.log(this.correctAnswers, 'look bro')
-                    document.getElementById(`MaryHad${this.correctAnswers + 3}`).style.display = "block"
-                    document.getElementById(`MaryHad2`).id = "MaryHad1"
-                    document.getElementById(`MaryHad3`).id = "MaryHad2"
-                    document.getElementById(`MaryHad4`).id = "MaryHad3"
-                    document.getElementById(`MaryHad${this.correctAnswers + 3}`).id = "MaryHad4"
-                } else {
-                    noteTwo -= 10
-                    noteThree -= 10
-                    noteFour -= 10
-                    movingDistance -= 10
-                    document.getElementById(`MaryHad2`).style.left = noteTwo + "px"
-                    document.getElementById(`MaryHad3`).style.left = noteThree + "px"
-                    document.getElementById(`MaryHad4`).style.left = noteFour + "px"
+                let moveFirstNote = setInterval(moveFirst, 5)
+                let moveOthers = () => {
+                    if (movingDistance <=0){
+                        clearInterval(moveOtherNotes)
+                        console.log(this.correctAnswers, 'look bro')
+                        document.getElementById(`MaryHad${this.correctAnswers + 3}`).style.display = "block"
+                        document.getElementById(`MaryHad2`).id = "MaryHad1"
+                        document.getElementById(`MaryHad3`).id = "MaryHad2"
+                        document.getElementById(`MaryHad4`).id = "MaryHad3"
+                        document.getElementById(`MaryHad${this.correctAnswers + 3}`).id = "MaryHad4"
+                    } else {
+                        noteTwo -= 10
+                        noteThree -= 10
+                        noteFour -= 10
+                        movingDistance -= 10
+                        document.getElementById(`MaryHad2`).style.left = noteTwo + "px"
+                        document.getElementById(`MaryHad3`).style.left = noteThree + "px"
+                        document.getElementById(`MaryHad4`).style.left = noteFour + "px"
+                    }
                 }
-            }
-            let moveOtherNotes = setInterval(moveOthers, 20)
+                let moveOtherNotes = setInterval(moveOthers, 5)
 
-            this.turnOffMicrophone();
-            this.audio.close()
-            for ( let i = 1; i <= this.lessonNotes.length; i++ ){
-                if (this.correctAnswers === i && (this.lessonNotes[i] === this.lessonNotes[i - 1]) ){
-                     setTimeout(()=>{this.findPitch(this.lessonNotes[i])},300)
-                    this.popUpCount += 1;
-                    this.correctAnswers += 1;
-                    break;
+                this.turnOffMicrophone();
+                this.audio.close()
+                for ( let i = 1; i <= this.lessonNotes.length; i++ ){
+                    if (this.correctAnswers === i && (this.lessonNotes[i] === this.lessonNotes[i - 1]) ){
+                         setTimeout(()=>{this.findPitch(this.lessonNotes[i])},300)
+                        this.popUpCount += 1;
+                        this.correctAnswers += 1;
+                        break;
+                    }
+                   else if (this.correctAnswers === i) {
+                        this.setState({
+                            checkNote: this.lessonNotes[i],
+                        });
+                        setTimeout(()=>{this.findPitch(this.lessonNotes[i])},200)
+                        this.popUpCount += 1;
+                        this.correctAnswers += 1;
+                        break;
+                   } else if (this.correctAnswers === this.lessonNotes.length){
+                        this.turnOffMicrophone();
+                        this.audio.close()
+                        this.finishSong()
+                        this.correctAnswers += 1;
+                        break;
+                   }
                 }
-               else if (this.correctAnswers === i) {
-                    this.setState({
-                        checkNote: this.lessonNotes[i],
-                    });
-                    setTimeout(()=>{this.findPitch(this.lessonNotes[i])},200)
-                    this.popUpCount += 1;
-                    this.correctAnswers += 1;
-                    break;
-               } else if (this.correctAnswers === this.lessonNotes.length){
-                    this.turnOffMicrophone();
-                    this.audio.close()
-                    this.finishSong()
-                    this.correctAnswers += 1;
-                    break;
-               }
+            } else if (
+                this.state.wrongNote &&
+                this.noteArray.length &&
+                this.popUpCount === this.correctAnswers &&
+                !this.state.lessonCompleted
+            ) {
             }
-        } else if (
-            this.state.wrongNote &&
-            this.noteArray.length &&
-            this.popUpCount === this.correctAnswers &&
-            !this.state.lessonCompleted
-        ) {
         }
-    }
     }
 
     componentWillUnmount() {
@@ -518,8 +518,8 @@ class LessonThree extends Component {
         }
 
         let MaryNotes = []
-        for (let i = 5; i <= this.lessonNotes.length; i++) {
-            MaryNotes.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass) )
+        for (let i = 1; i <= this.lessonNotes.length + 4; i++) {
+            MaryNotes.push( easySongView(this.lessonNotes[i-1], i, this.correctAnswers, this.state.noteClass, "MaryHad", this.lessonNotes.length) )
         }
 
         return (
@@ -641,44 +641,8 @@ class LessonThree extends Component {
 
                                             src={require("../../static/sheetMusic1.png")}
                                         />
-                                        <img
-                                            id="MaryHad1"
-                                            className={`playMusicNote noteOrderFirst noteE4 ${this.state.noteClass} `}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                         <img
-                                            id="MaryHad2"
-                                            className={`playMusicNote noteOrderSecond noteD4 ${this.correctAnswers === 2 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        <img
-                                            id="MaryHad3"
-                                            className={`playMusicNote noteOrderThird noteC4 ${this.correctAnswers === 3 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/musicNoteLine.png")}
-                                        />
-                                        <img
-                                            id="MaryHad4"
-                                            className={`playMusicNote noteOrderFourth noteD4 ${this.correctAnswers === 4 ? this.state.noteClass : ""}`}
-                                            src={require("../../static/quarterNote.png")}
-                                        />
-                                        {MaryNotes}
-                                         <img
-                                            id="MaryHad27"
-                                            style={{display:"none", left: 0}}
-                                        />
-                                        <img
-                                            id="MaryHad28"
-                                            style={{display:"none", left: 0}}
-                                        />
-                                        <img
-                                            id="MaryHad29"
-                                            style={{display:"none", left: 0}}
-                                        />
-                                         <img
-                                            id="MaryHad30"
-                                            style={{display:"none", left: 0}}
-                                        />
-                                    </div> 
+                                       {MaryNotes}
+                                    </div>
                                 </div>
                                 <br />
                             </div>

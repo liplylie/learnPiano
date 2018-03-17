@@ -46,6 +46,8 @@ import Gb4Sound from "../samples/Gb4.ogg";
 
   You should have received a copy of the GNU General Public License
   along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+  Jordan Daniels - I changed a few lines because they were causing bugs
 */
 
 class Piano extends Component {
@@ -161,7 +163,6 @@ class Piano extends Component {
     }
 
     function press(key) {
-      console.log('press')
       var audio = sound(key);
       if (depressed[key]) {
         return;
@@ -188,7 +189,6 @@ class Piano extends Component {
     /* These values are hand-selected for a pleasant fade-out quality. */
 
     function fade(key) {
-      console.log('fade')
       var audio = sound(key);
       var stepfade = function() {
         if (audio) {
@@ -212,7 +212,6 @@ class Piano extends Component {
     /* Bring a key to an immediate halt. */
 
     function kill(key) {
-      console.log('kill')
       var audio = sound(key);
       return function() {
         clearInterval(intervals[key]);
