@@ -29,7 +29,7 @@ class About extends Component {
 				<div
 					style={{
 						width: "80vw",
-						height: "100vh",
+						minHeight: "100vh",
 						margin: "auto",
 						backgroundColor: "white",
 						flex: 1,
@@ -44,7 +44,7 @@ class About extends Component {
 						<p>Learn Piano Fun is a website for interactively learning how to play the <a href="https://en.wikipedia.org/wiki/Piano" target="_blank">piano</a></p>
 						<p>There is no need for <a href="https://en.wikipedia.org/wiki/MIDI_controller" target="_blank">MIDI controllers</a> or other devices that connect to the computer</p>
 						<p>All that you need is a piano or piano app to play the piano. Make sure that the volume of the piano can reach the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API" target="_blank">microphone</a> of your computer or laptop</p>
-						<p>Even if you do not own a piano, that's ok! With the built in piano, you can still play through the app. See it here:</p>
+						<p>Even if you do not own a piano, that's ok! With the built in piano, you can still play through the app. (Piano is built by <a href="https://github.com/michaelmp/js-piano">michaelmp</a>) See it here:</p>
 						<div
                         id="showPianoButton"
                         style={{ cursor: "pointer" }}
@@ -71,7 +71,7 @@ class About extends Component {
                             hide
                         </p>
                     </div>
-						<iframe width="560" height="315" src="https://www.youtube.com/embed/JMEqOJtxNtI" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/NgQL1Dg5-H8" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
 					</div>
 					</div>
 				</div>

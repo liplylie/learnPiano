@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import ImageZoom from "react-medium-image-zoom";
+import Piano from "./Piano.js";
+
 
 class DefaultHome extends Component {
   constructor(props) {
@@ -8,6 +10,17 @@ class DefaultHome extends Component {
     this.state = {
       redirect: false
     };
+  }
+
+
+  showPiano() {
+      document.getElementById("showPiano").style.display = "block";
+      document.getElementById("showPianoButton").style.display = "none";
+  }
+
+  hidePiano() {
+      document.getElementById("showPiano").style.display = "none";
+      document.getElementById("showPianoButton").style.display = "block";
   }
 
   render() {
@@ -28,7 +41,7 @@ class DefaultHome extends Component {
           <div
             style={{
               width: "80vw",
-              height: "100vh",
+              minHeight: "100vh",
               margin: "auto",
               backgroundColor: "white",
               flex: 1,
@@ -57,18 +70,7 @@ class DefaultHome extends Component {
                   {" "}
                   Learn the basics of piano. No installation or plugins needed!
                 </p>
-                <ImageZoom
-                  image={{
-                    src: require("../static/profileSample.jpg"),
-                    alt: "gameSample",
-                    className: "col",
-                    style: { height: "25em", width: "25em" }
-                  }}
-                  zoomImage={{
-                    src: require("../static/profileSample.jpg"),
-                    alt: "gameSample"
-                  }}
-                />
+                <iframe width="400" height="315" src="https://www.youtube.com/embed/NgQL1Dg5-H8" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
               </div>
               <div className="col-md-4">
                 <p
@@ -124,12 +126,46 @@ class DefaultHome extends Component {
                 className="col-md-12 wow fadeIn animated"
                 style={{ fontFamily: "Helvetica", fontSize: "3em" }}
               >
-                All you will need is a piano or piano app to get started!
+                You can play with any piano, or with this one here!
+                <div
+                        id="showPianoButton"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => this.showPiano()}
+                    >
+                        <img
+                            className=""
+                            style={{
+                                height: "4em",
+                                width: "4em",
+                                margin: ".5em"
+                            }}
+                            src={require("../static/pianoKeys.png")}
+                        />
+                        <p className=""> Open Piano</p>
+                    </div>
+                    <div id="showPiano" style={{ display: "none" }}>
+                        <Piano />
+                        <p
+                            onClick={() => this.hidePiano()}
+                            style={{ cursor: "pointer" }}
+                        >
+                            {" "}
+                            hide
+                        </p>
+                    </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div
+      </div>
+    );
+  }
+}
+export default DefaultHome;
+
+/*
+
+ <div
           style={{
             height: "100vh",
             width: "100vw",
@@ -259,8 +295,5 @@ class DefaultHome extends Component {
             </a>
           </div>
         </div>
-      </div>
-    );
-  }
-}
-export default DefaultHome;
+
+*/
