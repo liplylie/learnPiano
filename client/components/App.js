@@ -44,8 +44,9 @@ import GoodKingWenceslas from "./IntroSongs/GoodKingWenceslas"
 import GoTellAuntRhody from "./IntroSongs/GoTellAuntRhody"
 import HakyoJung from "./IntroSongs/HakyoJung"
 import HotCrossBuns from "./IntroSongs/HotCrossBuns"
-import LondonBridges from "./IntroSongs/LondonBridges"
 import LightlyRow from"./IntroSongs/LightlyRow"
+import LongLongAgo from"./IntroSongs/LongLongAgo"
+import LondonBridges from "./IntroSongs/LondonBridges"
 import LoveSomebody from"./IntroSongs/LoveSomebody"
 import JingleBells from"./IntroSongs/JingleBells"
 import MaryHadLamb from "./IntroSongs/MaryHadLamb"
@@ -341,6 +342,13 @@ class App extends Component {
                 path="/SongList/intro/LightlyRow"
                 component={() => (
                   <LightlyRow />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/LongLongAgo"
+                component={() => (
+                  <CreateIntroSong songName={LongLongAgo.songName} lessonNotes={LongLongAgo.lessonNotes} songHeading={LongLongAgo.songHeading} />
                 )}
               />
               <Route

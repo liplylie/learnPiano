@@ -94,10 +94,13 @@ class IntroSongList extends Component {
 							</li>
 							<li>
 								<ul>
+									<li><Link to="/SongList/intro/LightlyRow">Lightly Row</Link></li>
+								</ul>
+								<ul>
 									<li><Link to="/SongList/intro/LondonBridges">London Bridges</Link></li>
 								</ul>
 								<ul>
-									<li><Link to="/SongList/intro/LightlyRow">Lightly Row</Link></li>
+									<li><Link to="/SongList/intro/LongLongAgo">Long Long Ago</Link></li>
 								</ul>
 								<ul>
 									<li><Link to="/SongList/intro/LoveSomebody">Love Somebody</Link></li>
