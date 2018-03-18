@@ -151,7 +151,6 @@ class GoodKingWenceslas extends Component {
             ) {
                 that.noteArray.push(note);
                 if (
-                    (note.includes("3") && that.noteArray.length === 1) ||
                     (note === "D4" && that.noteArray.length === 1) ||
                     (note === "C4" && that.noteArray.length === 1)
                 ) {

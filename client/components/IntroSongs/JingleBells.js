@@ -143,9 +143,9 @@ class JingleBells extends Component {
                 note.indexOf("8") === -1
             ) {
                 that.noteArray.push(note);
-            console.log(note, 'note')
+                console.log(note, 'note')
                 if (
-                    (note.includes("3") && that.noteArray.length === 1) ||
+                    (note === "E4" && that.noteArray.length === 1) ||
                     (note === "D4" && that.noteArray.length === 1) ||
                     (note === "C4" && that.noteArray.length === 1)
                 ) {
@@ -156,7 +156,6 @@ class JingleBells extends Component {
                     if (that.noteArray.includes(matchNote)) {
                         that.turnOffMicrophone();
                         that.noteArray = [];
-                        that.noteArray.length = 0;
                         that.setState({
                             correctNote: matchNote,
                             wrongNote: null,
@@ -180,10 +179,9 @@ class JingleBells extends Component {
                         }
                         that.turnOffMicrophone();
                         that.noteArray = [];
-                        that.noteArray.length = 0;
                         setTimeout(() => {
                             that.toggleMicrophone();
-                        }, 700);
+                        }, 500);
                     }
                 }
             }
