@@ -144,7 +144,6 @@ class OdeToJoy extends Component {
                 note.indexOf("7") === -1 &&
                 note.indexOf("8") === -1
             ) {
-                console.log(note, "note");
                 that.noteArray.push(note);
                 if (
                     (note === "D4" && that.noteArray.length === 1) ||
