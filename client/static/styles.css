@@ -560,3 +560,44 @@ ul li a {
 ul li a:hover {
   font-size: 1.1em;
 }
+
+.profilePicture {
+  height: 10em;
+  width: 10em;
+  border-radius: 5px;
+  visibility: visible;
+  animation-name: flipInX;
+  margin: auto
+}
+
+.img__wrap{
+  position: relative;
+}
+
+.img__description {
+  position: absolute;
+  top: 0;
+  bottom: 3em;
+  left: 0;
+  right: 0;
+  background: rgba(29, 106, 154, 0.72);
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  margin: auto;
+  height: 10em;
+  width: 10em;
+
+  /* transition effect. not necessary */
+  transition: opacity .2s, visibility .2s;
+}
+
+.img__wrap:hover .img__description {
+  visibility: visible;
+  opacity: 1;
+
+}
+
+.profilePicture:hover {
+  cursor: pointer;
+}

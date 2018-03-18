@@ -132,7 +132,8 @@ class Profile extends Component {
 					<div className="row">
 						<div className="col-md-1" />
 						<div className="col-md-3">
-							<div className="row" style={{ margin: "0.3em" }}>
+							<div className="row" style={{ margin: "0.3em" }}></div>
+							<div className="img__wrap">
 								<img
 									className="span3 wow flipInX center effect8"
 									src={
@@ -148,22 +149,25 @@ class Profile extends Component {
 										animationName: "flipInX",
 										margin: "auto"
 									}}
+									title="Profile Picture"
 								/>
+							 <Link to="/settings"><p className="img__description">Change Photo</p></Link>
+								<div className="text-center">
 								<span
 									style={{
 										fontFamily: "helvetica",
 										fontSize: "2em",
-										margin: "auto"
 									}}
 								>
 									{this.props.Auth.name
 										? this.props.Auth.name
 										: this.props.Auth.email}
 								</span>
-							</div>
+								</div>
+						</div>
 						</div>
 
-						<div className="col-md-3" style={{ marginRight: "3em" }} />
+						<div className="col-md-3" style={{ marginRight: "3em"}} />
 						<div
 							className="col-md-4 text-left wow fadeIn animated"
 							style={{ margin: ".3em" }}
