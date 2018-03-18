@@ -173,7 +173,11 @@ class Piano extends Component {
         audio.volume = 1.0;
         if (audio.readyState >= 2) {
           audio.currentTime = 0;
-          audio.play();
+          audio.addEventListener('loadeddata', function() {
+            audio.play();
+          });
+          audio.load();
+          //audio.play();
           depressed[key] = true;
         }
       }

@@ -177,7 +177,7 @@ class GoodKingWenceslas extends Component {
                                 that.setState({
                                     noteClass: "wrongNote"
                                 });
-                            }, 200);
+                            }, 150);
                         } else {
                             that.setState({
                                 wrongNote: that.noteArray[2],
@@ -189,7 +189,7 @@ class GoodKingWenceslas extends Component {
                         that.noteArray.length = 0;
                         setTimeout(() => {
                             that.toggleMicrophone();
-                        }, 700);
+                        }, 500);
                     }
                 }
             }

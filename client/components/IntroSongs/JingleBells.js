@@ -143,6 +143,7 @@ class JingleBells extends Component {
                 note.indexOf("8") === -1
             ) {
                 that.noteArray.push(note);
+            console.log(note, 'note')
                 if (
                     (note.includes("3") && that.noteArray.length === 1) ||
                     (note === "D4" && that.noteArray.length === 1) ||
@@ -170,7 +171,7 @@ class JingleBells extends Component {
                                 that.setState({
                                     noteClass: "wrongNote"
                                 });
-                            }, 200);
+                            }, 150);
                         } else {
                             that.setState({
                                 wrongNote: that.noteArray[2],
@@ -619,7 +620,7 @@ const JingleBellsDispatch = dispatch => {
     return {
         AuthActions: bindActionCreators(AuthActions, dispatch),
         LessonsCompletedActions: bindActionCreators(LessonsCompletedActions, dispatch),
-        IntroSongsCompletedActions: bindActionCreators(LessonsCompletedActions, dispatch)
+        IntroSongsCompletedActions: bindActionCreators(IntroSongsCompletedActions, dispatch)
     };
 };
 
