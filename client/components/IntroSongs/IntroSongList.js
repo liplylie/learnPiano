@@ -134,6 +134,9 @@ class IntroSongList extends Component {
 								</ul>
 							</li>
 							<li>
+								<ul>
+									<Link to="/SongList/intro/PopGoesWeasel">Pop Goes The Weasel</Link>
+								</ul>
 							</li>
 						</ol>
 					</div>

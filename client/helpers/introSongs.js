@@ -20,6 +20,7 @@ const introSongs = {
   NewWorldSymphony: false,
   OatsAndBeans: false,
   OdeToJoy: false, 
+  PopGoesTheWeasel: false,
   SaintsGoMarchin: false,
   TwinkleTwinkle: false
 }

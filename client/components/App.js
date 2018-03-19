@@ -56,6 +56,7 @@ import Musette from "./IntroSongs/Musette"
 import NewWorldSymphony from "./IntroSongs/NewWorldSymphony"
 import OatsAndBeans from "./IntroSongs/OatsAndBeans"
 import OdeToJoy from "./IntroSongs/OdeToJoy"
+import PopGoesWeasel from "./IntroSongs/PopGoesWeasel"
 import SaintsGoMarchin from "./IntroSongs/SaintsGoMarchin"
 import Twinkle from "./IntroSongs/Twinkle"
 
@@ -415,6 +416,13 @@ class App extends Component {
                 path="/SongList/intro/OatsAndBeans"
                 component={() => (
                   <CreateIntroSong songName={OatsAndBeans.songName} lessonNotes={OatsAndBeans.lessonNotes} songHeading={OatsAndBeans.songHeading} />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/PopGoesWeasel"
+                component={() => (
+                  <CreateIntroSong songName={PopGoesWeasel.songName} lessonNotes={PopGoesWeasel.lessonNotes} songHeading={PopGoesWeasel.songHeading} />
                 )}
               />
               <Route
