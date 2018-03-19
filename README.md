@@ -3,7 +3,7 @@ website for interactive learning with the piano <br/>
 Currently in development. 
 
 Sample: 
-[![Sample of LearnPiano](https://img.youtube.com/vi/NgQL1Dg5-H8.jpg)](https://www.youtube.com/watch?v=NgQL1Dg5-H8)
+[![LearnPianoFun](https://img.youtube.com/vi/NgQL1Dg5-H8/0.jpg)](https://www.youtube.com/watch?v=NgQL1Dg5-H8 "LearnPianoFun")
 
 ## Table of Contents
 
