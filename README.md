@@ -2,7 +2,8 @@
 website for interactive learning with the piano <br/>
 Currently in development. 
 
-Sample: https://youtu.be/NgQL1Dg5-H8
+Sample: 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/https://youtu.be/NgQL1Dg5-H8/0.jpg)](https://www.youtube.com/watch?v=https://youtu.be/NgQL1Dg5-H8)
 
 ## Table of Contents
 
