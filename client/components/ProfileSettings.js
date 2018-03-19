@@ -295,14 +295,12 @@ class ProfileSettings extends Component {
 		// 		return <Redirect to="/"/>
 		// 	}
 		let miniGamesNum = Object.values(this.props.miniGames).filter(game => {
-			console.log(game, 'game')
 			return game.completed !== false;
 		});
 		let lessonNum = Object.values(this.props.lessons).filter(lesson => {
 			return lesson.completed !== false;
 		});
 		let introSongsNum = Object.values(this.props.introSongs).filter(song => {
-			console.log(song, 'songs')
 			return song !== false;
 		});
 

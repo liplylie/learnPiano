@@ -44,6 +44,7 @@ import GoodKingWenceslas from "./IntroSongs/GoodKingWenceslas"
 import GoTellAuntRhody from "./IntroSongs/GoTellAuntRhody"
 import HakyoJung from "./IntroSongs/HakyoJung"
 import HotCrossBuns from "./IntroSongs/HotCrossBuns"
+import ItsRaining from "./IntroSongs/ItsRaining"
 import LightlyRow from"./IntroSongs/LightlyRow"
 import LongLongAgo from"./IntroSongs/LongLongAgo"
 import LondonBridges from "./IntroSongs/LondonBridges"
@@ -311,6 +312,13 @@ class App extends Component {
               />
               <Route
                 exact
+                path="/SongList/intro/GoTellAuntRhody"
+                component={() => (
+                  <CreateIntroSong songName={GoTellAuntRhody.songName} lessonNotes={GoTellAuntRhody.lessonNotes} songHeading={GoTellAuntRhody.songHeading} />
+                )}
+              />
+              <Route
+                exact
                 path="/SongList/intro/HakyoJung"
                 component={() => (
                   <CreateIntroSong songName={HakyoJung.songName} lessonNotes={HakyoJung.lessonNotes} songHeading={HakyoJung.songHeading} />
@@ -325,9 +333,9 @@ class App extends Component {
               />
               <Route
                 exact
-                path="/SongList/intro/GoTellAuntRhody"
+                path="/SongList/intro/ItsRaining"
                 component={() => (
-                  <CreateIntroSong songName={GoTellAuntRhody.songName} lessonNotes={GoTellAuntRhody.lessonNotes} songHeading={GoTellAuntRhody.songHeading} />
+                  <CreateIntroSong songName={ItsRaining.songName} lessonNotes={ItsRaining.lessonNotes} songHeading={ItsRaining.songHeading} />
                 )}
               />
               <Route

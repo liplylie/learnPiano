@@ -12,7 +12,6 @@ class DefaultHome extends Component {
     };
   }
 
-
   showPiano() {
       document.getElementById("showPiano").style.display = "block";
       document.getElementById("showPianoButton").style.display = "none";

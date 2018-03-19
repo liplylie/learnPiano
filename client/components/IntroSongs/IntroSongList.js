@@ -84,10 +84,13 @@ class IntroSongList extends Component {
 					<div className="col-md-4">
 						<ol type="A" start="9" className="alphabetList">
 							<li>
+								<ul>
+									<Link to="/SongList/intro/ItsRaining">Its Raining</Link>
+								</ul>
 							</li>
 							<li>
 								<ul>
-									<li><Link to="/SongList/intro/JingleBells">Jingle Bells</Link></li>
+									<Link to="/SongList/intro/JingleBells">Jingle Bells</Link>
 								</ul>
 							</li>
 							<li>

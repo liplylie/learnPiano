@@ -8,6 +8,7 @@ const introSongs = {
   GoTellAuntRhody: false,
   HakyoJung: false,
   HotCrossBuns: false,
+  ItsRainingItsPouring: false,
   JingleBells: false,
   LightlyRow: false,
   LondonBridges: false,
