@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "jsdoc": "^3.5.5",
     "uglifyjs-webpack-plugin": "^1.1.8"
   }
 }
