@@ -52,7 +52,7 @@ class Footer extends Component {
           <div className="col-md-2">
             <span className="footer-title">INFORMATION</span>
             <ul className="footer-list">
-              <li>Contact Us</li>
+              <li><Link to="/contact">Contact Us</Link></li>
               <li>FAQs</li>
             </ul>
           </div>

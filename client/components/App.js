@@ -22,6 +22,7 @@ import ProfileSettings from "./ProfileSettings";
 import DefaultHome from "./DefaultHome";
 import Footer from "./Footer";
 import Profile from "./Profile";
+import Contact from "./Contact";
 
 // Lessons
 import LessonOne from "./Lessons/LessonOne";
@@ -214,6 +215,17 @@ class App extends Component {
                 path="/profile"
                 component={() => (
                   <Profile
+                    authenticated={this.props.online}
+                    loading={this.state.loading}
+                    userID={this.state.userID}
+                  />
+                )}
+              />
+               <Route
+                exact
+                path="/contact"
+                component={() => (
+                  <Contact
                     authenticated={this.props.online}
                     loading={this.state.loading}
                     userID={this.state.userID}

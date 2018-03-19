@@ -72,6 +72,11 @@ class About extends Component {
                         </p>
                     </div>
 						<iframe width="560" height="315" src="https://www.youtube.com/embed/NgQL1Dg5-H8" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+						<div className="text-center" style={{margin: "1em"}}>
+						Creator: Jordan Daniels
+						<br/>
+						<img style={{height: "10em", width: "10em"}} src="https://s3.us-east-2.amazonaws.com/www.learnpianofun.com/pictures/oFwEEb9GdseMJRwnQfNw3phOt4v2/profilePic.png"/>
+						</div>
 					</div>
 					</div>
 				</div>
