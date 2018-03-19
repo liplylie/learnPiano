@@ -48,7 +48,10 @@ class LessonThree extends Component {
                 this.audio.close()
                 for ( let i = 1; i <= this.lessonNotes.length; i++ ){
                     if (this.correctAnswers === i && (this.lessonNotes[i] === this.lessonNotes[i - 1]) ){
-                         setTimeout(()=>{this.findPitch(this.lessonNotes[i])},300)
+                        this.setState({
+                            correctNote: null
+                        });
+                        setTimeout(()=>{this.findPitch(this.lessonNotes[i])},300)
                         this.popUpCount += 1;
                         this.correctAnswers += 1;
                         break;

@@ -43,6 +43,7 @@ class createIntroSong extends Component {
                 this.popUpCount === this.correctAnswers &&
                 !this.state.lessonCompleted
             ) {
+                console.log(this.state.correctNote, this.state.checkNote, 'look')
                 noteTransition(this.props.songName, this.correctAnswers);
                 //this.turnOffMicrophone();
                 this.audio.close();
@@ -51,6 +52,9 @@ class createIntroSong extends Component {
                         this.correctAnswers === i &&
                         this.props.lessonNotes[i] === this.props.lessonNotes[i - 1]
                     ) {
+                         this.setState({
+                            correctNote: null
+                        });
                         setTimeout(() => {
                             this.findPitch(this.props.lessonNotes[i]);
                         }, 300);

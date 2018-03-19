@@ -80,6 +80,9 @@ class MaryHadLamb extends Component {
                         this.correctAnswers === i &&
                         this.lessonNotes[i] === this.lessonNotes[i - 1]
                     ) {
+                        this.setState({
+                            correctNote: null
+                        });
                         setTimeout(() => {
                             this.findPitch(this.lessonNotes[i]);
                         }, 300);
