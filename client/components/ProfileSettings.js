@@ -362,6 +362,7 @@ class ProfileSettings extends Component {
 													id="newName"
 													type="name"
 													placeholder="Enter new name"
+													required
 												/>
 												<input
 													type="submit"
@@ -412,6 +413,7 @@ class ProfileSettings extends Component {
 													id="photoupload"
 													accept=".jpg, .jpeg, .png, .gif, .pdf"
 													className="custom-file-input"
+													required
 												/>
 												<span
 													className="custom-file-control"
