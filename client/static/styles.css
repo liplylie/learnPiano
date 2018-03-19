@@ -584,7 +584,8 @@ ul li a:hover {
   color: #fff;
   visibility: hidden;
   opacity: 0;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   height: 10em;
   width: 10em;
 
