@@ -5,6 +5,7 @@ const introSongs = {
   CamptownRaces: false,
   DredylDredyl: false,
   FrogSong: false,
+  ForHesAJollyGoodFellow: false,
   GoodKingWenceslas: false,
   GoTellAuntRhody: false,
   HakyoJung: false,

@@ -40,6 +40,7 @@ import AuClairDeLaLune from "./IntroSongs/AuClairDeLaLune"
 import AuraLee from "./IntroSongs/AuraLee"
 import CamptownRaces from "./IntroSongs/CamptownRaces"
 import Dreydl from "./IntroSongs/Dreydl"
+import ForHesAJollyGoodFellow from "./IntroSongs/ForHesAJollyGoodFellow"
 import FrogSong from "./IntroSongs/FrogSong"
 import GoodKingWenceslas from "./IntroSongs/GoodKingWenceslas"
 import GoTellAuntRhody from "./IntroSongs/GoTellAuntRhody"
@@ -311,6 +312,13 @@ class App extends Component {
                 path="/SongList/intro/FrogSong"
                 component={() => (
                   <CreateIntroSong songName={FrogSong.songName} lessonNotes={FrogSong.lessonNotes} songHeading={FrogSong.songHeading} />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/ForHesAJollyGoodFellow"
+                component={() => (
+                  <CreateIntroSong songName={ForHesAJollyGoodFellow.songName} lessonNotes={ForHesAJollyGoodFellow.lessonNotes} songHeading={ForHesAJollyGoodFellow.songHeading} />
                 )}
               />
               <Route
