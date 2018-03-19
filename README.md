@@ -29,6 +29,9 @@ Sample: https://youtu.be/NgQL1Dg5-H8
 - Firebase Auth and Database
 - Webpack
 - React-Popup
+- JSDoc3
+- jQuery
+- AWS S3
 ## Available Scripts
 
 In the terminal, you can run:
