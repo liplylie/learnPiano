@@ -30,7 +30,6 @@ class Profile extends Component {
         HotCrossBuns: false,
         LightlyRow: false,
         LoveSomebody: false,
-        MaryHadLamb: false,
         Musette: false,
         NewWorldSymphony: false,
         OdeToJoy: false, 
@@ -169,7 +168,7 @@ class Profile extends Component {
 
 						<div className="col-md-3" style={{ marginRight: "3em"}} />
 						<div
-							className="col-md-4 text-left wow fadeIn animated"
+							className="col-md-4 text-left wow fadeIn animated lessonList"
 							style={{ margin: ".3em" }}
 						>
 							<Link

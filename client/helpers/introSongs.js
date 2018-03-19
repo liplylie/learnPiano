@@ -15,12 +15,13 @@ const introSongs = {
   LondonBridges: false,
   LongLongAgo: false,
   LoveSomebody: false,
-  MaryHadLamb: false,
+  MaryHad: false,
   Musette: false,
   NewWorldSymphony: false,
   OatsAndBeans: false,
   OdeToJoy: false, 
-  SaintsGoMarchin: false
+  SaintsGoMarchin: false,
+  TwinkleTwinkle: false
 }
 
 export default introSongs

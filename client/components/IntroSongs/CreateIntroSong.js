@@ -52,7 +52,7 @@ class createIntroSong extends Component {
                         this.correctAnswers === i &&
                         this.props.lessonNotes[i] === this.props.lessonNotes[i - 1]
                     ) {
-                         this.setState({
+                        this.setState({
                             correctNote: null
                         });
                         setTimeout(() => {

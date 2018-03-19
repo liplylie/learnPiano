@@ -11,7 +11,7 @@ import * as AuthActions from "../actions/authActions";
 import * as LessonsCompletedActions from "../actions/lessonsCompletedActions";
 import * as MiniGamesCompletedActions from "../actions/miniGamesCompletedActions";
 import * as IntroSongsCompletedActions from "../actions/introSongsCompletedActions";
-import introSongsList from "../helpers/introSongs"
+import introSongs from "../helpers/introSongs"
 
 
 import About from "./About";
@@ -57,6 +57,7 @@ import NewWorldSymphony from "./IntroSongs/NewWorldSymphony"
 import OatsAndBeans from "./IntroSongs/OatsAndBeans"
 import OdeToJoy from "./IntroSongs/OdeToJoy"
 import SaintsGoMarchin from "./IntroSongs/SaintsGoMarchin"
+import Twinkle from "./IntroSongs/Twinkle"
 
 class App extends Component {
   constructor(props) {
@@ -110,7 +111,7 @@ class App extends Component {
           miniGame4: { completed: false, highScore: null },
           miniGame5: { completed: false, highScore: null }
         };
-        let introSongs = introSongsList
+        let introSongs = introSongs
 
         userLessonStatus.once("value").then(
           snapshot => {
@@ -428,6 +429,13 @@ class App extends Component {
                 path="/SongList/intro/Sample"
                 component={() => (
                   <CreateIntroSong songName="Sample" lessonNotes={"C4 C4 D4 E4".split(" ")} songHeading="Sample" />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/Twinkle"
+                component={() => (
+                  <CreateIntroSong songName={Twinkle.songName} lessonNotes={Twinkle.lessonNotes} songHeading={Twinkle.songHeading} />
                 )}
               />
               <Route

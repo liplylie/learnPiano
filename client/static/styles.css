@@ -602,3 +602,7 @@ ul li a:hover {
 .profilePicture:hover {
   cursor: pointer;
 }
+
+.lessonList a:hover{
+  opacity: .5;
+}
