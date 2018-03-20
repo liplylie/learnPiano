@@ -110,7 +110,7 @@ class MiniGameOne extends Component {
                         className: "danger",
                         action: () => {
                             that.saveData();
-                             that.setState({
+                            that.setState({
                                 lessonCompleted: true
                             })
 
@@ -162,7 +162,7 @@ class MiniGameOne extends Component {
                 }
             });
             that.props.MiniGamesCompleted.miniGamesCompleted({
-                miniGame1: Math.max(that.score, that.state.previousHighScore)
+                miniGame1: { completed: true, highScore: Math.max(that.score, that.state.previousHighScore) }
             });
         });
     }
@@ -217,6 +217,13 @@ class MiniGameOne extends Component {
                 note.indexOf("8") === -1
             ) {
                 that.noteArray.push(note);
+                if (
+                        (note === "D4" && that.noteArray.length === 1) ||
+                        (note === "C4" && that.noteArray.length === 1)
+                    ) {
+                        that.noteArray.push(note);
+                        that.noteArray.push(note);
+                    }
                 if (that.noteArray.length > 2) {
                     if (that.noteArray.includes(matchNote)) {
                         that.turnOffMicrophone();

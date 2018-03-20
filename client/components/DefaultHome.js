@@ -69,7 +69,9 @@ class DefaultHome extends Component {
                   {" "}
                   Learn the basics of piano. No installation or plugins needed!
                 </p>
-                <iframe width="400" height="315" src="https://www.youtube.com/embed/NgQL1Dg5-H8" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+                <div className="embed-responsive embed-responsive-4by3">
+                <iframe className ="embed-responsive-item" src="https://www.youtube.com/embed/NgQL1Dg5-H8" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+                </div>
               </div>
               <div className="col-md-4">
                 <p
@@ -82,18 +84,9 @@ class DefaultHome extends Component {
                   {" "}
                   Play through exciting mini games to build sight reading skills
                 </p>
-                <ImageZoom
-                  image={{
-                    src: require("../static/miniGameOneSample.jpg"),
-                    alt: "gameSample",
-                    className: "col",
-                    style: { height: "25em", width: "25em" }
-                  }}
-                  zoomImage={{
-                    src: require("../static/miniGameOneSample.jpg"),
-                    alt: "gameSample"
-                  }}
-                />
+                <div className="embed-responsive embed-responsive-4by3">
+                <iframe className ="embed-responsive-item" src="https://www.youtube.com/embed/24J4nqoSEH4" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+                </div>
               </div>
               <div className="col-md-4">
                 <p

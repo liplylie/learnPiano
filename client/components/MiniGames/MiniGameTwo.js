@@ -217,6 +217,13 @@ class MiniGameTwo extends Component {
                 note.indexOf("8") === -1
             ) {
                 that.noteArray.push(note);
+                if (
+                    (note.includes("3")&& that.noteArray.length === 1) ||
+                    (note === "C4" && that.noteArray.length === 1)
+                ) {
+                    that.noteArray.push(note);
+                    that.noteArray.push(note);
+                }
                 if (that.noteArray.length > 2) {
                     if (that.noteArray.includes(matchNote)) {
                         that.turnOffMicrophone();
