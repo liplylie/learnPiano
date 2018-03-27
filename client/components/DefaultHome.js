@@ -3,7 +3,6 @@ import { Redirect } from "react-router-dom";
 import ImageZoom from "react-medium-image-zoom";
 import Piano from "./Piano.js";
 
-
 class DefaultHome extends Component {
   constructor(props) {
     super(props);
@@ -13,13 +12,13 @@ class DefaultHome extends Component {
   }
 
   showPiano() {
-      document.getElementById("showPiano").style.display = "block";
-      document.getElementById("showPianoButton").style.display = "none";
+    document.getElementById("showPiano").style.display = "block";
+    document.getElementById("showPianoButton").style.display = "none";
   }
 
   hidePiano() {
-      document.getElementById("showPiano").style.display = "none";
-      document.getElementById("showPianoButton").style.display = "block";
+    document.getElementById("showPiano").style.display = "none";
+    document.getElementById("showPianoButton").style.display = "block";
   }
 
   render() {
@@ -29,79 +28,129 @@ class DefaultHome extends Component {
 
     return (
       <div>
-          <div
-            style={{
-              width: "100vw",
-              minHeight: "100vh",
-              margin: "auto",
-              backgroundColor: "white",
-              overflowY: "scroll",
-              overflowX: "hidden",
-              textAlign: "center"
-            }}
-          >
+        <div
+          style={{
+            width: "100vw",
+            minHeight: "100vh",
+            margin: "auto",
+            backgroundColor: "white",
+            overflowY: "scroll",
+            overflowX: "hidden",
+            textAlign: "center"
+          }}
+        >
           <div className="ImageScrollContainer section-1">
-              <img
-                  src={require("../static/learnpianofun.png")}
-                  alt="learnpianofun"
-                />
-               <div className="gradient_bot scrollDown ">
-                  <i className="downArrow"></i>
-                <div className="gps_ring"></div>
-                </div>
+            <img
+              src={require("../static/learnpianofun.png")}
+              alt="learnpianofun"
+            />
+            <div className="gradient_bot scrollDown ">
+              <i className="downArrow" />
+              <div className="gps_ring" />
+            </div>
           </div>
-            <div className="row" style={{ height: "7em" }} />
-            <div className="row">
-              <div className="col-md-12 wow fadeIn animated">
-                <img
-                  src={require("../static/learnpianofun.png")}
-                  alt="learnpianofun"
+          <div
+            className="row"
+            style={{ height: "60vh", backgroundColor: "lightsteelblue" }}
+          >
+            <div
+              className="col-md-4 wow bounceInLeft"
+              style={{ paddingTop: "4vh" }}
+            >
+              <h1
+                style={{
+                  fontFamily: "Helvetica",
+                  fontWeight: "300",
+                  color: "white",
+                  fontSize: "3em",
+                  letterSpacing: "2px"
+                }}
+              >
+                {" "}
+                Learn the basics of piano. No installation or plugins needed!
+              </h1>
+            </div>
+            <div className="col-md-4" />
+            <div
+              className="col-md-4 wow bounceInRight"
+              style={{ paddingTop: "3vh", paddingRight: "3vw" }}
+            >
+              <div className="effect1 embed-responsive embed-responsive-4by3">
+                <iframe
+                  className="embed-responsive-item"
+                  src="https://www.youtube.com/embed/NgQL1Dg5-H8"
+                  frameBorder="0"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
                 />
               </div>
             </div>
-            <div className="row wow fadeIn animated" style={{ padding: "1em" }}>
-              <div className="col-md-4">
-                <p
-                  style={{
-                    fontFamily: "Helvetica",
-                    color: "skyblue",
-                    fontSize: "1.5em"
-                  }}
-                >
-                  {" "}
-                  Learn the basics of piano. No installation or plugins needed!
-                </p>
-                <div className="embed-responsive embed-responsive-4by3">
-                <iframe className ="embed-responsive-item" src="https://www.youtube.com/embed/NgQL1Dg5-H8" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
-                </div>
+          </div>
+          <div
+            className="row"
+            style={{ height: "60vh", backgroundColor: "lightgrey" }}
+          >
+            <div
+              className="col-md-4 wow bounceInLeft"
+              style={{ paddingTop: "3vh", paddingLeft: "3vw" }}
+            >
+              <div className="effect1 embed-responsive embed-responsive-4by3">
+                <iframe
+                  className="embed-responsive-item"
+                  src="https://www.youtube.com/embed/NgQL1Dg5-H8"
+                  frameBorder="0"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                />
               </div>
-              <div className="col-md-4">
-                <p
+            </div>
+            <div className="col-md-4" />
+            <div
+              className="col-md-4 wow bounceInRight"
+              style={{ paddingTop: "3vh", paddingRight: "3vw" }}
+            >
+              <h1
+                style={{
+                  fontFamily: "Helvetica",
+                  fontWeight: "300",
+                  color: "white",
+                  fontSize: "3em",
+                  letterSpacing: "2px"
+                }}
+              >
+                {" "}
+                Play through exciting mini games to build sight reading skills
+              </h1>
+            </div>
+          </div>
+          <div
+            className="row"
+            style={{ height: "60vh", backgroundColor: "lightsteelblue" }}
+          >
+              <div 
+                className="col-md-4 wow bounceInLeft"
+                style={{ paddingTop: "3vh", paddingLeft: "3vw" }}
+              >
+                <h1
                   style={{
-                    fontFamily: "Helvetica",
-                    color: "green",
-                    fontSize: "1.5em"
-                  }}
-                >
-                  {" "}
-                  Play through exciting mini games to build sight reading skills
-                </p>
-                <div className="embed-responsive embed-responsive-4by3">
-                <iframe className ="embed-responsive-item" src="https://www.youtube.com/embed/24J4nqoSEH4" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <p
-                  style={{
-                    fontFamily: "Helvetica",
-                    color: "gray",
-                    fontSize: "1.5em"
-                  }}
+                  fontFamily: "Helvetica",
+                  fontWeight: "300",
+                  color: "white",
+                  fontSize: "3em",
+                  letterSpacing: "2px"
+                }}
                 >
                   {" "}
                   Blast through lessons to gain piano playing skills!
-                </p>
-                <ImageZoom
+                </h1>
+              </div>
+
+              <div className="col-md-4"></div>
+              <div 
+                className="col-md-4 wow bounceInRight"
+                style={{ paddingTop: "3vh", paddingLeft: "3vw" }}
+                >
+              <ImageZoom
                   image={{
                     src: require("../static/lessonSample.jpg"),
                     alt: "gameSample",
@@ -114,42 +163,43 @@ class DefaultHome extends Component {
                   }}
                 />
               </div>
-            </div>
-            <div className="row" style={{ padding: "1em" }}>
+          </div>
+
+          <div className="row wow fadeIn animated" style={{ padding: "1em" }}>
+            <div
+              className="col-md-12 wow fadeIn animated"
+              style={{ fontFamily: "Helvetica", fontSize: "3em" }}
+            >
+              You can play with any piano, or with this one here!
               <div
-                className="col-md-12 wow fadeIn animated"
-                style={{ fontFamily: "Helvetica", fontSize: "3em" }}
+                id="showPianoButton"
+                style={{ cursor: "pointer" }}
+                onClick={() => this.showPiano()}
               >
-                You can play with any piano, or with this one here!
-                <div
-                        id="showPianoButton"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => this.showPiano()}
-                    >
-                        <img
-                            className=""
-                            style={{
-                                height: "4em",
-                                width: "4em",
-                                margin: ".5em"
-                            }}
-                            src={require("../static/pianoKeys.png")}
-                        />
-                        <p className=""> Open Piano</p>
-                    </div>
-                    <div id="showPiano" style={{ display: "none" }}>
-                        <Piano />
-                        <p
-                            onClick={() => this.hidePiano()}
-                            style={{ cursor: "pointer" }}
-                        >
-                            {" "}
-                            hide
-                        </p>
-                    </div>
-                </div>
+                <img
+                  className=""
+                  style={{
+                    height: "4em",
+                    width: "4em",
+                    margin: ".5em"
+                  }}
+                  src={require("../static/pianoKeys.png")}
+                />
+                <p className=""> Open Piano</p>
+              </div>
+              <div id="showPiano" style={{ display: "none" }}>
+                <Piano />
+                <p
+                  onClick={() => this.hidePiano()}
+                  style={{ cursor: "pointer" }}
+                >
+                  {" "}
+                  hide
+                </p>
               </div>
             </div>
+          </div>
+        </div>
       </div>
     );
   }
