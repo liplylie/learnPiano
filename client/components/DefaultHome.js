@@ -35,9 +35,8 @@ class DefaultHome extends Component {
               minHeight: "100vh",
               margin: "auto",
               backgroundColor: "white",
-              flex: 1,
               overflowY: "scroll",
-              overflowX: "scroll",
+              overflowX: "hidden",
               textAlign: "center"
             }}
           >
@@ -46,8 +45,9 @@ class DefaultHome extends Component {
                   src={require("../static/learnpianofun.png")}
                   alt="learnpianofun"
                 />
-               <div className="scrollDown gradient_bot">
-                Scroll Down
+               <div className="gradient_bot scrollDown ">
+                  <i className="downArrow"></i>
+                <div className="gps_ring"></div>
                 </div>
           </div>
             <div className="row" style={{ height: "7em" }} />
