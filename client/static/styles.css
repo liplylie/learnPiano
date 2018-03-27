@@ -677,6 +677,9 @@ ul li a:hover {
     .gps_ring {
         display: none;
     }
+    body {
+      font-size: 8px;
+    }
 }
 
 .firstSection{
