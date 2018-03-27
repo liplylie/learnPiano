@@ -648,7 +648,7 @@ ul li a:hover {
     width: 18px;
     position: relative;
     top: 5.5vh;
-    left:49.5%;
+    left:49.4%;
     -webkit-animation: pulsate 1s ease-out;
     -webkit-animation-iteration-count: infinite; 
     opacity: 0.0
