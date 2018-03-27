@@ -73,9 +73,9 @@ class DefaultHome extends Component {
             <div className="col-md-4" />
             <div
               className="col-md-4 wow bounceInRight"
-              style={{ paddingTop: "3vh", paddingRight: "3vw" }}
+              style={{ paddingTop: "10vh", paddingRight: "3vw" }}
             >
-              <div className="effect1 embed-responsive embed-responsive-4by3">
+              <div className="effect1 embed-responsive embed-responsive-21by9">
                 <iframe
                   className="embed-responsive-item"
                   src="https://www.youtube.com/embed/NgQL1Dg5-H8"
@@ -92,12 +92,12 @@ class DefaultHome extends Component {
           >
             <div
               className="col-md-4 wow bounceInLeft"
-              style={{ paddingTop: "3vh", paddingLeft: "3vw" }}
+              style={{ paddingTop: "10vh", paddingLeft: "3vw" }}
             >
-              <div className="effect1 embed-responsive embed-responsive-4by3">
+              <div className="effect1 embed-responsive embed-responsive-21by9">
                 <iframe
                   className="embed-responsive-item"
-                  src="https://www.youtube.com/embed/NgQL1Dg5-H8"
+                  src="https://www.youtube.com/embed/24J4nqoSEH4"
                   frameBorder="0"
                   allow="autoplay; encrypted-media"
                   allowFullScreen
@@ -127,42 +127,42 @@ class DefaultHome extends Component {
             className="row"
             style={{ height: "60vh", backgroundColor: "lightsteelblue" }}
           >
-              <div 
-                className="col-md-4 wow bounceInLeft"
-                style={{ paddingTop: "3vh", paddingLeft: "3vw" }}
-              >
-                <h1
-                  style={{
+            <div
+              className="col-md-4 wow bounceInLeft"
+              style={{ paddingTop: "3vh", paddingLeft: "3vw" }}
+            >
+              <h1
+                style={{
                   fontFamily: "Helvetica",
                   fontWeight: "300",
                   color: "white",
                   fontSize: "3em",
                   letterSpacing: "2px"
                 }}
-                >
-                  {" "}
-                  Blast through lessons to gain piano playing skills!
-                </h1>
-              </div>
+              >
+                {" "}
+                Blast through lessons to gain piano playing skills!
+              </h1>
+            </div>
 
-              <div className="col-md-4"></div>
-              <div 
-                className="col-md-4 wow bounceInRight"
-                style={{ paddingTop: "3vh", paddingLeft: "3vw" }}
-                >
+            <div className="col-md-4" />
+            <div
+              className="col-md-4 wow bounceInRight"
+              style={{ paddingTop: "3vh", paddingLeft: "3vw" }}
+            >
               <ImageZoom
-                  image={{
-                    src: require("../static/lessonSample.jpg"),
-                    alt: "gameSample",
-                    className: "col",
-                    style: { height: "25em", width: "25em" }
-                  }}
-                  zoomImage={{
-                    src: require("../static/lessonSample.jpg"),
-                    alt: "gameSample"
-                  }}
-                />
-              </div>
+                image={{
+                  src: require("../static/lessonSample.jpg"),
+                  alt: "gameSample",
+                  className: "col",
+                  style: { height: "25em", width: "25em" }
+                }}
+                zoomImage={{
+                  src: require("../static/lessonSample.jpg"),
+                  alt: "gameSample"
+                }}
+              />
+            </div>
           </div>
 
           <div className="row wow fadeIn animated" style={{ padding: "1em" }}>

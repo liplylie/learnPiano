@@ -7,12 +7,36 @@ import LogOut from "./LogOut";
 class Navbar extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isTop: true
+        };
     }
+
+    componentDidMount() {
+        document.addEventListener("scroll", () => {
+            const isTop = window.scrollY < 100;
+            const isNext = window.scrollY > 850;
+            console.log(isTop, isNext)
+            console.log(window.scrollY, 'scroll')
+            if (isTop !== this.state.isTop) {
+                this.setState({ isTop });
+            }
+            if (isNext !== this.state.isTop) {
+                this.setState({ isTop: true });
+            }
+        });
+    }
+
     render() {
         return (
             <nav
                 className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top wow fadeIn"
                 role="navigation"
+                style={{
+                    opacity: this.state.isTop ? "1" : ".75",
+                    transition: "opacity 0.3s",
+                    WebkitTransition: "opacity 0.3s"
+                }}
             >
                 <div className="container" style={{ maxWidth: "100vw" }}>
                     <Link to="/" className="navbar-brand">
@@ -89,16 +113,24 @@ class Navbar extends Component {
                                 </a>
                                 <ul className="dropdown-menu text-center effect1">
                                     <li className="dropdown-item">
-                                        <Link to="/SongList/intro">Intro Level Songs</Link>
+                                        <Link to="/SongList/intro">
+                                            Intro Level Songs
+                                        </Link>
                                     </li>
                                     <li className="dropdown-item">
-                                        <Link to="/SongList/easy">Easy Level Songs</Link>
+                                        <Link to="/SongList/easy">
+                                            Easy Level Songs
+                                        </Link>
                                     </li>
                                     <li className="dropdown-item">
-                                        <Link to="/SongList/medium">Medium Level Songs</Link>
+                                        <Link to="/SongList/medium">
+                                            Medium Level Songs
+                                        </Link>
                                     </li>
                                     <li className="dropdown-item">
-                                        <Link to="/SongList/hard">Hard Level Songs</Link>
+                                        <Link to="/SongList/hard">
+                                            Hard Level Songs
+                                        </Link>
                                     </li>
                                 </ul>
                             </li>
