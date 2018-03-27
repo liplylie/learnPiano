@@ -33,7 +33,7 @@ class Navbar extends Component {
                 className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top wow fadeIn"
                 role="navigation"
                 style={{
-                    opacity: this.state.isTop ? "1" : ".75",
+                    opacity: this.state.isTop ? "1" : ".65",
                     transition: "opacity 0.3s",
                     WebkitTransition: "opacity 0.3s"
                 }}

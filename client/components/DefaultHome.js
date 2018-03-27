@@ -50,8 +50,8 @@ class DefaultHome extends Component {
             </div>
           </div>
           <div
-            className="row"
-            style={{ height: "60vh", backgroundColor: "lightsteelblue" }}
+            className="row firstSection"
+            style={{ height: "60vh"}}
           >
             <div
               className="col-md-4 wow bounceInLeft"
@@ -73,7 +73,7 @@ class DefaultHome extends Component {
             <div className="col-md-4" />
             <div
               className="col-md-4 wow bounceInRight"
-              style={{ paddingTop: "10vh", paddingRight: "3vw" }}
+              style={{ paddingTop: "15vh", paddingRight: "3vw" }}
             >
               <div className="effect1 embed-responsive embed-responsive-21by9">
                 <iframe
@@ -88,11 +88,11 @@ class DefaultHome extends Component {
           </div>
           <div
             className="row"
-            style={{ height: "60vh", backgroundColor: "lightgrey" }}
+            style={{ height: "60vh"}}
           >
             <div
               className="col-md-4 wow bounceInLeft"
-              style={{ paddingTop: "10vh", paddingLeft: "3vw" }}
+              style={{ paddingTop: "15vh", paddingLeft: "3vw" }}
             >
               <div className="effect1 embed-responsive embed-responsive-21by9">
                 <iframe
@@ -113,7 +113,7 @@ class DefaultHome extends Component {
                 style={{
                   fontFamily: "Helvetica",
                   fontWeight: "300",
-                  color: "white",
+                  color: "black",
                   fontSize: "3em",
                   letterSpacing: "2px"
                 }}
@@ -124,8 +124,8 @@ class DefaultHome extends Component {
             </div>
           </div>
           <div
-            className="row"
-            style={{ height: "60vh", backgroundColor: "lightsteelblue" }}
+            className="row firstSection"
+            style={{ height: "60vh"}}
           >
             <div
               className="col-md-4 wow bounceInLeft"
