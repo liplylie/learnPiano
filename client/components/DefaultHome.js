@@ -29,25 +29,27 @@ class DefaultHome extends Component {
 
     return (
       <div>
-        <div
-          style={{
-            height: "100vh",
-            width: "100vw",
-            textAlign: "center",
-            overflowY: "scroll"
-          }}
-        >
           <div
             style={{
-              width: "80vw",
+              width: "100vw",
               minHeight: "100vh",
               margin: "auto",
               backgroundColor: "white",
               flex: 1,
-              overflowX: "scroll"
+              overflowY: "scroll",
+              textAlign: "center"
             }}
             className="effect8"
           >
+          <div className="ImageScrollContainer section-1">
+              <img
+                  src={require("../static/learnpianofun.png")}
+                  alt="learnpianofun"
+                />
+               <div style="position: absolute; bottom: 5px; background-color: green">
+            TEST (C) 2010
+            </div>
+          </div>
             <div className="row" style={{ height: "7em" }} />
             <div className="row">
               <div className="col-md-12 wow fadeIn animated">
@@ -148,7 +150,6 @@ class DefaultHome extends Component {
                 </div>
               </div>
             </div>
-          </div>
       </div>
     );
   }

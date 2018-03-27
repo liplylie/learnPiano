@@ -1,8 +1,5 @@
 html,
 body {
-  height: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
   background-color: lightgray;
 }
 
@@ -606,3 +603,19 @@ ul li a:hover {
 .lessonList a:hover{
   opacity: .5;
 }
+
+.ImageScrollContainer{
+    margin-top: 1em;
+    padding:200px 20px 200px 20px;
+    text-align:center;
+    color:#FFF;
+    font-weight:bold;
+    position: relative;
+}
+.section-1{
+    background-image:url(https://i.ytimg.com/vi/AOgJTXg6BcA/maxresdefault.jpg);
+    background-position:center;
+    background-attachment: fixed;
+    height: 70vh;
+}
+

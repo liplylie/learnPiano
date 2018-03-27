@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { app, firebaseDB } from "../firebase";
@@ -555,6 +556,6 @@ const profileSettingsDispatch = dispatch => {
 	};
 };
 
-export default connect(profileSettingsMapStateToProps, profileSettingsDispatch)(
+export default withRouter(connect(profileSettingsMapStateToProps, profileSettingsDispatch)(
 	ProfileSettings
-);
+));
