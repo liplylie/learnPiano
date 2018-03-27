@@ -1,6 +1,6 @@
 html,
 body {
-  background-color: lightgray;
+  height: 100%;
 }
 
 .loader {
@@ -605,7 +605,6 @@ ul li a:hover {
 }
 
 .ImageScrollContainer{
-    margin-top: 1em;
     padding:200px 20px 200px 20px;
     text-align:center;
     color:#FFF;
@@ -616,6 +615,19 @@ ul li a:hover {
     background-image:url(https://i.ytimg.com/vi/AOgJTXg6BcA/maxresdefault.jpg);
     background-position:center;
     background-attachment: fixed;
-    height: 70vh;
+    height: 100vh;
+}
+
+.scrollDown{
+   position: absolute;
+   bottom: 5px;
+   text-align: center;
+   width: 100%;
+}
+
+.gradient_bot {
+    opacity: 1;
+    top: calc(85vh - 0px);
+    background-image: linear-gradient(to top,rgba(0,0,0,.2) 0,rgba(0,0,0,.17) 77%,rgba(0,0,0,.14) 88%,rgba(0,0,0,0) 100%);
 }
 

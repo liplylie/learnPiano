@@ -37,18 +37,18 @@ class DefaultHome extends Component {
               backgroundColor: "white",
               flex: 1,
               overflowY: "scroll",
+              overflowX: "scroll",
               textAlign: "center"
             }}
-            className="effect8"
           >
           <div className="ImageScrollContainer section-1">
               <img
                   src={require("../static/learnpianofun.png")}
                   alt="learnpianofun"
                 />
-               <div style="position: absolute; bottom: 5px; background-color: green">
-            TEST (C) 2010
-            </div>
+               <div className="scrollDown gradient_bot">
+                Scroll Down
+                </div>
           </div>
             <div className="row" style={{ height: "7em" }} />
             <div className="row">
