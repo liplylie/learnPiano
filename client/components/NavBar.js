@@ -30,12 +30,11 @@ class Navbar extends Component {
     render() {
         return (
             <nav
-                className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top wow fadeIn"
+                className={`navbar navbar-expand-lg ${this.state.isTop ? '' : 'fade bg-transparent'} navbar-dark bg-dark fixed-top wow fadeIn`}
                 role="navigation"
                 style={{
-                    opacity: this.state.isTop ? "1" : ".65",
-                    transition: "opacity 0.3s",
-                    WebkitTransition: "opacity 0.3s"
+                    transition: "opacity 0.3s ease-out",
+                    WebkitTransition: "opacity 0.3s ease-out"
                 }}
             >
                 <div className="container" style={{ maxWidth: "100vw" }}>
