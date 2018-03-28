@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import ImageZoom from "react-medium-image-zoom";
 import Piano from "./Piano.js";
+import PianoBackground from "../static/PianoBackground.jpg"
 
 class DefaultHome extends Component {
   constructor(props) {
@@ -39,11 +40,15 @@ class DefaultHome extends Component {
             textAlign: "center"
           }}
         >
-          <div className="ImageScrollContainer section-1">
+          <div 
+            className="ImageScrollContainer section-1"
+            style={{backgroundImage: `url(${PianoBackground})`}}
+          >
             <img
               src={require("../static/learnpianofun.png")}
               alt="learnpianofun"
             />
+            <p id="useWebsiteVersion"> Please Use The Website Version of this Site</p>
             <div className="gradient_bot scrollDown ">
               <i className="downArrow" />
               <div className="gps_ring" />
@@ -75,7 +80,7 @@ class DefaultHome extends Component {
               className="col-md-4 wow bounceInRight"
               style={{ paddingTop: "15vh", paddingRight: "3vw" }}
             >
-              <div className="effect1 embed-responsive embed-responsive-21by9">
+              <div id="sampleVideo1" className="effect1 embed-responsive embed-responsive-21by9">
                 <iframe
                   className="embed-responsive-item"
                   src="https://www.youtube.com/embed/NgQL1Dg5-H8"
@@ -94,7 +99,7 @@ class DefaultHome extends Component {
               className="col-md-4 wow bounceInLeft"
               style={{ paddingTop: "15vh", paddingLeft: "3vw" }}
             >
-              <div className="effect1 embed-responsive embed-responsive-21by9">
+              <div id="sampleVideo2" className="effect1 embed-responsive embed-responsive-21by9">
                 <iframe
                   className="embed-responsive-item"
                   src="https://www.youtube.com/embed/24J4nqoSEH4"
@@ -155,7 +160,8 @@ class DefaultHome extends Component {
                   src: require("../static/lessonSample.jpg"),
                   alt: "gameSample",
                   className: "col",
-                  style: { height: "25em", width: "25em" }
+                  style: { height: "25em", width: "25em" },
+                  id:"sampleImage"
                 }}
                 zoomImage={{
                   src: require("../static/lessonSample.jpg"),
