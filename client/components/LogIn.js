@@ -24,7 +24,6 @@ class LogIn extends Component {
 	}
 
 	authWithEmailPassword(event) {
-		console.log(event, "here");
 		event.preventDefault();
 		const email = document.getElementById("emailInput").value;
 		const pw = document.getElementById("passwordInput").value;

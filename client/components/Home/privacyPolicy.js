@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 
-class privacyPolicy extends Component {
-	constructor() {
-		super();
-	}
+const PrivacyPolicy = () => {
 
-	render() {
+
 		return (
 			<div style={{ padding: "2em", paddingTop: "4em" }}>
 				<div id="ppHeader">
@@ -439,7 +436,6 @@ class privacyPolicy extends Component {
 				</div>
 			</div>
 		);
-	}
 }
 
-export default privacyPolicy;
+export default PrivacyPolicy;

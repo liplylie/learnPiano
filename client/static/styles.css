@@ -41,7 +41,7 @@ body {
 
 .bg-logo {
   color: #cdb287;
-  ffont-weight: bold;
+  font-weight: bold;
   font-size: 22px;
 }
 
@@ -289,8 +289,13 @@ table .NotComplete {
   visibility: visible;
 }
 
+.dropdown-toggle {
+  cursor: pointer;
+}
+
 .dropdown:hover .dropdown-menu {
   display: block;
+  cursor: pointer;
 }
 
 .nav-tabs .dropdown-menu,
@@ -552,15 +557,11 @@ audio {
 }
 
 .alphabetList li a:hover {
-  font-size: 1.1em;
   text-decoration: underline;
 }
 
 ul li a {
   color: gray;
-}
-ul li a:hover {
-  font-size: 1.1em;
 }
 
 .profilePicture {
@@ -669,9 +670,9 @@ ul li a:hover {
   }
 }
 
-#useWebsiteVersion{
-    display: none;
-  }
+#useWebsiteVersion {
+  display: none;
+}
 
 .downArrow {
   top: 10vh;
@@ -698,28 +699,28 @@ ul li a:hover {
     height: 80%;
     width: 80%;
   }
-  #sampleVideo1{
+  #sampleVideo1 {
     bottom: 10vh;
   }
-  img{
+  img {
     height: 20%;
     width: 50%;
   }
-  #sampleImage{
+  #sampleImage {
     bottom: 10vh;
   }
-  #ProfileOuterDiv{
+  #ProfileOuterDiv {
     display: none;
   }
-  #ProfileInnerDiv{
+  #ProfileInnerDiv {
     width: 100vw;
     height: 100vh;
     margin: auto;
     background-color: white;
     flex: 1;
     overflow-x: scroll;
-    }
-  #useWebsiteVersion{
+  }
+  #useWebsiteVersion {
     display: block;
     font-size: 3em;
   }
