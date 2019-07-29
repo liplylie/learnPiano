@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Toaster, Intent } from "@blueprintjs/core";
+import { withRouter } from "react-router-dom";
+
 import { firebase, app, facebookProvider } from "../firebase";
 
 class LogIn extends Component {
@@ -16,6 +18,8 @@ class LogIn extends Component {
       .then((result, error) => {
         if (error) {
           alert(error.message);
+        } else {
+          this.props.history.push("/");
         }
       })
       .catch(err => {
@@ -40,6 +44,7 @@ class LogIn extends Component {
             .signInWithEmailAndPassword(email, pw)
             .then(result => {
               console.log("logged in");
+              this.props.history.push("/");
             })
             .catch(err => {
               console.log("error with login", err);
@@ -127,4 +132,4 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn;
+export default withRouter(LogIn);

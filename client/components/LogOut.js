@@ -1,24 +1,22 @@
 import React, { Component } from "react";
-import { app } from "../firebase";
+import { withRouter } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
+import { app } from "../firebase";
 import * as AuthActions from "../actions/authActions.js";
 
 class LogOut extends Component {
-  constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
+  handleClick = () => {
     app
       .auth()
       .signOut()
       .then(user => {
         this.props.actions.logOutAction(false);
+        this.props.history.push("/");
       });
-  }
+  };
 
   render() {
     return (
@@ -58,7 +56,9 @@ const LogOutDispatch = dispatch => {
   };
 };
 
-export default connect(
-  LogOutMapStateToProps,
-  LogOutDispatch
-)(LogOut);
+export default withRouter(
+  connect(
+    LogOutMapStateToProps,
+    LogOutDispatch
+  )(LogOut)
+);

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Redirect } from "react-router";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -306,7 +306,7 @@ class ProfileSettings extends Component {
         </td>
 
         {!showChangeName ? (
-          <Fragment>
+          <>
             <td
               id="changeName"
               style={showChangeName ? { display: "none" } : { border: "none" }}
@@ -318,7 +318,7 @@ class ProfileSettings extends Component {
                 Edit
               </span>
             </td>
-          </Fragment>
+          </>
         ) : (
           <td
             id="showChangeName"
@@ -556,9 +556,7 @@ class ProfileSettings extends Component {
   };
 
   render() {
-    // if (!this.props.authenticated) {
-    // 		return <Redirect to="/"/>
-    // 	}
+
     const { showMiniGameStatus, showChangeName } = this.state;
 
     return (
