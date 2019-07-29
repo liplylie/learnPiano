@@ -62,15 +62,12 @@ import SaintsGoMarchin from "./IntroSongs/SaintsGoMarchin";
 import Twinkle from "./IntroSongs/Twinkle";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      loading: true,
-      userID: ""
-    };
-  }
+  state = {
+    loading: true,
+    userID: ""
+  };
 
-  componentWillMount() {
+  componentDidMount() {
     let that = this;
     this.removeAuthListener = app.auth().onAuthStateChanged(user => {
       if (user) {
@@ -113,7 +110,6 @@ class App extends Component {
           miniGame4: { completed: false, highScore: null },
           miniGame5: { completed: false, highScore: null }
         };
-        let introSongs = introSongs;
 
         userLessonStatus.once("value").then(
           snapshot => {

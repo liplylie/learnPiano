@@ -17,28 +17,19 @@ import * as IntroSongsCompletedActions from "../actions/introSongsCompletedActio
 import introSongsList from "../helpers/introSongs";
 
 class ProfileSettings extends Component {
-  constructor() {
-    super();
-    this.state = {
-      showIntroSongsStatus: false,
-      showLessonStatus: false,
-      showMiniGameStatus: false,
-      showChangeName: false,
-      showChangePicture: false,
-      showLessonStatus: false,
-      showIntroSongsStatus: false
-    };
-    this.count = 0;
-    this.resetLessonsSettings = this.resetLessonsSettings.bind(this);
-    this.resetMiniGameSettings = this.resetMiniGameSettings.bind(this);
-    this.toggleMiniGameStatus = this.toggleMiniGameStatus.bind(this);
-    this.toggleChangeName = this.toggleChangeName.bind(this);
-    this.toggleChangePicture = this.toggleChangePicture.bind(this);
-    this.toggleLessonStatus = this.toggleLessonStatus.bind(this);
-    this.toggleIntroSongsStatus = this.toggleIntroSongsStatus.bind(this);
-  }
+  state = {
+    showIntroSongsStatus: false,
+    showLessonStatus: false,
+    showMiniGameStatus: false,
+    showChangeName: false,
+    showChangePicture: false,
+    showLessonStatus: false,
+    showIntroSongsStatus: false
+  };
 
-  changeName(event) {
+  count = 0;
+
+  changeName = event => {
     event.preventDefault();
     let newName = document.getElementById("newName").value;
     let userInfo = {
@@ -59,13 +50,13 @@ class ProfileSettings extends Component {
       }
     );
     this.props.AuthActions.userLoginInfo(userInfo);
-  }
+  };
 
-  toggleChangeName() {
+  toggleChangeName = () => {
     this.setState({ showChangeName: !this.state.showChangeName });
-  }
+  };
 
-  toggleChangePicture() {
+  toggleChangePicture = () => {
     let { showChangePicture } = this.state;
     let that = this;
 
@@ -77,9 +68,9 @@ class ProfileSettings extends Component {
         that.addPhoto();
       }
     });
-  }
+  };
 
-  addPhoto() {
+  addPhoto = () => {
     let that = this;
     let s3 = new AWS.S3({
       apiVersion: "2006-03-01",
@@ -127,9 +118,9 @@ class ProfileSettings extends Component {
         );
       }
     );
-  }
+  };
 
-  resetLessonsSettings() {
+  resetLessonsSettings = () => {
     let that = this;
     let userLessonStatus = firebaseDB.ref(
       "/users/" + this.props.profile.userId + "/lessonsCompleted"
@@ -151,9 +142,9 @@ class ProfileSettings extends Component {
         console.log("The read failed: " + errorObject.code);
       }
     );
-  }
+  };
 
-  resetIntroSongsSettings() {
+  resetIntroSongsSettings = () => {
     let that = this;
     let introSongsStatus = firebaseDB.ref(
       "/users/" + this.props.profile.userId + "/introSongsCompleted"
@@ -168,9 +159,9 @@ class ProfileSettings extends Component {
         console.log("The read failed: " + errorObject.code);
       }
     );
-  }
+  };
 
-  resetMiniGameSettings() {
+  resetMiniGameSettings = () => {
     let that = this;
     let userMiniGameStatus = firebaseDB.ref(
       "/users/" + this.props.profile.userId + "/miniGamesCompleted"
@@ -192,23 +183,23 @@ class ProfileSettings extends Component {
         console.log("The read failed: " + errorObject.code);
       }
     );
-  }
+  };
 
-  toggleMiniGameStatus() {
+  toggleMiniGameStatus = () => {
     this.setState({
       showMiniGameStatus: !this.state.showMiniGameStatus
     });
-  }
+  };
 
-  toggleLessonStatus() {
+  toggleLessonStatus = () => {
     this.setState({ showLessonStatus: !this.state.showLessonStatus });
-  }
+  };
 
-  toggleIntroSongsStatus() {
+  toggleIntroSongsStatus = () => {
     this.setState({ showIntroSongsStatus: !this.state.showIntroSongsStatus });
-  }
+  };
 
-  deleteMiniGameStatus() {
+  deleteMiniGameStatus = () => {
     let that = this;
     let miniGamePopup = Popup.create({
       title: null,
@@ -237,9 +228,9 @@ class ProfileSettings extends Component {
         ]
       }
     });
-  }
+  };
 
-  deleteLessonStatus() {
+  deleteLessonStatus = () => {
     let that = this;
     let lessonPopup = Popup.create({
       title: null,
@@ -268,9 +259,9 @@ class ProfileSettings extends Component {
         ]
       }
     });
-  }
+  };
 
-  deleteIntroSongsStatus() {
+  deleteIntroSongsStatus = () => {
     let that = this;
     let lessonPopup = Popup.create({
       title: null,
@@ -299,9 +290,9 @@ class ProfileSettings extends Component {
         ]
       }
     });
-  }
+  };
 
-  changeNameTR() {
+  changeNameTR = () => {
     const { showChangeName } = this.state;
     return (
       <tr
@@ -352,9 +343,9 @@ class ProfileSettings extends Component {
         )}
       </tr>
     );
-  }
+  };
 
-  emailTR() {
+  emailTR = () => {
     return (
       <tr style={{ border: "none" }}>
         <th style={{ border: "none" }}>Email</th>
@@ -364,9 +355,9 @@ class ProfileSettings extends Component {
         <td style={{ border: "none" }} />
       </tr>
     );
-  }
+  };
 
-  changePictureTR() {
+  changePictureTR = () => {
     const { showChangePicture } = this.state;
     return (
       <tr
@@ -423,9 +414,9 @@ class ProfileSettings extends Component {
         )}
       </tr>
     );
-  }
+  };
 
-  changeMiniGameTR() {
+  changeMiniGameTR = () => {
     const { showMiniGameStatus } = this.state;
 
     const miniGamesNum = Object.values(this.props.miniGames).filter(game => {
@@ -478,9 +469,9 @@ class ProfileSettings extends Component {
         )}
       </tr>
     );
-  }
+  };
 
-  changeLessonTR() {
+  changeLessonTR = () => {
     const { showLessonStatus } = this.state;
     const lessonNum = Object.values(this.props.lessons).filter(lesson => {
       return lesson.completed !== false;
@@ -520,9 +511,9 @@ class ProfileSettings extends Component {
         )}
       </tr>
     );
-  }
+  };
 
-  changeIntroSongTR() {
+  changeIntroSongTR = () => {
     const { showIntroSongsStatus } = this.state;
     const introSongsNum = Object.values(this.props.introSongs).filter(song => {
       return song !== false;
@@ -540,14 +531,18 @@ class ProfileSettings extends Component {
         </td>
 
         {!showIntroSongsStatus ? (
-          <td id="showIntroSongsStatus" style={{ border: "none" }} onClick={this.toggleIntroSongsStatus}>
+          <td
+            id="showIntroSongsStatus"
+            style={{ border: "none" }}
+            onClick={this.toggleIntroSongsStatus}
+          >
             <span style={{ color: "#365899", textAlign: "center" }}>Edit</span>
           </td>
         ) : (
-          <td id="introSongsButton" style={{ border: "none"}}>
+          <td id="introSongsButton" style={{ border: "none" }}>
             <button
               className="btn btn-primary"
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 this.deleteIntroSongsStatus();
               }}
@@ -558,7 +553,7 @@ class ProfileSettings extends Component {
         )}
       </tr>
     );
-  }
+  };
 
   render() {
     // if (!this.props.authenticated) {

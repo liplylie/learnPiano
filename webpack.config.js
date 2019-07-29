@@ -6,9 +6,10 @@ const SRC_DIR = path.resolve(__dirname, 'client');
 const BUILD_DIR = path.resolve(__dirname, 'client/static');
 
 module.exports = {
-  entry: path.resolve(SRC_DIR, 'index.js'),
+  entry: path.resolve(SRC_DIR, "index.js"),
+  mode: "development",
   output: {
-    filename: 'bundle.js',
+    filename: "bundle.js",
     path: BUILD_DIR
   },
   module: {
@@ -16,32 +17,33 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: [/node_modules/],
-        use: [{
-          loader: 'babel-loader',
-          options: { presets: ['es2015', 'react'] }
-        }],
+        use: [
+          {
+            loader: "babel-loader",
+          }
+        ]
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"]
       },
       {
         test: /\.(png|jpg|gif|jpeg)$/,
-        loader: 'file-loader',
+        loader: "file-loader",
         options: {}
       },
       {
-      test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-      loader: 'url-loader',
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: "url-loader"
       }
     ]
   },
   plugins: [
     // new Uglify(),
-    //   new webpack.DefinePlugin({ 
+    //   new webpack.DefinePlugin({
     //   'process.env': {
     //     'NODE_ENV': JSON.stringify('production')
     //   }
     // }),
   ]
-}
+};
