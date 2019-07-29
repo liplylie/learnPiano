@@ -519,15 +519,9 @@ class App extends Component {
                         </div>
                       </div>
                     </div>
-<<<<<<< HEAD
-                  </div>
-                  )
-              }} />
-=======
                   );
                 }}
               />
->>>>>>> master
             </Switch>
             <Footer />
           </div>
