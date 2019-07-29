@@ -4,29 +4,66 @@ import { Switch } from "react-router-dom";
 import { app, firebaseDB } from "../firebase";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import AWS, { Config, CognitoIdentityCredentials } from 'aws-sdk'
-import secret from '../../secret.json'
+import AWS, { Config, CognitoIdentityCredentials } from "aws-sdk";
+import secret from "../../secret.json";
 
 import * as AuthActions from "../actions/authActions";
 import * as LessonsCompletedActions from "../actions/lessonsCompletedActions";
 import * as MiniGamesCompletedActions from "../actions/miniGamesCompletedActions";
+import * as IntroSongsCompletedActions from "../actions/introSongsCompletedActions";
+import introSongs from "../helpers/introSongs";
 
-import About from "./About";
-import Links from "./Links";
-import PrivacyPolicy from "./privacyPolicy";
+import About from "./Home/About";
+import Links from "./Home/Links";
+import PrivacyPolicy from "./Home/privacyPolicy";
 import NavBar from "./NavBar";
 import ProfileSettings from "./ProfileSettings";
-import DefaultHome from "./DefaultHome";
+import DefaultHome from "./Home/DefaultHome";
 import Footer from "./Footer";
-import Profile from "./Profile";
-import LessonOne from "./LessonOne";
-import LessonTwo from "./LessonTwo";
-import MiniGameOne from "./MiniGameOne";
-import MiniGameTwo from "./MiniGameTwo";
+import Profile from "./Home/Profile";
+import Contact from "./Home/Contact";
+
+// Lessons
+import LessonOne from "./Lessons/LessonOne";
+import LessonTwo from "./Lessons/LessonTwo";
+import LessonThree from "./Lessons/LessonThree";
+
+// Mini Games
+import MiniGameOne from "./MiniGames/MiniGameOne";
+import MiniGameTwo from "./MiniGames/MiniGameTwo";
+
+// Intro Songs
+import IntroSongList from "./IntroSongs/IntroSongList";
+import CreateIntroSong from "./IntroSongs/CreateIntroSong";
+import Alouette from "./IntroSongs/Alouette";
+import AuClairDeLaLune from "./IntroSongs/AuClairDeLaLune";
+import AuraLee from "./IntroSongs/AuraLee";
+import CamptownRaces from "./IntroSongs/CamptownRaces";
+import Dreydl from "./IntroSongs/Dreydl";
+import ForHesAJollyGoodFellow from "./IntroSongs/ForHesAJollyGoodFellow";
+import FrogSong from "./IntroSongs/FrogSong";
+import GoodKingWenceslas from "./IntroSongs/GoodKingWenceslas";
+import GoTellAuntRhody from "./IntroSongs/GoTellAuntRhody";
+import HakyoJung from "./IntroSongs/HakyoJung";
+import HotCrossBuns from "./IntroSongs/HotCrossBuns";
+import ItsRaining from "./IntroSongs/ItsRaining";
+import LightlyRow from "./IntroSongs/LightlyRow";
+import LongLongAgo from "./IntroSongs/LongLongAgo";
+import LondonBridges from "./IntroSongs/LondonBridges";
+import LoveSomebody from "./IntroSongs/LoveSomebody";
+import JingleBells from "./IntroSongs/JingleBells";
+import MaryHadLamb from "./IntroSongs/MaryHadLamb";
+import Musette from "./IntroSongs/Musette";
+import NewWorldSymphony from "./IntroSongs/NewWorldSymphony";
+import OatsAndBeans from "./IntroSongs/OatsAndBeans";
+import OdeToJoy from "./IntroSongs/OdeToJoy";
+import PopGoesWeasel from "./IntroSongs/PopGoesWeasel";
+import SaintsGoMarchin from "./IntroSongs/SaintsGoMarchin";
+import Twinkle from "./IntroSongs/Twinkle";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       loading: true,
       userID: ""
@@ -59,6 +96,9 @@ class App extends Component {
         let userSettings = firebaseDB.ref(
           "/users/" + user.uid + "/userSettings"
         );
+        let introSongsStatus = firebaseDB.ref(
+          "/users/" + user.uid + "/introSongsCompleted"
+        );
         let lessons = {
           lesson1: { completed: false, time: null },
           lesson2: { completed: false, time: null },
@@ -73,6 +113,7 @@ class App extends Component {
           miniGame4: { completed: false, highScore: null },
           miniGame5: { completed: false, highScore: null }
         };
+        let introSongs = introSongs;
 
         userLessonStatus.once("value").then(
           snapshot => {
@@ -125,10 +166,22 @@ class App extends Component {
           }
         );
 
+        introSongsStatus.once("value").then(snapshot => {
+          if (snapshot.val()) {
+            that.props.IntroSongsCompletedActions.introSongsCompleted(
+              snapshot.val()
+            );
+          } else {
+            introSongsStatus.update(introSongs);
+            this.props.IntroSongsCompletedActions.introSongsCompleted(
+              introSongs
+            );
+          }
+        });
+
         this.setState({ loading: false });
       } else {
         console.log("fail");
-        //this.setState({authenticated: false})
       }
     });
   }
@@ -172,6 +225,17 @@ class App extends Component {
               />
               <Route
                 exact
+                path="/contact"
+                component={() => (
+                  <Contact
+                    authenticated={this.props.online}
+                    loading={this.state.loading}
+                    userID={this.state.userID}
+                  />
+                )}
+              />
+              <Route
+                exact
                 path="/settings"
                 component={() => (
                   <ProfileSettings
@@ -196,6 +260,13 @@ class App extends Component {
               />
               <Route
                 exact
+                path="/lessonThree"
+                component={() => (
+                  <LessonThree authenticated={this.props.online} />
+                )}
+              />
+              <Route
+                exact
                 path="/miniGame1"
                 component={() => (
                   <MiniGameOne authenticated={this.props.online} />
@@ -206,6 +277,227 @@ class App extends Component {
                 path="/miniGame2"
                 component={() => (
                   <MiniGameTwo authenticated={this.props.online} />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro"
+                component={() => (
+                  <IntroSongList authenticated={this.props.online} />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/Alouette"
+                component={() => (
+                  <CreateIntroSong
+                    songName={Alouette.songName}
+                    lessonNotes={Alouette.lessonNotes}
+                    songHeading={Alouette.songHeading}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/AuClairDeLaLune"
+                component={() => <AuClairDeLaLune />}
+              />
+              <Route
+                exact
+                path="/SongList/intro/AuraLee"
+                component={() => <AuraLee />}
+              />
+              <Route
+                exact
+                path="/SongList/intro/CamptownRaces"
+                component={() => (
+                  <CreateIntroSong
+                    songName={CamptownRaces.songName}
+                    lessonNotes={CamptownRaces.lessonNotes}
+                    songHeading={CamptownRaces.songHeading}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/Dreydl"
+                component={() => (
+                  <CreateIntroSong
+                    songName={Dreydl.songName}
+                    lessonNotes={Dreydl.lessonNotes}
+                    songHeading={Dreydl.songHeading}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/FrogSong"
+                component={() => (
+                  <CreateIntroSong
+                    songName={FrogSong.songName}
+                    lessonNotes={FrogSong.lessonNotes}
+                    songHeading={FrogSong.songHeading}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/ForHesAJollyGoodFellow"
+                component={() => (
+                  <CreateIntroSong
+                    songName={ForHesAJollyGoodFellow.songName}
+                    lessonNotes={ForHesAJollyGoodFellow.lessonNotes}
+                    songHeading={ForHesAJollyGoodFellow.songHeading}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/GoodKingWenceslas"
+                component={() => <GoodKingWenceslas />}
+              />
+              <Route
+                exact
+                path="/SongList/intro/GoTellAuntRhody"
+                component={() => (
+                  <CreateIntroSong
+                    songName={GoTellAuntRhody.songName}
+                    lessonNotes={GoTellAuntRhody.lessonNotes}
+                    songHeading={GoTellAuntRhody.songHeading}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/HakyoJung"
+                component={() => (
+                  <CreateIntroSong
+                    songName={HakyoJung.songName}
+                    lessonNotes={HakyoJung.lessonNotes}
+                    songHeading={HakyoJung.songHeading}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/HotCrossBuns"
+                component={() => <HotCrossBuns />}
+              />
+              <Route
+                exact
+                path="/SongList/intro/ItsRaining"
+                component={() => (
+                  <CreateIntroSong
+                    songName={ItsRaining.songName}
+                    lessonNotes={ItsRaining.lessonNotes}
+                    songHeading={ItsRaining.songHeading}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/JingleBells"
+                component={() => <JingleBells />}
+              />
+              <Route
+                exact
+                path="/SongList/intro/LightlyRow"
+                component={() => <LightlyRow />}
+              />
+              <Route
+                exact
+                path="/SongList/intro/LongLongAgo"
+                component={() => (
+                  <CreateIntroSong
+                    songName={LongLongAgo.songName}
+                    lessonNotes={LongLongAgo.lessonNotes}
+                    songHeading={LongLongAgo.songHeading}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/LondonBridges"
+                component={() => (
+                  <CreateIntroSong
+                    songName={LondonBridges.songName}
+                    lessonNotes={LondonBridges.lessonNotes}
+                    songHeading={LondonBridges.songHeading}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/LoveSomebody"
+                component={() => <LoveSomebody />}
+              />
+              <Route
+                exact
+                path="/SongList/intro/MaryHadLamb"
+                component={() => <MaryHadLamb />}
+              />
+              <Route
+                exact
+                path="/SongList/intro/Musette"
+                component={() => <Musette />}
+              />
+              <Route
+                exact
+                path="/SongList/intro/NewWorldSymphony"
+                component={() => <NewWorldSymphony />}
+              />
+              <Route
+                exact
+                path="/SongList/intro/OdeToJoy"
+                component={() => <OdeToJoy />}
+              />
+              <Route
+                exact
+                path="/SongList/intro/OatsAndBeans"
+                component={() => (
+                  <CreateIntroSong
+                    songName={OatsAndBeans.songName}
+                    lessonNotes={OatsAndBeans.lessonNotes}
+                    songHeading={OatsAndBeans.songHeading}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/PopGoesWeasel"
+                component={() => (
+                  <CreateIntroSong
+                    songName={PopGoesWeasel.songName}
+                    lessonNotes={PopGoesWeasel.lessonNotes}
+                    songHeading={PopGoesWeasel.songHeading}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/SaintsGoMarchin"
+                component={() => <SaintsGoMarchin />}
+              />
+              <Route
+                exact
+                path="/SongList/intro/Sample"
+                component={() => (
+                  <CreateIntroSong
+                    songName="Sample"
+                    lessonNotes={"C4 C4 D4 E4".split(" ")}
+                    songHeading="Sample"
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/SongList/intro/Twinkle"
+                component={() => (
+                  <CreateIntroSong
+                    songName={Twinkle.songName}
+                    lessonNotes={Twinkle.lessonNotes}
+                    songHeading={Twinkle.songHeading}
+                  />
                 )}
               />
               <Route
@@ -223,6 +515,7 @@ class App extends Component {
                       <div className="col align-self-center">
                         <div style={{ textAlign: "center" }}>
                           <h1>Error 404 Page Not Found</h1>
+                          <p> Or page is still in development </p>
                         </div>
                       </div>
                     </div>
@@ -260,8 +553,15 @@ const appDispatch = dispatch => {
     MiniGamesCompletedActions: bindActionCreators(
       MiniGamesCompletedActions,
       dispatch
+    ),
+    IntroSongsCompletedActions: bindActionCreators(
+      IntroSongsCompletedActions,
+      dispatch
     )
   };
 };
 
-export default connect(appMapStateToProps, appDispatch)(App);
+export default connect(
+  appMapStateToProps,
+  appDispatch
+)(App);

@@ -2,6 +2,9 @@
 website for interactive learning with the piano <br/>
 Currently in development. 
 
+Sample: 
+[![LearnPianoFun](https://img.youtube.com/vi/NgQL1Dg5-H8/0.jpg)](https://www.youtube.com/watch?v=NgQL1Dg5-H8 "LearnPianoFun")
+
 ## Table of Contents
 
 - [TechStack](#tech-stack)
@@ -26,6 +29,10 @@ Currently in development.
 - ExpressJS
 - Firebase Auth and Database
 - Webpack
+- React-Popup
+- JSDoc3
+- jQuery
+- AWS S3
 ## Available Scripts
 
 In the terminal, you can run:

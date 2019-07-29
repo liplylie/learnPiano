@@ -46,6 +46,8 @@ import Gb4Sound from "../samples/Gb4.ogg";
 
   You should have received a copy of the GNU General Public License
   along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+  Jordan Daniels - I changed a few lines because they were causing bugs
 */
 
 class Piano extends Component {
@@ -54,7 +56,7 @@ class Piano extends Component {
   }
 
   /* Piano keyboard pitches. Names match sound files by ID attribute. */
-  componentWillMount() {
+  componentDidMount() {
     var keys = [
       "A2",
       "Bb2",
@@ -129,8 +131,8 @@ class Piano extends Component {
 
     var intervals = {};
     var depressed = {};
-
     /* Selectors */
+
 
     function pianoClass(name) {
       return ".piano-" + name;
@@ -160,18 +162,22 @@ class Piano extends Component {
       return keyup(code);
     }
 
-    async function press(key) {
+    function press(key) {
       var audio = sound(key);
       if (depressed[key]) {
         return;
       }
       clearInterval(intervals[key]);
       if (audio) {
-        let pause = await audio.pause();
+        audio.pause();
         audio.volume = 1.0;
         if (audio.readyState >= 2) {
           audio.currentTime = 0;
-          let play = await audio.play();
+          audio.addEventListener('loadeddata', function() {
+            audio.play();
+          });
+          audio.load();
+          //audio.play();
           depressed[key] = true;
         }
       }
@@ -180,7 +186,7 @@ class Piano extends Component {
           backgroundColor: "#88FFAA"
         },
         0
-      );
+      )
     }
 
     /* Manually diminish the volume when the key is not sustained. */
@@ -231,7 +237,7 @@ class Piano extends Component {
             },
             300,
             "easeOutExpo"
-          );
+          )
         }
       };
     }
@@ -253,7 +259,7 @@ class Piano extends Component {
             backgroundColor: "#88FFAA"
           },
           0
-        );
+        )
         press(key);
       });
       if (fadeout) {
@@ -276,6 +282,7 @@ class Piano extends Component {
     /* Register keyboard event callbacks. */
 
     $(document).keydown(function(event) {
+       event.stopImmediatePropagation()
       if (event.which === pedal) {
         sustaining = true;
         $(pianoClass("pedal")).addClass("piano-sustain");
@@ -284,6 +291,7 @@ class Piano extends Component {
     });
 
     $(document).keyup(function(event) {
+      event.stopImmediatePropagation()
       if (event.which === pedal) {
         sustaining = false;
         $(pianoClass("pedal")).removeClass("piano-sustain");
