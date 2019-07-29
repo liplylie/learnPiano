@@ -424,124 +424,6 @@ class LessonOne extends Component {
         document.getElementById("lessonOneButtonFour").style.display = "block";
     }
 
-<<<<<<< HEAD
-    init()
-    this.toggleMicrophone()    
-  
-
-  
-  }
-
-  lessonOneButtonOne(){
-    document.getElementById("lessonOneMessageOne").style.display = "none"
-    document.getElementById("lessonOneButtonOne").style.display = "none"
-    document.getElementById("lessonOneMessageTwo").style.display = "block"
-    document.getElementById("lessonOneButtonTwo").style.display = "block"
-    
-  }
-
-  lessonOneButtonTwo(){
-    document.getElementById("lessonOneMessageTwo").style.display = "none"
-    document.getElementById("lessonOneButtonTwo").style.display = "none"
-    document.getElementById("lessonOneMessageThree").style.display = "block"
-    this.setState({
-      checkNote : "C4",
-      buttonToShow: "Three"
-    })
-    this.findPitch("C4")
-
-  }
-
-  lessonOneButtonThree(){
-    document.getElementById("lessonOneMessageThree").style.display = "none"
-    document.getElementById("lessonOneButtonThree").style.display = "none"
-    document.getElementById("lessonOneMessageFour").style.display = "block"
-    document.getElementById("lessonOneButtonFour").style.display = "block"
-  }
-
-  lessonOneButtonFour(){
-    document.getElementById("lessonOneMessageFour").style.display = "none"
-    document.getElementById("lessonOneButtonFour").style.display = "none"
-    document.getElementById("lessonOneMessageFive").style.display = "block"
-    this.setState({
-      checkNote : "D4",
-      buttonToShow: "Five"
-    })
-    this.findPitch("D4")
-  }
-
-  lessonOneButtonFive(){
-    document.getElementById("lessonOneMessageFive").style.display = "none"
-    document.getElementById("lessonOneButtonFive").style.display = "none"
-    document.getElementById("lessonOneMessageSix").style.display = "block"
-    document.getElementById("lessonOneButtonSix").style.display = "block"
-  }
-
-  lessonOneButtonSix(){
-    document.getElementById("lessonOneMessageSix").style.display = "none"
-    document.getElementById("lessonOneButtonSix").style.display = "none"
-    document.getElementById("lessonOneMessageSeven").style.display = "block"
-    this.setState({
-      checkNote : "E4",
-      buttonToShow: "Seven"
-    })
-    this.findPitch("E4")
-  }
-
-  lessonOneButtonSeven(){
-    document.getElementById("lessonOneMessageSeven").style.display = "none"
-    document.getElementById("lessonOneButtonSeven").style.display = "none"
-    document.getElementById("lessonOneMessageEight").style.display = "block"
-    document.getElementById("lessonOneButtonEight").style.display = "block"
-  }
-
-  lessonOneButtonEight(){
-    document.getElementById("lessonOneMessageEight").style.display = "none"
-    document.getElementById("lessonOneButtonEight").style.display = "none"
-    document.getElementById("lessonOneMessageNine").style.display = "block"
-    this.setState({
-      checkNote : "F4",
-      buttonToShow: "Nine"
-    })
-    this.findPitch("F4")
-  }
-  
-  lessonOneButtonNine(){
-    document.getElementById("lessonOneMessageNine").style.display = "none"
-    document.getElementById("lessonOneButtonNine").style.display = "none"
-    document.getElementById("lessonOneMessageTen").style.display = "block"
-    document.getElementById("lessonOneButtonTen").style.display = "block"
-  }
-
-  lessonOneButtonTen(){
-    document.getElementById("lessonOneMessageTen").style.display = "none"
-    document.getElementById("lessonOneButtonTen").style.display = "none"
-    document.getElementById("lessonOneMessageEleven").style.display = "block"
-    this.setState({
-      checkNote : "G4",
-      buttonToShow: "Eleven"
-    })
-    this.findPitch("G4")
-  }
-
-  lessonOneButtonEleven(){
-    document.getElementById("lessonOneMessageEleven").style.display = "none"
-    document.getElementById("lessonOneButtonEleven").style.display = "none"
-    document.getElementById("lessonOneMessageTwelve").style.display = "block"
-    document.getElementById("lessonOneButtonTwelve").style.display = "block"
-  }
-
-  lessonOneButtonTwelve(){
-    // set data to firebase that lesson one is completed for the user
-    let that = this
-    let userLessonStatus = firebaseDB.ref("/users/" + this.props.Auth.userId + "/lessonsCompleted")
-
-    userLessonStatus.once("value")
-        .then(snapshot => {
-            userLessonStatus.update( {lesson1: {completed: true, time: firebase.database.ServerValue.TIMESTAMP} })
-            that.props.LessonsCompleted.lessonsCompleted(snapshot.val())
-            console.log( snapshot.val(), 'lesson one completed' )
-=======
     lessonOneButtonFour() {
         document.getElementById("lessonOneMessageFour").style.display = "none";
         document.getElementById("lessonOneButtonFour").style.display = "none";
@@ -637,7 +519,6 @@ class LessonOne extends Component {
             });
             that.props.LessonsCompletedActions.lessonsCompleted(snapshot.val());
             console.log(snapshot.val(), "lesson one completed");
->>>>>>> master
             that.setState({
                 lessonCompleted: true
             });

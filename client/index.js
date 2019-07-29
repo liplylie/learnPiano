@@ -19,8 +19,4 @@ class LearnPiano extends Component {
   }
 }
 
-<<<<<<< HEAD
-ReactDOM.render(<LearnPiano/>, document.getElementById('app')) 
-=======
 ReactDOM.render(<LearnPiano />, document.getElementById("app"));
->>>>>>> master
