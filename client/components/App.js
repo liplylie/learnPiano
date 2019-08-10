@@ -1,23 +1,27 @@
 import React, { Component } from "react";
-import { BrowserRouter, Router, Route } from "react-router-dom";
-import { Switch } from "react-router-dom";
-import { app, firebaseDB } from "../firebase";
+import { BrowserRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AWS, { Config, CognitoIdentityCredentials } from "aws-sdk";
-import secret from "../../secret.json";
 
+// reducers
 import * as AuthActions from "../actions/authActions";
 import * as LessonsCompletedActions from "../actions/lessonsCompletedActions";
 import * as MiniGamesCompletedActions from "../actions/miniGamesCompletedActions";
 import * as IntroSongsCompletedActions from "../actions/introSongsCompletedActions";
 import introSongs from "../helpers/introSongs";
+import { app, firebaseDB } from "../firebase";
 
+
+// components
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 
+// routes
 import PublicRoutes from "../routes/PublicRoutes";
 import PrivateRoutes from "../routes/PrivateRoutes";
+
+import secret from "../../secret.json";
 
 class App extends Component {
   state = {
@@ -135,7 +139,7 @@ class App extends Component {
 
         this.setState({ loading: false });
       } else {
-        console.log("fail");
+        // no data
       }
     });
   }
@@ -146,48 +150,26 @@ class App extends Component {
 
   render() {
     const authenticated = this.props.online;
-    console.log(this.props, "app props");
     return (
       <BrowserRouter>
         <div className="main" style={{ display: "flex" }}>
           <NavBar authenticated={authenticated} />
 
           <div style={{ flexDirection: "row", flex: 1 }}>
-            <Switch>
-              {!authenticated ? (
+            {!authenticated ? (
+              <>
                 <PublicRoutes />
-              ) : (
+              </>
+            ) : (
+              <>
                 <PrivateRoutes
                   authenticated={authenticated}
                   loading={this.state.loading}
                   userID={this.state.userID}
                 />
-              )}
-
-              <Route
-                render={() => {
-                  return (
-                    <div
-                      className="row"
-                      style={{
-                        backgroundColor: "lightpink",
-                        height: "100vh",
-                        minWidth: "100vw",
-                        flex: 1
-                      }}
-                    >
-                      <div className="col align-self-center">
-                        <div style={{ textAlign: "center" }}>
-                          <h1>Error 404 Page Not Found</h1>
-                          <p> Or page is still in development </p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                }}
-              />
-            </Switch>
-            <Footer />
+              </>
+            )}
+            {/* <Footer /> */}
           </div>
         </div>
       </BrowserRouter>

@@ -258,25 +258,6 @@ body {
   }
 }
 
-table,
-th,
-td {
-  border-collapse: collapse;
-  border: solid white 1px;
-}
-th,
-td {
-  padding: 1em;
-}
-
-table .Complete {
-  background-color: lightgreen;
-}
-
-table .NotComplete {
-  background-color: pink;
-}
-
 .dropdown-menu .sub-menu {
   left: 100%;
   position: absolute;

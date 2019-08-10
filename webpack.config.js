@@ -38,6 +38,9 @@ module.exports = {
       }
     ]
   },
+  resolve:{
+    alias: { '~': SRC_DIR }
+  },
   plugins: [
     // new Uglify(),
     //   new webpack.DefinePlugin({

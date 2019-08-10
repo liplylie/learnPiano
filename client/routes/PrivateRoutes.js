@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import About from "../components/Home/About";
 import Links from "../components/Home/Links";
@@ -8,7 +8,7 @@ import NavBar from "../components/NavBar";
 import ProfileSettings from "../components/ProfileSettings";
 import DefaultHome from "../components/Home/DefaultHome";
 import Footer from "../components/Footer";
-import Profile from "../components/Home/Profile";
+import Profile from "../components/Profile";
 import Contact from "../components/Home/Contact";
 
 // Lessons
@@ -49,11 +49,31 @@ import PopGoesWeasel from "../components/IntroSongs/PopGoesWeasel";
 import SaintsGoMarchin from "../components/IntroSongs/SaintsGoMarchin";
 import Twinkle from "../components/IntroSongs/Twinkle";
 
+const Page404 = () => (
+  <div
+    className="row"
+    style={{
+      backgroundColor: "lightpink",
+      height: "100vh",
+      minWidth: "100vw",
+      flex: 1
+    }}
+  >
+    <div className="col align-self-center">
+      <div style={{ textAlign: "center" }}>
+        <h1>Error 404 Page Not Found</h1>
+        <p> Or page is still in development </p>
+      </div>
+    </div>
+  </div>
+);
+
 export const PrivateRoutes = ({ loading, authenticated, userID }) => {
   return (
-    <>
+    <Switch>
       <Route
-        exact path={["/", "/profile"]}
+        exact
+        path={["/", "/profile"]}
         component={() => (
           <Profile
             authenticated={authenticated}
@@ -66,10 +86,7 @@ export const PrivateRoutes = ({ loading, authenticated, userID }) => {
         exact
         path="/settings"
         component={() => (
-          <ProfileSettings
-            authenticated={authenticated}
-            loading={loading}
-          />
+          <ProfileSettings authenticated={authenticated} loading={loading} />
         )}
       />
       <Route
@@ -318,9 +335,14 @@ export const PrivateRoutes = ({ loading, authenticated, userID }) => {
       />
       <Route exact path="/about" component={() => <About />} />
       <Route exact path="/links" component={() => <Links />} />
-      <Route exact path="/privacyPolicy" component={() => <PrivacyPolicy />} />
+      <Route
+        exact
+        path="/privacyPolicy"
+        component={() => <PrivacyPolicy />}
+      />
       <Route exact path="/contact" component={() => <Contact />} />
-    </>
+      <Route component={Page404} />
+    </Switch>
   );
 };
 

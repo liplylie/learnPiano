@@ -9,12 +9,18 @@ import secret from "../../secret.json";
 import Popup from "react-popup";
 import $ from "jquery";
 
-import * as AuthActions from "../actions/authActions";
-import * as LessonsCompletedActions from "../actions/lessonsCompletedActions";
-import * as MiniGamesCompletedActions from "../actions/miniGamesCompletedActions";
-import * as IntroSongsCompletedActions from "../actions/introSongsCompletedActions";
+// reducers
+import * as AuthActions from "~/actions/authActions";
+import * as LessonsCompletedActions from "~/actions/lessonsCompletedActions";
+import * as MiniGamesCompletedActions from "~/actions/miniGamesCompletedActions";
+import * as IntroSongsCompletedActions from "~/actions/introSongsCompletedActions";
 
-import introSongsList from "../helpers/introSongs";
+// global
+import introSongsList from "~/helpers/introSongs";
+import { PageContainer } from "~/theme";
+
+// local
+import { StyledTable } from "~/components/Table/Style";
 
 class ProfileSettings extends Component {
   state = {
@@ -556,55 +562,38 @@ class ProfileSettings extends Component {
   };
 
   render() {
-
-    const { showMiniGameStatus, showChangeName } = this.state;
-
     return (
-      <div style={{ height: "100vh", width: "100vw", overflowY: "scroll" }}>
-        <div
-          style={{
-            width: "80vw",
-            height: "100vh",
-            margin: "auto",
-            backgroundColor: "white",
-            flex: 1,
-            overflowX: "scroll"
-          }}
-          className="effect8"
-        >
-          <div className="row" margin="1em" />
+      <PageContainer className="effect8 fadeIn">
+        <Popup />
 
-          <Popup />
+        <div className="col-md-12 text" style={{ textAlign: "center" }}>
+          <h1>Profile Settings</h1>
+        </div>
 
+        <div className="row" style={{ margin: "auto", padding: "1em" }}>
           <div className="col-md-12">
-            <h1>Profile Settings</h1>
-          </div>
+            <StyledTable
+              id="settingTable"
+              className="table table-hover effect8"
+              style={{ border: "none" }}
+            >
+              <tbody>
+                {this.changeNameTR()}
 
-          <div className="row" style={{ margin: "auto", padding: "1em" }}>
-            <div className="col-md-12">
-              <table
-                id="settingTable"
-                className="table table-hover effect8"
-                style={{ border: "none" }}
-              >
-                <tbody>
-                  {this.changeNameTR()}
+                {this.emailTR()}
 
-                  {this.emailTR()}
+                {this.changePictureTR()}
 
-                  {this.changePictureTR()}
+                {this.changeMiniGameTR()}
 
-                  {this.changeMiniGameTR()}
+                {this.changeLessonTR()}
 
-                  {this.changeLessonTR()}
-
-                  {this.changeIntroSongTR()}
-                </tbody>
-              </table>
-            </div>
+                {this.changeIntroSongTR()}
+              </tbody>
+            </StyledTable>
           </div>
         </div>
-      </div>
+      </PageContainer>
     );
   }
 }
