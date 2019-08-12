@@ -33,7 +33,12 @@ class LogOut extends Component {
                 ? this.props.picture
                 : require("../static/defaultUser.png")
             }
-            style={{ height: "1.5em", width: "1.5em", paddingRight: "5px" }}
+            style={{
+              height: "1.5em",
+              width: "1.5em",
+              paddingRight: "5px",
+              objectFit: "contain"
+            }}
             alt=""
           />
           Log Out

@@ -4,10 +4,13 @@
   "description": "learn basics of piano",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "npm run all",
     "start-nodemon": "nodemon server/server.js",
     "compile-watch": "webpack --watch",
-    "all": "npm run start-nodemon & npm run compile-watch"
+    "all": "npm run start-nodemon & npm run compile-watch",
+    "webpack-prod": "npx webpack",
+    "webpack-dev": "npx webpack --env=dev",
+    "build": "npm run all webpack-prod"
   },
   "author": "Jordan Daniels",
   "license": "ISC",
@@ -39,6 +42,7 @@
     "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^5.10.0",
     "redux-promise-middleware": "^5.0.0",
     "redux-thunk": "^2.2.0",
     "save": "^2.3.2",

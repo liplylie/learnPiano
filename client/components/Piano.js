@@ -31,6 +31,37 @@ import G4Sound from "../samples/G4.ogg";
 import Gb3Sound from "../samples/Gb3.ogg";
 import Gb4Sound from "../samples/Gb4.ogg";
 
+const keys = [
+  "A2",
+  "Bb2",
+  "B2",
+  "C3",
+  "Db3",
+  "D3",
+  "Eb3",
+  "E3",
+  "F3",
+  "Gb3",
+  "G3",
+  "Ab3",
+  "A3",
+  "Bb3",
+  "B3",
+  "C4",
+  "Db4",
+  "D4",
+  "Eb4",
+  "E4",
+  "F4",
+  "Gb4",
+  "G4",
+  "Ab4",
+  "A4",
+  "Bb4",
+  "B4",
+  "C5"
+];
+
 /**
   Copyright 2012 Michael Morris-Pearce
 
@@ -51,49 +82,41 @@ import Gb4Sound from "../samples/Gb4.ogg";
 */
 
 class Piano extends Component {
-  constructor() {
-    super();
+  /* Piano keyboard pitches. Names match sound files by ID attribute. */
+  componentWillUpdate(nextProps) {
+    if (nextProps.closePiano !== this.props.closePiano) {
+      if (!nextProps.closePiano) {
+        this.generateSound();
+      } else {
+        console.log('remove bro')
+        this.removeEventListeners();
+      }
+    }
   }
 
-  /* Piano keyboard pitches. Names match sound files by ID attribute. */
   componentDidMount() {
-    var keys = [
-      "A2",
-      "Bb2",
-      "B2",
-      "C3",
-      "Db3",
-      "D3",
-      "Eb3",
-      "E3",
-      "F3",
-      "Gb3",
-      "G3",
-      "Ab3",
-      "A3",
-      "Bb3",
-      "B3",
-      "C4",
-      "Db4",
-      "D4",
-      "Eb4",
-      "E4",
-      "F4",
-      "Gb4",
-      "G4",
-      "Ab4",
-      "A4",
-      "Bb4",
-      "B4",
-      "C5"
-    ];
+    const { closePiano } = this.props;
+    if (!closePiano) {
+      this.generateSound();
+    }
+  }
 
+  removeEventListeners = () => {
+    const pianoClass = name => {
+      return ".piano-" + name;
+    };
+    keys.forEach(key => {
+      $(pianoClass(key)).off();
+    });
+  };
+
+  generateSound = () => {
     /* Corresponding keyboard keycodes, in order w/ 'keys'. */
     /* QWERTY layout:
     /*   upper register: Q -> P, with 1-0 as black keys. */
     /*   lower register: Z -> M, , with A-L as black keys. */
 
-    var codes = [
+    const codes = [
       90,
       83,
       88,
@@ -124,15 +147,14 @@ class Piano extends Component {
       80
     ];
 
-    var pedal = 32; /* Keycode for sustain pedal. */
-    var tonic = "A2"; /* Lowest pitch. */
+    const pedal = 32; /* Keycode for sustain pedal. */
+    const tonic = "A2"; /* Lowest pitch. */
 
     /* Piano state. */
 
-    var intervals = {};
-    var depressed = {};
+    const intervals = {};
+    const depressed = {};
     /* Selectors */
-
 
     function pianoClass(name) {
       return ".piano-" + name;
@@ -173,7 +195,7 @@ class Piano extends Component {
         audio.volume = 1.0;
         if (audio.readyState >= 2) {
           audio.currentTime = 0;
-          audio.addEventListener('loadeddata', function() {
+          audio.addEventListener("loadeddata", function() {
             audio.play();
           });
           audio.load();
@@ -186,7 +208,7 @@ class Piano extends Component {
           backgroundColor: "#88FFAA"
         },
         0
-      )
+      );
     }
 
     /* Manually diminish the volume when the key is not sustained. */
@@ -237,7 +259,7 @@ class Piano extends Component {
             },
             300,
             "easeOutExpo"
-          )
+          );
         }
       };
     }
@@ -259,7 +281,7 @@ class Piano extends Component {
             backgroundColor: "#88FFAA"
           },
           0
-        )
+        );
         press(key);
       });
       if (fadeout) {
@@ -282,7 +304,7 @@ class Piano extends Component {
     /* Register keyboard event callbacks. */
 
     $(document).keydown(function(event) {
-       event.stopImmediatePropagation()
+      event.stopImmediatePropagation();
       if (event.which === pedal) {
         sustaining = true;
         $(pianoClass("pedal")).addClass("piano-sustain");
@@ -291,7 +313,7 @@ class Piano extends Component {
     });
 
     $(document).keyup(function(event) {
-      event.stopImmediatePropagation()
+      event.stopImmediatePropagation();
       if (event.which === pedal) {
         sustaining = false;
         $(pianoClass("pedal")).removeClass("piano-sustain");
@@ -316,7 +338,7 @@ class Piano extends Component {
         }
       }
     });
-  }
+  };
 
   render() {
     return (

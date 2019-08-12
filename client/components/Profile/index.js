@@ -4,12 +4,22 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 // global
-import * as AuthActions from "~/actions/authActions.js";
 import { firebaseDB } from "~/firebase";
 import { PageContainer } from "~/theme";
 
+// reducers
+import * as AuthActions from "~/actions/authActions.js";
+import * as LessonsCompletedActions from "~/actions/lessonsCompletedActions";
+import * as MiniGamesCompletedActions from "~/actions/miniGamesCompletedActions";
+import * as IntroSongsCompletedActions from "~/actions/introSongsCompletedActions";
+
 // local
-import { StyledLink, ProfilePicture } from "./Style";
+import {
+  StyledLink,
+  ProfilePicture,
+  ChangePhoto,
+  PhotoWrappper
+} from "./Style";
 import LessonTable from "../Table/LessonTable";
 import MiniGameTable from "../Table/MiniGameTable";
 import IntroSongTable from "../Table/IntroSongTable";
@@ -44,58 +54,100 @@ class Profile extends Component {
     }
   };
 
-  componentWillMount() {
-    let that = this;
-    let userLessonStatus = firebaseDB.ref(
-      "/users/" + this.props.userID + "/lessonsCompleted"
-    );
-    let userMiniGameStatus = firebaseDB.ref(
-      "/users/" + this.props.userID + "/miniGamesCompleted"
-    );
-    let introSongsStatus = firebaseDB.ref(
-      "/users/" + this.props.userID + "/introSongsCompleted"
-    );
-    userLessonStatus
-      .once("value")
-      .then(snapshot => {
-        if (snapshot.val()) {
-          that.setState({ lessonsCompleted: snapshot.val() });
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    userMiniGameStatus
-      .once("value")
-      .then(snapshot => {
-        if (snapshot.val()) {
-          that.setState({ miniGamesCompleted: snapshot.val() });
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    introSongsStatus
-      .once("value")
-      .then(snapshot => {
-        if (snapshot.val()) {
-          that.setState({ introSongsCompleted: snapshot.val() });
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  componentDidMount() {
+    this.getMiniGameStatus();
+    this.getIntroSongsStatus();
+    this.getUserLessonStatus();
   }
 
-  formatAMPM(date) {
-    var hours = date[0] + date[1];
-    var minutes = date[3] + date[4];
-    var ampm = hours >= 12 ? "pm" : "am";
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    var strTime = hours + ":" + minutes + " " + ampm;
-    return strTime;
-  }
+  getUserLessonStatus = () => {
+    let that = this;
+    const { Auth } = this.props;
+
+    const userLessonStatus = firebaseDB.ref(
+      "/users/" + Auth.userId + "/lessonsCompleted"
+    );
+    const lessons = {
+      lesson1: { completed: false, time: null },
+      lesson2: { completed: false, time: null },
+      lesson3: { completed: false, time: null },
+      lesson4: { completed: false, time: null },
+      lesson5: { completed: false, time: null }
+    };
+
+    userLessonStatus.once("value").then(
+      snapshot => {
+        if (!snapshot.val()) {
+          userLessonStatus.update(lessons);
+        } else {
+          that.setState({
+            lessonsCompleted: snapshot.val()
+          });
+
+          that.props.LessonsCompletedActions.lessonsCompleted(snapshot.val());
+        }
+      },
+      errorObject => {
+        console.log("The read failed: " + errorObject.code);
+      }
+    );
+  };
+
+  getIntroSongsStatus = () => {
+    const { Auth } = this.props;
+    let that = this;
+    const introSongsStatus = firebaseDB.ref(
+      "/users/" + Auth.userId + "/introSongsCompleted"
+    );
+    introSongsStatus.once("value").then(snapshot => {
+      if (snapshot.val()) {
+        that.setState({
+          introSongsCompleted: snapshot.val()
+        });
+
+        that.props.IntroSongsCompletedActions.introSongsCompleted(
+          snapshot.val()
+        );
+      } else {
+        introSongsStatus.update(introSongs);
+        this.props.IntroSongsCompletedActions.introSongsCompleted(introSongs);
+      }
+    });
+  };
+
+  getMiniGameStatus = () => {
+    const { Auth } = this.props;
+    let that = this;
+    const userMiniGameStatus = firebaseDB.ref(
+      "/users/" + Auth.userId + "/miniGamesCompleted"
+    );
+
+    const miniGames = {
+      miniGame1: { completed: false, highScore: null },
+      miniGame2: { completed: false, highScore: null },
+      miniGame3: { completed: false, highScore: null },
+      miniGame4: { completed: false, highScore: null },
+      miniGame5: { completed: false, highScore: null }
+    };
+    userMiniGameStatus.once("value").then(
+      snapshot => {
+        if (!snapshot.val()) {
+          userMiniGameStatus.update(miniGames);
+        } else {
+          that.setState({
+            miniGamesCompleted: snapshot.val()
+          });
+
+          that.props.MiniGamesCompletedActions.miniGamesCompleted(
+            snapshot.val()
+          );
+        }
+      },
+      errorObject => {
+        console.log("The read failed: " + errorObject.code);
+      }
+    );
+  };
 
   render() {
     const {
@@ -123,7 +175,7 @@ class Profile extends Component {
           <div className="col-md-3">
             <div className="row" style={{ margin: "0.3em" }} />
 
-            <div className="img__wrap">
+            <PhotoWrappper>
               <ProfilePicture
                 className="span3"
                 alt=""
@@ -135,7 +187,7 @@ class Profile extends Component {
                 title="Profile Picture"
               />
               <Link to="/settings">
-                <p className="img__description">Change Photo</p>
+                <ChangePhoto>Change Photo</ChangePhoto>
               </Link>
 
               <div className="text-center">
@@ -150,7 +202,7 @@ class Profile extends Component {
                     : this.props.Auth.email}
                 </span>
               </div>
-            </div>
+            </PhotoWrappper>
           </div>
 
           <div className="col-md-3" style={{ marginRight: "3em" }} />
@@ -187,13 +239,28 @@ class Profile extends Component {
 
 const ProfileMapStateToProps = store => {
   return {
-    Auth: store.Auth
+    Auth: store.Auth,
+    IntroSongsCompleted: store.IntroSongsCompleted,
+    LessonsCompleted: store.LessonsCompleted,
+    MiniGamesCompleted: store.MiniGamesCompleted
   };
 };
 
 const ProfileDispatch = dispatch => {
   return {
-    actions: bindActionCreators(AuthActions, dispatch)
+    actions: bindActionCreators(AuthActions, dispatch),
+    LessonsCompletedActions: bindActionCreators(
+      LessonsCompletedActions,
+      dispatch
+    ),
+    MiniGamesCompletedActions: bindActionCreators(
+      MiniGamesCompletedActions,
+      dispatch
+    ),
+    IntroSongsCompletedActions: bindActionCreators(
+      IntroSongsCompletedActions,
+      dispatch
+    )
   };
 };
 

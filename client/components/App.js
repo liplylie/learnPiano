@@ -5,21 +5,20 @@ import { bindActionCreators } from "redux";
 import AWS, { Config, CognitoIdentityCredentials } from "aws-sdk";
 
 // reducers
-import * as AuthActions from "../actions/authActions";
-import * as LessonsCompletedActions from "../actions/lessonsCompletedActions";
-import * as MiniGamesCompletedActions from "../actions/miniGamesCompletedActions";
-import * as IntroSongsCompletedActions from "../actions/introSongsCompletedActions";
-import introSongs from "../helpers/introSongs";
-import { app, firebaseDB } from "../firebase";
-
+import * as AuthActions from "~/actions/authActions";
+import * as LessonsCompletedActions from "~/actions/lessonsCompletedActions";
+import * as MiniGamesCompletedActions from "~/actions/miniGamesCompletedActions";
+import * as IntroSongsCompletedActions from "~/actions/introSongsCompletedActions";
+import introSongs from "~/helpers/introSongs";
+import { app, firebaseDB } from "~/firebase";
 
 // components
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 
 // routes
-import PublicRoutes from "../routes/PublicRoutes";
-import PrivateRoutes from "../routes/PrivateRoutes";
+import PublicRoutes from "~/routes/PublicRoutes";
+import PrivateRoutes from "~/routes/PrivateRoutes";
 
 import secret from "../../secret.json";
 
@@ -31,6 +30,7 @@ class App extends Component {
 
   componentDidMount() {
     let that = this;
+    const authenticated = this.props.online;
     this.removeAuthListener = app.auth().onAuthStateChanged(user => {
       if (user) {
         that.setState({
@@ -46,109 +46,125 @@ class App extends Component {
           })
         });
 
-        let userLessonStatus = firebaseDB.ref(
-          "/users/" + user.uid + "/lessonsCompleted"
-        );
-        let userMiniGameStatus = firebaseDB.ref(
-          "/users/" + user.uid + "/miniGamesCompleted"
-        );
-        let userSettings = firebaseDB.ref(
-          "/users/" + user.uid + "/userSettings"
-        );
-        let introSongsStatus = firebaseDB.ref(
-          "/users/" + user.uid + "/introSongsCompleted"
-        );
-        let lessons = {
-          lesson1: { completed: false, time: null },
-          lesson2: { completed: false, time: null },
-          lesson3: { completed: false, time: null },
-          lesson4: { completed: false, time: null },
-          lesson5: { completed: false, time: null }
-        };
-        let miniGames = {
-          miniGame1: { completed: false, highScore: null },
-          miniGame2: { completed: false, highScore: null },
-          miniGame3: { completed: false, highScore: null },
-          miniGame4: { completed: false, highScore: null },
-          miniGame5: { completed: false, highScore: null }
-        };
-
-        userLessonStatus.once("value").then(
-          snapshot => {
-            if (!snapshot.val()) {
-              userLessonStatus.update(lessons);
-            } else {
-              that.props.LessonsCompletedActions.lessonsCompleted(
-                snapshot.val()
-              );
-            }
-          },
-          errorObject => {
-            console.log("The read failed: " + errorObject.code);
-          }
-        );
-
-        userMiniGameStatus.once("value").then(
-          snapshot => {
-            if (!snapshot.val()) {
-              userMiniGameStatus.update(miniGames);
-            } else {
-              that.props.MiniGamesCompletedActions.miniGamesCompleted(
-                snapshot.val()
-              );
-            }
-          },
-          errorObject => {
-            console.log("The read failed: " + errorObject.code);
-          }
-        );
-
-        let userInfo = {
-          name: user.displayName,
-          email: user.email,
-          userId: user.uid,
-          picture: user.photoURL
-        };
-
-        userSettings.once("value").then(
-          snapshot => {
-            if (!snapshot.val()) {
-              userSettings.update(userInfo);
-              that.props.AuthActions.userLoginInfo(userInfo);
-            } else {
-              that.props.AuthActions.userLoginInfo(snapshot.val());
-            }
-          },
-          errorObject => {
-            console.log("The read failed: " + errorObject.code);
-          }
-        );
-
-        introSongsStatus.once("value").then(snapshot => {
-          if (snapshot.val()) {
-            that.props.IntroSongsCompletedActions.introSongsCompleted(
-              snapshot.val()
-            );
-          } else {
-            introSongsStatus.update(introSongs);
-            this.props.IntroSongsCompletedActions.introSongsCompleted(
-              introSongs
-            );
-          }
-        });
+        if (!authenticated) {
+          this.getUserSettings(user);
+        }
 
         this.setState({ loading: false });
-      } else {
-        // no data
       }
     });
   }
+
+  getUserLessonStatus = user => {
+    let that = this;
+
+    const lessons = {
+      lesson1: { completed: false, time: null },
+      lesson2: { completed: false, time: null },
+      lesson3: { completed: false, time: null },
+      lesson4: { completed: false, time: null },
+      lesson5: { completed: false, time: null }
+    };
+    const userLessonStatus = firebaseDB.ref(
+      "/users/" + user.uid + "/lessonsCompleted"
+    );
+    userLessonStatus.once("value").then(
+      snapshot => {
+        if (!snapshot.val()) {
+          userLessonStatus.update(lessons);
+        } else {
+          that.props.LessonsCompletedActions.lessonsCompleted(snapshot.val());
+        }
+      },
+      errorObject => {
+        console.log("The read failed: " + errorObject.code);
+      }
+    );
+  };
+
+  getUserSettings = user => {
+    let that = this;
+
+    const userSettings = firebaseDB.ref("/users/" + user.uid + "/userSettings");
+    const userInfo = {
+      name: user.displayName,
+      email: user.email,
+      userId: user.uid,
+      picture: user.photoURL
+    };
+    userSettings.once("value").then(
+      snapshot => {
+        if (!snapshot.val()) {
+          userSettings.update(userInfo);
+          that.props.AuthActions.userLoginInfo(userInfo);
+        } else {
+          that.props.AuthActions.userLoginInfo(snapshot.val());
+        }
+      },
+      errorObject => {
+        console.log("The read failed: " + errorObject.code);
+      }
+    );
+  };
+
+  getIntroSongsStatus = user => {
+    let that = this;
+
+    const introSongsStatus = firebaseDB.ref(
+      "/users/" + user.uid + "/introSongsCompleted"
+    );
+    introSongsStatus.once("value").then(snapshot => {
+      if (snapshot.val()) {
+        that.props.IntroSongsCompletedActions.introSongsCompleted(
+          snapshot.val()
+        );
+      } else {
+        introSongsStatus.update(introSongs);
+        this.props.IntroSongsCompletedActions.introSongsCompleted(introSongs);
+      }
+    });
+  };
+
+  getMiniGameStatus = user => {
+    let that = this;
+
+    const userMiniGameStatus = firebaseDB.ref(
+      "/users/" + user.uid + "/miniGamesCompleted"
+    );
+
+    const miniGames = {
+      miniGame1: { completed: false, highScore: null },
+      miniGame2: { completed: false, highScore: null },
+      miniGame3: { completed: false, highScore: null },
+      miniGame4: { completed: false, highScore: null },
+      miniGame5: { completed: false, highScore: null }
+    };
+    userMiniGameStatus.once("value").then(
+      snapshot => {
+        if (!snapshot.val()) {
+          userMiniGameStatus.update(miniGames);
+        } else {
+          that.props.MiniGamesCompletedActions.miniGamesCompleted(
+            snapshot.val()
+          );
+        }
+      },
+      errorObject => {
+        console.log("The read failed: " + errorObject.code);
+      }
+    );
+  };
 
   componentWillUnmount() {
     this.removeAuthListener();
   }
 
+  shouldComponentUpdate(nextProps) {
+    return nextProps.online !== this.props.online;
+  }
+
   render() {
+    console.log(" app render");
     const authenticated = this.props.online;
     return (
       <BrowserRouter>

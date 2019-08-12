@@ -1,22 +1,13 @@
-import React from "react";
+import React, { useState, memo } from "react";
 
-// Global 
+// Global
 import { PageContainer } from "~/theme";
 
 // Local
 import Piano from "../Piano.js";
 
-const About = () => {
-  const showPiano = () => {
-    document.getElementById("showPiano").style.display = "block";
-    document.getElementById("showPianoButton").style.display = "none";
-  };
-
-  const hidePiano = () => {
-    document.getElementById("showPiano").style.display = "none";
-    document.getElementById("showPianoButton").style.display = "block";
-  };
-
+const About = memo(() => {
+  const [showPiano, changeShowPiano] = useState(false);
   return (
     <PageContainer className="effect8">
       <div className="row" className="wow">
@@ -63,8 +54,12 @@ const About = () => {
 
           <div
             id="showPianoButton"
-            style={{ cursor: "pointer" }}
-            onClick={() => showPiano()}
+            style={
+              !showPiano
+                ? { display: "block", cursor: "pointer" }
+                : { display: "none" }
+            }
+            onClick={() => changeShowPiano(true)}
           >
             <img
               className="wow rollIn"
@@ -73,15 +68,18 @@ const About = () => {
                 width: "4em",
                 margin: ".5em"
               }}
-              src={require("../../static/pianoKeys.png")}
+              src={require("~/static/pianoKeys.png")}
             />
             <p className="wow flipInX center"> Open Piano</p>
           </div>
 
-          <div id="showPiano" style={{ display: "none" }}>
-            <Piano />
-            <p onClick={() => hidePiano()} style={{ cursor: "pointer" }}>
-              {" "}
+          <div style={showPiano ? { display: "block" } : { display: "none" }}>
+            <Piano closePiano={!showPiano} />
+
+            <p
+              onClick={() => changeShowPiano(false)}
+              style={{ cursor: "pointer" }}
+            >
               hide
             </p>
           </div>
@@ -108,6 +106,6 @@ const About = () => {
       </div>
     </PageContainer>
   );
-};
+});
 
 export default About;

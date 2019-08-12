@@ -1,5 +1,8 @@
 import React from "react";
 
+// global
+import formatAMPM from "~/helpers/formatAMPM";
+
 // local
 import { StyledTable, TableHeaderRow } from "./Style";
 
@@ -53,4 +56,4 @@ const IntroSongTable = ({ introSongsCompleted }) => {
   );
 };
 
-export default IntroSongTable
+export default IntroSongTable;
