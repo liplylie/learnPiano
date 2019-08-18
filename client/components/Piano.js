@@ -62,60 +62,6 @@ const keys = [
   "C5"
 ];
 
-/**
-  Copyright 2012 Michael Morris-Pearce
-
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-  Jordan Daniels - I changed a few lines because they were causing bugs
-*/
-
-class Piano extends Component {
-  /* Piano keyboard pitches. Names match sound files by ID attribute. */
-  componentWillUpdate(nextProps) {
-    if (nextProps.closePiano !== this.props.closePiano) {
-      if (!nextProps.closePiano) {
-        this.generateSound();
-      } else {
-        console.log('remove bro')
-        this.removeEventListeners();
-      }
-    }
-  }
-
-  componentDidMount() {
-    const { closePiano } = this.props;
-    if (!closePiano) {
-      this.generateSound();
-    }
-  }
-
-  removeEventListeners = () => {
-    const pianoClass = name => {
-      return ".piano-" + name;
-    };
-    keys.forEach(key => {
-      $(pianoClass(key)).off();
-    });
-  };
-
-  generateSound = () => {
-    /* Corresponding keyboard keycodes, in order w/ 'keys'. */
-    /* QWERTY layout:
-    /*   upper register: Q -> P, with 1-0 as black keys. */
-    /*   lower register: Z -> M, , with A-L as black keys. */
-
     const codes = [
       90,
       83,
@@ -146,6 +92,74 @@ class Piano extends Component {
       79,
       80
     ];
+
+/**
+  Copyright 2012 Michael Morris-Pearce
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+  Jordan Daniels - I changed a few lines because they were causing bugs
+*/
+
+class Piano extends Component {
+  /* Piano keyboard pitches. Names match sound files by ID attribute. */
+  componentWillUpdate(nextProps) {
+    if (nextProps.closePiano !== this.props.closePiano) {
+      if (!nextProps.closePiano) {
+        this.generateSound();
+      } else {
+        this.removeEventListeners();
+      }
+    }
+  }
+
+  componentDidMount() {
+    const { closePiano } = this.props;
+    if (!closePiano) {
+      this.generateSound();
+    }
+  }
+
+  removeEventListeners = () => {
+    const pianoClass = name => {
+      return ".piano-" + name;
+    };
+    function sound(id) {
+      var it = document.getElementById(soundId(id));
+      return it;
+    }
+    function soundId(id) {
+      return "sound-" + id;
+    }
+    keys.forEach(key => {
+      let audio = sound(key);
+      $(pianoClass(key)).off();
+      $(pianoClass(key)).unbind();
+      if (audio) {
+        audio.volume = 0;
+        audio.muted = true;
+      }
+    });
+  };
+
+  generateSound = () => {
+    let that = this;
+
+    /* Corresponding keyboard keycodes, in order w/ 'keys'. */
+    /* QWERTY layout:
+    /*   upper register: Q -> P, with 1-0 as black keys. */
+    /*   lower register: Z -> M, , with A-L as black keys. */
 
     const pedal = 32; /* Keycode for sustain pedal. */
     const tonic = "A2"; /* Lowest pitch. */
@@ -185,12 +199,16 @@ class Piano extends Component {
     }
 
     function press(key) {
+
       var audio = sound(key);
       if (depressed[key]) {
         return;
       }
       clearInterval(intervals[key]);
       if (audio) {
+        if (!that.props.closePiano) {
+          audio.muted = false;
+        }
         audio.pause();
         audio.volume = 1.0;
         if (audio.readyState >= 2) {

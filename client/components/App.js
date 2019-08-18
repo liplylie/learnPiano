@@ -164,7 +164,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(" app render");
     const authenticated = this.props.online;
     return (
       <BrowserRouter>

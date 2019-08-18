@@ -12,6 +12,7 @@ class LogIn extends Component {
   }
 
   authWithFacebook() {
+    // add loader
     app
       .auth()
       .signInWithPopup(facebookProvider)
@@ -28,6 +29,7 @@ class LogIn extends Component {
   }
 
   authWithEmailPassword(event) {
+    // add load
     event.preventDefault();
     const email = document.getElementById("emailInput").value;
     const pw = document.getElementById("passwordInput").value;

@@ -5,12 +5,9 @@ import LogIn from "./Login";
 import LogOut from "./LogOut";
 
 class Navbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isTop: true
-    };
-  }
+  state = {
+    isTop: true
+  };
 
   componentDidMount() {
     document.addEventListener("scroll", () => {
@@ -41,6 +38,7 @@ class Navbar extends Component {
           <Link to="/" className="navbar-brand">
             Home
           </Link>
+
           <button
             className="navbar-toggler border-0"
             type="button"
@@ -49,6 +47,7 @@ class Navbar extends Component {
           >
             &#9776;
           </button>
+
           <div className="collapse navbar-collapse" id="exCollapsingNavbar">
             <ul className="nav navbar-nav">
               <li className="nav-item">
@@ -56,11 +55,13 @@ class Navbar extends Component {
                   About
                 </Link>
               </li>
+
               <li className="nav-item">
                 <Link to="/links" className="nav-link">
                   Links
                 </Link>
               </li>
+
               <li
                 className="dropdown nav-item"
                 style={{
@@ -88,6 +89,7 @@ class Navbar extends Component {
                   </li>
                 </ul>
               </li>
+
               <li
                 className="dropdown nav-item"
                 style={{
@@ -113,6 +115,7 @@ class Navbar extends Component {
                 </ul>
               </li>
             </ul>
+
             <ul className="nav navbar-nav flex-row justify-content-between ml-auto">
               <div
                 className="btn-group"
@@ -121,10 +124,7 @@ class Navbar extends Component {
                 }}
               >
                 <li className="nav-item order-2 order-md-1">
-                  <div
-                    className="dropdown-toggle nav-link"
-                    title="settings"
-                  >
+                  <div className="dropdown-toggle nav-link" title="settings">
                     <i
                       className="fa fa-cog fa-fw fa-lg"
                       data-toggle="dropdown"
@@ -137,7 +137,8 @@ class Navbar extends Component {
                   </div>
                 </li>
               </div>
-              <li className="dropdown order-1">
+
+              <li className="order-1">
                 {this.props.authenticated ? (
                   <LogOut authenticated={this.props.authenticated} />
                 ) : (
