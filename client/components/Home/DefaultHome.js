@@ -183,19 +183,22 @@ const DefaultHome = ({ authenticated }) => {
               />
               <p className=""> Open Piano</p>
             </div>
-            <div
-              id="showPiano"
-              style={showPiano ? { display: "block" } : { display: "none" }}
-            >
-              <Piano closePiano={!showPiano} />
-              <p
-                onClick={() => changeShowPiano(false)}
-                style={{ cursor: "pointer" }}
+            {showPiano && (
+              <div
+                id="showPiano"
+                style={showPiano ? { display: "block" } : { display: "none" }}
               >
-                {" "}
-                hide
-              </p>
-            </div>
+                <Piano />
+
+                <p
+                  onClick={() => changeShowPiano(false)}
+                  style={{ cursor: "pointer" }}
+                >
+                  {" "}
+                  hide
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>

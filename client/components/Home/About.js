@@ -73,16 +73,18 @@ const About = memo(() => {
             <p className="wow flipInX center"> Open Piano</p>
           </div>
 
-          <div style={showPiano ? { display: "block" } : { display: "none" }}>
-            <Piano closePiano={!showPiano} />
+          {showPiano && (
+            <div style={showPiano ? { display: "block" } : { display: "none" }}>
+              <Piano />
 
-            <p
-              onClick={() => changeShowPiano(false)}
-              style={{ cursor: "pointer" }}
-            >
-              hide
-            </p>
-          </div>
+              <p
+                onClick={() => changeShowPiano(false)}
+                style={{ cursor: "pointer" }}
+              >
+                hide
+              </p>
+            </div>
+          )}
 
           <iframe
             width="560"

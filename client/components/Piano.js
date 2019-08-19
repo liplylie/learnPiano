@@ -62,36 +62,36 @@ const keys = [
   "C5"
 ];
 
-    const codes = [
-      90,
-      83,
-      88,
-      67,
-      70,
-      86,
-      71,
-      66,
-      78,
-      74,
-      77,
-      75,
-      81,
-      50,
-      87,
-      69,
-      52,
-      82,
-      53,
-      84,
-      89,
-      55,
-      85,
-      56,
-      73,
-      57,
-      79,
-      80
-    ];
+const codes = [
+  90,
+  83,
+  88,
+  67,
+  70,
+  86,
+  71,
+  66,
+  78,
+  74,
+  77,
+  75,
+  81,
+  50,
+  87,
+  69,
+  52,
+  82,
+  53,
+  84,
+  89,
+  55,
+  85,
+  56,
+  73,
+  57,
+  79,
+  80
+];
 
 /**
   Copyright 2012 Michael Morris-Pearce
@@ -114,21 +114,16 @@ const keys = [
 
 class Piano extends Component {
   /* Piano keyboard pitches. Names match sound files by ID attribute. */
-  componentWillUpdate(nextProps) {
-    if (nextProps.closePiano !== this.props.closePiano) {
-      if (!nextProps.closePiano) {
-        this.generateSound();
-      } else {
-        this.removeEventListeners();
-      }
-    }
-  }
 
   componentDidMount() {
     const { closePiano } = this.props;
     if (!closePiano) {
       this.generateSound();
     }
+  }
+
+  componentWillUnmount() {
+    this.removeEventListeners()
   }
 
   removeEventListeners = () => {
@@ -199,7 +194,6 @@ class Piano extends Component {
     }
 
     function press(key) {
-
       var audio = sound(key);
       if (depressed[key]) {
         return;
