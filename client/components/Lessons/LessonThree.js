@@ -135,7 +135,6 @@ class LessonThree extends Component {
                 note.indexOf("7") === -1 &&
                 note.indexOf("8") === -1
             ) {
-                console.log(note, "note");
                 that.noteArray.push(note);
                 if (
                     (note === "D4" && that.noteArray.length === 1) || 
@@ -427,7 +426,6 @@ class LessonThree extends Component {
     }
 
     finishSong() {
-        console.log("done")
         document.getElementById("lessonThreeMessageThree").style.display = "none";
         document.getElementById("lessonThreeMessageFour").style.display = "block";
         document.getElementById("lessonThreeButtonFour").style.display = "block";
@@ -444,13 +442,12 @@ class LessonThree extends Component {
         //
         userLessonStatus.once("value").then(snapshot => {
             userLessonStatus.update({
-                lesson3: {
+                lessonThree: {
                     completed: true,
                     time: firebase.database.ServerValue.TIMESTAMP
                 }
             });
             that.props.LessonsCompletedActions.lessonsCompleted(snapshot.val());
-            console.log(snapshot.val(), "lesson three completed");
             that.setState({
                 lessonCompleted: true
             });

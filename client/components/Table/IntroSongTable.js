@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router";
 
 // global
 import formatAMPM from "~/helpers/formatAMPM";
@@ -24,8 +25,9 @@ const spaceWords = word => {
   return word.split(/(?=[A-Z])/).join(" ");
 };
 
-const IntroSongTable = ({ introSongsCompleted }) => {
+const IntroSongTable = ({ introSongsCompleted, history }) => {
   const introSongData = Object.entries(introSongsCompleted);
+  const navigate = page => history.push(`/SongList/intro/${page}`);
 
   return (
     <StyledTable id="introSongsTable" className="table effect8">
@@ -37,11 +39,13 @@ const IntroSongTable = ({ introSongsCompleted }) => {
 
           <th>Date Finished</th>
         </TableHeaderRow>
+
         {introSongData.map((data, i) => {
           return (
             <tr
               key={i}
               className={data[1].completed ? "Complete" : "NotComplete"}
+              onClick={() => navigate(data[0])}
             >
               <th>{spaceWords(data[0])}</th>
 
@@ -56,4 +60,4 @@ const IntroSongTable = ({ introSongsCompleted }) => {
   );
 };
 
-export default IntroSongTable;
+export default withRouter(IntroSongTable);

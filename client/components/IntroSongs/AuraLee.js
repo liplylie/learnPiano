@@ -447,7 +447,6 @@ class AuraLee extends Component {
                     time: firebase.database.ServerValue.TIMESTAMP
                 }
             });
-            console.log(snapshot.val(), 'snapshot')
             that.props.IntroSongsCompletedActions.introSongsCompleted(snapshot.val());
             that.setState({
                 lessonCompleted: true

@@ -165,7 +165,6 @@ class HotCrossBuns extends Component {
                             wrongNote: null,
                             noteClass: "correctNote"
                         });
-                        console.log(that.noteArray, "note array correct");
                     } else {
                         if (that.state.noteClass === "wrongNote") {
                             that.setState({
@@ -182,7 +181,6 @@ class HotCrossBuns extends Component {
                                 noteClass: "wrongNote"
                             });
                         }
-                        console.log(that.noteArray, "note array wrong");
                         that.turnOffMicrophone();
                         that.noteArray = [];
                         that.noteArray.length = 0;
@@ -289,7 +287,6 @@ class HotCrossBuns extends Component {
         var streamReceived = function(stream) {
             micStream = stream;
             analyserAudioNode = audioContext.createAnalyser();
-            console.log(audioContext, "audioContext");
             analyserAudioNode.fftSize = 2048;
             sourceAudioNode = audioContext.createMediaStreamSource(micStream);
             // let gainNode = audioContext.createGain()
@@ -432,7 +429,6 @@ class HotCrossBuns extends Component {
     }
 
     finishSong() {
-        console.log("done");
         document.getElementById("lessonThreeMessageThree").style.display =
             "none";
         document.getElementById("lessonThreeMessageFour").style.display =
@@ -453,7 +449,6 @@ class HotCrossBuns extends Component {
                     time: firebase.database.ServerValue.TIMESTAMP
                 }
             });
-            console.log(snapshot.val(), 'snapshot')
             that.props.IntroSongsCompletedActions.introSongsCompleted(snapshot.val());
             that.setState({
                 lessonCompleted: true

@@ -132,11 +132,11 @@ class ProfileSettings extends Component {
       "/users/" + this.props.profile.userId + "/lessonsCompleted"
     );
     let lessons = {
-      lesson1: { completed: false, time: null },
-      lesson2: { completed: false, time: null },
-      lesson3: { completed: false, time: null },
-      lesson4: { completed: false, time: null },
-      lesson5: { completed: false, time: null }
+      lessonOne: { completed: false, time: null },
+      lessonTwo: { completed: false, time: null },
+      lessonThree: { completed: false, time: null },
+      lessonFour: { completed: false, time: null },
+      lessonFive: { completed: false, time: null }
     };
 
     userLessonStatus.once("value").then(

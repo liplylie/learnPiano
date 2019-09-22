@@ -43,7 +43,6 @@ class createIntroSong extends Component {
                 this.popUpCount === this.correctAnswers &&
                 !this.state.lessonCompleted
             ) {
-                console.log(this.state.correctNote, this.state.checkNote, 'look')
                 noteTransition(this.props.songName, this.correctAnswers);
                 //this.turnOffMicrophone();
                 this.audio.close();
@@ -144,7 +143,6 @@ class createIntroSong extends Component {
                 note.indexOf("7") === -1 &&
                 note.indexOf("8") === -1
             ) {
-                console.log(note,'note')
                 that.noteArray.push(note);
                 if (
                     (note === "D4" && that.noteArray.length === 1) ||

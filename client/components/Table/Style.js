@@ -3,12 +3,18 @@ import styled from "styled-components";
 export const StyledTable = styled.table`
   border-collapse: collapse;
   border: solid white 1px;
+
+  tr {
+    cursor: pointer;
+  }
+
   th,
   td {
     border-collapse: collapse;
     border: solid white 1px;
     padding: 1em;
   }
+
   .Complete {
     background-color: lightgreen;
   }

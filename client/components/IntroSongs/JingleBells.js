@@ -146,7 +146,6 @@ class JingleBells extends Component {
                 note.indexOf("8") === -1
             ) {
                 that.noteArray.push(note);
-                console.log(note, 'note')
                 if (
                     (note === "E4" && that.noteArray.length === 1) ||
                     (note === "D4" && that.noteArray.length === 1) ||

@@ -1,11 +1,12 @@
 import React from "react";
+import { withRouter } from "react-router";
 
 // local
 import { StyledTable, TableHeaderRow } from "./Style";
 
-
-const MiniGameTable = ({ miniGamesCompleted }) => {
+const MiniGameTable = ({ miniGamesCompleted, history }) => {
   const miniGameData = Object.entries(miniGamesCompleted);
+  const navigate = page => history.push(`/${page}`);
 
   return (
     <StyledTable id="miniGameTable" className="table effect8">
@@ -17,11 +18,13 @@ const MiniGameTable = ({ miniGamesCompleted }) => {
 
           <th>High Score</th>
         </TableHeaderRow>
+
         {miniGameData.map((data, i) => {
           return (
             <tr
               key={i}
               className={data[1].completed ? "Complete" : "NotComplete"}
+              onClick={() => navigate(data[0])}
             >
               <th>Mini Game {i + 1}</th>
               <th>{data[1].completed ? `Completed` : `Not Completed`} </th>
@@ -34,4 +37,4 @@ const MiniGameTable = ({ miniGamesCompleted }) => {
   );
 };
 
-export default MiniGameTable;
+export default withRouter(MiniGameTable);

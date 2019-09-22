@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router";
 
 // global
 import formatAMPM from "~/helpers/formatAMPM";
@@ -20,8 +21,9 @@ const formatFinishedDate = time => {
     : "";
 };
 
-const LessonTable = ({ lessonsCompleted }) => {
+const LessonTable = ({ lessonsCompleted, history }) => {
   const lessonData = Object.entries(lessonsCompleted);
+  const navigate = page => history.push(`/${page}`);
 
   return (
     <StyledTable id="lessonTable" className="table effect8">
@@ -39,6 +41,7 @@ const LessonTable = ({ lessonsCompleted }) => {
             <tr
               key={i}
               className={data[1].completed ? "Complete" : "NotComplete"}
+              onClick={() => navigate(data[0])}
             >
               <th>Lesson {i + 1}</th>
 
@@ -53,4 +56,4 @@ const LessonTable = ({ lessonsCompleted }) => {
   );
 };
 
-export default LessonTable;
+export default withRouter(LessonTable);

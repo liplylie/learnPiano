@@ -128,7 +128,6 @@ class LessonOne extends Component {
                 note.indexOf("7") === -1 &&
                 note.indexOf("8") === -1
             ) {
-                console.log(note, "note");
                 that.noteArray.push(note);
                 if (
                     (note.includes("3") && that.noteArray.length === 1) ||
@@ -512,7 +511,7 @@ class LessonOne extends Component {
         //
         userLessonStatus.once("value").then(snapshot => {
             userLessonStatus.update({
-                lesson1: {
+                lessonOne: {
                     completed: true,
                     time: firebase.database.ServerValue.TIMESTAMP
                 }
