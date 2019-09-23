@@ -147,7 +147,6 @@ class LessonOne extends Component {
                         that.setState({
                             wrongNote: that.noteArray[2]
                         });
-                        console.log(that.noteArray, "note array");
                         that.turnOffMicrophone();
                         that.noteArray = [];
                         if (
@@ -158,7 +157,7 @@ class LessonOne extends Component {
                             let okButton = document.getElementsByClassName(
                                 "mm-popup__btn mm-popup__btn--ok"
                             )[0];
-                            console.log(okButton, "okbutton");
+
                             setTimeout(() => {
                                 okButton.click();
                             }, 1000);
@@ -267,7 +266,6 @@ class LessonOne extends Component {
         var streamReceived = function(stream) {
             micStream = stream;
             analyserAudioNode = audioContext.createAnalyser();
-            console.log(audioContext, "audioContext");
             analyserAudioNode.fftSize = 2048;
             sourceAudioNode = audioContext.createMediaStreamSource(micStream);
             // let gainNode = audioContext.createGain()

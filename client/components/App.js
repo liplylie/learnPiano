@@ -14,7 +14,7 @@ import { app, firebaseDB } from "~/firebase";
 
 // components
 import NavBar from "./NavBar";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 
 // routes
 import PublicRoutes from "~/routes/PublicRoutes";
@@ -77,7 +77,7 @@ class App extends Component {
         }
       },
       errorObject => {
-        console.log("The read failed: " + errorObject.code);
+        console.error("The read failed: " + errorObject.code);
       }
     );
   };
@@ -102,7 +102,7 @@ class App extends Component {
         }
       },
       errorObject => {
-        console.log("The read failed: " + errorObject.code);
+        console.error("The read failed: " + errorObject.code);
       }
     );
   };
@@ -150,7 +150,7 @@ class App extends Component {
         }
       },
       errorObject => {
-        console.log("The read failed: " + errorObject.code);
+        console.error("The read failed: " + errorObject.code);
       }
     );
   };
