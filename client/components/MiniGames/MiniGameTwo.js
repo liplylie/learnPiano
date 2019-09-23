@@ -10,7 +10,6 @@ import { firebaseDB } from "~/firebase";
 import * as MiniGamesCompleted from "~/actions/miniGamesCompletedActions";
 import { PageContainer } from "~/theme";
 
-
 // sounds
 import C4 from "~/static/middleCBassClef.gif";
 import B3 from "~/static/B3.jpg";
@@ -20,7 +19,6 @@ import F3 from "~/static/F3.png";
 
 // components
 import Piano from "../Piano";
-
 
 class MiniGameTwo extends Component {
   constructor(props) {
@@ -80,7 +78,7 @@ class MiniGameTwo extends Component {
     document.getElementById("countDown").style.display = "block";
     document.getElementById("startButton").style.display = "none";
     document.getElementById("gameRules").style.display = "none";
-    function handleTimer() {
+    const handleTimer = () => {
       if (that.state.countDown === 0 && !flag) {
         flag = true;
         that.state.countDown = 30;
@@ -96,7 +94,7 @@ class MiniGameTwo extends Component {
       } else {
         that.setState({ countDown: (that.state.countDown -= 1) });
       }
-    }
+    };
 
     let timer = setInterval(() => {
       handleTimer();

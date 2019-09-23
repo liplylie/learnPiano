@@ -26,7 +26,7 @@ const LessonTable = ({ lessonsCompleted, history }) => {
   const navigate = page => history.push(`/${page}`);
 
   return (
-    <StyledTable id="lessonTable" className="table effect8">
+    <StyledTable id="lessonTable" className="table">
       <tbody>
         <TableHeaderRow>
           <th>Lessons</th>

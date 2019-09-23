@@ -504,13 +504,12 @@ class LessonTwo extends Component {
 
         userLessonStatus.once("value").then(snapshot => {
             userLessonStatus.update({
-                lessonTwo: {
+                lesson2: {
                     completed: true,
                     time: firebase.database.ServerValue.TIMESTAMP
                 }
             });
             that.props.LessonsCompletedActions.lessonsCompleted(snapshot.val());
-            console.log(snapshot.val(), "lesson two completed");
             that.setState({
                 lessonCompleted: true
             });

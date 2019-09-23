@@ -7,7 +7,7 @@ import firebase from "firebase";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as AuthActions from "../../actions/authActions.js";
-import * as LessonsCompletedActopms from "../../actions/lessonsCompletedActions";
+import * as LessonsCompletedActions from "../../actions/lessonsCompletedActions";
 import * as IntroSongsCompletedActions from "../../actions/introSongsCompletedActions";
 
 import Popup from "react-popup";

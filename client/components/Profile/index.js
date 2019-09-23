@@ -6,6 +6,7 @@ import { bindActionCreators } from "redux";
 // global
 import { firebaseDB } from "~/firebase";
 import { PageContainer } from "~/theme";
+import introSongs from "~/helpers/introSongs";
 
 // reducers
 import * as AuthActions from "~/actions/authActions.js";
@@ -27,11 +28,11 @@ import IntroSongTable from "../Table/IntroSongTable";
 class Profile extends Component {
   state = {
     lessonsCompleted: {
-      lessonOne: false,
-      lessonTwo: false,
-      lessonThree: false,
-      lessonFour: false,
-      lessonFive: false
+      lesson1: false,
+      lesson2: false,
+      lesson3: false,
+      lesson4: false,
+      lesson5: false
     },
     miniGamesCompleted: {
       miniGame1: false,
@@ -68,11 +69,11 @@ class Profile extends Component {
       "/users/" + Auth.userId + "/lessonsCompleted"
     );
     const lessons = {
-      lessonOne: { completed: false, time: null },
-      lessonTwo: { completed: false, time: null },
-      lessonThree: { completed: false, time: null },
-      lessonFour: { completed: false, time: null },
-      lessonFive: { completed: false, time: null }
+      lesson1: { completed: false, time: null },
+      lesson2: { completed: false, time: null },
+      lesson3: { completed: false, time: null },
+      lesson4: { completed: false, time: null },
+      lesson5: { completed: false, time: null }
     };
 
     userLessonStatus.once("value").then(
@@ -211,15 +212,15 @@ class Profile extends Component {
             className="col-md-4 text-left wow fadeIn animated lessonList"
             style={{ margin: ".3em" }}
           >
-            <StyledLink to="/lessonOne">Lesson One</StyledLink>
+            <StyledLink to="/lesson1">Lesson One</StyledLink>
 
-            <StyledLink to="/lessonTwo">Lesson Two</StyledLink>
+            <StyledLink to="/lesson2">Lesson Two</StyledLink>
 
-            <StyledLink to="/lessonThree">Lesson Three</StyledLink>
+            <StyledLink to="/lesson3">Lesson Three</StyledLink>
 
-            <StyledLink to="/lessonFour">Lesson Four</StyledLink>
+            <StyledLink to="/lesson4">Lesson Four</StyledLink>
 
-            <StyledLink to="/lessonFive">Lesson Five</StyledLink>
+            <StyledLink to="/lesson5">Lesson Five</StyledLink>
           </div>
         </div>
 

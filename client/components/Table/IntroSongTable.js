@@ -30,7 +30,7 @@ const IntroSongTable = ({ introSongsCompleted, history }) => {
   const navigate = page => history.push(`/SongList/intro/${page}`);
 
   return (
-    <StyledTable id="introSongsTable" className="table effect8">
+    <StyledTable id="introSongsTable" className="table">
       <tbody>
         <TableHeaderRow>
           <th>Intro Song List</th>

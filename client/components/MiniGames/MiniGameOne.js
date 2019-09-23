@@ -80,7 +80,7 @@ class MiniGameOne extends Component {
     document.getElementById("countDown").style.display = "block";
     document.getElementById("startButton").style.display = "none";
     document.getElementById("gameRules").style.display = "none";
-    function handleTimer() {
+    const handleTimer = () => {
       if (that.state.countDown === 0 && !flag) {
         flag = true;
         that.state.countDown = 30;
@@ -96,7 +96,7 @@ class MiniGameOne extends Component {
       } else {
         that.setState({ countDown: (that.state.countDown -= 1) });
       }
-    }
+    };
 
     let timer = setInterval(() => {
       handleTimer();
@@ -491,10 +491,7 @@ class MiniGameOne extends Component {
       return <Redirect push to="/" />;
     }
     return (
-      <PageContainer
-        className="effect8 wow fadeIn"
-        textAlignCenter
-      >
+      <PageContainer className="effect8 wow fadeIn" textAlignCenter>
         <div className="row">
           <div className="col-md-12">
             <Popup />

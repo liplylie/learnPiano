@@ -624,9 +624,15 @@ const HotCrossBunsMapStateToProps = store => {
 
 const HotCrossBunsDispatch = dispatch => {
     return {
-        AuthActions: bindActionCreators(AuthActions, dispatch),
-        LessonsCompletedActions: bindActionCreators(LessonsCompleted, dispatch),
-        IntroSongsCompletedActions: bindActionCreators(IntroSongsCompletedActions, dispatch)
+      AuthActions: bindActionCreators(AuthActions, dispatch),
+      LessonsCompletedActions: bindActionCreators(
+        LessonsCompletedActions,
+        dispatch
+      ),
+      IntroSongsCompletedActions: bindActionCreators(
+        IntroSongsCompletedActions,
+        dispatch
+      )
     };
 };
 

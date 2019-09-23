@@ -91,17 +91,17 @@ export const PrivateRoutes = ({ loading, authenticated, userID }) => {
       />
       <Route
         exact
-        path="/lessonOne"
+        path="/lesson1"
         component={() => <LessonOne authenticated={authenticated} />}
       />
       <Route
         exact
-        path="/lessonTwo"
+        path="/lesson2"
         component={() => <LessonTwo authenticated={authenticated} />}
       />
       <Route
         exact
-        path="/lessonThree"
+        path="/lesson3"
         component={() => <LessonThree authenticated={authenticated} />}
       />
       <Route
@@ -153,7 +153,7 @@ export const PrivateRoutes = ({ loading, authenticated, userID }) => {
       />
       <Route
         exact
-        path="/SongList/intro/Dreydl"
+        path="/SongList/intro/DreydlDreydl"
         component={() => (
           <CreateIntroSong
             songName={Dreydl.songName}
@@ -218,7 +218,7 @@ export const PrivateRoutes = ({ loading, authenticated, userID }) => {
       />
       <Route
         exact
-        path="/SongList/intro/ItsRaining"
+        path="/SongList/intro/ItsRainingItsPouring"
         component={() => (
           <CreateIntroSong
             songName={ItsRaining.songName}
@@ -266,7 +266,7 @@ export const PrivateRoutes = ({ loading, authenticated, userID }) => {
       />
       <Route
         exact
-        path="/SongList/intro/MaryHadLamb"
+        path="/SongList/intro/MaryHad"
         component={() => <MaryHadLamb />}
       />
       <Route
@@ -297,7 +297,7 @@ export const PrivateRoutes = ({ loading, authenticated, userID }) => {
       />
       <Route
         exact
-        path="/SongList/intro/PopGoesWeasel"
+        path="/SongList/intro/PopGoesTheWeasel"
         component={() => (
           <CreateIntroSong
             songName={PopGoesWeasel.songName}
@@ -324,7 +324,7 @@ export const PrivateRoutes = ({ loading, authenticated, userID }) => {
       />
       <Route
         exact
-        path="/SongList/intro/Twinkle"
+        path="/SongList/intro/TwinkleTwinkle"
         component={() => (
           <CreateIntroSong
             songName={Twinkle.songName}
@@ -335,11 +335,7 @@ export const PrivateRoutes = ({ loading, authenticated, userID }) => {
       />
       <Route exact path="/about" component={() => <About />} />
       <Route exact path="/links" component={() => <Links />} />
-      <Route
-        exact
-        path="/privacyPolicy"
-        component={() => <PrivacyPolicy />}
-      />
+      <Route exact path="/privacyPolicy" component={() => <PrivacyPolicy />} />
       <Route exact path="/contact" component={() => <Contact />} />
       <Route component={Page404} />
     </Switch>

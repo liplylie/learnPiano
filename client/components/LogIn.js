@@ -1,8 +1,12 @@
 import React, { Component } from "react";
-import { Toaster, Intent } from "@blueprintjs/core";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-import { firebase, app, facebookProvider } from "../firebase";
+import { app, facebookProvider } from "../firebase";
+
+// reducers
+import * as AuthActions from "~/actions/authActions";
 
 class LogIn extends Component {
   constructor() {
@@ -44,12 +48,18 @@ class LogIn extends Component {
           app
             .auth()
             .signInWithEmailAndPassword(email, pw)
-            .then(result => {
-              console.log("logged in");
+            .then(user => {
+              const userInfo = {
+                name: user.displayName,
+                email: user.email,
+                userId: user.uid,
+                picture: user.photoURL
+              };
+              this.props.AuthActions.userLoginInfo(userInfo);
               this.props.history.push("/");
             })
             .catch(err => {
-              console.log("error with login", err);
+              console.error("error with login", err);
               alert(err.message);
             });
         }
@@ -134,4 +144,13 @@ class LogIn extends Component {
   }
 }
 
-export default withRouter(LogIn);
+const appDispatch = dispatch => {
+  return {
+    AuthActions: bindActionCreators(AuthActions, dispatch)
+  };
+};
+
+export default withRouter(connect(
+  null,
+  appDispatch
+)(LogIn));

@@ -442,7 +442,7 @@ class LessonThree extends Component {
         //
         userLessonStatus.once("value").then(snapshot => {
             userLessonStatus.update({
-                lessonThree: {
+                lesson3: {
                     completed: true,
                     time: firebase.database.ServerValue.TIMESTAMP
                 }

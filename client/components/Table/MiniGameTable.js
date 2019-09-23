@@ -9,7 +9,7 @@ const MiniGameTable = ({ miniGamesCompleted, history }) => {
   const navigate = page => history.push(`/${page}`);
 
   return (
-    <StyledTable id="miniGameTable" className="table effect8">
+    <StyledTable id="miniGameTable" className="table">
       <tbody>
         <TableHeaderRow>
           <th>Mini Games</th>

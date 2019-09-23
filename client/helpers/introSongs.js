@@ -1,9 +1,9 @@
 const introSongs = {
   Alouette: false,
-	AuClairDeLaLune: false,
+  AuClairDeLaLune: false,
   AuraLee: false,
   CamptownRaces: false,
-  DredylDredyl: false,
+  DreydlDreydl: false,
   FrogSong: false,
   ForHesAJollyGoodFellow: false,
   GoodKingWenceslas: false,
@@ -20,10 +20,10 @@ const introSongs = {
   Musette: false,
   NewWorldSymphony: false,
   OatsAndBeans: false,
-  OdeToJoy: false, 
+  OdeToJoy: false,
   PopGoesTheWeasel: false,
   SaintsGoMarchin: false,
   TwinkleTwinkle: false
-}
+};
 
 export default introSongs
