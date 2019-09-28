@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import About from "../components/Home/About";
-import Links from "../components/Home/Links";
-import PrivacyPolicy from "../components/Home/privacyPolicy";
-import DefaultHome from "../components/Home/DefaultHome";
-import Contact from "../components/Home/Contact";
+import About from "../pages/Home/About";
+import Links from "../pages/Home/Links";
+import PrivacyPolicy from "../pages/Home/privacyPolicy";
+import DefaultHome from "../pages/Home/DefaultHome";
+import Contact from "../pages/Home/Contact";
 
 const Page404 = () => (
   <div

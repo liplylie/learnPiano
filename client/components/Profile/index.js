@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 // global
-import { firebaseDB } from "~/firebase";
+import { firebaseDB } from "../../pages/MiniGames/node_modules/~/firebase";
 import { PageContainer } from "~/theme";
 import introSongs from "~/helpers/introSongs";
 

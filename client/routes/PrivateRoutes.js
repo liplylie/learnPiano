@@ -1,53 +1,50 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import About from "../components/Home/About";
-import Links from "../components/Home/Links";
-import PrivacyPolicy from "../components/Home/privacyPolicy";
-import NavBar from "../components/NavBar";
+import About from "../pages/Home/About";
+import Links from "../pages/Home/Links";
+import PrivacyPolicy from "../pages/Home/privacyPolicy";
 import ProfileSettings from "../components/ProfileSettings";
-import DefaultHome from "../components/Home/DefaultHome";
-import Footer from "../components/Footer";
-import Profile from "../components/Profile";
-import Contact from "../components/Home/Contact";
+import Profile from "../pages/Profile";
+import Contact from "../pages/Home/Contact";
 
 // Lessons
-import LessonOne from "../components/Lessons/LessonOne";
-import LessonTwo from "../components/Lessons/LessonTwo";
-import LessonThree from "../components/Lessons/LessonThree";
+import LessonOne from "../pages/Lessons/LessonOne";
+import LessonTwo from "../pages/Lessons/LessonTwo";
+import LessonThree from "../pages/Lessons/LessonThree";
 
 // Mini Games
-import MiniGameOne from "../components/MiniGames/MiniGameOne";
-import MiniGameTwo from "../components/MiniGames/MiniGameTwo";
+import MiniGameOne from "../pages/MiniGames/MiniGameOne";
+import MiniGameTwo from "../pages/MiniGames/MiniGameTwo";
 
 // Intro Songs
-import IntroSongList from "../components/IntroSongs/IntroSongList";
-import CreateIntroSong from "../components/IntroSongs/CreateIntroSong";
-import Alouette from "../components/IntroSongs/Alouette";
-import AuClairDeLaLune from "../components/IntroSongs/AuClairDeLaLune";
-import AuraLee from "../components/IntroSongs/AuraLee";
-import CamptownRaces from "../components/IntroSongs/CamptownRaces";
-import Dreydl from "../components/IntroSongs/Dreydl";
-import ForHesAJollyGoodFellow from "../components/IntroSongs/ForHesAJollyGoodFellow";
-import FrogSong from "../components/IntroSongs/FrogSong";
-import GoodKingWenceslas from "../components/IntroSongs/GoodKingWenceslas";
-import GoTellAuntRhody from "../components/IntroSongs/GoTellAuntRhody";
-import HakyoJung from "../components/IntroSongs/HakyoJung";
-import HotCrossBuns from "../components/IntroSongs/HotCrossBuns";
-import ItsRaining from "../components/IntroSongs/ItsRaining";
-import LightlyRow from "../components/IntroSongs/LightlyRow";
-import LongLongAgo from "../components/IntroSongs/LongLongAgo";
-import LondonBridges from "../components/IntroSongs/LondonBridges";
-import LoveSomebody from "../components/IntroSongs/LoveSomebody";
-import JingleBells from "../components/IntroSongs/JingleBells";
-import MaryHadLamb from "../components/IntroSongs/MaryHadLamb";
-import Musette from "../components/IntroSongs/Musette";
-import NewWorldSymphony from "../components/IntroSongs/NewWorldSymphony";
-import OatsAndBeans from "../components/IntroSongs/OatsAndBeans";
-import OdeToJoy from "../components/IntroSongs/OdeToJoy";
-import PopGoesWeasel from "../components/IntroSongs/PopGoesWeasel";
-import SaintsGoMarchin from "../components/IntroSongs/SaintsGoMarchin";
-import Twinkle from "../components/IntroSongs/Twinkle";
+import IntroSongList from "../pages/IntroSongs/IntroSongList";
+import CreateIntroSong from "../pages/IntroSongs/CreateIntroSong";
+import Alouette from "../pages/IntroSongs/Alouette";
+import AuClairDeLaLune from "../pages/IntroSongs/AuClairDeLaLune";
+import AuraLee from "../pages/IntroSongs/AuraLee";
+import CamptownRaces from "../pages/IntroSongs/CamptownRaces";
+import Dreydl from "../pages/IntroSongs/Dreydl";
+import ForHesAJollyGoodFellow from "../pages/IntroSongs/ForHesAJollyGoodFellow";
+import FrogSong from "../pages/IntroSongs/FrogSong";
+import GoodKingWenceslas from "../pages/IntroSongs/GoodKingWenceslas";
+import GoTellAuntRhody from "../pages/IntroSongs/GoTellAuntRhody";
+import HakyoJung from "../pages/IntroSongs/HakyoJung";
+import HotCrossBuns from "../pages/IntroSongs/HotCrossBuns";
+import ItsRaining from "../pages/IntroSongs/ItsRaining";
+import LightlyRow from "../pages/IntroSongs/LightlyRow";
+import LongLongAgo from "../pages/IntroSongs/LongLongAgo";
+import LondonBridges from "../pages/IntroSongs/LondonBridges";
+import LoveSomebody from "../pages/IntroSongs/LoveSomebody";
+import JingleBells from "../pages/IntroSongs/JingleBells";
+import MaryHadLamb from "../pages/IntroSongs/MaryHadLamb";
+import Musette from "../pages/IntroSongs/Musette";
+import NewWorldSymphony from "../pages/IntroSongs/NewWorldSymphony";
+import OatsAndBeans from "../pages/IntroSongs/OatsAndBeans";
+import OdeToJoy from "../pages/IntroSongs/OdeToJoy";
+import PopGoesWeasel from "../pages/IntroSongs/PopGoesWeasel";
+import SaintsGoMarchin from "../pages/IntroSongs/SaintsGoMarchin";
+import Twinkle from "../pages/IntroSongs/Twinkle";
 
 const Page404 = () => (
   <div

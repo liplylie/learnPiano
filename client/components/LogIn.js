@@ -9,13 +9,7 @@ import { app, facebookProvider } from "../firebase";
 import * as AuthActions from "~/actions/authActions";
 
 class LogIn extends Component {
-  constructor() {
-    super();
-    this.authWithFacebook = this.authWithFacebook.bind(this);
-    this.authWithEmailPassword = this.authWithEmailPassword.bind(this);
-  }
-
-  authWithFacebook() {
+  authWithFacebook = () => {
     // add loader
     app
       .auth()
@@ -30,9 +24,9 @@ class LogIn extends Component {
       .catch(err => {
         alert(error.message);
       });
-  }
+  };
 
-  authWithEmailPassword(event) {
+  authWithEmailPassword = event => {
     // add load
     event.preventDefault();
     const email = document.getElementById("emailInput").value;
@@ -66,7 +60,7 @@ class LogIn extends Component {
       });
     document.getElementById("emailInput").value = "";
     document.getElementById("passwordInput").value = "";
-  }
+  };
 
   render() {
     return (
@@ -89,7 +83,7 @@ class LogIn extends Component {
                 <input
                   id="emailInput"
                   placeholder="Email"
-                  className="input-large"
+                  className=" form-control"
                   type="email"
                   required=""
                 />
@@ -98,7 +92,7 @@ class LogIn extends Component {
                 <input
                   id="passwordInput"
                   placeholder="Password"
-                  className="input-large"
+                  className=" form-control"
                   type="password"
                   required=""
                 />
@@ -150,7 +144,9 @@ const appDispatch = dispatch => {
   };
 };
 
-export default withRouter(connect(
-  null,
-  appDispatch
-)(LogIn));
+export default withRouter(
+  connect(
+    null,
+    appDispatch
+  )(LogIn)
+);
