@@ -9,10 +9,25 @@ export const FacebookStyle = styled.a`
   color: white;
   cursor: pointer;
 
-  &:not([href]): not([tabindex]) {
+  &:not([href]):not([tabindex]) {
     color: white;
+
     &:hover {
       color: white;
+    }
+  }
+`;
+
+export const NoAccount = styled.div`
+  a {
+
+    &:not([href]):not([tabindex]) {
+      text-decoration: underline;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 `;

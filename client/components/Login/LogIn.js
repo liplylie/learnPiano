@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { PulseLoader } from "react-spinners";
 import Popup from "react-popup";
+import $ from "jquery";
 
 // global
 import { app, facebookProvider } from "~/firebase";
@@ -13,12 +14,18 @@ import { app, facebookProvider } from "~/firebase";
 import * as AuthActions from "~/actions/authActions";
 
 // local
-import { StyledUL, FacebookStyle } from "./LoginStyle";
+import { StyledUL, FacebookStyle, NoAccount } from "./LoginStyle";
 
 class LogIn extends Component {
   state = {
     isLoading: false
   };
+
+  componentDidMount() {
+    $(".dropdown-menu").click(function(e) {
+      e.stopPropagation();
+    });
+  }
 
   authWithFacebook = () => {
     this.setState({ isLoading: true });
@@ -161,6 +168,12 @@ class LogIn extends Component {
                   <a>Forgot password?</a>
                 </small>
               </div> */}
+
+              <NoAccount className="form-group text-xs-center">
+                <small>
+                  <a>No account? Sign Up.</a>
+                </small>
+              </NoAccount>
 
               <div className="container">
                 <FacebookStyle
