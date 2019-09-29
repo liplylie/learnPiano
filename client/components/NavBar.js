@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import LogIn from "./Login";
+import LogIn from "./Login/LogIn";
 import LogOut from "./LogOut";
 
 class Navbar extends Component {

@@ -1,34 +1,52 @@
+// libs
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { PulseLoader } from "react-spinners";
+import Popup from "react-popup";
 
-import { app, facebookProvider } from "../firebase";
+// global
+import { app, facebookProvider } from "~/firebase";
 
 // reducers
 import * as AuthActions from "~/actions/authActions";
 
+// local
+import { StyledUL, FacebookStyle } from "./LoginStyle";
+
 class LogIn extends Component {
+  state = {
+    isLoading: false
+  };
+
   authWithFacebook = () => {
-    // add loader
+    this.setState({ isLoading: true });
+
     app
       .auth()
       .signInWithPopup(facebookProvider)
       .then((result, error) => {
+        this.setState({ isLoading: false });
+
         if (error) {
-          alert(error.message);
+          Popup.alert(error.message);
         } else {
           this.props.history.push("/");
         }
       })
       .catch(err => {
-        alert(error.message);
+        Popup.alert(error.message);
+        console.error("error with login", err.message);
+        this.setState({ isLoading: false });
       });
   };
 
   authWithEmailPassword = event => {
-    // add load
     event.preventDefault();
+
+    this.setState({ isLoading: true });
+
     const email = document.getElementById("emailInput").value;
     const pw = document.getElementById("passwordInput").value;
 
@@ -36,6 +54,8 @@ class LogIn extends Component {
       .auth()
       .fetchProvidersForEmail(email)
       .then(providers => {
+        this.setState({ isLoading: false });
+
         if (providers.length === 0) {
           return app.auth().createUserWithEmailAndPassword(email, pw);
         } else {
@@ -54,41 +74,66 @@ class LogIn extends Component {
             })
             .catch(err => {
               console.error("error with login", err);
-              alert(err.message);
+              this.setState({ isLoading: false });
+              Popup.alert(err.message);
             });
         }
+      })
+      .catch(err => {
+        console.error("error with login", err);
+        this.setState({ isLoading: false });
+        Popup.alert(err.message);
       });
+
     document.getElementById("emailInput").value = "";
     document.getElementById("passwordInput").value = "";
   };
 
   render() {
+    const { isLoading } = this.state;
     return (
       <div>
+        <Popup />
+
         <button
           type="button"
           id="dropdownMenu1"
           data-toggle="dropdown"
           className="btn dropbtn btn-outline-secondary dropdown-toggle"
         >
-          Login <span className="caret" />
+          {isLoading ? (
+            <PulseLoader
+              css={{ display: "inline-block" }}
+              sizeUnit={"px"}
+              size={8}
+              color={"white"}
+              loading={isLoading}
+            />
+          ) : (
+            <>
+              Login <span className="caret" />
+            </>
+          )}
         </button>
-        <ul
-          style={{ padding: "2em 4em 0px 4em" }}
-          className="dropdown-menu dropdown-menu-right dropdown-content mt-1"
-        >
+
+        <StyledUL className="dropdown-menu dropdown-menu-right dropdown-content mt-1">
           <li className="p-3">
             <form className="form" role="form">
               <div className="form-group">
+                <p>Email:</p>
+
                 <input
                   id="emailInput"
                   placeholder="Email"
                   className=" form-control"
                   type="email"
-                  required=""
+                  required={true}
                 />
               </div>
+
               <div className="form-group">
+                <p>Password:</p>
+
                 <input
                   id="passwordInput"
                   placeholder="Password"
@@ -97,9 +142,10 @@ class LogIn extends Component {
                   required=""
                 />
               </div>
+
               <div className="form-group">
                 <button
-                  className="btn btn-primary btn-block"
+                  className="btn btn-primary btn-lg btn-block"
                   style={{ cursor: "pointer" }}
                   onClick={event => {
                     event.preventDefault;
@@ -109,30 +155,26 @@ class LogIn extends Component {
                   Login/SignUp
                 </button>
               </div>
-              <div className="form-group text-xs-center">
+
+              {/* <div className="form-group text-xs-center">
                 <small>
                   <a>Forgot password?</a>
                 </small>
-              </div>
+              </div> */}
 
               <div className="container">
-                <a
+                <FacebookStyle
                   className="btn btn-lg btn-social btn-facebook"
-                  style={{
-                    background: "#3B5998",
-                    color: "white",
-                    cursor: "pointer"
-                  }}
                   onClick={() => {
                     this.authWithFacebook();
                   }}
                 >
                   <i className="fa fa-facebook fa-fw" /> Sign in with Facebook
-                </a>
+                </FacebookStyle>
               </div>
             </form>
           </li>
-        </ul>
+        </StyledUL>
       </div>
     );
   }
