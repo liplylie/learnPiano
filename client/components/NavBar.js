@@ -1,6 +1,8 @@
+// libs
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
+// local
 import LogIn from "./Login/LogIn";
 import LogOut from "./LogOut";
 
@@ -130,7 +132,10 @@ class Navbar extends Component {
                       data-toggle="dropdown"
                     />
                     <ul className="dropdown-menu text-center effect1">
-                      <li className="dropdown-item">
+                      <li
+                        className="dropdown-item"
+                        onClick={() => this.props.history.push("/settings")}
+                      >
                         <Link to="/settings">Profile Settings</Link>
                       </li>
                     </ul>
@@ -153,4 +158,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);

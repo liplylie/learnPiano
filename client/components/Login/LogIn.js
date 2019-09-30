@@ -23,6 +23,8 @@ class LogIn extends Component {
 
   componentDidMount() {
     $(".dropdown-menu").click(function(e) {
+      if (e.target !== e.currentTarget) return;
+
       e.stopPropagation();
     });
   }
@@ -62,7 +64,6 @@ class LogIn extends Component {
       .fetchProvidersForEmail(email)
       .then(providers => {
         this.setState({ isLoading: false });
-
         if (providers.length === 0) {
           return app.auth().createUserWithEmailAndPassword(email, pw);
         } else {
@@ -159,7 +160,7 @@ class LogIn extends Component {
                     this.authWithEmailPassword(event);
                   }}
                 >
-                  Login/SignUp
+                  Log In
                 </button>
               </div>
 
@@ -169,22 +170,20 @@ class LogIn extends Component {
                 </small>
               </div> */}
 
+              <FacebookStyle
+                className="btn btn-lg btn-social btn-facebook"
+                onClick={() => {
+                  this.authWithFacebook();
+                }}
+              >
+                <i className="fa fa-facebook fa-fw" /> Sign in with Facebook
+              </FacebookStyle>
+
               <NoAccount className="form-group text-xs-center">
-                <small>
+                <small onClick={() => this.props.history.push("/signup")}>
                   <a>No account? Sign Up.</a>
                 </small>
               </NoAccount>
-
-              <div className="container">
-                <FacebookStyle
-                  className="btn btn-lg btn-social btn-facebook"
-                  onClick={() => {
-                    this.authWithFacebook();
-                  }}
-                >
-                  <i className="fa fa-facebook fa-fw" /> Sign in with Facebook
-                </FacebookStyle>
-              </div>
             </form>
           </li>
         </StyledUL>

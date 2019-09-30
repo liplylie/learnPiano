@@ -50,7 +50,7 @@ const Page404 = () => (
   <div
     className="row"
     style={{
-      backgroundColor: "lightpink",
+      backgroundColor: "white",
       height: "100vh",
       minWidth: "100vw",
       flex: 1
