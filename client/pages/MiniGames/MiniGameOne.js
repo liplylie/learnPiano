@@ -115,10 +115,7 @@ class MiniGameOne extends Component {
             text: "No",
             className: "danger",
             action: () => {
-              that.saveData();
-              that.setState({
-                lessonCompleted: true
-              });
+              that.saveData(true);
 
               Popup.close();
             }
@@ -151,7 +148,7 @@ class MiniGameOne extends Component {
     });
   }
 
-  saveData() {
+  saveData(completeLesson) {
     let that = this;
     let userMiniGameStatus = firebaseDB.ref(
       "/users/" + this.props.Auth.userId + "/miniGamesCompleted"
@@ -170,6 +167,12 @@ class MiniGameOne extends Component {
           highScore: Math.max(that.score, that.state.previousHighScore)
         }
       });
+
+      if (completeLesson) {
+        that.setState({
+          lessonCompleted: true
+        });
+      }
     });
   }
 
