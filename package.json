@@ -10,7 +10,8 @@
     "all": "npm run start-nodemon & npm run compile-watch",
     "webpack-prod": "npx webpack",
     "webpack-dev": "npx webpack --env=dev",
-    "build": "npm run all webpack-prod"
+    "build": "rm -rf build && webpack -p --progress --config webpack.production.config.js",
+    "deploy": "npm run build && aws s3 sync ./build/ s3://learnpianofun.com --acl public-read --profile default"
   },
   "author": "Jordan Daniels",
   "license": "ISC",

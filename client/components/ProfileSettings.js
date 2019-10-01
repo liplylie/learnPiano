@@ -30,7 +30,8 @@ class ProfileSettings extends Component {
     showChangeName: false,
     showChangePicture: false,
     showLessonStatus: false,
-    showIntroSongsStatus: false
+    showIntroSongsStatus: false,
+    files: ""
   };
 
   count = 0;
@@ -65,24 +66,25 @@ class ProfileSettings extends Component {
   toggleChangePicture = () => {
     let { showChangePicture } = this.state;
     let that = this;
-
+    console.log(this.files, "files");
     this.setState({ showChangePicture: !showChangePicture });
-    $("#photoupload").change(function() {
-      $("#upload-file-info").html(this.files[0].name);
-      that.count += 1;
-      if (that.count <= 1) {
-        that.addPhoto();
-      }
-    });
   };
 
-  addPhoto = () => {
+  addPhoto = e => {
+    const files = e.target.files;
     let that = this;
+    const IdentityPoolId = secret.AWSIdentityId;
+    const bucketRegion = secret.AWSRegion;
+
     let s3 = new AWS.S3({
       apiVersion: "2006-03-01",
-      params: { Bucket: secret.BucketName }
+      region: "us-west-1",
+      params: { Bucket: secret.BucketName },
+      credentials: new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: IdentityPoolId
+      })
     });
-    let files = document.getElementById("photoupload").files;
+
     if (!files.length) {
       return alert("Please choose a file to upload first.");
     }
@@ -99,9 +101,10 @@ class ProfileSettings extends Component {
       },
       (err, data) => {
         if (err) {
+          this.setState({ showChangePicture: false });
+
           return alert(
-            "There was an error uploading your photo: ",
-            err.message
+            "There was an error uploading your photo: " + err.message
           );
         }
         let userInfo = {
@@ -114,6 +117,8 @@ class ProfileSettings extends Component {
         let userSettings = firebaseDB.ref(
           "/users/" + this.props.profile.userId + "/userSettings"
         );
+        this.setState({ showChangePicture: true });
+
         userSettings.once("value").then(
           snapshot => {
             userSettings.update(userInfo);
@@ -413,6 +418,8 @@ class ProfileSettings extends Component {
                 accept=".jpg, .jpeg, .png, .gif, .pdf"
                 className="custom-file-input"
                 required
+                // value={this.state.files}
+                onChange={this.addPhoto}
               />
               <span className="custom-file-control" id="upload-file-info" />
             </label>
