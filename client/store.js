@@ -14,7 +14,7 @@ const persistConfig = {
 
 const middlewareArray = [thunk, promise()];
 
-if (process.env !== "production") {
+if (process.env.NODE_ENV !== "production") {
   middlewareArray.push(logger);
 }
 

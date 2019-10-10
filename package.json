@@ -10,8 +10,9 @@
     "all": "npm run start-nodemon & npm run compile-watch",
     "webpack-prod": "npx webpack",
     "webpack-dev": "npx webpack --env=dev",
-    "build": "rm -rf build && webpack -p --progress --config webpack.production.config.js",
-    "deploy": "npm run build && aws s3 sync ./build/ s3://learnpianofun.com --acl public-read --profile default"
+    "move": "cp ./client/static/index.html ./build/ && cp ./client/static/jquery-1.7.2.min.js ./build/ && cp ./client/static/jquery-ui-1.8.20.custom.min.js ./build/ && cp ./client/static/styles.css ./build/",
+    "build": "rm -rf ./build && mkdir build && webpack --mode production -p --progress --config webpack.production.config.js && npm run move",
+    "deploy": "npm run build && aws s3 sync ./build s3://www.learnpianofun.com --acl public-read --profile default"
   },
   "author": "Jordan Daniels",
   "license": "ISC",
@@ -57,6 +58,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "babel-cli": "^6.26.0",
+    "html-webpack-plugin": "^3.2.0",
     "jsdoc": "^3.5.5",
     "uglifyjs-webpack-plugin": "^1.1.8",
     "webpack-cli": "^3.3.6"

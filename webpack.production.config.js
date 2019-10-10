@@ -3,7 +3,7 @@ const Uglify = require("uglifyjs-webpack-plugin");
 const webpack = require("webpack");
 
 const SRC_DIR = path.resolve(__dirname, "client");
-const BUILD_DIR = path.resolve(__dirname, "client/build");
+const BUILD_DIR = path.resolve(__dirname, "build");
 
 module.exports = {
   entry: path.resolve(SRC_DIR, "index.js"),

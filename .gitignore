@@ -3,3 +3,4 @@ client/static/bundle.js
 node_modules
 secret.json
 bundle.js
+build/
