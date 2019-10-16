@@ -8,19 +8,20 @@ import Popup from "react-popup";
 import pitchTable from "~/helpers/pitchTable";
 import { firebaseDB } from "~/firebase";
 import { PageContainer } from "~/theme";
+import * as secret from "../../../secret.json";
 
 // reducers
 import * as MiniGamesCompleted from "~/actions/miniGamesCompletedActions";
 
 // photos
-import C4 from "~/static/C4.gif";
-import D4 from "~/static/D4.jpeg";
-import E4 from "~/static/E4.png";
-import F4 from "~/static/F4.jpg";
-import G4 from "~/static/G4.png";
+const C4 = `${secret.SampleUrl}/static/C4.gif`;
+const D4 = `${secret.SampleUrl}/static/D4.jpeg`;
+const E4 = `${secret.SampleUrl}/static/E4.png`;
+const F4 = `${secret.SampleUrl}/static/F4.jpg`;
+const G4 = `${secret.SampleUrl}/static/G4.png`;
 
 // components
-import Piano from "../../components/Piano";
+import Piano from "~/components/Piano";
 
 class MiniGameOne extends Component {
   constructor(props) {
@@ -530,7 +531,7 @@ class MiniGameOne extends Component {
                   visibility: "visible",
                   animationDelay: "0.5s"
                 }}
-                src={require("../../static/pianoSlide.png")}
+                src={`${secret.SampleUrl}/static/pianoSlide.png`}
               />
             </div>
           </div>
@@ -549,7 +550,7 @@ class MiniGameOne extends Component {
                 animationName: "flipInX",
                 display: this.state.noteIsWrong ? "block" : "none"
               }}
-              src={require("../../static/redX.png")}
+              src={`${secret.SampleUrl}/static/redX.png`}
             />
           </div>
           <div className="col-md-4">
@@ -588,7 +589,7 @@ class MiniGameOne extends Component {
                 animationName: "flipInX",
                 display: this.state.noteIsCorrect ? "block" : "none"
               }}
-              src={require("../../static/greenCheck.png")}
+              src={`${secret.SampleUrl}/static/greenCheck.png`}
             />
           </div>
         </div>
@@ -623,7 +624,7 @@ class MiniGameOne extends Component {
               width: "4em",
               margin: ".5em"
             }}
-            src={require("../../static/pianoKeys.png")}
+            src={`${secret.SampleUrl}/static/pianoKeys.png`}
           />
           <p className="wow flipInX center"> Open Piano</p>
         </div>

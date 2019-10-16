@@ -9,16 +9,17 @@ import Popup from "react-popup";
 import { firebaseDB } from "~/firebase";
 import * as MiniGamesCompleted from "~/actions/miniGamesCompletedActions";
 import { PageContainer } from "~/theme";
+import * as secret from "../../../secret.json";
 
 // sounds
-import C4 from "~/static/middleCBassClef.gif";
-import B3 from "~/static/B3.jpg";
-import A3 from "~/static/A3.jpg";
-import G3 from "~/static/G3.jpg";
-import F3 from "~/static/F3.png";
+const C4 = `${secret.SampleUrl}/middleCBassClef.gif`;
+const B3 = `${secret.SampleUrl}/B3.jpg`;
+const A3 = `${secret.SampleUrl}/A3.jpg`;
+const G3 = `${secret.SampleUrl}/G3.jpg`;
+const F3 = `${secret.SampleUrl}/F3.png`;
 
 // components
-import Piano from "../../components/Piano";
+import Piano from "~/components/Piano";
 
 class MiniGameTwo extends Component {
   constructor(props) {
@@ -526,7 +527,7 @@ class MiniGameTwo extends Component {
                   visibility: "visible",
                   animationDelay: "0.5s"
                 }}
-                src={require("../../static/pianoSlide.png")}
+                src={`${secret.SampleUrl}/static/pianoSlide.png`}
               />
             </div>
           </div>
@@ -545,7 +546,7 @@ class MiniGameTwo extends Component {
                 animationName: "flipInX",
                 display: this.state.noteIsWrong ? "block" : "none"
               }}
-              src={require("../../static/redX.png")}
+              src={`${secret.SampleUrl}/static/redX.png`}
             />
           </div>
           <div className="col-md-4">
@@ -584,7 +585,7 @@ class MiniGameTwo extends Component {
                 animationName: "flipInX",
                 display: this.state.noteIsCorrect ? "block" : "none"
               }}
-              src={require("../../static/greenCheck.png")}
+              src={`${secret.SampleUrl}/static/greenCheck.png`}
             />
           </div>
         </div>
@@ -619,7 +620,7 @@ class MiniGameTwo extends Component {
               width: "4em",
               margin: ".5em"
             }}
-            src={require("../../static/pianoKeys.png")}
+            src={`${secret.SampleUrl}/static/pianoKeys.png`}
           />
           <p className="wow flipInX center"> Open Piano</p>
         </div>
