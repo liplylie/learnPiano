@@ -6,6 +6,7 @@ import { bindActionCreators } from "redux";
 import { PulseLoader } from "react-spinners";
 import Popup from "react-popup";
 import $ from "jquery";
+import { isBrowser } from "react-device-detect";
 
 // global
 import { app, facebookProvider } from "~/firebase";
@@ -30,6 +31,12 @@ class LogIn extends Component {
   }
 
   authWithFacebook = () => {
+    if (!isBrowser) {
+      Popup.alert("Please log in using a desktop");
+      Popup.close();
+      return;
+    }
+
     this.setState({ isLoading: true });
 
     app
@@ -53,6 +60,10 @@ class LogIn extends Component {
 
   authWithEmailPassword = event => {
     event.preventDefault();
+    if (!isBrowser) {
+      Popup.alert("Please log in using a desktop");
+      return;
+    }
 
     this.setState({ isLoading: true });
 
@@ -65,7 +76,8 @@ class LogIn extends Component {
       .then(providers => {
         this.setState({ isLoading: false });
         if (providers.length === 0) {
-          return app.auth().createUserWithEmailAndPassword(email, pw);
+          Popup.alert("Please create an account");
+          return;
         } else {
           app
             .auth()

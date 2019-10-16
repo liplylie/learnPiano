@@ -34,6 +34,7 @@
     "nodemon": "^1.14.11",
     "re-base": "^3.2.2",
     "react": "^16.8.6",
+    "react-device-detect": "^1.9.10",
     "react-dom": "^16.2.0",
     "react-medium-image-zoom": "^3.0.10",
     "react-popup": "^0.9.2",

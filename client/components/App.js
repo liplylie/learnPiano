@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import AWS, { Config, CognitoIdentityCredentials } from "aws-sdk";
+import AWS from "aws-sdk";
+import Popup from "react-popup";
 
 // reducers
 import * as AuthActions from "~/actions/authActions";
@@ -165,10 +166,12 @@ class App extends Component {
 
   render() {
     const authenticated = this.props.online;
+
     return (
       <BrowserRouter>
         <div className="main" style={{ display: "flex" }}>
           <NavBar authenticated={authenticated} />
+          <Popup />
 
           <div style={{ flexDirection: "row", flex: 1 }}>
             {!authenticated ? (
