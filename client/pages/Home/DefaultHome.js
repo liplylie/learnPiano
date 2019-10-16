@@ -6,7 +6,7 @@ import ImageZoom from "react-medium-image-zoom";
 import Piano from "~/components/Piano.js";
 import * as secret from "../../../secret.json"
 
-const PianoBackground = `${secret.SampleUrl}/static/PianoBackground.jpg`;
+const PianoBackground = `${secret.SampleUrl}/static/pianoBackground.jpg`;
 
 const DefaultHome = ({ authenticated }) => {
   const [showPiano, changeShowPiano] = useState(false);
