@@ -33,7 +33,6 @@ class LogIn extends Component {
   authWithFacebook = () => {
     if (!isBrowser) {
       Popup.alert("Please log in using a desktop");
-      Popup.close();
       return;
     }
 
