@@ -1,5 +1,7 @@
 
 import React, { Component } from "react";
+
+import * as secret from "../../secret.json"
 /**
  * easySongView generates the html for the notes of easy song for the introduction songs.
  * @param {string} note - The note that is being rendered to the view. 
@@ -35,7 +37,7 @@ const easySongView = (note, index, correctAnswers, noteClass, songName, limit) =
 					key={index}
 			  	id={`${songName}${index}`}
 			 	  className={`playMusicNote noteOrder${noteOrder} note${note} ${correctAnswers === index ? noteClass : ""}`}
-			  	src={require("../static/musicNoteLine.png")}
+			  	src={`${secret.SampleUrl}/static/musicNoteLine.png`}
 			  	style={{display:display}}
 				/>
 			)
@@ -45,7 +47,7 @@ const easySongView = (note, index, correctAnswers, noteClass, songName, limit) =
 					key={index}
 				  id={`${songName}${index}`}
 				  className={`playMusicNote noteOrder${noteOrder} note${note} ${correctAnswers === index ? noteClass : ""}`}
-				  src={require("../static/quarterNote.png")}
+				  src={`${secret.SampleUrl}/static/quarterNote.png`}
 				  style={{display:display}}
 				/>
 			)

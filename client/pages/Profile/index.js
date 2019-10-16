@@ -7,6 +7,7 @@ import { bindActionCreators } from "redux";
 import { firebaseDB } from "~/firebase";
 import { PageContainer } from "~/theme";
 import introSongs from "~/helpers/introSongs";
+import * as secret from "../../../secret.json";
 
 // reducers
 import * as AuthActions from "~/actions/authActions.js";
@@ -183,7 +184,7 @@ class Profile extends Component {
                 src={
                   this.props.Auth.picture
                     ? this.props.Auth.picture
-                    : require("~/static/defaultUser.png")
+                    : `${secret.SampleUrl}/static/defaultUser.png`
                 }
                 title="Profile Picture"
               />

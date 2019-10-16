@@ -4,7 +4,9 @@ import ImageZoom from "react-medium-image-zoom";
 
 // global
 import Piano from "~/components/Piano.js";
-import PianoBackground from "~/static/PianoBackground.jpg";
+import * as secret from "../../../secret.json"
+
+const PianoBackground = `${secret.SampleUrl}/static/PianoBackground.jpg`;
 
 const DefaultHome = ({ authenticated }) => {
   const [showPiano, changeShowPiano] = useState(false);
@@ -31,7 +33,7 @@ const DefaultHome = ({ authenticated }) => {
           style={{ backgroundImage: `url(${PianoBackground})` }}
         >
           <img
-            src={require("~/static/learnpianofun.png")}
+            src={`${secret.SampleUrl}/static/learnpianofun.png`}
             alt="learnpianofun"
           />
           <p id="useWebsiteVersion">
@@ -143,14 +145,14 @@ const DefaultHome = ({ authenticated }) => {
           >
             <ImageZoom
               image={{
-                src: require("~/static/lessonSample.jpg"),
+                src: `${secret.SampleUrl}/static/lessonSample.jpg`,
                 alt: "gameSample",
                 className: "col",
                 style: { height: "25em", width: "25em" },
                 id: "sampleImage"
               }}
               zoomImage={{
-                src: require("~/static/lessonSample.jpg"),
+                src: `${secret.SampleUrl}/static/lessonSample.jpg`,
                 alt: "gameSample"
               }}
             />
@@ -179,7 +181,7 @@ const DefaultHome = ({ authenticated }) => {
                   width: "4em",
                   margin: ".5em"
                 }}
-                src={require("~/static/pianoKeys.png")}
+                src={`${secret.SampleUrl}/static/pianoKeys.png`}
               />
               <p className=""> Open Piano</p>
             </div>

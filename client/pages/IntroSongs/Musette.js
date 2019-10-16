@@ -12,6 +12,7 @@ import { firebaseDB } from "~/firebase";
 import Piano from "~/components/Piano.js";
 import easySongView from "~/helpers/easySongView";
 import noteTransition from "~/helpers/noteTransition";
+import * as secret from "../../../secret.json";
 
 // reducers
 import * as AuthActions from "~/actions/authActions.js";
@@ -543,7 +544,7 @@ class Musette extends Component {
                                     <div className="sheetMusicContainer col-md-10">
                                         <img
                                             className="sheetMusicStaff"
-                                            src={require("../../static/sheetMusic1.png")}
+                                            src={`${secret.SampleUrl}/static/sheetMusic1.png`}
                                         />
                                         {MusetteNotes}
                                     </div>
@@ -562,7 +563,7 @@ class Musette extends Component {
                                 Congrats! You have played through Musette<br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../../static/goodJob.gif")}
+                                    src={`${secret.SampleUrl}/static/goodJob.gif`}
                                 />
                                 <br />
                             </div>
@@ -594,7 +595,7 @@ class Musette extends Component {
                                 width: "4em",
                                 margin: ".5em"
                             }}
-                            src={require("../../static/pianoKeys.png")}
+                            src={`${secret.SampleUrl}/static/pianoKeys.png`}
                         />
                         <p className="wow flipInX center"> Open Piano</p>
                     </div>

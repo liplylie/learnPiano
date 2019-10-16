@@ -383,7 +383,7 @@ class ProfileSettings extends Component {
             src={
               this.props.profile.picture
                 ? this.props.profile.picture
-                : require("../static/defaultUser.png")
+                : `${secret.sampleUrl}/static/defaultUser.png`
             }
             style={{
               height: "10em",

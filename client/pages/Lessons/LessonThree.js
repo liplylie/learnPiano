@@ -1,19 +1,19 @@
 import React, { Component } from "react";
-import { BrowserRouter, Router, Route } from "react-router-dom";
 import { Redirect } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { app, firebaseDB } from "../../firebase";
 import firebase from "firebase";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import * as AuthActions from "../../actions/authActions.js";
-import * as LessonsCompletedActions from "../../actions/lessonsCompletedActions";
 import Popup from "react-popup";
-import pitchTable from "../../helpers/pitchTable";
-import pitchTablePictures from "../../helpers/pitchTablePictures";
-import Piano from "../../components/Piano.js";
-import easySongView from "../../helpers/easySongView"
-import noteTransition from "../../helpers/noteTransition"
+import { bindActionCreators } from "redux";
+
+import { app, firebaseDB } from "~/firebase";
+import * as AuthActions from "~/actions/authActions.js";
+import * as LessonsCompletedActions from "~/actions/lessonsCompletedActions";
+import pitchTable from "~/helpers/pitchTable";
+import Piano from "~/components/Piano.js";
+import easySongView from "~/helpers/easySongView"
+import noteTransition from "~/helpers/noteTransition"
+import * as secret from "../../../secret.json";
+
 
 class LessonThree extends Component {
     constructor(props) {
@@ -544,23 +544,23 @@ class LessonThree extends Component {
                                         <img
                                             className = "sheetMusicStaff"
 
-                                            src={require("../../static/sheetMusic1.png")}
+                                            src={`${secret.SampleUrl}/static/sheetMusic1.png`}
                                         />
                                         <img
                                             className="playMusicNote noteOrderFirst noteE4 "
-                                            src={require("../../static/quarterNote.png")}
+                                            src={`${secret.SampleUrl}/static/quarterNote.png`}
                                         />
                                          <img
                                             className="playMusicNote noteOrderSecond noteD4"
-                                            src={require("../../static/quarterNote.png")}
+                                            src={`${secret.SampleUrl}/static/quarterNote.png`}
                                         />
                                         <img
                                             className="playMusicNote noteOrderThird noteC4"
-                                            src={require("../../static/musicNoteLine.png")}
+                                            src={`${secret.SampleUrl}/static/musicNoteLine.png`}
                                         />
                                         <img
                                             className="playMusicNote noteOrderFourth noteD4"
-                                            src={require("../../static/quarterNote.png")}
+                                            src={`${secret.SampleUrl}/static/quarterNote.png`}
                                         />
                                     </div> 
                                 </div>
@@ -595,7 +595,7 @@ class LessonThree extends Component {
                                         <img
                                             className = "sheetMusicStaff"
 
-                                            src={require("../../static/sheetMusic1.png")}
+                                            src={`${secret.SampleUrl}/static/sheetMusic1.png`}
                                         />
                                        {MaryNotes}
                                     </div>
@@ -614,7 +614,7 @@ class LessonThree extends Component {
                                 Congrats! You have played through your first song. Please play through more songs in the song collection before moving to the next lesson! <br />{" "}
                                 <img
                                     style={{ height: "50vh", width: "60vw" }}
-                                    src={require("../../static/goodJob.gif")}
+                                    src={`${secret.SampleUrl}/static/goodJob.gif`}
                                 />
                                 <br />
                             </div>
@@ -646,7 +646,7 @@ class LessonThree extends Component {
                                 width: "4em",
                                 margin: ".5em"
                             }}
-                            src={require("../../static/pianoKeys.png")}
+                            src={`${secret.SampleUrl}/static/pianoKeys.png`}
                         />
                         <p className="wow flipInX center"> Open Piano</p>
                     </div>

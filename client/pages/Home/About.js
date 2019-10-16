@@ -3,6 +3,7 @@ import React, { useState, memo } from "react";
 // Global
 import { PageContainer } from "~/theme";
 import Piano from "~/components/Piano.js";
+import * as secret from "../../../secret.json";
 
 const About = memo(() => {
   const [showPiano, changeShowPiano] = useState(false);
@@ -66,7 +67,7 @@ const About = memo(() => {
                 width: "4em",
                 margin: ".5em"
               }}
-              src={require("~/static/pianoKeys.png")}
+              src={`${secret.SampleUrl}/static/pianoKeys.png`}
             />
             <p className="wow flipInX center"> Open Piano</p>
           </div>
@@ -99,7 +100,7 @@ const About = memo(() => {
             <img
               style={{ height: "10em", width: "10em" }}
               alt=""
-              src="https://s3.us-east-2.amazonaws.com/www.learnpianofun.com/pictures/oFwEEb9GdseMJRwnQfNw3phOt4v2/profilePic.png"
+              src={`${secret.SampleUrl}/pictures/profilePic2.jpeg`}
             />
           </div>
         </div>

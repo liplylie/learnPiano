@@ -6,6 +6,7 @@ import { bindActionCreators } from "redux";
 
 import { app } from "../firebase";
 import * as AuthActions from "../actions/authActions.js";
+import * as Secret from "../../secret.json";
 
 class LogOut extends Component {
   handleClick = () => {
@@ -31,7 +32,7 @@ class LogOut extends Component {
             src={
               this.props.picture
                 ? this.props.picture
-                : require("../static/defaultUser.png")
+                : `${Secret.SampleUrl}/static/defaultUser.png`
             }
             style={{
               height: "1.5em",
