@@ -10,7 +10,7 @@
     "all": "npm run start-nodemon & npm run compile-watch",
     "webpack-prod": "npx webpack",
     "webpack-dev": "npx webpack --env=dev",
-    "move": "cp ./client/static/index.html ./build/ && cp ./client/static/jquery-1.7.2.min.js ./build/ && cp ./client/static/jquery-ui-1.8.20.custom.min.js ./build/ && cp ./client/static/styles.css ./build/",
+    "move": "cp ./client/static/index.html ./build/ && cp ./client/static/jquery-1.7.2.min.js ./build/ && cp ./client/static/styles.css ./build/",
     "build": "rm -rf ./build && mkdir build && webpack --mode production -p --progress --config webpack.production.config.js && npm run move",
     "deploy": "npm run build && aws s3 sync ./build s3://www.learnpianofun.com --acl public-read --profile default"
   },
@@ -18,6 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.5.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
     "@blueprintjs/core": "^2.0.0-beta.3",
     "aws-sdk": "^2.205.0",

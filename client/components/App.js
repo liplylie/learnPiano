@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Suspense, lazy } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -17,9 +17,12 @@ import { app, firebaseDB } from "~/firebase";
 import NavBar from "./NavBar";
 // import Footer from "./Footer";
 
+// pages
+import PageLoader from "~/pages/Loader/Loader";
+
 // routes
-import PublicRoutes from "~/routes/PublicRoutes";
-import PrivateRoutes from "~/routes/PrivateRoutes";
+const PublicRoutes = lazy(() => import("~/routes/PublicRoutes"));
+const PrivateRoutes = lazy(() => import("~/routes/PrivateRoutes"));
 
 import secret from "../../secret.json";
 
@@ -169,27 +172,29 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        <div className="main" style={{ display: "flex" }}>
-          <NavBar authenticated={authenticated} />
-          <Popup />
+        <Suspense fallback={<PageLoader />}>
+          <div className="main" style={{ display: "flex" }}>
+            <NavBar authenticated={authenticated} />
+            <Popup />
 
-          <div style={{ flexDirection: "row", flex: 1 }}>
-            {!authenticated ? (
-              <>
-                <PublicRoutes />
-              </>
-            ) : (
-              <>
-                <PrivateRoutes
-                  authenticated={authenticated}
-                  loading={this.state.loading}
-                  userID={this.state.userID}
-                />
-              </>
-            )}
-            {/* <Footer /> */}
+            <div style={{ flexDirection: "row", flex: 1 }}>
+              {!authenticated ? (
+                <>
+                  <PublicRoutes />
+                </>
+              ) : (
+                <>
+                  <PrivateRoutes
+                    authenticated={authenticated}
+                    loading={this.state.loading}
+                    userID={this.state.userID}
+                  />
+                </>
+              )}
+              {/* <Footer /> */}
+            </div>
           </div>
-        </div>
+        </Suspense>
       </BrowserRouter>
     );
   }
