@@ -141,7 +141,13 @@ export const PrivateRoutes = ({ loading, authenticated, userID }) => {
       <Route
         exact
         path="/SongList/intro/AuraLee"
-        component={() => <AuraLee />}
+        component={() => (
+          <CreateIntroSong
+            songName={AuraLee.songName}
+            lessonNotes={AuraLee.lessonNotes}
+            songHeading={AuraLee.songHeading}
+          />
+        )}
       />
       <Route
         exact
