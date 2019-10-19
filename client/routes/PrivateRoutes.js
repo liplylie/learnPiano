@@ -317,17 +317,35 @@ export const PrivateRoutes = ({ loading, authenticated, userID }) => {
       <Route
         exact
         path="/SongList/intro/Musette"
-        component={() => <Musette />}
+        component={() => (
+          <CreateIntroSong
+            songName={Musette.songName}
+            lessonNotes={Musette.lessonNotes}
+            songHeading={Musette.songHeading}
+          />
+        )}
       />
       <Route
         exact
         path="/SongList/intro/NewWorldSymphony"
-        component={() => <NewWorldSymphony />}
+        component={() => (
+          <CreateIntroSong
+            songName={NewWorldSymphony.songName}
+            lessonNotes={NewWorldSymphony.lessonNotes}
+            songHeading={NewWorldSymphony.songHeading}
+          />
+        )}
       />
       <Route
         exact
         path="/SongList/intro/OdeToJoy"
-        component={() => <OdeToJoy />}
+        component={() => (
+          <CreateIntroSong
+            songName={OdeToJoy.songName}
+            lessonNotes={OdeToJoy.lessonNotes}
+            songHeading={OdeToJoy.songHeading}
+          />
+        )}
       />
       <Route
         exact
@@ -354,7 +372,13 @@ export const PrivateRoutes = ({ loading, authenticated, userID }) => {
       <Route
         exact
         path="/SongList/intro/SaintsGoMarchin"
-        component={() => <SaintsGoMarchin />}
+        component={() => (
+          <CreateIntroSong
+            songName={SaintsGoMarchin.songName}
+            lessonNotes={SaintsGoMarchin.lessonNotes}
+            songHeading={SaintsGoMarchin.songHeading}
+          />
+        )}
       />
       <Route
         exact
