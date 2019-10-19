@@ -251,12 +251,24 @@ export const PrivateRoutes = ({ loading, authenticated, userID }) => {
       <Route
         exact
         path="/SongList/intro/JingleBells"
-        component={() => <JingleBells />}
+        component={() => (
+          <CreateIntroSong
+            songName={JingleBells.songName}
+            lessonNotes={JingleBells.lessonNotes}
+            songHeading={JingleBells.songHeading}
+          />
+        )}
       />
       <Route
         exact
         path="/SongList/intro/LightlyRow"
-        component={() => <LightlyRow />}
+        component={() => (
+          <CreateIntroSong
+            songName={LightlyRow.songName}
+            lessonNotes={LightlyRow.lessonNotes}
+            songHeading={LightlyRow.songHeading}
+          />
+        )}
       />
       <Route
         exact
@@ -283,12 +295,24 @@ export const PrivateRoutes = ({ loading, authenticated, userID }) => {
       <Route
         exact
         path="/SongList/intro/LoveSomebody"
-        component={() => <LoveSomebody />}
+        component={() => (
+          <CreateIntroSong
+            songName={LoveSomebody.songName}
+            lessonNotes={LoveSomebody.lessonNotes}
+            songHeading={LoveSomebody.songHeading}
+          />
+        )}
       />
       <Route
         exact
         path="/SongList/intro/MaryHad"
-        component={() => <MaryHadLamb />}
+        component={() => (
+          <CreateIntroSong
+            songName={MaryHadLamb.songName}
+            lessonNotes={MaryHadLamb.lessonNotes}
+            songHeading={MaryHadLamb.songHeading}
+          />
+        )}
       />
       <Route
         exact
