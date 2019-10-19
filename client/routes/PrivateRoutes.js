@@ -196,7 +196,13 @@ export const PrivateRoutes = ({ loading, authenticated, userID }) => {
       <Route
         exact
         path="/SongList/intro/GoodKingWenceslas"
-        component={() => <GoodKingWenceslas />}
+        component={() => (
+          <CreateIntroSong
+            songName={GoodKingWenceslas.songName}
+            lessonNotes={GoodKingWenceslas.lessonNotes}
+            songHeading={GoodKingWenceslas.songHeading}
+          />
+        )}
       />
       <Route
         exact
@@ -223,7 +229,13 @@ export const PrivateRoutes = ({ loading, authenticated, userID }) => {
       <Route
         exact
         path="/SongList/intro/HotCrossBuns"
-        component={() => <HotCrossBuns />}
+        component={() => (
+          <CreateIntroSong
+            songName={HotCrossBuns.songName}
+            lessonNotes={HotCrossBuns.lessonNotes}
+            songHeading={HotCrossBuns.songHeading}
+          />
+        )}
       />
       <Route
         exact
