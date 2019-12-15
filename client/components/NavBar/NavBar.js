@@ -1,10 +1,12 @@
 // libs
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
+import Tooltip from "react-tooltip";
 
 // local
-import LogIn from "./Login/LogIn";
-import LogOut from "./LogOut";
+import LogIn from "../Login/LogIn";
+import LogOut from "../LogOut";
+import { NavBarLink } from "./NavBarStyle";
 
 class Navbar extends Component {
   state = {
@@ -73,21 +75,59 @@ class Navbar extends Component {
                 <a data-toggle="dropdown" className="dropdown-toggle nav-link">
                   Mini Games
                 </a>
+
                 <ul className="dropdown-menu text-center effect1">
                   <li className="dropdown-item">
                     <Link to="/miniGame1">Mini Game 1</Link>
                   </li>
+
                   <li className="dropdown-item">
                     <Link to="/miniGame2">Mini Game 2</Link>
                   </li>
+
                   <li className="dropdown-item">
-                    <Link to="/miniGame3">Mini Game 3</Link>
+                    <NavBarLink
+                      to="/miniGame3"
+                      data-tip="miniGame3"
+                      disabled
+                      onClick={e => e.preventDefault()}
+                    >
+                      Mini Game 3
+                    </NavBarLink>
+
+                    <Tooltip for="miniGame3" effect="solid" place="left">
+                      Coming Soon
+                    </Tooltip>
                   </li>
+
                   <li className="dropdown-item">
-                    <Link to="/miniGame4">Mini Game 4</Link>
+                    <NavBarLink
+                      to="/miniGame4"
+                      data-tip="miniGame4"
+                      disabled
+                      onClick={e => e.preventDefault()}
+                    >
+                      Mini Game 4
+                    </NavBarLink>
+
+                    <Tooltip for="miniGame4" effect="solid" place="left">
+                      Coming Soon
+                    </Tooltip>
                   </li>
+
                   <li className="dropdown-item">
-                    <Link to="/miniGame5">Mini Game 5</Link>
+                    <NavBarLink
+                      to="/miniGame5"
+                      data-tip="miniGame5"
+                      disabled
+                      onClick={e => e.preventDefault()}
+                    >
+                      Mini Game 5
+                    </NavBarLink>
+
+                    <Tooltip for="miniGame5" effect="solid" place="left">
+                      Coming Soon
+                    </Tooltip>
                   </li>
                 </ul>
               </li>
@@ -105,14 +145,50 @@ class Navbar extends Component {
                   <li className="dropdown-item">
                     <Link to="/SongList/intro">Intro Level Songs</Link>
                   </li>
+
                   <li className="dropdown-item">
-                    <Link to="/SongList/easy">Easy Level Songs</Link>
+                    <NavBarLink
+                      to="/SongList/easy"
+                      data-tip="easyLevelSong"
+                      disabled
+                      onClick={e => e.preventDefault()}
+                    >
+                      Easy Level Songs
+                    </NavBarLink>
+
+                    <Tooltip for="easyLevelSong" effect="solid" place="left">
+                      Coming Soon
+                    </Tooltip>
                   </li>
+
                   <li className="dropdown-item">
-                    <Link to="/SongList/medium">Medium Level Songs</Link>
+                    <NavBarLink
+                      to="/SongList/medium"
+                      data-tip="mediumLevelSong"
+                      disabled
+                      onClick={e => e.preventDefault()}
+                    >
+                      Medium Level Songs
+                    </NavBarLink>
+
+                    <Tooltip for="mediumLevelSong" effect="solid" place="left">
+                      Coming Soon
+                    </Tooltip>
                   </li>
+
                   <li className="dropdown-item">
-                    <Link to="/SongList/hard">Hard Level Songs</Link>
+                    <NavBarLink
+                      to="/SongList/hard"
+                      data-tip="mediumLevelSong"
+                      disabled
+                      onClick={e => e.preventDefault()}
+                    >
+                      Hard Level Songs
+                    </NavBarLink>
+
+                    <Tooltip for="hardLevelSong" effect="solid" place="left">
+                      Coming Soon
+                    </Tooltip>
                   </li>
                 </ul>
               </li>

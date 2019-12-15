@@ -7,6 +7,8 @@ export const StyledLink = styled(Link)`
   font-family: helvetica;
   font-size: 1.5em;
   display: block;
+
+  ${({ disabled }) => disabled && `opacity: 0.5;`}
 `;
 
 export const ProfilePicture = styled.img`

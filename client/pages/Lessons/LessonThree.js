@@ -517,7 +517,7 @@ class LessonThree extends Component {
                             >
                                 {" "}
                                 Welcome to your Third lesson! Today we will
-                                play through a few songs!
+                                play through a song!
                             </div>
                             <button
                                 id="lessonThreeButtonOne"

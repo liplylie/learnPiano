@@ -38,7 +38,7 @@ const DefaultHome = ({ authenticated }) => {
           />
           <p id="useWebsiteVersion">
             {" "}
-            Please Use The Website Version of this Site
+            Please Switch To Desktop or Laptop for this Site.
           </p>
           <div className="gradient_bot scrollDown ">
             <i className="downArrow" />

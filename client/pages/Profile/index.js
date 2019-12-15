@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import Tooltip from "react-tooltip";
 
 // global
 import { firebaseDB } from "~/firebase";
@@ -219,9 +220,29 @@ class Profile extends Component {
 
             <StyledLink to="/lesson3">Lesson Three</StyledLink>
 
-            <StyledLink to="/lesson4">Lesson Four</StyledLink>
+            <StyledLink
+              to="lesson4"
+              data-tip="lesson4"
+              disabled
+              onClick={e => e.preventDefault()}
+            >
+              Lesson Four
+              <Tooltip for="lesson4" effect="solid" place="left">
+                Coming Soon
+              </Tooltip>
+            </StyledLink>
 
-            <StyledLink to="/lesson5">Lesson Five</StyledLink>
+            <StyledLink
+              to="lesson5"
+              data-tip="lesson5"
+              disabled
+              onClick={e => e.preventDefault()}
+            >
+              Lesson Five
+              <Tooltip for="lesson5" effect="solid" place="left">
+                Coming Soon
+              </Tooltip>
+            </StyledLink>
           </div>
         </div>
 

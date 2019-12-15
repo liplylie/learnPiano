@@ -14,7 +14,7 @@ import introSongs from "~/helpers/introSongs";
 import { app, firebaseDB } from "~/firebase";
 
 // components
-import NavBar from "./NavBar";
+import NavBar from "./NavBar/NavBar";
 // import Footer from "./Footer";
 
 // pages
