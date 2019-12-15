@@ -57,7 +57,7 @@
     "file-loader": "^1.1.6",
     "url-loader": "^1.0.1",
     "webpack": "^4.38.0",
-    "webpack-dev-server": "^2.11.1",
+    "webpack-dev-server": "^3.9.0",
     "style-loader": "^0.19.1",
     "nodemon": "^1.14.11"
   }
